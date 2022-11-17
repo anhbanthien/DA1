@@ -5,6 +5,7 @@
 package config;
 
 import java.util.Properties;
+import model.KhachHang;
 import model.NhanVien;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -27,6 +28,7 @@ public class HibernatUtil {
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(NhanVien.class);
+        conf.addAnnotatedClass(KhachHang.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
