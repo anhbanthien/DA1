@@ -4,10 +4,6 @@
  */
 package viewsmodel;
 
-/**
- *
- * @author Admin
- */
 public class SanPhamModel {
     
 }

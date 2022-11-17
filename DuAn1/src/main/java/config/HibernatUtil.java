@@ -5,6 +5,7 @@
 package config;
 
 import java.util.Properties;
+import model.NhanVien;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -17,14 +18,15 @@ public class HibernatUtil {
 
     static {
 
-        
         Configuration conf = new Configuration();
         Properties properties = new Properties();
-        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=FINALASS_FPOLYSHOP_FA22_SOF205_SOF2041");
+        properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DuAn1");
         properties.put(Environment.USER, "sa");
         properties.put(Environment.PASS, "16102003");
         properties.put(Environment.SHOW_SQL, "true");
+
         conf.setProperties(properties);
+        conf.addAnnotatedClass(NhanVien.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
