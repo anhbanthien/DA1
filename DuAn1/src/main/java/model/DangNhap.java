@@ -22,7 +22,54 @@ public class DangNhap {
     private String MatKhau;
     private String Quyen;
     @ManyToOne
-    @JoinColumn(name = "IdNhanVien")
+    @JoinColumn(name = "IdNhanVien", referencedColumnName = "IdNhanVien")
     private NhanVien IdNhanVien;
+
+    public String getTenTaiKhoan() {
+        return TenTaiKhoan;
+    }
+
+    public void setTenTaiKhoan(String TenTaiKhoan) {
+        this.TenTaiKhoan = TenTaiKhoan;
+    }
+
+    public String getMatKhau() {
+        return MatKhau;
+    }
+
+    public void setMatKhau(String MatKhau) {
+        this.MatKhau = MatKhau;
+    }
+
+    public String getQuyen() {
+        return Quyen;
+    }
+
+    public void setQuyen(String Quyen) {
+        this.Quyen = Quyen;
+    }
+
+    public NhanVien getIdNhanVien() {
+        return IdNhanVien;
+    }
+
+    public void setIdNhanVien(NhanVien IdNhanVien) {
+        this.IdNhanVien = IdNhanVien;
+    }
+
+    @Override
+    public String toString() {
+        return "DangNhap{" + "TenTaiKhoan=" + TenTaiKhoan + ", MatKhau=" + MatKhau + ", Quyen=" + Quyen + ", IdNhanVien=" + IdNhanVien + '}';
+    }
+
+    public DangNhap() {
+    }
+
+    public DangNhap(String TenTaiKhoan, String MatKhau, String Quyen, NhanVien IdNhanVien) {
+        this.TenTaiKhoan = TenTaiKhoan;
+        this.MatKhau = MatKhau;
+        this.Quyen = Quyen;
+        this.IdNhanVien = IdNhanVien;
+    }
 
 }

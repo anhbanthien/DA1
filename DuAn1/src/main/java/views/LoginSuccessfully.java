@@ -15,7 +15,7 @@ public class LoginSuccessfully extends javax.swing.JFrame {
      */
     public LoginSuccessfully() {
         initComponents();
-      
+        
     }
 
     /**
@@ -84,7 +84,8 @@ public class LoginSuccessfully extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.dispose();
+        this.dispose();
+        new Main().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
