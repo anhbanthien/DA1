@@ -17,6 +17,7 @@ public class HibernatUtil {
 
     static {
 
+        
         Configuration conf = new Configuration();
         Properties properties = new Properties();
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=FINALASS_FPOLYSHOP_FA22_SOF205_SOF2041");
