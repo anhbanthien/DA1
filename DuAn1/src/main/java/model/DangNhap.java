@@ -9,10 +9,20 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DangNhap")
-public class DangNhap  {
-    
+public class DangNhap {
+
+    @Id
+    private String TenTaiKhoan;
+    private String MatKhau;
+    private String Quyen;
+    @ManyToOne
+    @JoinColumn(name = "IdNhanVien")
+    private NhanVien IdNhanVien;
+
 }

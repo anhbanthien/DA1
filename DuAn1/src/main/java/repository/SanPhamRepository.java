@@ -10,11 +10,7 @@ import javax.persistence.Query;
 import model.NhanVien;
 import org.hibernate.Session;
 
-/**
- *
- * @author Admin
- */
-public class SanPhamRepository {
 
+public class SanPhamRepository {
 
 }
