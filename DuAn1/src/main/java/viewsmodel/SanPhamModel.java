@@ -5,5 +5,5 @@
 package viewsmodel;
 
 public class SanPhamModel {
-    
+
 }
