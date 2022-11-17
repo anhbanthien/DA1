@@ -4,10 +4,13 @@
  */
 package repository;
 
-/**
- *
- * @author Admin
- */
+import config.HibernatUtil;
+import java.util.List;
+import javax.persistence.Query;
+import model.NhanVien;
+import org.hibernate.Session;
+
+
 public class SanPhamRepository {
-    
+
 }
