@@ -4,14 +4,14 @@
  */
 package service;
 
-import model.DangNhap;
+import java.util.ArrayList;
+import model.NhanVien;
 
 /**
  *
  * @author Admin
  */
-public interface IQuanLyDangNhap {
+public interface IQlyNhanVien {
 
-    DangNhap checkLogin(String Acc, String Pass);
-
+    ArrayList<NhanVien> getAllStaff();
 }

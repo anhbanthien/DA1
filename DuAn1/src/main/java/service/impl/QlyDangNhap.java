@@ -4,6 +4,7 @@
  */
 package service.impl;
 
+import model.DangNhap;
 import repository.DangNhapRepository;
 import service.IQuanLyDangNhap;
 
@@ -14,7 +15,7 @@ import service.IQuanLyDangNhap;
 public class QlyDangNhap implements IQuanLyDangNhap {
 
     @Override
-    public boolean checkLogin(String Acc, String Pass) {
+    public DangNhap checkLogin(String Acc, String Pass) {
         return new DangNhapRepository().CheckLogin(Acc, Pass);
     }
 

@@ -16,7 +16,7 @@ public class DangNhapRepository {
     Session session = HibernatUtil.getFACTORY().openSession();
     private String fromTable = "FROM DangNhap"; // HQL 
 
-    public boolean CheckLogin(String Account, String Password) {
+    public DangNhap CheckLogin(String Account, String Password) {
 
         String sql = fromTable + " WHERE TenTaiKhoan =:tk and MatKhau = :mk";
         Query query = session.createQuery(sql, DangNhap.class);
@@ -25,17 +25,17 @@ public class DangNhapRepository {
         try {
             DangNhap log = (DangNhap) query.getSingleResult();
             if (log.getTenTaiKhoan().equalsIgnoreCase(Account) && log.getMatKhau().equalsIgnoreCase(Password)) {
-                return true;
+                return log;
             }
         } catch (Exception e) {
 
         }
-        return false;
+        return null;
 
     }
 
     public static void main(String[] args) {
-        System.out.println(new DangNhapRepository().CheckLogin("staff", "123"));
+        System.out.println(new DangNhapRepository().CheckLogin("staff", "123").toString());
     }
 
     public List<DangNhap> getAll() {
