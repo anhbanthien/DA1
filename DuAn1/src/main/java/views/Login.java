@@ -73,6 +73,9 @@ public class Login extends javax.swing.JFrame {
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LogoCoffee.png"))); // NOI18N
 
+        txtPass.setForeground(new java.awt.Color(153, 153, 153));
+        txtPass.setText("ádadsasd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,9 +170,10 @@ public class Login extends javax.swing.JFrame {
 
             new LoginSuccessfully().setVisible(true);
             new Main(l).setVisible(true);
+            this.dispose();
 
         } else {
-            JOptionPane.showMessageDialog(this, "fail r ku :/");
+            JOptionPane.showMessageDialog(this, "=)) log ngu r con");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

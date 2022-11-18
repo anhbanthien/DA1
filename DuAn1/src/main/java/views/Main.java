@@ -4,6 +4,7 @@
  */
 package views;
 
+import javax.swing.JOptionPane;
 import model.DangNhap;
 
 /**
@@ -18,19 +19,19 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
-
+    
     public Main(DangNhap log) {
         initComponents();
         JbtAccount.setText(log.getTenTaiKhoan());
         if (!log.getQuyen().equalsIgnoreCase("admin")) {
-
+            
             JbtQlyNhanVien.setEnabled(false);
         } else {
             JbtQlyNhanVien.setEnabled(true);
         }
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -144,7 +145,11 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JbtAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtAccountActionPerformed
-        // TODO add your handling code here:
+        int Check = JOptionPane.showConfirmDialog(this, "em iu co muon out kh ?");
+        if (Check == 0) {
+            dispose();
+            new Login().setVisible(true);
+        }
     }//GEN-LAST:event_JbtAccountActionPerformed
 
     private void JbtQlyNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtQlyNhanVienActionPerformed
