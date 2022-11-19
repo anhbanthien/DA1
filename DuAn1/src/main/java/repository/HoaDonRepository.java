@@ -7,6 +7,8 @@ package repository;
 import config.HibernatUtil;
 import java.util.List;
 import domainmodel.HoaDon;
+import domainmodel.HoaDonChiTiet;
+import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
@@ -28,6 +30,14 @@ public class HoaDonRepository {
         return lists;
     }
 
+    public HoaDon getOne(UUID id) {
+        String sql = fromTable + " WHERE IDHD = :id ";
+        javax.persistence.Query query = session.createQuery(sql, HoaDon.class);
+        query.setParameter("id", id);
+        HoaDon hd =  (HoaDon) query.getSingleResult();       
+        return hd;
+    }
+    
     public List<HoaDon> search(String TrangThai) {
         return (List<HoaDon>) session.get(HoaDon.class, TrangThai);
     }
