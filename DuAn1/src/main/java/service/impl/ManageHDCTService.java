@@ -8,12 +8,13 @@ package service.impl;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import model.HoaDonChiTiet;
-import model.SanPham;
+import domainmodel.HoaDonChiTiet;
+import domainmodel.SanPham;
 import repository.HDCTRepository;
 import repository.SanPhamRepository;
-import viewsmodel.QLHDCT;
-import viewsmodel.QLSanPham;
+import service.IManageHDCTService;
+import viewmodel.QLHDCT;
+import viewmodel.QLSanPham;
 
 /**
  *

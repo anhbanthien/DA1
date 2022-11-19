@@ -18,21 +18,21 @@ import viewmodel.NhanVienModel;
  * @author Admin
  */
 public class QlyNhanVien extends javax.swing.JFrame {
-    
+
     private ArrayList<NhanVienModel> getAll = new QlyNhanVienImpl().getAllStaff();
     private DefaultTableModel tbl = new DefaultTableModel();
-    
+
     public void fillToTable(List<NhanVienModel> listsStaff) {
-        
+
         tbl = (DefaultTableModel) tblQlyNhanVien.getModel();
         tbl.setRowCount(0);
-        
+
         for (NhanVienModel o : listsStaff) {
             tbl.addRow(new Object[]{o.getHoTen(), o.getEmail(), o.getSDT(), o.getGioiTinh(), o.getTrangThai()});
         }
-        
+
     }
-    
+
     public QlyNhanVien() {
         initComponents();
         fillToTable(getAll);
@@ -316,7 +316,7 @@ public class QlyNhanVien extends javax.swing.JFrame {
         } else {
             staff.setTrangThai("OFF");
         }
-        
+
         if (new QlyNhanVienImpl().Save(staff)) {
             JOptionPane.showMessageDialog(this, "Succes");
             getAll.add(new NhanVienModel(staff));
@@ -324,7 +324,7 @@ public class QlyNhanVien extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
         }
-        
+
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -353,7 +353,7 @@ public class QlyNhanVien extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
         }
-        
+
         fillToTable(new QlyNhanVienImpl().getAllStaff());
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -364,7 +364,7 @@ public class QlyNhanVien extends javax.swing.JFrame {
         txtName.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getHoTen());
         txtEmail.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getEmail());
         txtNumberPhone.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getSDT());
-        
+
         if (getAll.get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
             rdoOn.setSelected(true);
         } else {
@@ -379,16 +379,16 @@ public class QlyNhanVien extends javax.swing.JFrame {
     }//GEN-LAST:event_tblQlyNhanVienMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        
+
         if (tblQlyNhanVien.getSelectedRow() < 1) {
-            
+
             JOptionPane.showMessageDialog(this, "Hãy chọn nhân viên muốn xoá , click vào bảng nhân viên");
             JOptionPane.showMessageDialog(this, "Xoá nhân viên thực chất là chuyển đổi trạng thái làm việc,"
                     + "Bạn hãy chọn nhân viên cần xoá và thay đổi trạng thái ON ->OFF");
             return;
         }
         int Number = JOptionPane.showConfirmDialog(this, "Xoá nhé ?");
-        
+
         if (Number == 0) {
             NhanVien staff = new NhanVien();
             staff.setEmail(txtEmail.getText());
@@ -414,26 +414,26 @@ public class QlyNhanVien extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Bạn đã huỷ xoá ");
         }
-        
+
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         List<NhanVienModel> getAllSearch = new ArrayList<>();
-        
+
         for (NhanVienModel o : getAll) {
             if (o.getHoTen().equalsIgnoreCase(txtSearch.getText())) {
                 getAllSearch.add(o);
             }
         }
-        
+
         if (getAllSearch.size() > 0) {
             fillToTable(getAllSearch);
             JOptionPane.showMessageDialog(this, "Đã tìm thấy");
         } else {
             JOptionPane.showMessageDialog(this, "Không tìm thấy");
         }
-        
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

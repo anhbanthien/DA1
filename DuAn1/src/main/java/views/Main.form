@@ -125,8 +125,8 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="JbtQlyNhanVien" min="-2" pref="74" max="-2" attributes="0"/>
-                  <EmptySpace pref="546" max="32767" attributes="0"/>
+                  <Component id="JbtQlyNhanVien" min="-2" pref="62" max="-2" attributes="0"/>
+                  <EmptySpace pref="558" max="32767" attributes="0"/>
                   <Component id="JbtAccount" min="-2" pref="77" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -143,6 +143,11 @@
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/QlyNhanVien.png"/>
+            </Property>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
+                <LineBorder/>
+              </Border>
             </Property>
           </Properties>
           <Events>
