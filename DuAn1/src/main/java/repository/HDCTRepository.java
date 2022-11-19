@@ -1,0 +1,73 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package repository;
+
+import config.HibernatUtil;
+import domainmodel.HoaDonChiTiet;
+import java.util.List;
+import java.util.UUID;
+import javax.persistence.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+/**
+ *
+ * @author trong
+ */
+public class HDCTRepository {
+    Session session = HibernatUtil.getFACTORY().openSession();
+    private String fromTable = "FROM HDCT";
+
+    public List<HoaDonChiTiet> getAll() {
+        Query query = session.createQuery(fromTable, HoaDonChiTiet.class);
+        List<HoaDonChiTiet> lists = query.getResultList();
+        return lists;
+    }
+
+    public HoaDonChiTiet getOne(UUID id) {
+        String sql = fromTable + " WHERE IDHDCT = :id ";
+        Query query = session.createQuery(sql, HoaDonChiTiet.class);
+        query.setParameter("id", id);
+        HoaDonChiTiet hdct = (HoaDonChiTiet) query.getSingleResult();       
+        return hdct;
+    }
+
+    public boolean Add(HoaDonChiTiet hdct) {
+        Transaction transaction = null;
+        try (Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.save(hdct);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    
+    public boolean Update(UUID id, HoaDonChiTiet hdct){
+        Transaction transaction = null;
+        try (Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(hdct);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    
+    public boolean Delete(UUID id){
+         Transaction transaction = null;
+         try (Session session = HibernatUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.delete(id);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+        }
+         return false;
+    }
+}
