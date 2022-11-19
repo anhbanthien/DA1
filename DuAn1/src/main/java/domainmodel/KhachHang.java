@@ -19,6 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "KhachHang")
 public class KhachHang {
+
     @Id
     @Column(name = "IdKhachHang")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -82,5 +83,5 @@ public class KhachHang {
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
+
 }
