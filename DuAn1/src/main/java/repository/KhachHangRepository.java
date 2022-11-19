@@ -24,13 +24,20 @@ public class KhachHangRepository {
         List<KhachHang> lists = query.getResultList();
         return lists;
     }
-//    public KhachHang getOne(long id){
-//        String sql = fromTable + " WHERE id = : id";
-//        Query query = session.createQuery(sql, KhachHang.class);
-//        query.setParameter("id", id);
-//        KhachHang khachHang = (KhachHang) query.getSingleResult();
-//        return khachHang;
-//    }
+    public KhachHang getOne(long id){
+        String sql = fromTable + " WHERE id = : id";
+        Query query = session.createQuery(sql, KhachHang.class);
+        query.setParameter("id", id);
+        KhachHang khachHang = (KhachHang) query.getSingleResult();
+        return khachHang;
+    }
+    public KhachHang getBySdt(String Sdt){
+        String sql = fromTable + " WHERE SoDienThoai = : id";
+        Query query = session.createQuery(sql, KhachHang.class);
+        query.setParameter("id", Sdt);
+        KhachHang khachHang = (KhachHang) query.getSingleResult();
+        return khachHang;
+    }
     public static void main(String[] args) {
         List<KhachHang> lists = new KhachHangRepository().getAll();
         System.out.println("Vui lên đi");
@@ -38,15 +45,37 @@ public class KhachHangRepository {
             System.out.println(list.toString());
         }
     }
-//    public Boolean add(KhachHang khachHang){
-//        Transaction transaction = null;
-//        try(Session session = HibernatUtil.getFACTORY().openSession()){
-//            transaction = session.beginTransaction();
-//            session.save(khachHang);
-//            transaction.commit();
-//            return true;
-//        } catch(Exception e){
-//    return null;
-//    }
-//    }
+    public Boolean add(KhachHang khachHang){
+        Transaction transaction = null;
+        try(Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.save(khachHang);
+            transaction.commit();
+            return true;
+        } catch(Exception e){
+    return false;
+        }
+    }
+    public Boolean delete(KhachHang khachHang){
+        Transaction transaction = null;
+        try(Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.delete(khachHang);
+            transaction.commit();
+            return true;
+        } catch(Exception e){
+    return false;
+        }
+    }
+    public Boolean update(KhachHang khachHang){
+        Transaction transaction = null;
+        try(Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(khachHang);
+            transaction.commit();
+            return true;
+        } catch(Exception e){
+    return false;
+        }
+    }
 }
