@@ -5,8 +5,12 @@
 package config;
 
 import java.util.Properties;
+
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
+import domainmodel.DangNhap;
+import domainmodel.KhachHang;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -28,6 +32,7 @@ public class HibernatUtil {
 
         conf.setProperties(properties);
         conf.addAnnotatedClass(NhanVien.class);
+        conf.addAnnotatedClass(KhachHang.class);
         conf.addAnnotatedClass(DangNhap.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
