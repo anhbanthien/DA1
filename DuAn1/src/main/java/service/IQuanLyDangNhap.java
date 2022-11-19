@@ -4,7 +4,7 @@
  */
 package service;
 
-import model.DangNhap;
+import domainmodel.DangNhap;
 
 /**
  *
@@ -13,5 +13,6 @@ import model.DangNhap;
 public interface IQuanLyDangNhap {
 
     DangNhap checkLogin(String Acc, String Pass);
+    
 
 }

@@ -8,7 +8,7 @@ import config.HibernatUtil;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
-import model.NhanVien;
+import domainmodel.NhanVien;
 import org.hibernate.Session;
 
 public class NhanVienRepository {

@@ -8,7 +8,7 @@ import config.HibernatUtil;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
-import model.DangNhap;
+import domainmodel.DangNhap;
 import org.hibernate.Session;
 
 public class DangNhapRepository {

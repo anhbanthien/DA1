@@ -5,7 +5,9 @@
 package service;
 
 import java.util.ArrayList;
-import model.NhanVien;
+import domainmodel.NhanVien;
+import java.util.UUID;
+import viewmodel.NhanVienModel;
 
 /**
  *
@@ -13,5 +15,10 @@ import model.NhanVien;
  */
 public interface IQlyNhanVien {
 
-    ArrayList<NhanVien> getAllStaff();
+    ArrayList<NhanVienModel> getAllStaff();
+
+    boolean Save(NhanVien Staff);
+    boolean Update(UUID Id ,NhanVien Staff);
+    boolean Delete(UUID Id);
+
 }

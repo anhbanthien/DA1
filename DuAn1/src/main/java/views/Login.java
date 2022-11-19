@@ -5,7 +5,7 @@
 package views;
 
 import javax.swing.JOptionPane;
-import model.DangNhap;
+import domainmodel.DangNhap;
 import service.impl.QlyDangNhap;
 
 public class Login extends javax.swing.JFrame {

@@ -5,8 +5,8 @@
 package config;
 
 import java.util.Properties;
-import model.DangNhap;
-import model.NhanVien;
+import domainmodel.DangNhap;
+import domainmodel.NhanVien;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

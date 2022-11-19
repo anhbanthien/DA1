@@ -5,7 +5,7 @@
 package views;
 
 import javax.swing.JOptionPane;
-import model.DangNhap;
+import domainmodel.DangNhap;
 
 /**
  *
@@ -19,19 +19,19 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
-    
+
     public Main(DangNhap log) {
         initComponents();
         JbtAccount.setText(log.getTenTaiKhoan());
         if (!log.getQuyen().equalsIgnoreCase("admin")) {
-            
+
             JbtQlyNhanVien.setEnabled(false);
         } else {
             JbtQlyNhanVien.setEnabled(true);
         }
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -4,7 +4,7 @@
  */
 package service.impl;
 
-import model.DangNhap;
+import domainmodel.DangNhap;
 import repository.DangNhapRepository;
 import service.IQuanLyDangNhap;
 

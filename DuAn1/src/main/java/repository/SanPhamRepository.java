@@ -7,7 +7,7 @@ package repository;
 import config.HibernatUtil;
 import java.util.List;
 import javax.persistence.Query;
-import model.NhanVien;
+import domainmodel.NhanVien;
 import org.hibernate.Session;
 
 

@@ -4,7 +4,7 @@
  */
 package views;
 
-import model.DangNhap;
+import domainmodel.DangNhap;
 
 /**
  *
