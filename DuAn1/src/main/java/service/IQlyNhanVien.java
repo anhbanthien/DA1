@@ -18,7 +18,9 @@ public interface IQlyNhanVien {
     ArrayList<NhanVienModel> getAllStaff();
 
     boolean Save(NhanVien Staff);
-    boolean Update(UUID Id ,NhanVien Staff);
+
+    boolean Update(UUID Id, NhanVien Staff);
+
     boolean Delete(UUID Id);
 
 }

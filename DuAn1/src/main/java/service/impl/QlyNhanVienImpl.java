@@ -25,17 +25,17 @@ public class QlyNhanVienImpl implements IQlyNhanVien {
 
     @Override
     public boolean Save(NhanVien Staff) {
-        return new QlyNhanVienImpl().Save(Staff);
+        return new NhanVienRepository().Save(Staff);
     }
 
     @Override
     public boolean Update(UUID Id, NhanVien Staff) {
-        return new QlyNhanVienImpl().Update(Id, Staff);
+        return new NhanVienRepository().Update(Id, Staff);
     }
 
     @Override
     public boolean Delete(UUID Id) {
-        return new QlyNhanVienImpl().Delete(Id);
+        return new NhanVienRepository().Delete(Id);
     }
 
 }

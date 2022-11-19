@@ -10,7 +10,6 @@ import domainmodel.DangNhap;
 import domainmodel.NhanVien;
 import domainmodel.DangNhap;
 import domainmodel.KhachHang;
-
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

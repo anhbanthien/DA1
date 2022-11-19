@@ -10,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import viewmodel.NhanVienModel;
 
 @Entity
 @Table(name = "NhanVien")
@@ -35,6 +36,16 @@ public class NhanVien {
         this.SDT = SDT;
         this.GioiTinh = GioiTinh;
         this.TrangThai = TrangThai;
+    }
+
+    public NhanVien(NhanVienModel nv) {
+
+        this.HoTen = nv.getHoTen();
+        this.Email = nv.getEmail();
+        this.SDT = nv.getSDT();
+        this.GioiTinh = nv.getGioiTinh();
+        this.TrangThai = nv.getTrangThai();
+        this.IdNhanVien = nv.getIdNhanVien();
     }
 
     public UUID getIdNhanVien() {
