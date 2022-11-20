@@ -17,4 +17,6 @@ public interface KhachHangService {
     boolean Update(KhachHangModel khachHang);
 
     boolean Delete(KhachHangModel khachHang);
+    
+    KhachHangModel getOne(String SDT);
 }
