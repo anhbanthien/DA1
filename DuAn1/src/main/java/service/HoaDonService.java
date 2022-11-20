@@ -5,6 +5,7 @@
 package service;
 
 import java.util.List;
+import java.util.UUID;
 import viewmodel.HoaDonModel;
 
 /**
@@ -17,4 +18,5 @@ public interface HoaDonService {
     List<HoaDonModel> getHoaDonByTT(String TT);
 
     List<HoaDonModel> getSearch();
+    public HoaDonModel getOne(UUID _idHD);
    }
