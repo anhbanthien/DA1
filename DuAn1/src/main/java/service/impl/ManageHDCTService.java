@@ -47,11 +47,11 @@ public class ManageHDCTService implements IManageHDCTService {
     public QLHDCT getOne(UUID id) {
         HDCT hdct = hDCTRepository.getOne(id);
         QLHDCT qlhdct = new QLHDCT();
-        qlhdct.setIdHDCT(hdct.getIdHDCT());
-        qlhdct.setIdHD(hdct.getHoaDon().getIDHD());
-        qlhdct.setIdSP(hdct.getSanPham().getIdSP());
+        qlhdct.setIdHDCT(hdct.getIDHDCT());
+        qlhdct.setIdHD(hdct.getIDHD().getIDHD());
+        qlhdct.setIdSP(hdct.getIDSP().getIdSP());
         qlhdct.setSoLuong(hdct.getSoLuong());
-        qlhdct.setSoBanCT(hdct.getSoBanCT());
+       
         return qlhdct;
     }
     @Override
@@ -59,15 +59,15 @@ public class ManageHDCTService implements IManageHDCTService {
         List<HDCT> lstHDCT = hDCTRepository.getAll();
         List<QLHDCT> lstQLHDCT = new ArrayList<>();
         for (HDCT x : lstHDCT) {
-            if(x.getHoaDon().getIDHD().equals(hoaDon)){
+            if(x.getIDHD().getIDHD().equals(hoaDon)){
             QLHDCT qlhdct = new QLHDCT();
-            qlhdct.setIdHDCT(x.getIdHDCT());
-            qlhdct.setIdHD(x.getHoaDon().getIDHD());
-            qlhdct.setIdSP(x.getSanPham().getIdSP());
-            qlhdct.setTenSP(x.getSanPham().getTenSP());
-            qlhdct.setGia(x.getSanPham().getGia());
+            qlhdct.setIdHDCT(x.getIDHDCT());
+            qlhdct.setIdHD(x.getIDHD().getIDHD());
+            qlhdct.setIdSP(x.getIDSP().getIdSP());
+            qlhdct.setTenSP(x.getIDSP().getTenSP());
+            qlhdct.setGia(x.getIDSP().getGia());
             qlhdct.setSoLuong(x.getSoLuong());
-            qlhdct.setSoBanCT(x.getSoBanCT());
+            
             lstQLHDCT.add(qlhdct);
             }
         }
@@ -75,11 +75,11 @@ public class ManageHDCTService implements IManageHDCTService {
     @Override
     public String add(QLHDCT qlhdct) {
         HDCT hdct = new HDCT();
-        hdct.setIdHDCT(qlhdct.getIdHD());
-        hdct.setHoaDon(hoaDonRepository.getOne(qlhdct.getIdHD()));
-        hdct.setSanPham(sanPhamRepository.getOne(qlhdct.getIdSP()));
+        hdct.setIDHDCT(qlhdct.getIdHD());
+        hdct.setIDHD(hoaDonRepository.getOne(qlhdct.getIdHD()));
+        hdct.setIDSP(sanPhamRepository.getOne(qlhdct.getIdSP()));
         hdct.setSoLuong(qlhdct.getSoLuong());
-        hdct.setSoBanCT(qlhdct.getSoBanCT());
+      
 
         return hDCTRepository.Add(hdct) ? "Thêm thành công" : "Thêm thất bại";
     }
@@ -87,11 +87,11 @@ public class ManageHDCTService implements IManageHDCTService {
     @Override
     public String update(UUID id, QLHDCT qlhdct) {
         HDCT hdct = new HDCT();
-        hdct.setIdHDCT(qlhdct.getIdHD());
-        hdct.setHoaDon(hoaDonRepository.getOne(qlhdct.getIdHD()));
-        hdct.setSanPham(sanPhamRepository.getOne(qlhdct.getIdSP()));
+        hdct.setIDHDCT(qlhdct.getIdHD());
+        hdct.setIDHD(hoaDonRepository.getOne(qlhdct.getIdHD()));
+        hdct.setIDSP(sanPhamRepository.getOne(qlhdct.getIdSP()));
         hdct.setSoLuong(qlhdct.getSoLuong());
-        hdct.setSoBanCT(qlhdct.getSoBanCT());
+      
 
         return hDCTRepository.Update(id, hdct) ? "Sửa thành công" : "Sửa thất bại";
     }

@@ -18,8 +18,8 @@ public class HoaDonModel {
     private String HoTen;
     private String Ten;
     private String PhanTramKM;
-    private Date NgayTao;
-    private Date NgayTT;
+    private String NgayTao;
+    private String NgayTT;
     private float TienTra;
     private float TongTien;
     private String TrangThai;
@@ -71,19 +71,19 @@ public class HoaDonModel {
         this.PhanTramKM = PhanTramKM;
     }
 
-    public Date getNgayTao() {
+    public String getNgayTao() {
         return NgayTao;
     }
 
-    public void setNgayTao(Date NgayTao) {
+    public void setNgayTao(String NgayTao) {
         this.NgayTao = NgayTao;
     }
 
-    public Date getNgayTT() {
+    public String getNgayTT() {
         return NgayTT;
     }
 
-    public void setNgayTT(Date NgayTT) {
+    public void setNgayTT(String NgayTT) {
         this.NgayTT = NgayTT;
     }
 
