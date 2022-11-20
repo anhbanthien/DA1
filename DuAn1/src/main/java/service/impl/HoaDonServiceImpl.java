@@ -34,14 +34,12 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
     @Override
     public List<HoaDonModel> getHoaDonByTT(String TT) {
-        List<HoaDon> list = hoadonrepository.getAll();
+        List<HoaDon> list = hoadonrepository.getHoaDonByTT(TT);
         List<HoaDonModel> hoadonmodel = new ArrayList<>();
 
         for (HoaDon hd : list) {
-            if(hd.getTrangThai().equalsIgnoreCase(TT)){
             HoaDonModel model = new HoaDonModel(hd);
-            hoadonmodel.add(model);}
-            
+            hoadonmodel.add(model);
         }
         return hoadonmodel;
     }
@@ -68,8 +66,8 @@ public class HoaDonServiceImpl implements HoaDonService {
     }
 
     @Override
-    public HoaDonModel getOne(UUID _idHD) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public HoaDonModel getOne(UUID idHD) {
+       return new HoaDonModel(hoadonrepository.getOne(idHD));
     }
 
 

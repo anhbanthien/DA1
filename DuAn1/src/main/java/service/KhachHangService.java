@@ -19,4 +19,5 @@ public interface KhachHangService {
     boolean Delete(KhachHangModel khachHang);
     
     KhachHangModel getOne(String SDT);
+    public KhachHangModel getOne(UUID id);
 }

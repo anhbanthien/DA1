@@ -8,6 +8,7 @@ import config.HibernatUtil;
 import java.util.List;
 import javax.persistence.Query;
 import domainmodel.KhachHang;
+import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -27,7 +28,7 @@ public class KhachHangRepository {
         return lists;
     }
 
-    public KhachHang getOne(long id) {
+    public KhachHang getOne(UUID id) {
         String sql = fromTable + " WHERE id = : id";
         Query query = session.createQuery(sql, KhachHang.class);
         query.setParameter("id", id);

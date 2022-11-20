@@ -4,13 +4,13 @@
  */
 package service.impl;
 
-import domainmodel.HoaDon;
+
 import domainmodel.KhachHang;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import repository.KhachHangRepository;
 import service.KhachHangService;
-import viewmodel.HoaDonModel;
 import viewmodel.KhachHangModel;
 
 /**
@@ -28,6 +28,14 @@ public class KhachHangServiceImpl implements KhachHangService{
             khachHangModels.add(new KhachHangModel(hd));
         }
         return khachHangModels;}
+    @Override
+    public KhachHangModel getOne(String Sdt) {
+        return new KhachHangModel(khachHangRepository.getBySdt(Sdt));
+    }
+    @Override
+    public KhachHangModel getOne(UUID id) {
+        return new KhachHangModel(khachHangRepository.getOne(id));
+    }
 
     @Override
     public boolean Save(KhachHangModel khachHang) {
@@ -43,11 +51,9 @@ public class KhachHangServiceImpl implements KhachHangService{
     public boolean Delete(KhachHangModel khachHang) {
         return khachHangRepository.delete(new KhachHang(khachHang));
     }
+
     
-    @Override
-    public KhachHangModel getOne(String SDT) {
-        KhachHang kh = khachHangRepository.getBySdt(SDT);
-        return new KhachHangModel(kh);
-    }
+
+    
     
 }

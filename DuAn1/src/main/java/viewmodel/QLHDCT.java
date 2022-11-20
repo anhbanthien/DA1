@@ -5,6 +5,7 @@
  */
 package viewmodel;
 
+import domainmodel.HDCT;
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -27,7 +28,7 @@ public class QLHDCT {
         this.soLuong = soLuong;
     }
 
-    public QLHDCT(Object object, UUID _idHD, UUID _idSP, double soLuong) {
+    public QLHDCT(UUID idHD, UUID idSP, double soLuong) {
         this.idHD = idHD;
         this.idSP = idSP;
         this.soLuong = (int) soLuong;
@@ -39,18 +40,30 @@ public class QLHDCT {
     public BigDecimal getGia() {
         return gia;
     }
-    public BigDecimal getTien() {
-        BigDecimal tien = null;
-        for(int i=0;i<= soLuong;i++){
-            tien = tien.add(gia);
-        }
+    public float getTien() {
+        
+        float giaf;
+        giaf= gia.floatValue();
+        float tien= giaf*soLuong;
         return tien;
     }
 
     public void setGia(BigDecimal gia) {
         this.gia = gia;
     }
+    public QLHDCT(HDCT hdct) {
+        this.idHDCT = idHDCT;
+        this.idHD = idHD;
+        this.idSP = idSP;
+        this.tenSP = tenSP;
+        this.gia = gia;
+        this.soLuong = soLuong;
+        this.soBanCT = soBanCT;
+    }
 
+    public String getTenSP() {
+        return tenSP;
+    }
     public QLHDCT(UUID idHDCT, UUID idHD, UUID idSP, String tenSP, BigDecimal gia, int soLuong, int soBanCT) {
         this.idHDCT = idHDCT;
         this.idHD = idHD;
