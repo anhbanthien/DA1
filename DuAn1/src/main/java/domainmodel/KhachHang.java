@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import viewmodel.KhachHangModel;
 
 /**
  *
@@ -39,6 +40,13 @@ public class KhachHang {
         this.DiemTichLuy = DiemTichLuy;
         this.SoDienThoai = SoDienThoai;
         this.TrangThai = TrangThai;
+    }
+    public KhachHang(KhachHangModel khachHang) {
+        this.id = khachHang.getId();
+        this.Ten = khachHang.getTen();
+        this.DiemTichLuy = khachHang.getDiemTichLuy();
+        this.SoDienThoai = khachHang.getSoDienThoai();
+        this.TrangThai = khachHang.getTrangThai();
     }
 
     public KhachHang() {
