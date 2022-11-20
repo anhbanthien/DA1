@@ -40,6 +40,10 @@ public class HoaDon {
     public HoaDon() {
     }
 
+    public HoaDon(UUID IDHD) {
+        this.IDHD = IDHD;
+    }
+
     public HoaDon(UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, String NgayTao, String NgayTT, float TienTra, float TongTien, String TrangThai) {
         this.IDHD = IDHD;
         this.IDNV = IDNV;

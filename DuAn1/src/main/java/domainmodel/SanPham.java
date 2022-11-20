@@ -19,6 +19,7 @@ public class SanPham {
 
     @Id
     @Column(columnDefinition = "uniqueidentifier")
+    @GeneratedValue
     private UUID idSP;
 
     @Column(name = "TenSP")
