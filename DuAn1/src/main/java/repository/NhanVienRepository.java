@@ -12,7 +12,7 @@ import domainmodel.NhanVien;
 import org.hibernate.Session;
 
 public class NhanVienRepository {
-
+    
     Session session = HibernatUtil.getFACTORY().openSession();
     private String fromTable = "FROM NhanVien"; // HQL 
 
@@ -21,11 +21,11 @@ public class NhanVienRepository {
         List<NhanVien> lists = query.getResultList();
         return lists;
     }
-
+    
     public NhanVien getOne(UUID ID) {
         return session.get(NhanVien.class, ID);
     }
-
+    
     public boolean Save(NhanVien Staff) {
         try {
             session.getTransaction().begin();
@@ -36,10 +36,10 @@ public class NhanVienRepository {
             return false;
         }
     }
-
+    
     public boolean Update(UUID Id, NhanVien Staff) {
         try {
-
+            
             NhanVien st = session.get(NhanVien.class, Id);
             st.setEmail(Staff.getEmail());
             st.setGioiTinh(Staff.getGioiTinh());
@@ -54,7 +54,7 @@ public class NhanVienRepository {
             return false;
         }
     }
-
+    
     public boolean Delete(UUID Id) {
         try {
             session.getTransaction().begin();
@@ -64,5 +64,9 @@ public class NhanVienRepository {
         } catch (Exception e) {
             return false;
         }
+    }
+    
+    public static void main(String[] args) {
+        new NhanVienRepository().getAll().forEach(a -> System.out.print(a.toString()));
     }
 }

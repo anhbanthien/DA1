@@ -41,6 +41,7 @@ public class KhachHang {
         this.SoDienThoai = SoDienThoai;
         this.TrangThai = TrangThai;
     }
+
     public KhachHang(KhachHangModel khachHang) {
         this.id = khachHang.getId();
         this.Ten = khachHang.getTen();

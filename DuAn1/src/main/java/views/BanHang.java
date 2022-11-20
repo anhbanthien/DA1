@@ -657,7 +657,7 @@ public class BanHang extends javax.swing.JFrame {
         hd.setIDNV(nhanVienRepository.getAll().get(0));
         hd.setIDKH(khachHangRepository.getAll().get(0));
         //hd.setIDKM(khuyenMaiRepository.getAll().get(0));
-       // hd.setNgayTao(new Date());
+        // hd.setNgayTao(new Date());
         //hd.setNgayTT(new Date());
 //        if (new HoaDonRepository().add(hd)) {
 //            JOptionPane.showMessageDialog(this, "Succes");
