@@ -38,13 +38,7 @@ public class KhachHangRepository {
         KhachHang khachHang = (KhachHang) query.getSingleResult();
         return khachHang;
     }
-    public static void main(String[] args) {
-        List<KhachHang> lists = new KhachHangRepository().getAll();
-        System.out.println("Vui lên đi");
-        for (KhachHang list : lists) {
-            System.out.println(list.toString());
-        }
-    }
+    
     public Boolean add(KhachHang khachHang){
         Transaction transaction = null;
         try(Session session = HibernatUtil.getFACTORY().openSession()){
@@ -76,6 +70,16 @@ public class KhachHangRepository {
             return true;
         } catch(Exception e){
     return false;
+        }
+    }
+    public static void main(String[] args) {
+        if(new KhachHangRepository().add(new KhachHang(null, "Long", 4, "08777444", "ON"))){
+            System.out.println("thành công");} else{
+        System.out.println("Thất Bại");}
+        List<KhachHang> lists = new KhachHangRepository().getAll();
+        System.out.println("Vui lên đi");
+        for (KhachHang list : lists) {
+            System.out.println(list.toString());
         }
     }
 }

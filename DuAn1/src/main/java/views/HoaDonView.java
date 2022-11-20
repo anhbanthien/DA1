@@ -61,8 +61,8 @@ public class HoaDonView extends javax.swing.JFrame {
         txtTienTra.setText(String.valueOf(hm.getTienTra()));
         txtTongTien.setText(String.valueOf(hm.getTongTien()));
         cbbTinhTrang.setSelectedItem(hm.getTrangThai());
-        txtNgayTT.setText(hm.getNgayTT());
-        txtNgayTao.setText(hm.getNgayTao());
+        txtNgayTT.setText(hm.getNgayTT().toString());
+        txtNgayTao.setText(hm.getNgayTao().toString());
     }
 
     private void clearData() {

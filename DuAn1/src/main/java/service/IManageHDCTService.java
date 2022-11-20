@@ -5,6 +5,7 @@
  */
 package service;
 
+import domainmodel.HoaDon;
 import java.util.List;
 import java.util.UUID;
 import viewmodel.QLHDCT;
@@ -15,6 +16,7 @@ import viewmodel.QLHDCT;
  */
 public interface IManageHDCTService {
     List<QLHDCT> getAll();
+    List<QLHDCT> getListbyHD(UUID hoaDon);
 
     QLHDCT getOne(UUID id);
 

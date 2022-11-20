@@ -8,6 +8,7 @@ import config.HibernatUtil;
 import java.util.List;
 import domainmodel.HoaDon;
 import domainmodel.HoaDonChiTiet;
+import domainmodel.KhachHang;
 import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -36,6 +37,39 @@ public class HoaDonRepository {
         query.setParameter("id", id);
         HoaDon hd =  (HoaDon) query.getSingleResult();       
         return hd;
+    }
+    public Boolean add(HoaDon hoaDon){
+        Transaction transaction = null;
+        try(Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.save(hoaDon);
+            transaction.commit();
+            return true;
+        } catch(Exception e){
+    return null;
+        }
+    }
+    public Boolean delete(HoaDon hoaDon){
+        Transaction transaction = null;
+        try(Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.delete(hoaDon);
+            transaction.commit();
+            return true;
+        } catch(Exception e){
+    return false;
+        }
+    }
+    public Boolean update(HoaDon hoaDon){
+        Transaction transaction = null;
+        try(Session session = HibernatUtil.getFACTORY().openSession()){
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(hoaDon);
+            transaction.commit();
+            return true;
+        } catch(Exception e){
+    return false;
+        }
     }
     
     public List<HoaDon> search(String TrangThai) {

@@ -15,7 +15,7 @@ import javax.persistence.Column;
 public class KhachHangModel {
     private UUID id;
     private String Ten;
-    private String DiemTichLuy;
+    private int DiemTichLuy;
     private String SoDienThoai;
     private String TrangThai;
 
@@ -29,7 +29,7 @@ public class KhachHangModel {
         this.TrangThai = khachHang.getTrangThai();
     }
 
-    public KhachHangModel(UUID id, String Ten, String DiemTichLuy, String SoDienThoai, String TrangThai) {
+    public KhachHangModel(UUID id, String Ten, int DiemTichLuy, String SoDienThoai, String TrangThai) {
         this.id = id;
         this.Ten = Ten;
         this.DiemTichLuy = DiemTichLuy;
@@ -53,11 +53,11 @@ public class KhachHangModel {
         this.Ten = Ten;
     }
 
-    public String getDiemTichLuy() {
+    public int getDiemTichLuy() {
         return DiemTichLuy;
     }
 
-    public void setDiemTichLuy(String DiemTichLuy) {
+    public void setDiemTichLuy(int DiemTichLuy) {
         this.DiemTichLuy = DiemTichLuy;
     }
 

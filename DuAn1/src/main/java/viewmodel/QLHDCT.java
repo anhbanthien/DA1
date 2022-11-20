@@ -5,6 +5,7 @@
  */
 package viewmodel;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 /**
@@ -15,18 +16,70 @@ public class QLHDCT {
     private UUID idHDCT;
     private UUID idHD;
     private UUID idSP;
+    private String tenSP;
+    private BigDecimal gia;
     private int soLuong;
     private int soBanCT;
+
+    public QLHDCT(UUID idHD, UUID idSP, int soLuong) {
+        this.idHD = idHD;
+        this.idSP = idSP;
+        this.soLuong = soLuong;
+    }
+
+    public QLHDCT(Object object, UUID _idHD, UUID _idSP, double soLuong) {
+        this.idHD = idHD;
+        this.idSP = idSP;
+        this.soLuong = (int) soLuong;
+    }
+
+    
+    
+    
+    public BigDecimal getGia() {
+        return gia;
+    }
+    public BigDecimal getTien() {
+        BigDecimal tien = null;
+        for(int i=0;i<= soLuong;i++){
+            tien = tien.add(gia);
+        }
+        return tien;
+    }
+
+    public void setGia(BigDecimal gia) {
+        this.gia = gia;
+    }
+
+    public QLHDCT(UUID idHDCT, UUID idHD, UUID idSP, String tenSP, BigDecimal gia, int soLuong, int soBanCT) {
+        this.idHDCT = idHDCT;
+        this.idHD = idHD;
+        this.idSP = idSP;
+        this.tenSP = tenSP;
+        this.gia = gia;
+        this.soLuong = soLuong;
+        this.soBanCT = soBanCT;
+    }
+    
 
     public QLHDCT() {
     }
 
-    public QLHDCT(UUID idHDCT, UUID idHD, UUID idSP, int soLuong, int soBanCT) {
+    public QLHDCT(UUID idHDCT, UUID idHD,String tenSP , UUID idSP, int soLuong, int soBanCT) {
         this.idHDCT = idHDCT;
         this.idHD = idHD;
         this.idSP = idSP;
+        this.tenSP = tenSP;
         this.soLuong = soLuong;
         this.soBanCT = soBanCT;
+    }
+
+    public String getTenSP() {
+        return tenSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
     }
 
     public UUID getIdHDCT() {

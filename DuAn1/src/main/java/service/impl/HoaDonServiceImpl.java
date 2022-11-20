@@ -31,6 +31,19 @@ public class HoaDonServiceImpl implements HoaDonService {
         }
         return hoadonmodel;
     }
+    @Override
+    public List<HoaDonModel> getHoaDonByTT(String TT) {
+        List<HoaDon> list = hoadonrepository.getAll();
+        List<HoaDonModel> hoadonmodel = new ArrayList<>();
+
+        for (HoaDon hd : list) {
+            if(hd.getTrangThai().equalsIgnoreCase(TT)){
+            HoaDonModel model = new HoaDonModel(hd);
+            hoadonmodel.add(model);}
+            
+        }
+        return hoadonmodel;
+    }
 
 //    public static void main(String[] args) {
 //        List<HoaDonModel> lists = new HoaDonServiceImpl().getAllHoaDon();
@@ -52,4 +65,8 @@ public class HoaDonServiceImpl implements HoaDonService {
     public List<HoaDonModel> getSearch() {
         return (ArrayList<HoaDonModel>) new HoaDonRepository().getAll().stream().map(HoaDonModel::new).collect(Collectors.toList());
     }
+
+    
+
+    
 }

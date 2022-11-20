@@ -43,10 +43,5 @@ public class KhachHangServiceImpl implements KhachHangService{
     public boolean Delete(KhachHangModel khachHang) {
         return khachHangRepository.delete(new KhachHang(khachHang));
     }
-
-    @Override
-    public KhachHangModel getBySdt(String Sdt) {
-        return new KhachHangModel(khachHangRepository.getBySdt(Sdt)) ;
-        }
     
 }

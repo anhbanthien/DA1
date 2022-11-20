@@ -14,6 +14,7 @@ import viewmodel.HoaDonModel;
 public interface HoaDonService {
 
     List<HoaDonModel> getAllHoaDon();
+    List<HoaDonModel> getHoaDonByTT(String TT);
 
     List<HoaDonModel> getSearch();
-}
+   }

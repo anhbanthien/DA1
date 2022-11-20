@@ -4,6 +4,7 @@
  */
 package domainmodel;
 
+import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,8 +36,8 @@ public class HoaDon {
     @JoinColumn(name = "IDKM")
     private KhuyenMai IDKM;
 
-    private String NgayTao;
-    private String NgayTT;
+    private Date NgayTao;
+    private Date NgayTT;
     private float TienTra;
     private float TongTien;
     private String TrangThai;
@@ -44,7 +45,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, String NgayTao, String NgayTT, float TienTra, float TongTien, String TrangThai) {
+    public HoaDon(UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, Date NgayTao, Date NgayTT, float TienTra, float TongTien, String TrangThai) {
         this.IDHD = IDHD;
         this.IDNV = IDNV;
         this.IDKH = IDKH;
@@ -88,19 +89,19 @@ public class HoaDon {
         this.IDKM = IDKM;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return NgayTao;
     }
 
-    public void setNgayTao(String NgayTao) {
+    public void setNgayTao(Date NgayTao) {
         this.NgayTao = NgayTao;
     }
 
-    public String getNgayTT() {
+    public Date getNgayTT() {
         return NgayTT;
     }
 
-    public void setNgayTT(String NgayTT) {
+    public void setNgayTT(Date NgayTT) {
         this.NgayTT = NgayTT;
     }
 
