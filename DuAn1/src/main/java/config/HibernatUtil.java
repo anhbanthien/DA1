@@ -8,7 +8,11 @@ import java.util.Properties;
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
 import domainmodel.DangNhap;
+import domainmodel.HoaDon;
+import domainmodel.HoaDonChiTiet;
 import domainmodel.KhachHang;
+import domainmodel.KhuyenMai;
+import domainmodel.SanPham;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -24,8 +28,8 @@ public class HibernatUtil {
         Configuration conf = new Configuration();
         Properties properties = new Properties();
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DuAn1");
-        properties.put(Environment.USER, "sa");
-        properties.put(Environment.PASS, "16102003");
+        properties.put(Environment.USER, "long");
+        properties.put(Environment.PASS, "12345678");
         properties.put(Environment.SHOW_SQL, "true");
 
         conf.setProperties(properties);
@@ -33,6 +37,10 @@ public class HibernatUtil {
         conf.addAnnotatedClass(KhachHang.class);
 
         conf.addAnnotatedClass(DangNhap.class);
+        conf.addAnnotatedClass(HoaDon.class);
+//        conf.addAnnotatedClass(HoaDonChiTiet.class);
+        conf.addAnnotatedClass(KhuyenMai.class);
+        conf.addAnnotatedClass(SanPham.class);
 
 
 

@@ -40,6 +40,7 @@ public class KhachHangRepository {
         return khachHang;
     }
 
+
 //    public KhachHang getOne(long id){
 //        String sql = fromTable + " WHERE id = : id";
 //        Query query = session.createQuery(sql, KhachHang.class);
@@ -55,6 +56,8 @@ public class KhachHangRepository {
             System.out.println(list.toString());
         }
     }
+
+
 
     public Boolean add(KhachHang khachHang){
         Transaction transaction = null;
@@ -90,6 +93,7 @@ public class KhachHangRepository {
         }
     }
 
+
 //    public Boolean add(KhachHang khachHang){
 //        Transaction transaction = null;
 //        try(Session session = HibernatUtil.getFACTORY().openSession()){
@@ -101,5 +105,6 @@ public class KhachHangRepository {
 //    return null;
 //    }
 //    }
+
 
 }

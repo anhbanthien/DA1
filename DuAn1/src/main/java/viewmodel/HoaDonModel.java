@@ -6,6 +6,7 @@ package viewmodel;
 
 import java.util.UUID;
 import domainmodel.HoaDon;
+import java.util.Date;
 
 /**
  *
@@ -17,8 +18,8 @@ public class HoaDonModel {
     private String HoTen;
     private String Ten;
     private String PhanTramKM;
-    private String NgayTao;
-    private String NgayTT;
+    private Date NgayTao;
+    private Date NgayTT;
     private float TienTra;
     private float TongTien;
     private String TrangThai;
@@ -70,19 +71,19 @@ public class HoaDonModel {
         this.PhanTramKM = PhanTramKM;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return NgayTao;
     }
 
-    public void setNgayTao(String NgayTao) {
+    public void setNgayTao(Date NgayTao) {
         this.NgayTao = NgayTao;
     }
 
-    public String getNgayTT() {
+    public Date getNgayTT() {
         return NgayTT;
     }
 
-    public void setNgayTT(String NgayTT) {
+    public void setNgayTT(Date NgayTT) {
         this.NgayTT = NgayTT;
     }
 

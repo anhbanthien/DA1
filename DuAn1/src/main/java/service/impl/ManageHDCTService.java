@@ -10,19 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import domainmodel.HoaDonChiTiet;
-import domainmodel.SanPham;
-
-
-
 import repository.HDCTRepository;
 import repository.HoaDonRepository;
 import repository.SanPhamRepository;
 import service.IManageHDCTService;
 import viewmodel.QLHDCT;
-
-import viewmodel.QLSanPham;
-
 
 /**
  *
@@ -62,7 +54,24 @@ public class ManageHDCTService implements IManageHDCTService {
         qlhdct.setSoBanCT(hdct.getSoBanCT());
         return qlhdct;
     }
-
+    @Override
+    public List<QLHDCT> getListbyHD(UUID hoaDon) {
+        List<HoaDonChiTiet> lstHDCT = hDCTRepository.getAll();
+        List<QLHDCT> lstQLHDCT = new ArrayList<>();
+        for (HoaDonChiTiet x : lstHDCT) {
+            if(x.getHoaDon().getIDHD().equals(hoaDon)){
+            QLHDCT qlhdct = new QLHDCT();
+            qlhdct.setIdHDCT(x.getIdHDCT());
+            qlhdct.setIdHD(x.getHoaDon().getIDHD());
+            qlhdct.setIdSP(x.getSanPham().getIdSP());
+            qlhdct.setTenSP(x.getSanPham().getTenSP());
+            qlhdct.setGia(x.getSanPham().getGia());
+            qlhdct.setSoLuong(x.getSoLuong());
+            qlhdct.setSoBanCT(x.getSoBanCT());
+            lstQLHDCT.add(qlhdct);
+            }
+        }
+        return lstQLHDCT;}
     @Override
     public String add(QLHDCT qlhdct) {
         HoaDonChiTiet hdct = new HoaDonChiTiet();
@@ -74,7 +83,7 @@ public class ManageHDCTService implements IManageHDCTService {
 
         return hDCTRepository.Add(hdct) ? "Thêm thành công" : "Thêm thất bại";
     }
-
+    
     @Override
     public String update(UUID id, QLHDCT qlhdct) {
         HoaDonChiTiet hdct = new HoaDonChiTiet();
@@ -91,5 +100,11 @@ public class ManageHDCTService implements IManageHDCTService {
     public String delete(UUID id) {
         return hDCTRepository.Delete(id) ? "Xóa thành công" : "Xóa thất bại";
     }
+
+    private void valueOf() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    
 
 }

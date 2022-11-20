@@ -23,5 +23,4 @@ public interface KhachHangService {
     boolean Update(KhachHangModel khachHang);
 
     boolean Delete(KhachHangModel khachHang);
-    KhachHangModel getBySdt(String Sdt);
 }

@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -9,6 +9,7 @@ import java.util.List;
 import javax.persistence.Query;
 import domainmodel.NhanVien;
 import domainmodel.SanPham;
+import java.math.BigDecimal;
 import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -40,8 +41,9 @@ public class SanPhamRepository {
             transaction.commit();
             return true;
         } catch (Exception e) {
+            return false;
         }
-        return false;
+        
     }
 
     public boolean Update(UUID id, SanPham sp) {
@@ -52,8 +54,9 @@ public class SanPhamRepository {
             transaction.commit();
             return true;
         } catch (Exception e) {
+            return false;
         }
-        return false;
+        
     }
 
     public boolean Delete(UUID id) {
@@ -64,8 +67,23 @@ public class SanPhamRepository {
             transaction.commit();
             return true;
         } catch (Exception e) {
+            return false;
         }
-        return false;
+        
     }
+    public static void main(String[] args) {
+        Double scale = 50000.44;
+        BigDecimal vui = new BigDecimal(Double.toString(scale));
+        if(new SanPhamRepository().Add(new SanPham(null, "Đen đá", "rât nhiều đường", "", vui, "CC"))){
+            System.out.println("thành công");} else{
+        System.out.println("Thất Bại");}
+        List<SanPham> lists = new SanPhamRepository().getAll();
+        System.out.println("Vui lên đi");
+        for (SanPham list : lists) {
+            System.out.println(list.toString());
+        }
+    }
+
+    
 
 }

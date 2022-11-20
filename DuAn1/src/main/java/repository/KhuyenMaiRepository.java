@@ -7,21 +7,20 @@ package repository;
 import config.HibernatUtil;
 import domainmodel.KhuyenMai;
 import java.util.List;
+import javax.persistence.Query;
+import domainmodel.NhanVien;
+import domainmodel.SanPham;
+import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.query.Query;
 
-/**
- *
- * @author hungn
- */
 public class KhuyenMaiRepository {
 
     private String fromTable = "From KhuyenMai";
 
     private Session session = HibernatUtil.getFACTORY().openSession();
 
-    public List<KhuyenMai> getALl() {
+    public List<KhuyenMai> getAll() {
         Query query = session.createQuery(fromTable, KhuyenMai.class);
         List<KhuyenMai> listkm = query.getResultList();
         return listkm;
@@ -64,13 +63,10 @@ public class KhuyenMaiRepository {
     }
 
     public static void main(String[] args) {
-        List<KhuyenMai> list = new KhuyenMaiRepository().getALl();
+        List<KhuyenMai> list = new KhuyenMaiRepository().getAll();
         for (KhuyenMai km : list) {
             System.out.println(km.toString());
         }
     }
 
-    public Object getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

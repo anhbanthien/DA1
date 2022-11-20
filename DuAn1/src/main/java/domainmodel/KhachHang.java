@@ -28,13 +28,13 @@ public class KhachHang {
     @Column(name = "Ten")
     private String Ten;
     @Column(name = "DiemTichLuy")
-    private String DiemTichLuy;
+    private int DiemTichLuy;
     @Column(name = "SoDienThoai")
     private String SoDienThoai;
     @Column(name = "TrangThai")
     private String TrangThai;
 
-    public KhachHang(UUID id, String Ten, String DiemTichLuy, String SoDienThoai, String TrangThai) {
+    public KhachHang(UUID id, String Ten, int DiemTichLuy, String SoDienThoai, String TrangThai) {
         this.id = id;
         this.Ten = Ten;
         this.DiemTichLuy = DiemTichLuy;
@@ -68,11 +68,11 @@ public class KhachHang {
         this.Ten = Ten;
     }
 
-    public String getDiemTichLuy() {
+    public int getDiemTichLuy() {
         return DiemTichLuy;
     }
 
-    public void setDiemTichLuy(String DiemTichLuy) {
+    public void setDiemTichLuy(int DiemTichLuy) {
         this.DiemTichLuy = DiemTichLuy;
     }
 
