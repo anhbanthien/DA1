@@ -5,7 +5,7 @@
  */
 package service.impl;
 
-import domainmodel.HoaDonChiTiet;
+import domainmodel.HDCT;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -29,15 +29,15 @@ public class ManageHDCTService implements IManageHDCTService {
 
     @Override
     public List<QLHDCT> getAll() {
-        List<HoaDonChiTiet> lstHDCT = hDCTRepository.getAll();
+        List<HDCT> lstHDCT = hDCTRepository.getAll();
         List<QLHDCT> lstQLHDCT = new ArrayList<>();
-        for (HoaDonChiTiet x : lstHDCT) {
+        for (HDCT x : lstHDCT) {
             QLHDCT qlhdct = new QLHDCT();
-            qlhdct.setIdHDCT(x.getIdHDCT());
-            qlhdct.setIdHD(x.getHoaDon().getIDHD());
-            qlhdct.setIdSP(x.getSanPham().getIdSP());
+            qlhdct.setIdHDCT(x.getIDHDCT());
+            qlhdct.setIdHD(x.getIDHD().getIDHD());
+            qlhdct.setIdSP(x.getIDSP().getIdSP());
             qlhdct.setSoLuong(x.getSoLuong());
-            qlhdct.setSoBanCT(x.getSoBanCT());
+            
             lstQLHDCT.add(qlhdct);
         }
         return lstQLHDCT;
@@ -45,7 +45,7 @@ public class ManageHDCTService implements IManageHDCTService {
 
     @Override
     public QLHDCT getOne(UUID id) {
-        HoaDonChiTiet hdct = hDCTRepository.getOne(id);
+        HDCT hdct = hDCTRepository.getOne(id);
         QLHDCT qlhdct = new QLHDCT();
         qlhdct.setIdHDCT(hdct.getIdHDCT());
         qlhdct.setIdHD(hdct.getHoaDon().getIDHD());
@@ -56,9 +56,9 @@ public class ManageHDCTService implements IManageHDCTService {
     }
     @Override
     public List<QLHDCT> getListbyHD(UUID hoaDon) {
-        List<HoaDonChiTiet> lstHDCT = hDCTRepository.getAll();
+        List<HDCT> lstHDCT = hDCTRepository.getAll();
         List<QLHDCT> lstQLHDCT = new ArrayList<>();
-        for (HoaDonChiTiet x : lstHDCT) {
+        for (HDCT x : lstHDCT) {
             if(x.getHoaDon().getIDHD().equals(hoaDon)){
             QLHDCT qlhdct = new QLHDCT();
             qlhdct.setIdHDCT(x.getIdHDCT());
@@ -74,7 +74,7 @@ public class ManageHDCTService implements IManageHDCTService {
         return lstQLHDCT;}
     @Override
     public String add(QLHDCT qlhdct) {
-        HoaDonChiTiet hdct = new HoaDonChiTiet();
+        HDCT hdct = new HDCT();
         hdct.setIdHDCT(qlhdct.getIdHD());
         hdct.setHoaDon(hoaDonRepository.getOne(qlhdct.getIdHD()));
         hdct.setSanPham(sanPhamRepository.getOne(qlhdct.getIdSP()));
@@ -86,7 +86,7 @@ public class ManageHDCTService implements IManageHDCTService {
     
     @Override
     public String update(UUID id, QLHDCT qlhdct) {
-        HoaDonChiTiet hdct = new HoaDonChiTiet();
+        HDCT hdct = new HDCT();
         hdct.setIdHDCT(qlhdct.getIdHD());
         hdct.setHoaDon(hoaDonRepository.getOne(qlhdct.getIdHD()));
         hdct.setSanPham(sanPhamRepository.getOne(qlhdct.getIdSP()));

@@ -5,15 +5,12 @@
 package repository;
 
 import config.HibernatUtil;
-import java.util.List;
 import domainmodel.HoaDon;
-import domainmodel.HoaDonChiTiet;
-import domainmodel.KhachHang;
+import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
-import viewmodel.HoaDonModel;
 
 /**
  *
@@ -35,55 +32,51 @@ public class HoaDonRepository {
         String sql = fromTable + " WHERE IDHD = :id ";
         javax.persistence.Query query = session.createQuery(sql, HoaDon.class);
         query.setParameter("id", id);
-        HoaDon hd =  (HoaDon) query.getSingleResult();       
+        HoaDon hd = (HoaDon) query.getSingleResult();
         return hd;
     }
-    public Boolean add(HoaDon hoaDon){
+
+    public Boolean add(HoaDon hoaDon) {
         Transaction transaction = null;
-        try(Session session = HibernatUtil.getFACTORY().openSession()){
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(hoaDon);
             transaction.commit();
             return true;
-        } catch(Exception e){
-    return null;
+        } catch (Exception e) {
+            return null;
         }
     }
-    public Boolean delete(HoaDon hoaDon){
+
+    public Boolean delete(HoaDon hoaDon) {
         Transaction transaction = null;
-        try(Session session = HibernatUtil.getFACTORY().openSession()){
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.delete(hoaDon);
             transaction.commit();
             return true;
-        } catch(Exception e){
-    return false;
+        } catch (Exception e) {
+            return false;
         }
     }
-    public Boolean update(HoaDon hoaDon){
+
+    public Boolean update(HoaDon hoaDon) {
         Transaction transaction = null;
-        try(Session session = HibernatUtil.getFACTORY().openSession()){
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(hoaDon);
             transaction.commit();
             return true;
-        } catch(Exception e){
-    return false;
+        } catch (Exception e) {
+            return false;
         }
     }
-    
+
     public List<HoaDon> search(String TrangThai) {
         return (List<HoaDon>) session.get(HoaDon.class, TrangThai);
     }
 
     public static void main(String[] args) {
-        List<HoaDon> list = new HoaDonRepository().getAll();
-        for (HoaDon hd : list) {
-            System.out.println(hd.toString());
-        }
-//        List<HoaDon> list = new HoaDonRepository().search("Đã Thanh Toán");
-//        for (HoaDon hd : list) {
-//            System.out.println(hd.toString());
-//        }
+        new HoaDonRepository().getAll().forEach(a -> System.out.println(a.toString()));
     }
 }

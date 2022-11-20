@@ -18,8 +18,7 @@ import javax.persistence.Table;
 public class SanPham {
 
     @Id
-    @Column(name = "IDSP")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "uniqueidentifier")
     private UUID idSP;
 
     @Column(name = "TenSP")

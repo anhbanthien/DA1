@@ -13,18 +13,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import viewmodel.KhachHangModel;
 
-/**
- *
- * @author vanlo
- */
 @Entity
 @Table(name = "KhachHang")
 public class KhachHang {
 
     @Id
-    @Column(name = "IdKhachHang")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    @Column(columnDefinition = "uniqueidentifier")
+    @GeneratedValue
+    private UUID IdKhachHang;
     @Column(name = "Ten")
     private String Ten;
     @Column(name = "DiemTichLuy")
@@ -35,7 +31,7 @@ public class KhachHang {
     private String TrangThai;
 
     public KhachHang(UUID id, String Ten, int DiemTichLuy, String SoDienThoai, String TrangThai) {
-        this.id = id;
+        this.IdKhachHang = id;
         this.Ten = Ten;
         this.DiemTichLuy = DiemTichLuy;
         this.SoDienThoai = SoDienThoai;
@@ -43,7 +39,7 @@ public class KhachHang {
     }
 
     public KhachHang(KhachHangModel khachHang) {
-        this.id = khachHang.getId();
+        this.IdKhachHang = khachHang.getId();
         this.Ten = khachHang.getTen();
         this.DiemTichLuy = khachHang.getDiemTichLuy();
         this.SoDienThoai = khachHang.getSoDienThoai();
@@ -54,11 +50,11 @@ public class KhachHang {
     }
 
     public UUID getId() {
-        return id;
+        return IdKhachHang;
     }
 
     public void setId(UUID id) {
-        this.id = id;
+        this.IdKhachHang = id;
     }
 
     public String getTen() {
@@ -92,5 +88,4 @@ public class KhachHang {
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
-
 }

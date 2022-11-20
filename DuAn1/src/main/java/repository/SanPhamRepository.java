@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -35,7 +35,7 @@ public class SanPhamRepository {
 
     public boolean Add(SanPham sp) {
         Transaction transaction = null;
-        try (Session session = HibernatUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.save(sp);
             transaction.commit();
@@ -43,12 +43,12 @@ public class SanPhamRepository {
         } catch (Exception e) {
             return false;
         }
-        
+
     }
 
     public boolean Update(UUID id, SanPham sp) {
         Transaction transaction = null;
-        try (Session session = HibernatUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.saveOrUpdate(sp);
             transaction.commit();
@@ -56,12 +56,12 @@ public class SanPhamRepository {
         } catch (Exception e) {
             return false;
         }
-        
+
     }
 
     public boolean Delete(UUID id) {
         Transaction transaction = null;
-        try (Session session = HibernatUtil.getFACTORY().openSession()) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
             session.delete(id);
             transaction.commit();
@@ -69,21 +69,16 @@ public class SanPhamRepository {
         } catch (Exception e) {
             return false;
         }
-        
+
     }
+
     public static void main(String[] args) {
-        Double scale = 50000.44;
-        BigDecimal vui = new BigDecimal(Double.toString(scale));
-        if(new SanPhamRepository().Add(new SanPham(null, "Đen đá", "rât nhiều đường", "", vui, "CC"))){
-            System.out.println("thành công");} else{
-        System.out.println("Thất Bại");}
+      
         List<SanPham> lists = new SanPhamRepository().getAll();
-        System.out.println("Vui lên đi");
+      
         for (SanPham list : lists) {
             System.out.println(list.toString());
         }
     }
-
-    
 
 }

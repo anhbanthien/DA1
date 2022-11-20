@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package domainmodel;
 
 import java.util.Date;
@@ -21,7 +17,6 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "HoaDon")
 public class HoaDon {
-
     @Id
     @Column(columnDefinition = "uniqueidentifier")
     @GeneratedValue
@@ -36,8 +31,8 @@ public class HoaDon {
     @JoinColumn(name = "IDKM")
     private KhuyenMai IDKM;
 
-    private Date NgayTao;
-    private Date NgayTT;
+    private String NgayTao;
+    private String NgayTT;
     private float TienTra;
     private float TongTien;
     private String TrangThai;
@@ -45,7 +40,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, Date NgayTao, Date NgayTT, float TienTra, float TongTien, String TrangThai) {
+    public HoaDon(UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, String NgayTao, String NgayTT, float TienTra, float TongTien, String TrangThai) {
         this.IDHD = IDHD;
         this.IDNV = IDNV;
         this.IDKH = IDKH;
@@ -89,19 +84,19 @@ public class HoaDon {
         this.IDKM = IDKM;
     }
 
-    public Date getNgayTao() {
+    public String getNgayTao() {
         return NgayTao;
     }
 
-    public void setNgayTao(Date NgayTao) {
+    public void setNgayTao(String NgayTao) {
         this.NgayTao = NgayTao;
     }
 
-    public Date getNgayTT() {
+    public String getNgayTT() {
         return NgayTT;
     }
 
-    public void setNgayTT(Date NgayTT) {
+    public void setNgayTT(String NgayTT) {
         this.NgayTT = NgayTT;
     }
 
