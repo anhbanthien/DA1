@@ -44,4 +44,10 @@ public class KhachHangServiceImpl implements KhachHangService{
         return khachHangRepository.delete(new KhachHang(khachHang));
     }
     
+    @Override
+    public KhachHangModel getOne(String SDT) {
+        KhachHang kh = khachHangRepository.getBySdt(SDT);
+        return new KhachHangModel(kh);
+    }
+    
 }
