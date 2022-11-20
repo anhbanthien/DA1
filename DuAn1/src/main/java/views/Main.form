@@ -126,15 +126,15 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="JbtQlyNhanVien" min="-2" pref="62" max="-2" attributes="0"/>
-                  <EmptySpace pref="558" max="32767" attributes="0"/>
+                  <EmptySpace pref="608" max="32767" attributes="0"/>
                   <Component id="JbtAccount" min="-2" pref="77" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Component id="JbtAccount" max="32767" attributes="0"/>
-              <Component id="JbtQlyNhanVien" alignment="0" pref="0" max="32767" attributes="0"/>
+              <Component id="JbtAccount" min="-2" max="-2" attributes="0"/>
+              <Component id="JbtQlyNhanVien" alignment="0" pref="71" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
