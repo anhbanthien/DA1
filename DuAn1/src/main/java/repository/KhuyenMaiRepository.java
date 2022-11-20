@@ -69,4 +69,8 @@ public class KhuyenMaiRepository {
             System.out.println(km.toString());
         }
     }
+
+    public Object getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

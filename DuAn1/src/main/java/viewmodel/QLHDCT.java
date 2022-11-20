@@ -29,6 +29,10 @@ public class QLHDCT {
         this.soBanCT = soBanCT;
     }
 
+    public QLHDCT(Object object, UUID _idHD, UUID _idSP, double d) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public UUID getIdHDCT() {
         return idHDCT;
     }

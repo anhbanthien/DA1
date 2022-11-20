@@ -52,4 +52,9 @@ public class HoaDonServiceImpl implements HoaDonService {
     public List<HoaDonModel> getSearch() {
         return (ArrayList<HoaDonModel>) new HoaDonRepository().getAll().stream().map(HoaDonModel::new).collect(Collectors.toList());
     }
+
+    @Override
+    public List<HoaDonModel> getHoaDonByTT(String TT) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

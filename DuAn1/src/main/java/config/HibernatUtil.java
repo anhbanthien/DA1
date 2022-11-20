@@ -5,7 +5,6 @@
 package config;
 
 import java.util.Properties;
-
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
 import domainmodel.DangNhap;
@@ -32,7 +31,10 @@ public class HibernatUtil {
         conf.setProperties(properties);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(KhachHang.class);
+
         conf.addAnnotatedClass(DangNhap.class);
+
+
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();

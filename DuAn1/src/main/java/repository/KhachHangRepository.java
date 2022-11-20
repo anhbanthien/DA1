@@ -24,6 +24,7 @@ public class KhachHangRepository {
         List<KhachHang> lists = query.getResultList();
         return lists;
     }
+
     public KhachHang getOne(long id){
         String sql = fromTable + " WHERE id = : id";
         Query query = session.createQuery(sql, KhachHang.class);
@@ -38,6 +39,15 @@ public class KhachHangRepository {
         KhachHang khachHang = (KhachHang) query.getSingleResult();
         return khachHang;
     }
+
+//    public KhachHang getOne(long id){
+//        String sql = fromTable + " WHERE id = : id";
+//        Query query = session.createQuery(sql, KhachHang.class);
+//        query.setParameter("id", id);
+//        KhachHang khachHang = (KhachHang) query.getSingleResult();
+//        return khachHang;
+//    }
+
     public static void main(String[] args) {
         List<KhachHang> lists = new KhachHangRepository().getAll();
         System.out.println("Vui lên đi");
@@ -45,6 +55,7 @@ public class KhachHangRepository {
             System.out.println(list.toString());
         }
     }
+
     public Boolean add(KhachHang khachHang){
         Transaction transaction = null;
         try(Session session = HibernatUtil.getFACTORY().openSession()){
@@ -78,4 +89,17 @@ public class KhachHangRepository {
     return false;
         }
     }
+
+//    public Boolean add(KhachHang khachHang){
+//        Transaction transaction = null;
+//        try(Session session = HibernatUtil.getFACTORY().openSession()){
+//            transaction = session.beginTransaction();
+//            session.save(khachHang);
+//            transaction.commit();
+//            return true;
+//        } catch(Exception e){
+//    return null;
+//    }
+//    }
+
 }

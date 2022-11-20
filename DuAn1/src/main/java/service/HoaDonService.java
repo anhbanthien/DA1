@@ -16,4 +16,6 @@ public interface HoaDonService {
     List<HoaDonModel> getAllHoaDon();
 
     List<HoaDonModel> getSearch();
+
+    public List<HoaDonModel> getHoaDonByTT(String TT);
 }

@@ -57,10 +57,12 @@ public class BanHang extends javax.swing.JFrame {
     UUID _idHD = null;
     UUID _idSP = null;
     UUID _idKH = null;
+
     public BanHang() {
         initComponents();
         rdoHDC.setEnabled(true);
     }
+
     private void loadTablehoaDon(String TT) {
         List<HoaDonModel> hoaDonlist = new ArrayList<>();
         hoaDonlist = hoaDonService.getHoaDonByTT(TT);
@@ -69,20 +71,21 @@ public class BanHang extends javax.swing.JFrame {
         _Model.setRowCount(0);
         hoaDons.clear();
         hoaDons = hoaDonlist;
-        if(TT.equals("CTT")){
+        if (TT.equals("CTT")) {
             TT = "chưa thanh toán";
-        }else if(TT.equals("CTT")){
+        } else if (TT.equals("CTT")) {
             TT = "Đã thanh toán";
-        }else if(TT.equals("DH")){
+        } else if (TT.equals("DH")) {
             TT = "Đã hủy";
         }
         for (int i = 0; i < hoaDonlist.size(); i++) {
             _Model.addRow(new Object[]{hoaDons.get(i).getTen(), TT, new SimpleDateFormat("dd/MM/yyyy").format(hoaDonlist.get(i).getNgayTao())});
-            
+
         }
-        
+
     }
-     private void loadTablehoaDonCT(HoaDonModel hoaDon) {
+
+    private void loadTablehoaDonCT(HoaDonModel hoaDon) {
         _Model = new DefaultTableModel();
         List<QLHDCT> QLHDCTs = hoaDonCTService.getAll();
         _Model = (DefaultTableModel) tblHoaDonCT.getModel();
@@ -90,7 +93,7 @@ public class BanHang extends javax.swing.JFrame {
 //        long tien = 0;
         for (int i = 0; i < QLHDCTs.size(); i++) {
 //            tien = tien + hoaDonCT.get(i).getSoLuong() * hoaDonCT.get(i).getGiaLM();
-            _Model.addRow(new Object[]{QLHDCTs.get(i).getTenSP(), QLHDCTs.get(i).getSoLuong(),QLHDCTs.get(i).getTien()});
+            //_Model.addRow(new Object[]{QLHDCTs.get(i).getTenSP(), QLHDCTs.get(i).getSoLuong(), QLHDCTs.get(i).getTien()});
         }
 //        txtTien1.setText(String.valueOf(tien));
 //        int a = 0;
@@ -101,6 +104,7 @@ public class BanHang extends javax.swing.JFrame {
 //        txtTienGG.setText(String.valueOf(a*10000));
 //        txtTienTT.setText(String.valueOf(tien-(a * 10000)));
     }
+
     public void loadTableSanPham() {
         sanPhams.clear();
         sanPhams = new ArrayList<>();
@@ -620,54 +624,51 @@ public class BanHang extends javax.swing.JFrame {
 
     private void txtslStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtslStateChanged
         for (int i = 0; i < sanPhams.size(); i++) {
-            if (sanPhams.get(i).getIDSP()== _idSP) {
+            if (sanPhams.get(i).getIDSP() == _idSP) {
                 BigDecimal tien = new BigDecimal(Double.toString((double) txtsl.getValue()));
                 tien = sanPhams.get(i).getGia().multiply(tien);
                 txtTien.setText(tien.toString());
-                
+
                 return;
             }
         }
     }//GEN-LAST:event_txtslStateChanged
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            QLHDCT HDCT = new QLHDCT(null, _idHD, _idSP,(double)txtsl.getValue());
-            JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
+        QLHDCT HDCT = new QLHDCT(null, _idHD, _idSP, (double) txtsl.getValue());
+        JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
 //            loadTablehoaDonCT(hoaDonService.getOne(_idHD));
-            
 
-            
-            
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-       
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-       HoaDon hd = new HoaDon();
-       hd.setTrangThai("CTT");
+        HoaDon hd = new HoaDon();
+        hd.setTrangThai("CTT");
         System.out.println(nhanVienRepository.getAll().get(0).getHoTen());
-       hd.setIDNV(nhanVienRepository.getAll().get(0));
-       hd.setIDKH(khachHangRepository.getAll().get(0));
-       hd.setIDKM(khuyenMaiRepository.getAll().get(0));
-       hd.setNgayTao(new Date());
-       hd.setNgayTT(new Date());
-       if(new HoaDonRepository().add(hd)){
-            JOptionPane.showMessageDialog(this, "Succes");
-       }else {
-            JOptionPane.showMessageDialog(this, "Failed");
-        }
+        hd.setIDNV(nhanVienRepository.getAll().get(0));
+        hd.setIDKH(khachHangRepository.getAll().get(0));
+        //hd.setIDKM(khuyenMaiRepository.getAll().get(0));
+       // hd.setNgayTao(new Date());
+        //hd.setNgayTT(new Date());
+//        if (new HoaDonRepository().add(hd)) {
+//            JOptionPane.showMessageDialog(this, "Succes");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Failed");
+//        }
+//
+//        rdoHDC.setEnabled(true);
+//        loadTablehoaDon("CTT");
+//        loadTableSanPham();
 
-       rdoHDC.setEnabled(true);
-       loadTablehoaDon("CTT");
-       loadTableSanPham();
-       
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -679,7 +680,7 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void rdoHDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDDActionPerformed
@@ -692,7 +693,7 @@ public class BanHang extends javax.swing.JFrame {
 
     private void rdoHDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDHActionPerformed
         loadTablehoaDon("DH");
-        
+
     }//GEN-LAST:event_rdoHDHActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
@@ -708,8 +709,7 @@ public class BanHang extends javax.swing.JFrame {
 
     private void tblSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamMouseClicked
 
-
-         int rowIndex = tblSanPham.getSelectedRow();
+        int rowIndex = tblSanPham.getSelectedRow();
         if (rowIndex == -1) {
             return;
         }
