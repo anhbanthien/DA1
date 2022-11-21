@@ -7,6 +7,8 @@ package repository;
 
 import config.HibernatUtil;
 import domainmodel.HDCT;
+import domainmodel.HoaDon;
+import domainmodel.SanPham;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
@@ -35,6 +37,13 @@ public class HDCTRepository {
         HDCT hdct = (HDCT) query.getSingleResult();
         return hdct;
     }
+//    public HDCT getOne(UUID idHD) {
+//        String sql = fromTable + " WHERE IDHDCT = :id ";
+//        Query query = session.createQuery(sql, HDCT.class);
+//        query.setParameter("id", id);
+//        HDCT hdct = (HDCT) query.getSingleResult();
+//        return hdct;
+//    }
 
     public boolean Add(HDCT hdct) {
         Transaction transaction = null;
@@ -73,6 +82,11 @@ public class HDCTRepository {
     }
 
     public static void main(String[] args) {
-        new HDCTRepository().getAll().forEach(a -> System.out.print(a.toString()));
+        HoaDon hd = new HoaDonRepository().getAll().get(1);
+        SanPham sp = new SanPhamRepository().getAll().get(1);
+        HDCT  ht = new HDCT(null, hd, sp, 4);
+        if(new HDCTRepository().Add(ht)){
+            System.out.println("ko chết bạn ê");
+        }
     }
 }

@@ -15,6 +15,7 @@ import java.util.Date;
 public class HoaDonModel {
 
     private UUID IDHD;
+    private UUID IDKH;
     private String HoTen;
     private String Ten;
     private String PhanTramKM;
@@ -29,6 +30,7 @@ public class HoaDonModel {
 
     public HoaDonModel(HoaDon hoadon) {
         this.IDHD = hoadon.getIDHD();
+        this.IDKH = hoadon.getIDKH().getId();
         this.HoTen = hoadon.getIDNV().getHoTen();
         this.Ten = hoadon.getIDKH().getTen();
         this.PhanTramKM = hoadon.getIDKM().getPhanTramKM();
@@ -37,6 +39,14 @@ public class HoaDonModel {
         this.TienTra = hoadon.getTienTra();
         this.TongTien = hoadon.getTongTien();
         this.TrangThai = hoadon.getTrangThai();
+    }
+
+    public UUID getIDKH() {
+        return IDKH;
+    }
+
+    public void setIDKH(UUID IDKH) {
+        this.IDKH = IDKH;
     }
 
     public UUID getIDHD() {

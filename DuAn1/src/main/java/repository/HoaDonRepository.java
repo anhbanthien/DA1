@@ -35,6 +35,13 @@ public class HoaDonRepository {
         HoaDon hd = (HoaDon) query.getSingleResult();
         return hd;
     }
+    public List<HoaDon> getHoaDonByTT(String TT) {
+        String sql = fromTable + " WHERE TrangThai = :id ";
+        javax.persistence.Query query = session.createQuery(sql, HoaDon.class);
+        query.setParameter("id", TT);
+        List<HoaDon> lists = query.getResultList();
+        return lists;
+    }
 
     public Boolean add(HoaDon hoaDon) {
         Transaction transaction = null;

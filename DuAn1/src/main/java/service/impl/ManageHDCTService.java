@@ -75,7 +75,7 @@ public class ManageHDCTService implements IManageHDCTService {
     @Override
     public String add(QLHDCT qlhdct) {
         HDCT hdct = new HDCT();
-        hdct.setIDHDCT(qlhdct.getIdHD());
+//        hdct.setIDHDCT(qlhdct.getIdHD());
         hdct.setIDHD(hoaDonRepository.getOne(qlhdct.getIdHD()));
         hdct.setIDSP(sanPhamRepository.getOne(qlhdct.getIdSP()));
         hdct.setSoLuong(qlhdct.getSoLuong());
