@@ -17,8 +17,10 @@ import viewmodel.KhachHangModel;
  *
  * @author vanlo
  */
-public class KhachHangServiceImpl implements KhachHangService{
+public class KhachHangServiceImpl implements KhachHangService {
+
     KhachHangRepository khachHangRepository = new KhachHangRepository();
+
     @Override
     public List<KhachHangModel> getAll() {
         List<KhachHang> list = khachHangRepository.getAll();
@@ -27,12 +29,13 @@ public class KhachHangServiceImpl implements KhachHangService{
         for (KhachHang hd : list) {
             khachHangModels.add(new KhachHangModel(hd));
         }
-        return khachHangModels;}
+        return khachHangModels;
+    }
 
     @Override
     public boolean Save(KhachHangModel khachHang) {
         return khachHangRepository.add(new KhachHang(khachHang));
-                }
+    }
 
     @Override
     public boolean Update(KhachHangModel khachHang) {
@@ -43,11 +46,11 @@ public class KhachHangServiceImpl implements KhachHangService{
     public boolean Delete(KhachHangModel khachHang) {
         return khachHangRepository.delete(new KhachHang(khachHang));
     }
-    
+
     @Override
     public KhachHangModel getOne(String SDT) {
         KhachHang kh = khachHangRepository.getBySdt(SDT);
         return new KhachHangModel(kh);
     }
-    
+
 }
