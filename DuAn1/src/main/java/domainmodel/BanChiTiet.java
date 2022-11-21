@@ -33,6 +33,11 @@ public class BanChiTiet implements Serializable {
     public BanChiTiet() {
     }
 
+    public BanChiTiet(int idBanChiTiet, HoaDon IDHoaDon) {
+        this.idBanChiTiet = idBanChiTiet;
+        this.IDHoaDon = IDHoaDon;
+    }
+
     public BanChiTiet(int idBanChiTiet, Ban soBan, HoaDon IDHoaDon) {
         this.idBanChiTiet = idBanChiTiet;
         this.soBan = soBan;
