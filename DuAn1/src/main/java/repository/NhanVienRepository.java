@@ -8,7 +8,7 @@ import config.HibernatUtil;
 import java.util.List;
 import java.util.UUID;
 import javax.persistence.Query;
-import model.NhanVien;
+import domainmodel.NhanVien;
 import org.hibernate.Session;
 
 public class NhanVienRepository {
@@ -64,5 +64,9 @@ public class NhanVienRepository {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public static void main(String[] args) {
+        new NhanVienRepository().getAll().forEach(a -> System.out.print(a.toString()));
     }
 }
