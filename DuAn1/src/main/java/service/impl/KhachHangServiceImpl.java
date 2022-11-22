@@ -57,6 +57,4 @@ public class KhachHangServiceImpl implements KhachHangService {
         return khachHangRepository.delete(new KhachHang(khachHang));
     }
 
-  
-
 }

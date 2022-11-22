@@ -167,8 +167,6 @@ public class Login extends javax.swing.JFrame {
         DangNhap l = new QlyDangNhap().checkLogin(txtUser.getText(), txtPass.getText());
 
         if (l != null) {
-
-            new LoginSuccessfully().setVisible(true);
             new Main(l).setVisible(true);
             this.dispose();
 
