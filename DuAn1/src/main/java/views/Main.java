@@ -20,18 +20,21 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
-
+    
+    DangNhap logg = new DangNhap();
+    
     public Main(DangNhap log) {
         initComponents();
         jbtProfile.setText(log.getTenTaiKhoan());
+        logg = log;
         if (!log.getQuyen().equalsIgnoreCase("admin")) {
             Jbtqlynv.setEnabled(false);
         } else {
             Jbtqlynv.setEnabled(true);
         }
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -178,7 +181,7 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtProfileActionPerformed
-
+        new InfoAccount(logg).setVisible(true);
     }//GEN-LAST:event_jbtProfileActionPerformed
 
     private void JbtqlynvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtqlynvActionPerformed
