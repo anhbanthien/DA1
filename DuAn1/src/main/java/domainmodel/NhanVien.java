@@ -25,17 +25,19 @@ public class NhanVien {
     private String SDT;
     private String GioiTinh;
     private String TrangThai;
+    private String Image;
 
     public NhanVien() {
     }
 
-    public NhanVien(String HoTen, String Email, String SDT, String GioiTinh, String TrangThai) {
+    public NhanVien(String HoTen, String Email, String SDT, String GioiTinh, String TrangThai, String Image) {
 
         this.HoTen = HoTen;
         this.Email = Email;
         this.SDT = SDT;
         this.GioiTinh = GioiTinh;
         this.TrangThai = TrangThai;
+        this.Image = Image;
     }
 
     public NhanVien(NhanVienModel nv) {
@@ -99,6 +101,14 @@ public class NhanVien {
     @Override
     public String toString() {
         return "NhanVien{" + "IdNhanVien=" + IdNhanVien + ", HoTen=" + HoTen + ", Email=" + Email + ", SDT=" + SDT + ", GioiTinh=" + GioiTinh + ", TrangThai=" + TrangThai + '}';
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String Image) {
+        this.Image = Image;
     }
 
 }
