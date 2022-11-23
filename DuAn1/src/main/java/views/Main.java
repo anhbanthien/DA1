@@ -14,15 +14,12 @@ import javax.swing.JPanel;
  */
 public class Main extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Main
-     */
     public Main() {
         initComponents();
     }
-    
+
     DangNhap logg = new DangNhap();
-    
+
     public Main(DangNhap log) {
         initComponents();
         jbtProfile.setText(log.getTenTaiKhoan());
@@ -32,9 +29,9 @@ public class Main extends javax.swing.JFrame {
         } else {
             Jbtqlynv.setEnabled(true);
         }
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -185,7 +182,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtProfileActionPerformed
 
     private void JbtqlynvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtqlynvActionPerformed
-        new QlyNhanVien().setVisible(true);
+        new QlyNhanVienDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtqlynvActionPerformed
 
     /**
