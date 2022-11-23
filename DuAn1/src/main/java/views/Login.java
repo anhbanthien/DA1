@@ -46,7 +46,6 @@ public class Login extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/news.png"))); // NOI18N
 
         txtUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtUser.setText("Email hoặc Sđt");
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -69,8 +68,6 @@ public class Login extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-
-        txtPass.setText("ádadsasd");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 102, 255));
