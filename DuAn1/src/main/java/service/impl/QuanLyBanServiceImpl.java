@@ -36,6 +36,7 @@ public class QuanLyBanServiceImpl implements QuanLyBanService {
     @Override
     public String add(Ban ban) {
         boolean add = repository.add(ban);
+ 
         if (add) {
             return "Thêm thành công";
         } else {

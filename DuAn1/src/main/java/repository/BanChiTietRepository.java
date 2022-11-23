@@ -8,6 +8,8 @@ import config.HibernatUtil;
 import java.util.List;
 import javax.persistence.Query;
 import domainmodel.BanChiTiet;
+import domainmodel.HoaDon;
+import java.util.UUID;
 import org.hibernate.Session;
 import reponse.BanChiTietReponse;
 
@@ -67,10 +69,16 @@ public class BanChiTietRepository {
         }
     }
     public static void main(String[] args) {
-        BanChiTietRepository repository = new BanChiTietRepository();
-        List<BanChiTiet> list = repository.getAll();
-        for (BanChiTiet banChiTiet : list) {
-            System.out.println(banChiTiet.toString());
-        }
+        int id = 1;
+        UUID IDHD = UUID.fromString("43022865-1BF8-490D-A232-4A3F1552FC92");
+        HoaDon hd = new HoaDon(IDHD);
+        BanChiTiet bct = new BanChiTiet(id, hd);
+        boolean add = new BanChiTietRepository().add(bct);
+        System.out.println(add);
+//        BanChiTietRepository repository = new BanChiTietRepository();
+//        List<BanChiTiet> list = repository.getAll();
+//        for (BanChiTiet banChiTiet : list) {
+//            System.out.println(banChiTiet.toString());
+//        }
     }
 }
