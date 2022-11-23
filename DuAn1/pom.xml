@@ -18,7 +18,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>com.mycompany.duan1.DuAn1</exec.mainClass>
     </properties>
-                <dependencies>
+    <dependencies>
         <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -31,10 +31,18 @@
             <artifactId>mssql-jdbc</artifactId>
             <version>8.2.2.jre8</version>
         </dependency>
-                    <dependency>
-                        <groupId>unknown.binary</groupId>
-                        <artifactId>AbsoluteLayout</artifactId>
-                        <version>SNAPSHOT</version>
-                    </dependency>
-                </dependencies > 
+        <!-- https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout -->
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE130</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.5.0</version>
+        </dependency>
+    </dependencies > 
+                
 </project>
