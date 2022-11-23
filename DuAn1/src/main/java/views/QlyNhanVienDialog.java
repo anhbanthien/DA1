@@ -218,7 +218,9 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
 
         jLabel5.setText("SDT");
 
-        lblAnh.setText("jLabel8");
+        lblAnh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAnh.setText("    Upload");
+        lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblAnhMouseClicked(evt);
@@ -331,7 +333,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_rdoOnActionPerformed
 
     private void tblQlyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQlyNhanVienMouseClicked
-        JOptionPane.showMessageDialog(this, "Id Nhân Viên : " + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).toString());
+        //JOptionPane.showMessageDialog(this, "Id Nhân Viên : " + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).toString());
         //JOptionPane.showMessageDialog(this, "Giới tính Nhân Viên : " + getAll.get(tblQlyNhanVien.getSelectedRow()).getGioiTinh());
 
         txtName.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getHoTen());
@@ -344,7 +346,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             lblAnh.setText("");
             ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getImage());
             Image img = imgIcon.getImage();
-            img.getScaledInstance(lblAnh.getWidth(), lblAnh.getY(), 0);
+            img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), 0);
             lblAnh.setIcon(imgIcon);
         }
         if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
@@ -424,8 +426,6 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             staff.setTrangThai("OFF");
         }
 
-
-        
         if (new QlyNhanVienImpl().Update(UUID.fromString(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien() + ""), staff)) {
             JOptionPane.showMessageDialog(this, "Succes");
             fillToTable(new QlyNhanVienImpl().getAllStaff());
@@ -493,7 +493,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private String strHinhAnh = null;
+    private String strHinhAnh = "";
 
 
     private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
@@ -507,8 +507,8 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             int width = lblAnh.getWidth();
             int height = lblAnh.getHeight();
             lblAnh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
-        } catch (IOException ex) {
-            ex.printStackTrace();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Bạn đã huỷ chọn ảnh");
         }
     }//GEN-LAST:event_lblAnhMouseClicked
 
