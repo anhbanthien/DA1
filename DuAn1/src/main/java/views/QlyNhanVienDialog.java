@@ -5,9 +5,15 @@
 package views;
 
 import domainmodel.NhanVien;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.impl.QlyNhanVienImpl;
@@ -73,6 +79,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         txtSearch = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        lblAnh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -101,15 +108,15 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         tblQlyNhanVien.setForeground(new java.awt.Color(102, 102, 102));
         tblQlyNhanVien.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Họ Tên", "Email", "SĐT", "Giới Tính", "Trạng Thái"
+                "Họ Tên", "Email", "SĐT", "Giới Tính", "Trạng Thái", "Image"
             }
         ));
         tblQlyNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -211,6 +218,13 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
 
         jLabel5.setText("SDT");
 
+        lblAnh.setText("jLabel8");
+        lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAnhMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,17 +237,29 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdoMale)
-                            .addComponent(rdoOn)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(72, 72, 72)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rdoFemale)
-                                    .addComponent(rdoOFF)))))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rdoMale)
+                                    .addComponent(rdoOn)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(72, 72, 72)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rdoFemale)
+                                            .addComponent(rdoOFF)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(52, 52, 52)
+                                .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -241,18 +267,10 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(52, 52, 52)
-                        .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -261,7 +279,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -288,13 +306,18 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                             .addComponent(rdoOn))
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(19, 19, 19)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                         .addGap(31, 31, 31)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -308,23 +331,33 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_rdoOnActionPerformed
 
     private void tblQlyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQlyNhanVienMouseClicked
-        // JOptionPane.showMessageDialog(this, "Id Nhân Viên : " + getAll.get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien());
+        JOptionPane.showMessageDialog(this, "Id Nhân Viên : " + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).toString());
         //JOptionPane.showMessageDialog(this, "Giới tính Nhân Viên : " + getAll.get(tblQlyNhanVien.getSelectedRow()).getGioiTinh());
 
-        txtName.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getHoTen());
-        txtEmail.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getEmail());
-        txtNumberPhone.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getSDT());
-
-        if (getAll.get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
+        txtName.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getHoTen());
+        txtEmail.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getEmail());
+        txtNumberPhone.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getSDT());
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getImage() == null) {
+            lblAnh.setText("null");
+            lblAnh.setIcon(null);
+        } else {
+            lblAnh.setText("");
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getImage());
+            Image img = imgIcon.getImage();
+            img.getScaledInstance(lblAnh.getWidth(), lblAnh.getY(), 0);
+            lblAnh.setIcon(imgIcon);
+        }
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
             rdoOn.setSelected(true);
         } else {
             rdoOFF.setSelected(true);
         }
-        if (getAll.get(tblQlyNhanVien.getSelectedRow()).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
             rdoMale.setSelected(true);
         } else {
             rdoFemale.setSelected(true);
         }
+
     }//GEN-LAST:event_tblQlyNhanVienMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -337,6 +370,15 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         }
         staff.setHoTen(txtName.getText());
         staff.setSDT(txtNumberPhone.getText());
+
+        String hinh;
+        if (strHinhAnh == null) {
+            hinh = "null";
+        } else {
+            hinh = strHinhAnh;
+            staff.setImage(strHinhAnh);
+        }
+
         if (rdoOn.isSelected()) {
             staff.setTrangThai("ON");
         } else {
@@ -354,7 +396,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        fillToTable(getAll);
+        fillToTable(new QlyNhanVienImpl().getAllStaff());
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -367,19 +409,31 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         }
         staff.setHoTen(txtName.getText());
         staff.setSDT(txtNumberPhone.getText());
+
+        String hinh;
+        if (strHinhAnh == null) {
+            hinh = "null";
+        } else {
+            hinh = strHinhAnh;
+            staff.setImage(strHinhAnh);
+        }
+
         if (rdoOn.isSelected()) {
             staff.setTrangThai("ON");
         } else {
             staff.setTrangThai("OFF");
         }
-        String Id = getAll.get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien() + "";
-        if (new QlyNhanVienImpl().Update(UUID.fromString(Id), staff)) {
+
+
+        
+        if (new QlyNhanVienImpl().Update(UUID.fromString(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien() + ""), staff)) {
             JOptionPane.showMessageDialog(this, "Succes");
+            fillToTable(new QlyNhanVienImpl().getAllStaff());
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
         }
 
-        fillToTable(new QlyNhanVienImpl().getAllStaff());
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -438,6 +492,25 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private String strHinhAnh = null;
+
+
+    private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
+        try {
+            JFileChooser jfc = new JFileChooser("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources");
+            jfc.showOpenDialog(null);
+            File file = jfc.getSelectedFile();
+            Image img = ImageIO.read(file);
+            strHinhAnh = file.getName();
+            lblAnh.setText("");
+            int width = lblAnh.getWidth();
+            int height = lblAnh.getHeight();
+            lblAnh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_lblAnhMouseClicked
 
     /**
      * @param args the command line arguments
@@ -498,6 +571,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAnh;
     private javax.swing.JRadioButton rdoFemale;
     private javax.swing.JRadioButton rdoMale;
     private javax.swing.JRadioButton rdoOFF;

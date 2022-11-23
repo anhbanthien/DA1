@@ -46,6 +46,7 @@ public class NhanVienRepository {
             st.setHoTen(Staff.getHoTen());
             st.setSDT(Staff.getSDT());
             st.setTrangThai(Staff.getTrangThai());
+            st.setImage(Staff.getImage());
             session.getTransaction().begin();
             session.save(st);
             session.getTransaction().commit();
@@ -67,6 +68,9 @@ public class NhanVienRepository {
     }
 
     public static void main(String[] args) {
-        new NhanVienRepository().getAll().forEach(a -> System.out.print(a.toString()));
+//        new NhanVienRepository().getAll().forEach(a -> System.out.print(a.toString()));
+//        NhanVien Staff = new NhanVien("testUpdate123", "", "", "", "", "1.png");
+//        System.out.println(Staff.toString());
+//        new NhanVienRepository().Update(UUID.fromString("64173bba-efac-1940-a2d8-64109fbc2e5b"), Staff);
     }
 }
