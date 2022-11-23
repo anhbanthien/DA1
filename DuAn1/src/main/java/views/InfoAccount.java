@@ -11,13 +11,13 @@ import domainmodel.DangNhap;
  * @author Admin
  */
 public class InfoAccount extends javax.swing.JFrame {
-    
+
     private DangNhap log = null;
-    
+
     public InfoAccount() {
         initComponents();
     }
-    
+
     public InfoAccount(DangNhap log) {
         initComponents();
         this.log = log;
@@ -84,11 +84,11 @@ public class InfoAccount extends javax.swing.JFrame {
 
         txtaccount.setText("Tài Khoản");
 
-        txtAccount.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        txtAccount.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
 
         jLabel2.setText("Họ Tên");
 
-        txtFullName.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        txtFullName.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         txtFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFullNameActionPerformed(evt);
@@ -97,11 +97,11 @@ public class InfoAccount extends javax.swing.JFrame {
 
         txtaccount1.setText("Email");
 
-        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
 
         jLabel4.setText("SDT");
 
-        txtSDT.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        txtSDT.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
 
         buttonGroup1.add(jbtNu);
         jbtNu.setText("NỮ");
@@ -113,6 +113,11 @@ public class InfoAccount extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
         jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         txtChucVu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png"))); // NOI18N
 
@@ -208,6 +213,10 @@ public class InfoAccount extends javax.swing.JFrame {
     private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFullNameActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
