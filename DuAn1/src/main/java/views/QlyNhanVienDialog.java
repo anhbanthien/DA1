@@ -28,7 +28,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         tbl.setRowCount(0);
 
         for (NhanVienModel o : listsStaff) {
-            tbl.addRow(new Object[]{o.getHoTen(), o.getEmail(), o.getSDT(), o.getGioiTinh(), o.getTrangThai()});
+            tbl.addRow(new Object[]{o.getHoTen(), o.getEmail(), o.getSDT(), o.getGioiTinh(), o.getTrangThai(), o.getImage()});
         }
 
     }
@@ -48,6 +48,8 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         rdoFemale = new javax.swing.JRadioButton();
@@ -76,14 +78,18 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
 
         jLabel6.setText("Giới tính");
 
+        buttonGroup1.add(rdoFemale);
         rdoFemale.setText("Nữ");
 
+        buttonGroup1.add(rdoMale);
         rdoMale.setText("Nam");
 
+        buttonGroup2.add(rdoOFF);
         rdoOFF.setText("OFF");
 
         jLabel7.setText("Trạng Thái");
 
+        buttonGroup2.add(rdoOn);
         rdoOn.setText("ON");
         rdoOn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -476,6 +482,8 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
