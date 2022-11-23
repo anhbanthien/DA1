@@ -48,6 +48,7 @@ public class NhanVien {
         this.GioiTinh = nv.getGioiTinh();
         this.TrangThai = nv.getTrangThai();
         this.IdNhanVien = nv.getIdNhanVien();
+        this.Image = nv.getImage();
     }
 
     public UUID getIdNhanVien() {
@@ -100,7 +101,7 @@ public class NhanVien {
 
     @Override
     public String toString() {
-        return "NhanVien{" + "IdNhanVien=" + IdNhanVien + ", HoTen=" + HoTen + ", Email=" + Email + ", SDT=" + SDT + ", GioiTinh=" + GioiTinh + ", TrangThai=" + TrangThai + '}';
+        return "NhanVien{" + "IdNhanVien=" + IdNhanVien + ", HoTen=" + HoTen + ", Email=" + Email + ", SDT=" + SDT + ", GioiTinh=" + GioiTinh + ", TrangThai=" + TrangThai + ", Image=" + Image + '}';
     }
 
     public String getImage() {

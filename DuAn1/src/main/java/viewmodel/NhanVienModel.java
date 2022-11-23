@@ -86,4 +86,9 @@ public class NhanVienModel {
         this.Image = Image;
     }
 
+    @Override
+    public String toString() {
+        return "NhanVienModel{" + "IdNhanVien=" + IdNhanVien + ", HoTen=" + HoTen + ", Email=" + Email + ", SDT=" + SDT + ", GioiTinh=" + GioiTinh + ", TrangThai=" + TrangThai + ", Image=" + Image + '}';
+    }
+
 }
