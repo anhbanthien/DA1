@@ -13,10 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/**
- *
- * @author vutuo
- */
+
 @Entity
 @Table(name = "BanChiTiet")
 public class BanChiTiet implements Serializable {
