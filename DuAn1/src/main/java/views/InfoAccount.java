@@ -43,11 +43,7 @@ public class InfoAccount extends javax.swing.JFrame {
         } else {
             jbtNu.setSelected(true);
         }
-        if (log.getQuyen().equalsIgnoreCase("admin")) {
-            txtChucVu.setText("Chức Vụ : ADMIN");
-        } else {
-            txtChucVu.setText("Chức Vụ : STAFF");
-        }
+
         if (log.getIdNhanVien().getImage() == null) {
             lblAnh.setText("null");
             lblAnh.setIcon(null);
@@ -84,15 +80,15 @@ public class InfoAccount extends javax.swing.JFrame {
         jbtNu = new javax.swing.JRadioButton();
         jbtNam = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        lblAnh = new javax.swing.JLabel();
         txtTrangThai = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        txtChucVu = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        lblAnh = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -166,14 +162,6 @@ public class InfoAccount extends javax.swing.JFrame {
         jLabel5.setText("Giới Tính");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 296, -1, -1));
 
-        lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblAnhMouseClicked(evt);
-            }
-        });
-        getContentPane().add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, 121, 157));
-
         txtTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         getContentPane().add(txtTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 320, 190, 30));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 480, 10));
@@ -207,9 +195,6 @@ public class InfoAccount extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 255, 204));
 
-        txtChucVu.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        txtChucVu.setText("Chức Vụ : ");
-
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
@@ -223,31 +208,47 @@ public class InfoAccount extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI Semilight", 1, 12)); // NOI18N
         jLabel6.setText("Trạng Thái");
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baomat.png"))); // NOI18N
+        jButton2.setText("Bảo Mật");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAnhMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(323, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtChucVu)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27))
-            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 243, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
+                    .addComponent(lblAnh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(38, 38, 38))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
-                .addComponent(txtChucVu)
-                .addGap(58, 58, 58)
-                .addComponent(jLabel6)
-                .addGap(27, 27, 27))
+                .addGap(30, 30, 30)
+                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(jButton2))
+                .addGap(22, 22, 22))
         );
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 460, 300));
@@ -305,6 +306,10 @@ public class InfoAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAccountActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new SerPass(this.log).setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -343,6 +348,7 @@ public class InfoAccount extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -358,7 +364,6 @@ public class InfoAccount extends javax.swing.JFrame {
     private javax.swing.JRadioButton jbtNu;
     private javax.swing.JLabel lblAnh;
     private javax.swing.JTextField txtAccount;
-    private javax.swing.JLabel txtChucVu;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtSDT;
