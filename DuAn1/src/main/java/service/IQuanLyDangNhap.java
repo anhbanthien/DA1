@@ -13,6 +13,7 @@ import domainmodel.DangNhap;
 public interface IQuanLyDangNhap {
 
     DangNhap checkLogin(String Acc, String Pass);
-    
+
+    boolean Update(DangNhap Login);
 
 }
