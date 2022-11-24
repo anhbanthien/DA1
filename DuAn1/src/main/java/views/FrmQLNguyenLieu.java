@@ -5,17 +5,26 @@
  */
 package views;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.IManageNguyenLieuService;
+import service.impl.ManageNguyenLieuService;
+import viewmodel.QLNguyenLieu;
+
 /**
  *
  * @author trong
  */
 public class FrmQLNguyenLieu extends javax.swing.JFrame {
-
+    IManageNguyenLieuService _iManageNguyenLieuService = new ManageNguyenLieuService();
+    List<QLNguyenLieu> lstQLNL;
+    DefaultTableModel dtm;
     /**
      * Creates new form FrmQLCongThuc
      */
     public FrmQLNguyenLieu() {
         initComponents();
+        loadData();
     }
 
     /**
@@ -32,7 +41,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtDVT = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblQLyCongThuc = new javax.swing.JTable();
+        tblQLyNguyenLieu = new javax.swing.JTable();
         btnThem = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         btnSua = new javax.swing.JButton();
@@ -65,9 +74,9 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
 
         jLabel5.setText("Đơn Vị Tính");
 
-        tblQLyCongThuc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tblQLyCongThuc.setForeground(new java.awt.Color(102, 102, 102));
-        tblQLyCongThuc.setModel(new javax.swing.table.DefaultTableModel(
+        tblQLyNguyenLieu.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblQLyNguyenLieu.setForeground(new java.awt.Color(102, 102, 102));
+        tblQLyNguyenLieu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -75,12 +84,12 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
                 "Mã NL", "Tên NL", "Số Lượng", "DVT", "Ngày Nhập", "HSD"
             }
         ));
-        tblQLyCongThuc.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblQLyNguyenLieu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblQLyCongThucMouseClicked(evt);
+                tblQLyNguyenLieuMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(tblQLyCongThuc);
+        jScrollPane1.setViewportView(tblQLyNguyenLieu);
 
         btnThem.setFont(new java.awt.Font("Segoe UI Symbol", 1, 12)); // NOI18N
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save.png"))); // NOI18N
@@ -255,9 +264,9 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void tblQLyCongThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLyCongThucMouseClicked
+    private void tblQLyNguyenLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLyNguyenLieuMouseClicked
       
-    }//GEN-LAST:event_tblQLyCongThucMouseClicked
+    }//GEN-LAST:event_tblQLyNguyenLieuMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
        
@@ -324,7 +333,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tblQLyCongThuc;
+    private javax.swing.JTable tblQLyNguyenLieu;
     private javax.swing.JTextField txtDVT;
     private javax.swing.JTextField txtHSD;
     private javax.swing.JTextField txtMaNguyenLieu;
@@ -333,4 +342,13 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTenNL;
     // End of variables declaration//GEN-END:variables
+
+    private void loadData() {
+        dtm.setRowCount(0);
+        lstQLNL = _iManageNguyenLieuService.getAll();
+        dtm = (DefaultTableModel) tblQLyNguyenLieu.getModel();
+        for (QLNguyenLieu x : lstQLNL) {
+            dtm.addRow(new Object[]{x.getMaNL(),x.getTenNL(),x.getSoLuong(),x.getDvt(),x.getNgayNhap(),x.getHsd()});
+        }
+    }
 }

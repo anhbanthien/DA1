@@ -59,11 +59,11 @@ public class SanPhamRepository {
 
     }
 
-    public boolean Delete(UUID id) {
+    public boolean Delete(SanPham sp) {
         Transaction transaction = null;
         try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(id);
+            session.delete(sp);
             transaction.commit();
             return true;
         } catch (Exception e) {

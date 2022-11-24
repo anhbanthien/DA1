@@ -7,24 +7,21 @@ package service;
 
 import java.util.List;
 import java.util.UUID;
+import viewmodel.QLNguyenLieu;
 import viewmodel.QLSanPham;
 
 /**
  *
  * @author trong
  */
-public interface IManageSanPhamService {
+public interface IManageNguyenLieuService {
+    List<QLNguyenLieu> getAll();
 
-    List<QLSanPham> getAll();
+    QLNguyenLieu getOne(String maNL);
 
-    QLSanPham getOne(UUID id);
+    String add(QLNguyenLieu qlnl);
 
-    String add(QLSanPham qlsp);
+    String update(String maNL, QLNguyenLieu qlnl);
 
-    String update(UUID id, QLSanPham qlsp);
-
-    String delete(QLSanPham qlsp);
-
-    
-
+    String delete(QLNguyenLieu qlnl);
 }

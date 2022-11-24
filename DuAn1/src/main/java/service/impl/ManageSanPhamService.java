@@ -54,19 +54,26 @@ public class ManageSanPhamService implements IManageSanPhamService {
     @Override
     public String update(UUID id, QLSanPham qlsp) {
         SanPham sp = new SanPham();
-        sp.setIdSP(qlsp.getIDSP());
+        sp.setIdSP(id);
         sp.setTenSP(qlsp.getTenSP());
         sp.setMoTa(qlsp.getMoTa());
         sp.setImage(qlsp.getImage());
         sp.setGia(qlsp.getGia());
         sp.setTrangThai(qlsp.getTrangThai());
 
-        return sanPhamRepository.Add(sp) ? "Sửa thành công" : "Sửa thất bại";
+        return sanPhamRepository.Update(id, sp) ? "Sửa thành công" : "Sửa thất bại";
     }
 
     @Override
-    public String delete(UUID id) {
-        return sanPhamRepository.Delete(id) ? "Xóa thành công" : "Xóa thất bại";
+    public String delete(QLSanPham qlsp) {
+        SanPham sp = new SanPham();
+        sp.setIdSP(qlsp.getIDSP());
+        sp.setTenSP(qlsp.getTenSP());
+        sp.setMoTa(qlsp.getMoTa());
+        sp.setImage(qlsp.getImage());
+        sp.setGia(qlsp.getGia());
+        sp.setTrangThai(qlsp.getTrangThai());
+        return sanPhamRepository.Delete(sp) ? "Xóa thành công" : "Xóa thất bại";
     }
 
 }
