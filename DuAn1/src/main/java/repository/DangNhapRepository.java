@@ -10,6 +10,7 @@ import java.util.UUID;
 import javax.persistence.Query;
 import domainmodel.DangNhap;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 public class DangNhapRepository {
 
@@ -34,10 +35,6 @@ public class DangNhapRepository {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(new DangNhapRepository().CheckLogin("staff", "123").toString());
-    }
-
     public List<DangNhap> getAll() {
         Query query = session.createQuery(fromTable, DangNhap.class);
         List<DangNhap> lists = query.getResultList();
@@ -59,16 +56,12 @@ public class DangNhapRepository {
         }
     }
 
-    public boolean Update(DangNhap Login, String Account) {
-        try {
-            DangNhap lg = session.get(DangNhap.class, Account);
-            lg.setTenTaiKhoan(Login.getTenTaiKhoan());
-            lg.setMatKhau(Login.getMatKhau());
-            lg.setQuyen(Login.getQuyen());
-            lg.setIdNhanVien(Login.getIdNhanVien());
-            session.getTransaction().begin();
-            session.save(Login);
-            session.getTransaction().commit();
+    public boolean Update(DangNhap Login) {
+        Transaction transaction = null;
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.saveOrUpdate(Login);
+            transaction.commit();
             return true;
         } catch (Exception e) {
             return false;

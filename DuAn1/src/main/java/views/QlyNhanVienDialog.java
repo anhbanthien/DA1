@@ -1,11 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
+ */
 package views;
 
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 import domainmodel.NhanVien;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import service.impl.QlyNhanVienImpl;
 import viewmodel.NhanVienModel;
 
@@ -13,7 +23,7 @@ import viewmodel.NhanVienModel;
  *
  * @author Admin
  */
-public class QlyNhanVien extends javax.swing.JFrame {
+public class QlyNhanVienDialog extends javax.swing.JDialog {
 
     private ArrayList<NhanVienModel> getAll = new QlyNhanVienImpl().getAllStaff();
     private DefaultTableModel tbl = new DefaultTableModel();
@@ -24,12 +34,13 @@ public class QlyNhanVien extends javax.swing.JFrame {
         tbl.setRowCount(0);
 
         for (NhanVienModel o : listsStaff) {
-            tbl.addRow(new Object[]{o.getHoTen(), o.getEmail(), o.getSDT(), o.getGioiTinh(), o.getTrangThai()});
+            tbl.addRow(new Object[]{o.getHoTen(), o.getEmail(), o.getSDT(), o.getGioiTinh(), o.getTrangThai(), o.getImage()});
         }
 
     }
 
-    public QlyNhanVien() {
+    public QlyNhanVienDialog(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
         fillToTable(getAll);
     }
@@ -45,60 +56,32 @@ public class QlyNhanVien extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblQlyNhanVien = new javax.swing.JTable();
-        jLabel3 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         rdoFemale = new javax.swing.JRadioButton();
         rdoMale = new javax.swing.JRadioButton();
+        rdoOFF = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
+        rdoOn = new javax.swing.JRadioButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblQlyNhanVien = new javax.swing.JTable();
         txtNumberPhone = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        txtName = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        rdoOFF = new javax.swing.JRadioButton();
-        rdoOn = new javax.swing.JRadioButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        lblAnh = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        tblQlyNhanVien.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        tblQlyNhanVien.setForeground(new java.awt.Color(102, 102, 102));
-        tblQlyNhanVien.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Họ Tên", "Email", "SĐT", "Giới Tính", "Trạng Thái"
-            }
-        ));
-        tblQlyNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tblQlyNhanVienMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(tblQlyNhanVien);
-
-        jLabel3.setText("Họ Tên");
-
-        jLabel4.setText("Email");
-
-        jLabel5.setText("SDT");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel6.setText("Giới tính");
 
@@ -108,7 +91,40 @@ public class QlyNhanVien extends javax.swing.JFrame {
         buttonGroup1.add(rdoMale);
         rdoMale.setText("Nam");
 
+        buttonGroup2.add(rdoOFF);
+        rdoOFF.setText("OFF");
+
         jLabel7.setText("Trạng Thái");
+
+        buttonGroup2.add(rdoOn);
+        rdoOn.setText("ON");
+        rdoOn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdoOnActionPerformed(evt);
+            }
+        });
+
+        tblQlyNhanVien.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        tblQlyNhanVien.setForeground(new java.awt.Color(102, 102, 102));
+        tblQlyNhanVien.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Họ Tên", "Email", "SĐT", "Giới Tính", "Trạng Thái", "Image"
+            }
+        ));
+        tblQlyNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblQlyNhanVienMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblQlyNhanVien);
 
         jButton2.setFont(new java.awt.Font("Segoe UI Symbol", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save.png"))); // NOI18N
@@ -118,6 +134,17 @@ public class QlyNhanVien extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jButton6.setFont(new java.awt.Font("Zilla Slab Medium", 0, 12)); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
+        jButton6.setText("Back");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Họ Tên");
 
         jButton1.setFont(new java.awt.Font("SimSun-ExtB", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/update.png"))); // NOI18N
@@ -136,6 +163,8 @@ public class QlyNhanVien extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
+
+        jLabel4.setText("Email");
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -187,32 +216,14 @@ public class QlyNhanVien extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
-        buttonGroup2.add(rdoOFF);
-        rdoOFF.setText("OFF");
+        jLabel5.setText("SDT");
 
-        buttonGroup2.add(rdoOn);
-        rdoOn.setText("ON");
-        rdoOn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rdoOnActionPerformed(evt);
-            }
-        });
-
-        jButton5.setFont(new java.awt.Font("Zilla Slab Medium", 0, 12)); // NOI18N
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
-        jButton5.setText("Out");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton6.setFont(new java.awt.Font("Zilla Slab Medium", 0, 12)); // NOI18N
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
-        jButton6.setText("Back");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+        lblAnh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        lblAnh.setText("    Upload");
+        lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAnhMouseClicked(evt);
             }
         });
 
@@ -228,17 +239,29 @@ public class QlyNhanVien extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rdoMale)
-                            .addComponent(rdoOn)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(72, 72, 72)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rdoFemale)
-                                    .addComponent(rdoOFF)))))
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(rdoMale)
+                                    .addComponent(rdoOn)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(72, 72, 72)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(rdoFemale)
+                                            .addComponent(rdoOFF)))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(52, 52, 52)
+                                .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(34, 34, 34)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -246,20 +269,10 @@ public class QlyNhanVien extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(52, 52, 52)
-                        .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -268,7 +281,7 @@ public class QlyNhanVien extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -295,15 +308,18 @@ public class QlyNhanVien extends javax.swing.JFrame {
                             .addComponent(rdoOn))
                         .addGap(35, 35, 35))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(19, 19, 19)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                         .addGap(31, 31, 31)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -311,6 +327,40 @@ public class QlyNhanVien extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rdoOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoOnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdoOnActionPerformed
+
+    private void tblQlyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQlyNhanVienMouseClicked
+        //JOptionPane.showMessageDialog(this, "Id Nhân Viên : " + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).toString());
+        //JOptionPane.showMessageDialog(this, "Giới tính Nhân Viên : " + getAll.get(tblQlyNhanVien.getSelectedRow()).getGioiTinh());
+
+        txtName.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getHoTen());
+        txtEmail.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getEmail());
+        txtNumberPhone.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getSDT());
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getImage() == null) {
+            lblAnh.setText("null");
+            lblAnh.setIcon(null);
+        } else {
+            lblAnh.setText("");
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getImage());
+            Image img = imgIcon.getImage();
+            img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), 0);
+            lblAnh.setIcon(imgIcon);
+        }
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
+            rdoOn.setSelected(true);
+        } else {
+            rdoOFF.setSelected(true);
+        }
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
+            rdoMale.setSelected(true);
+        } else {
+            rdoFemale.setSelected(true);
+        }
+
+    }//GEN-LAST:event_tblQlyNhanVienMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         NhanVien staff = new NhanVien();
@@ -322,6 +372,15 @@ public class QlyNhanVien extends javax.swing.JFrame {
         }
         staff.setHoTen(txtName.getText());
         staff.setSDT(txtNumberPhone.getText());
+
+        String hinh;
+        if (strHinhAnh == null) {
+            hinh = "null";
+        } else {
+            hinh = strHinhAnh;
+            staff.setImage(strHinhAnh);
+        }
+
         if (rdoOn.isSelected()) {
             staff.setTrangThai("ON");
         } else {
@@ -336,12 +395,11 @@ public class QlyNhanVien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Failed");
         }
 
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void rdoOnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoOnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rdoOnActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        fillToTable(new QlyNhanVienImpl().getAllStaff());
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         NhanVien staff = new NhanVien();
@@ -353,41 +411,30 @@ public class QlyNhanVien extends javax.swing.JFrame {
         }
         staff.setHoTen(txtName.getText());
         staff.setSDT(txtNumberPhone.getText());
+
+        String hinh;
+        if (strHinhAnh == null) {
+            hinh = "null";
+        } else {
+            hinh = strHinhAnh;
+            staff.setImage(strHinhAnh);
+        }
+
         if (rdoOn.isSelected()) {
             staff.setTrangThai("ON");
         } else {
             staff.setTrangThai("OFF");
         }
-        String Id = getAll.get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien() + "";
-        if (new QlyNhanVienImpl().Update(UUID.fromString(Id), staff)) {
+
+        if (new QlyNhanVienImpl().Update(UUID.fromString(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien() + ""), staff)) {
             JOptionPane.showMessageDialog(this, "Succes");
+            fillToTable(new QlyNhanVienImpl().getAllStaff());
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
         }
 
-        fillToTable(new QlyNhanVienImpl().getAllStaff());
+
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void tblQlyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQlyNhanVienMouseClicked
-        // JOptionPane.showMessageDialog(this, "Id Nhân Viên : " + getAll.get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien());
-        //JOptionPane.showMessageDialog(this, "Giới tính Nhân Viên : " + getAll.get(tblQlyNhanVien.getSelectedRow()).getGioiTinh());
-
-        txtName.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getHoTen());
-        txtEmail.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getEmail());
-        txtNumberPhone.setText(getAll.get(tblQlyNhanVien.getSelectedRow()).getSDT());
-
-        if (getAll.get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
-            rdoOn.setSelected(true);
-        } else {
-            rdoOFF.setSelected(true);
-        }
-        if (getAll.get(tblQlyNhanVien.getSelectedRow()).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
-            rdoMale.setSelected(true);
-        } else {
-            rdoFemale.setSelected(true);
-        }
-
-    }//GEN-LAST:event_tblQlyNhanVienMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
@@ -426,7 +473,6 @@ public class QlyNhanVien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Bạn đã huỷ xoá ");
         }
 
-
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -445,17 +491,26 @@ public class QlyNhanVien extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Không tìm thấy");
         }
 
-
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private String strHinhAnh = "";
 
-        this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        fillToTable(getAll);
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
+        try {
+            JFileChooser jfc = new JFileChooser("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources");
+            jfc.showOpenDialog(null);
+            File file = jfc.getSelectedFile();
+            Image img = ImageIO.read(file);
+            strHinhAnh = file.getName();
+            lblAnh.setText("");
+            int width = lblAnh.getWidth();
+            int height = lblAnh.getHeight();
+            lblAnh.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Bạn đã huỷ chọn ảnh");
+        }
+    }//GEN-LAST:event_lblAnhMouseClicked
 
     /**
      * @param args the command line arguments
@@ -474,20 +529,27 @@ public class QlyNhanVien extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(QlyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlyNhanVienDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(QlyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlyNhanVienDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(QlyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlyNhanVienDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(QlyNhanVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(QlyNhanVienDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new QlyNhanVien().setVisible(true);
+                QlyNhanVienDialog dialog = new QlyNhanVienDialog(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
@@ -499,7 +561,6 @@ public class QlyNhanVien extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -510,6 +571,7 @@ public class QlyNhanVien extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAnh;
     private javax.swing.JRadioButton rdoFemale;
     private javax.swing.JRadioButton rdoMale;
     private javax.swing.JRadioButton rdoOFF;

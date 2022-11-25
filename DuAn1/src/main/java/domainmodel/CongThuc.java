@@ -8,6 +8,7 @@ package domainmodel;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -29,7 +30,7 @@ public class CongThuc {
     @GeneratedValue
     private UUID idCT;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IDSP")
     private SanPham sanPham;
     @Column(name = "Ten")
@@ -40,7 +41,7 @@ public class CongThuc {
     private String image;
     @Column(name = "TrangThai")
     private String trangThai;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdMaNL")
     private NguyenLieu nguyenLieu;
 
