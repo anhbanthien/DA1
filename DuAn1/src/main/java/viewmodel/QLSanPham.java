@@ -17,20 +17,31 @@ public class QLSanPham {
     private String tenSP;
     private String moTa;
     private String image;
-    private BigDecimal gia;
+    private float gia;
     private String trangThai;
 
     public QLSanPham() {
     }
 
-    public QLSanPham(SanPham sp) {
-        this.IDSP = sp.getIdSP();
-        this.tenSP = sp.getTenSP();
-        this.moTa = sp.getMoTa();
-        this.image = sp.getImage();
-        this.gia = sp.getGia();
-        this.trangThai = sp.getTrangThai();
+    public QLSanPham(UUID IDSP, String tenSP, String moTa, String image, float gia, String trangThai) {
+        this.IDSP = IDSP;
+        this.tenSP = tenSP;
+        this.moTa = moTa;
+        this.image = image;
+        this.gia = gia;
+        this.trangThai = trangThai;
     }
+
+    
+
+    public QLSanPham(String tenSP, String moTa, String image, float gia, String trangThai) {
+        this.tenSP = tenSP;
+        this.moTa = moTa;
+        this.image = image;
+        this.gia = gia;
+        this.trangThai = trangThai;
+    }
+    
 
     public UUID getIDSP() {
         return IDSP;
@@ -64,11 +75,11 @@ public class QLSanPham {
         this.image = image;
     }
 
-    public BigDecimal getGia() {
+    public float getGia() {
         return gia;
     }
 
-    public void setGia(BigDecimal gia) {
+    public void setGia(float gia) {
         this.gia = gia;
     }
 
