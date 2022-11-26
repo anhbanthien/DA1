@@ -19,6 +19,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     IManageNguyenLieuService _iManageNguyenLieuService = new ManageNguyenLieuService();
     List<QLNguyenLieu> lstQLNL;
     DefaultTableModel dtm;
+    int row;
     /**
      * Creates new form FrmQLCongThuc
      */
@@ -81,7 +82,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã NL", "Tên NL", "Số Lượng", "DVT", "Ngày Nhập", "HSD"
+                "STT", "Mã NL", "Tên NL", "Số Lượng", "DVT", "Ngày Nhập", "HSD"
             }
         ));
         tblQLyNguyenLieu.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -259,22 +260,29 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-
+        _iManageNguyenLieuService.delete(getData());
         
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblQLyNguyenLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLyNguyenLieuMouseClicked
-      
+      row =tblQLyNguyenLieu.getSelectedRow();
+      txtMaNguyenLieu.setText((String) tblQLyNguyenLieu.getValueAt(row, 1));
+      txtTenNL.setText((String) tblQLyNguyenLieu.getValueAt(row, 2));
+      txtSL.setText((String) tblQLyNguyenLieu.getValueAt(row, 3));
+      txtDVT.setText((String) tblQLyNguyenLieu.getValueAt(row, 4));
+      txtNgayNhap.setText((String) tblQLyNguyenLieu.getValueAt(row, 5));
+      txtDVT.setText((String) tblQLyNguyenLieu.getValueAt(row, 6));
     }//GEN-LAST:event_tblQLyNguyenLieuMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-       
+        _iManageNguyenLieuService.add(getData());
 
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-       
+        
+        _iManageNguyenLieuService.update((String) tblQLyNguyenLieu.getValueAt(row, 1), getData());
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -348,7 +356,18 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
         lstQLNL = _iManageNguyenLieuService.getAll();
         dtm = (DefaultTableModel) tblQLyNguyenLieu.getModel();
         for (QLNguyenLieu x : lstQLNL) {
-            dtm.addRow(new Object[]{x.getMaNL(),x.getTenNL(),x.getSoLuong(),x.getDvt(),x.getNgayNhap(),x.getHsd()});
+            dtm.addRow(new Object[]{lstQLNL.indexOf(x), x.getMaNL(),x.getTenNL(),x.getSoLuong(),x.getDvt(),x.getNgayNhap(),x.getHsd()});
         }
+    }
+
+    private QLNguyenLieu getData() {
+        QLNguyenLieu qlnl = new QLNguyenLieu();
+        qlnl.setMaNL(txtMaNguyenLieu.getText());
+        qlnl.setTenNL(txtTenNL.getText());
+        qlnl.setSoLuong(Integer.parseInt(txtSL.getText()));
+        qlnl.setDvt(txtDVT.getText());
+        qlnl.setNgayNhap(txtNgayNhap.getText());
+        qlnl.setHsd(Integer.parseInt(txtHSD.getText()));
+        return qlnl;
     }
 }

@@ -5,17 +5,28 @@
  */
 package views;
 
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import service.IManageSanPhamService;
+import service.impl.ManageSanPhamService;
+import viewmodel.QLSanPham;
+
 /**
  *
  * @author trong
  */
 public class FrmQLSanPham extends javax.swing.JFrame {
-
+    IManageSanPhamService _iManageSanPhamService;
+    List<QLSanPham> lstQLSP;
+    int row;
+    DefaultTableModel dtm;
     /**
      * Creates new form FrmQLSanPham
      */
     public FrmQLSanPham() {
         initComponents();
+        
+        loadData();
     }
 
     /**
@@ -120,6 +131,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plus (1).png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
         btnSua.setText("Sửa ");
@@ -217,9 +233,14 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Tên Sản Phẩm", "Mô Tả", "Image", "Gía", "Trạng Thái", "Công Thức", " Nguyên Liệu"
+                "STT", "Tên Sản Phẩm", "Mô Tả", "Image", "Gía", "Trạng Thái", "Công Thức", " Nguyên Liệu"
             }
         ));
+        tblSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblSPMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblSP);
 
         btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -363,6 +384,19 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnQLNLActionPerformed
 
+    private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
+        row = tblSP.getSelectedRow();
+        txtTenSP.setText((String) tblSP.getValueAt(row, 1));
+        txtMoTa.setText((String) tblSP.getValueAt(row, 2));
+        txtImage.setText((String) tblSP.getValueAt(row, 3));
+        txtGia.setText((String) tblSP.getValueAt(row, 4));
+        txtTrangThai.setText((String) tblSP.getValueAt(row, 5));
+    }//GEN-LAST:event_tblSPMouseClicked
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        _iManageSanPhamService.add(getData());
+    }//GEN-LAST:event_btnThemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -429,4 +463,23 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
+
+    private void loadData() {
+        lstQLSP = _iManageSanPhamService.getAll();
+        dtm = (DefaultTableModel) tblSP.getModel();
+        dtm.setRowCount(0);
+        for (QLSanPham x : lstQLSP) {
+            dtm.addRow(new Object[]{lstQLSP.indexOf(x),x.getTenSP(),x.getMoTa(),x.getImage(),x.getGia(),x.getTrangThai()});
+        }
+    }
+
+    private QLSanPham getData() {
+        QLSanPham qlsp = new QLSanPham();
+        qlsp.setTenSP(txtTenSP.getText());
+        qlsp.setMoTa(txtMoTa.getText());
+        qlsp.setImage(txtImage.getText());
+        qlsp.setGia(Float.parseFloat(txtGia.getText()));
+        qlsp.setTrangThai(txtTrangThai.getText());
+        return qlsp;
+    }
 }
