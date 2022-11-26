@@ -701,7 +701,7 @@ public class BanHang extends javax.swing.JFrame {
         for (int i = 0; i < sanPhams.size(); i++) {
             if (sanPhams.get(i).getIDSP() == _idSP) {
                 BigDecimal tien = new BigDecimal(Double.toString((double) txtsl.getValue()));
-                tien = sanPhams.get(i).getGia().multiply(tien);
+            //    tien = sanPhams.get(i).getGia().multiply(tien);
                 txtTien.setText(tien.toString());
 
                 return;
@@ -865,7 +865,7 @@ public class BanHang extends javax.swing.JFrame {
         _idSP = sanPhams.get(rowIndex).getIDSP();
         txtsp1.setText(sanPhams.get(rowIndex).getTenSP());
         BigDecimal tien = new BigDecimal(Double.toString((double) txtsl.getValue()));
-        tien = sanPhams.get(rowIndex).getGia().multiply(tien);
+       // tien = sanPhams.get(rowIndex).getGia().multiply(tien);
         txtTien.setText(String.valueOf(tien));
     }//GEN-LAST:event_tblSanPhamMouseClicked
 
@@ -930,7 +930,7 @@ public class BanHang extends javax.swing.JFrame {
         _idSP = sanPhams.get(rowIndex).getIDSP();
         txtsp1.setText(sanPhams.get(rowIndex).getTenSP());
         BigDecimal tien = new BigDecimal(Double.toString((double) txtsl.getValue()));
-        tien = sanPhams.get(rowIndex).getGia().multiply(tien);
+    //    tien = sanPhams.get(rowIndex).getGia().multiply(tien);
         txtTien.setText(String.valueOf(tien));
     }//GEN-LAST:event_tblHoaDonCTMouseClicked
 

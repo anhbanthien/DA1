@@ -30,7 +30,7 @@ public class CongThuc {
     private UUID idCT;
 
     @OneToOne
-    @JoinColumn(name = "IDSP")
+    @JoinColumn(name = "IDSP", referencedColumnName = "IDSP")
     private SanPham sanPham;
     @Column(name = "Ten")
     private String ten;
@@ -41,7 +41,7 @@ public class CongThuc {
     @Column(name = "TrangThai")
     private String trangThai;
     @OneToMany
-    @JoinColumn(name = "IdMaNL")
+    @JoinColumn(name = "IdMaNL", referencedColumnName = "MaNL")
     private NguyenLieu nguyenLieu;
 
     public CongThuc() {

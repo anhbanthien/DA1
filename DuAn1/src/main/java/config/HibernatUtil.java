@@ -6,6 +6,7 @@ package config;
 
 import domainmodel.Ban;
 import domainmodel.BanChiTiet;
+import domainmodel.CongThuc;
 import java.util.Properties;
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
@@ -46,6 +47,7 @@ public class HibernatUtil {
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(SanPham.class);
         conf.addAnnotatedClass(NguyenLieu.class);
+        conf.addAnnotatedClass(CongThuc.class);
 
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
