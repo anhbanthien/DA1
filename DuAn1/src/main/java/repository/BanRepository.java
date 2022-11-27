@@ -62,13 +62,14 @@ public class BanRepository {
             session.getTransaction().begin();
             session.delete(ban);
             session.getTransaction().commit();
-            
+
             return true;
         } catch (Exception e) {
             e.printStackTrace(System.out);
             return false;
         }
     }
+
     public static void main(String[] args) {
         BanRepository repository = new BanRepository();
         List<Ban> list = repository.getAll();
