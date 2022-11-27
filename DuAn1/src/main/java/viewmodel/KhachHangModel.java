@@ -13,6 +13,7 @@ import javax.persistence.Column;
  * @author vanlo
  */
 public class KhachHangModel {
+
     private UUID id;
     private String Ten;
     private int DiemTichLuy;
@@ -21,6 +22,7 @@ public class KhachHangModel {
 
     public KhachHangModel() {
     }
+
     public KhachHangModel(KhachHang khachHang) {
         this.id = khachHang.getId();
         this.Ten = khachHang.getTen();
@@ -76,5 +78,5 @@ public class KhachHangModel {
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
-    
+
 }

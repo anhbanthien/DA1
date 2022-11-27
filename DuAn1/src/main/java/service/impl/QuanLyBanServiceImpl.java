@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import domainmodel.Ban;
+import java.util.UUID;
 import reponse.BanReponse;
 import repository.BanRepository;
 import service.QuanLyBanService;
@@ -29,14 +30,14 @@ public class QuanLyBanServiceImpl implements QuanLyBanService {
 //            reponses.add(banReponse);
 //        }
 //        return reponses;
-    return list.stream().map(BanReponse::new).collect(Collectors.toList());
+        return list.stream().map(BanReponse::new).collect(Collectors.toList());
 
     }
 
     @Override
     public String add(Ban ban) {
         boolean add = repository.add(ban);
- 
+
         if (add) {
             return "Thêm thành công";
         } else {
@@ -63,6 +64,7 @@ public class QuanLyBanServiceImpl implements QuanLyBanService {
             return "Xóa thất bại";
         }
     }
+
     public static void main(String[] args) {
         QuanLyBanServiceImpl impl = new QuanLyBanServiceImpl();
         List<BanReponse> list = impl.getAll();
@@ -70,5 +72,10 @@ public class QuanLyBanServiceImpl implements QuanLyBanService {
             System.out.println(banReponse);
         }
     }
-    
+
+    @Override
+    public Ban getOne(int IDB) {
+        return new BanRepository().getOne(IDB);
+    }
+
 }

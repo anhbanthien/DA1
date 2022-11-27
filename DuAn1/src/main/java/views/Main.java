@@ -49,6 +49,8 @@ public class Main extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         Jbtqlynv = new javax.swing.JButton();
         Jbtqlynv2 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        Jbtqlynv1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jbtProfile = new javax.swing.JButton();
@@ -108,6 +110,20 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Jbtqlynv1.setBackground(new java.awt.Color(105, 82, 73));
+        Jbtqlynv1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Jbtqlynv1.setForeground(new java.awt.Color(255, 255, 255));
+        Jbtqlynv1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mergetable.png"))); // NOI18N
+        Jbtqlynv1.setText("   Bàn");
+        Jbtqlynv1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        Jbtqlynv1.setBorderPainted(false);
+        Jbtqlynv1.setContentAreaFilled(false);
+        Jbtqlynv1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jbtqlynv1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -124,7 +140,9 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
                     .addComponent(Jbtqlynv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Jbtqlynv2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Jbtqlynv2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator6)
+                    .addComponent(Jbtqlynv1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -135,7 +153,11 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 277, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addComponent(Jbtqlynv1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Jbtqlynv)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,6 +239,10 @@ public class Main extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_Jbtqlynv2ActionPerformed
 
+    private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
+        new ViewBan().setVisible(true);
+    }//GEN-LAST:event_Jbtqlynv1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -255,17 +281,27 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Jbtqlynv;
+    private javax.swing.JButton Jbtqlynv1;
     private javax.swing.JButton Jbtqlynv2;
+    private javax.swing.JButton Jbtqlynv3;
+    private javax.swing.JButton Jbtqlynv4;
+    private javax.swing.JButton Jbtqlynv5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JButton jbtProfile;
     // End of variables declaration//GEN-END:variables
 }
