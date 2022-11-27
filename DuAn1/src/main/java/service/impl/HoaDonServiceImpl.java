@@ -70,4 +70,9 @@ public class HoaDonServiceImpl implements HoaDonService {
         return new HoaDonRepository().update(hd, id);
     }
 
+    @Override
+    public List<HoaDon> getHoaDonByCheck(int IDB) {
+        return new HoaDonRepository().getHoaDonByCheck(IDB);
+    }
+
 }

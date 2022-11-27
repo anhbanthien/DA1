@@ -34,6 +34,9 @@ public class BanRepository {
         }
     }
 
+  
+ 
+
     public Ban getOne(int IDB) {
         return session.get(Ban.class, IDB);
     }
@@ -75,14 +78,14 @@ public class BanRepository {
         }
     }
 
-    public static void main(String[] args) {
-        BanRepository repository = new BanRepository();
-        List<Ban> list = repository.getAll();
-        for (Ban ban : list) {
-            System.out.println(ban);
-        }
-        System.out.println(repository.getOne(1));
-    }
+//    public static void main(String[] args) {
+//        BanRepository repository = new BanRepository();
+//        List<Ban> list = repository.getAll();
+//        for (Ban ban : list) {
+//            System.out.println(ban);
+//        }
+//        System.out.println(repository.getOne(1));
+//    }
 //        private static final Logger logger = Logger.getLogger(CategoryRepository.class);
 //
 //    private Session session = HibernatUtil.getFACTORY().openSession();
