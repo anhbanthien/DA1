@@ -35,12 +35,12 @@ public class SanPham {
     private float gia;
 
     @Column(name = "TrangThai")
-    private int trangThai;
+    private String trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(UUID idSP, String tenSP, String moTa, String image, float gia, int trangThai) {
+    public SanPham(UUID idSP, String tenSP, String moTa, String image, float gia, String trangThai) {
         this.idSP = idSP;
         this.tenSP = tenSP;
         this.moTa = moTa;
@@ -89,11 +89,11 @@ public class SanPham {
         this.gia = gia;
     }
 
-    public int getTrangThai() {
+    public String getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(int trangThai) {
+    public void setTrangThai(String trangThai) {
         this.trangThai = trangThai;
     }
 

@@ -18,37 +18,25 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Ban")
 public class Ban implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int soBan;
+    private int IDB;
     private String trangThaiBan;
-    private int soBanGhep;
-
 
     public Ban() {
     }
 
-    public Ban(int soBan) {
-        this.soBan = soBan;
+    public Ban(String trangThaiBan) {
+        this.IDB = IDB;
     }
 
-    public Ban(String trangThaiBan, int soBanGhep) {
-        this.trangThaiBan = trangThaiBan;
-        this.soBanGhep = soBanGhep;
-    }
-    
-    public Ban(int soBan, String trangThaiBan, int soBanGhep) {
-        this.soBan = soBan;
-        this.trangThaiBan = trangThaiBan;
-        this.soBanGhep = soBanGhep;
+    public int getIDB() {
+        return IDB;
     }
 
-    public int getSoBan() {
-        return soBan;
-    }
-
-    public void setSoBan(int soBan) {
-        this.soBan = soBan;
+    public void setIDB(int IDB) {
+        this.IDB = IDB;
     }
 
     public String getTrangThaiBan() {
@@ -59,19 +47,9 @@ public class Ban implements Serializable {
         this.trangThaiBan = trangThaiBan;
     }
 
-    public int getSoBanGhep() {
-        return soBanGhep;
+    @Override
+    public String toString() {
+        return "Ban{" + "IDB=" + IDB + ", trangThaiBan=" + trangThaiBan + '}';
     }
 
-    public void setSoBanGhep(int soBanGhep) {
-        this.soBanGhep = soBanGhep;
-    }
-
- 
-
-
-   
-
-
-    
 }

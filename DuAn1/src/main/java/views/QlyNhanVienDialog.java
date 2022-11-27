@@ -71,7 +71,6 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtName = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -82,19 +81,26 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         lblAnh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(txtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 146, 270, -1));
 
         jLabel6.setText("Giới tính");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 218, -1, -1));
 
         buttonGroup1.add(rdoFemale);
         rdoFemale.setText("Nữ");
+        getContentPane().add(rdoFemale, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 214, -1, -1));
 
         buttonGroup1.add(rdoMale);
         rdoMale.setText("Nam");
+        getContentPane().add(rdoMale, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 214, -1, -1));
 
         buttonGroup2.add(rdoOFF);
         rdoOFF.setText("OFF");
+        getContentPane().add(rdoOFF, new org.netbeans.lib.awtextra.AbsoluteConstraints(161, 239, -1, -1));
 
         jLabel7.setText("Trạng Thái");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 248, -1, -1));
 
         buttonGroup2.add(rdoOn);
         rdoOn.setText("ON");
@@ -103,6 +109,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                 rdoOnActionPerformed(evt);
             }
         });
+        getContentPane().add(rdoOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 239, -1, -1));
 
         tblQlyNhanVien.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tblQlyNhanVien.setForeground(new java.awt.Color(102, 102, 102));
@@ -126,6 +133,9 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblQlyNhanVien);
 
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 322, 644, 126));
+        getContentPane().add(txtNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 181, 270, -1));
+
         jButton2.setFont(new java.awt.Font("Segoe UI Symbol", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save.png"))); // NOI18N
         jButton2.setText("Create");
@@ -134,6 +144,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 103, 99, -1));
 
         jButton6.setFont(new java.awt.Font("Zilla Slab Medium", 0, 12)); // NOI18N
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
@@ -143,8 +154,10 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                 jButton6ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 196, 99, 30));
 
         jLabel3.setText("Họ Tên");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 106, -1, -1));
 
         jButton1.setFont(new java.awt.Font("SimSun-ExtB", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/update.png"))); // NOI18N
@@ -154,17 +167,11 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jButton4.setFont(new java.awt.Font("Sitka Subheading", 1, 12)); // NOI18N
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/delete.png"))); // NOI18N
-        jButton4.setText("Delete");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 149, -1, -1));
+        getContentPane().add(txtName, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 103, 270, -1));
 
         jLabel4.setText("Email");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 149, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -216,7 +223,10 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
         jLabel5.setText("SDT");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 181, -1, -1));
 
         lblAnh.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblAnh.setText("    Upload");
@@ -226,104 +236,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                 lblAnhMouseClicked(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel6))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(rdoMale)
-                                    .addComponent(rdoOn)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(72, 72, 72)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(rdoFemale)
-                                            .addComponent(rdoOFF)))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(52, 52, 52)
-                                .addComponent(txtNumberPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(22, 22, 22))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(txtNumberPhone, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel6)
-                                .addComponent(rdoFemale))
-                            .addComponent(rdoMale))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(rdoOFF)
-                            .addComponent(rdoOn))
-                        .addGap(35, 35, 35))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton2)
-                                .addGap(19, 19, 19)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton4))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
-                        .addGap(31, 31, 31)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31))
-        );
+        getContentPane().add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 104, 122));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -436,45 +349,6 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        if (tblQlyNhanVien.getSelectedRow() < 1) {
-
-            JOptionPane.showMessageDialog(this, "Hãy chọn nhân viên muốn xoá , click vào bảng nhân viên");
-            JOptionPane.showMessageDialog(this, "Xoá nhân viên thực chất là chuyển đổi trạng thái làm việc,"
-                    + "Bạn hãy chọn nhân viên cần xoá và thay đổi trạng thái ON ->OFF");
-            return;
-        }
-        int Number = JOptionPane.showConfirmDialog(this, "Xoá nhé ?");
-
-        if (Number == 0) {
-            NhanVien staff = new NhanVien();
-            staff.setEmail(txtEmail.getText());
-            if (rdoMale.isSelected()) {
-                staff.setGioiTinh("Nam");
-            } else {
-                staff.setGioiTinh("Nữ");
-            }
-            staff.setHoTen(txtName.getText());
-            staff.setSDT(txtNumberPhone.getText());
-            if (rdoOn.isSelected()) {
-                staff.setTrangThai("ON");
-            } else {
-                staff.setTrangThai("OFF");
-            }
-            String Id = getAll.get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien() + "";
-            if (new QlyNhanVienImpl().Update(UUID.fromString(Id), staff)) {
-                JOptionPane.showMessageDialog(this, "Succes");
-            } else {
-                JOptionPane.showMessageDialog(this, "Failed");
-            }
-            fillToTable(new QlyNhanVienImpl().getAllStaff());
-        } else {
-            JOptionPane.showMessageDialog(this, "Bạn đã huỷ xoá ");
-        }
-
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         List<NhanVienModel> getAllSearch = new ArrayList<>();
 
@@ -560,7 +434,6 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -13,13 +13,17 @@ import javax.swing.JPanel;
  * @author Admin
  */
 public class Main extends javax.swing.JFrame {
-
+    
     public Main() {
         initComponents();
     }
-
+    
+    public void Logout() {
+        this.dispose();
+    }
+    
     DangNhap logg = new DangNhap();
-
+    
     public Main(DangNhap log) {
         initComponents();
         jbtProfile.setText(log.getTenTaiKhoan());
@@ -29,9 +33,9 @@ public class Main extends javax.swing.JFrame {
         } else {
             Jbtqlynv.setEnabled(true);
         }
-
+        
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -41,9 +45,12 @@ public class Main extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Jbtqlynv = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        Jbtqlynv = new javax.swing.JButton();
+        Jbtqlynv2 = new javax.swing.JButton();
+        jSeparator6 = new javax.swing.JSeparator();
+        Jbtqlynv1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jbtProfile = new javax.swing.JButton();
@@ -89,6 +96,34 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Jbtqlynv2.setBackground(new java.awt.Color(105, 82, 73));
+        Jbtqlynv2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Jbtqlynv2.setForeground(new java.awt.Color(255, 255, 255));
+        Jbtqlynv2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/10955895351582988856-48.png"))); // NOI18N
+        Jbtqlynv2.setText("Chuyển TK");
+        Jbtqlynv2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        Jbtqlynv2.setBorderPainted(false);
+        Jbtqlynv2.setContentAreaFilled(false);
+        Jbtqlynv2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jbtqlynv2ActionPerformed(evt);
+            }
+        });
+
+        Jbtqlynv1.setBackground(new java.awt.Color(105, 82, 73));
+        Jbtqlynv1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Jbtqlynv1.setForeground(new java.awt.Color(255, 255, 255));
+        Jbtqlynv1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mergetable.png"))); // NOI18N
+        Jbtqlynv1.setText("   Bàn");
+        Jbtqlynv1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        Jbtqlynv1.setBorderPainted(false);
+        Jbtqlynv1.setContentAreaFilled(false);
+        Jbtqlynv1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jbtqlynv1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -99,9 +134,16 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addContainerGap(23, Short.MAX_VALUE))
-            .addComponent(Jbtqlynv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator1)
             .addComponent(jSeparator3)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator1)
+                    .addComponent(Jbtqlynv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Jbtqlynv2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator6)
+                    .addComponent(Jbtqlynv1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,10 +153,16 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                .addComponent(Jbtqlynv1, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Jbtqlynv)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jbtqlynv))
+                .addComponent(Jbtqlynv2))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 568));
@@ -185,6 +233,16 @@ public class Main extends javax.swing.JFrame {
         new QlyNhanVienDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtqlynvActionPerformed
 
+    private void Jbtqlynv2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv2ActionPerformed
+        
+        new Login().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Jbtqlynv2ActionPerformed
+
+    private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
+        new ViewBan().setVisible(true);
+    }//GEN-LAST:event_Jbtqlynv1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -223,16 +281,27 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Jbtqlynv;
+    private javax.swing.JButton Jbtqlynv1;
+    private javax.swing.JButton Jbtqlynv2;
+    private javax.swing.JButton Jbtqlynv3;
+    private javax.swing.JButton Jbtqlynv4;
+    private javax.swing.JButton Jbtqlynv5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JButton jbtProfile;
     // End of variables declaration//GEN-END:variables
 }

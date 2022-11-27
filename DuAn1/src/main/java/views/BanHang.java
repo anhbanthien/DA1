@@ -84,12 +84,13 @@ public class BanHang extends javax.swing.JFrame {
             TT = "Đã hủy";
         }
         for (int i = 0; i < hoaDonlist.size(); i++) {
-            _Model.addRow(new Object[]{hoaDons.get(i).getTen(), TT, hoaDonlist.get(i).getNgayTao()});
+            _Model.addRow(new Object[]{hoaDons.get(i).getIDKH().getTen(), TT, hoaDonlist.get(i).getNgayTao()});
 
         }
 
     }
-     private void loadTablehoaDonCT(HoaDonModel hoaDon) {
+
+    private void loadTablehoaDonCT(HoaDonModel hoaDon) {
         _Model = new DefaultTableModel();
         QLHDCTs = new ArrayList<>();
         QLHDCTs = hoaDonCTService.getListbyHD(_idHD);
@@ -99,6 +100,7 @@ public class BanHang extends javax.swing.JFrame {
             _Model.addRow(new Object[]{QLHDCTs.get(i).getTenSP(), QLHDCTs.get(i).getSoLuong(), QLHDCTs.get(i).getTien()});
         }
     }
+
     private KhachHangModel getKhachHangtxt() {
         KhachHangModel kh = new KhachHangModel();
         kh.setTen(txtTenKH2.getText());
@@ -106,8 +108,9 @@ public class BanHang extends javax.swing.JFrame {
         kh.setDiemTichLuy(0);
         kh.setTrangThai("ON");
         return kh;
-            }
-    private HoaDon getformHoaDon(){
+    }
+
+    private HoaDon getformHoaDon() {
         HoaDon hd = hoaDonRepository.getOne(_idHD);
         KhachHang kh = new KhachHangRepository().getOne(_idKH);
         hd.setTongTien(tienTong);
@@ -710,39 +713,39 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_txtslStateChanged
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            System.out.println(_idHD);
-            System.out.println(_idSP);
-            System.out.println("12");
-            QLHDCT HDCT = new QLHDCT(_idHD, _idSP,(double)txtsl.getValue());
-            System.out.println(HDCT.getIdHD());
-            System.out.println(HDCT.getIdSP());
-            System.out.println(1);
-            JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
-            System.out.println(2);
-            System.out.println(_idHD);
-            System.out.println(3);
-            System.out.println(hoaDonService.getOne(_idHD).getHoTen());
-            loadTablehoaDonCT(hoaDonService.getOne(_idHD));
-            txttien();
+        System.out.println(_idHD);
+        System.out.println(_idSP);
+        System.out.println("12");
+        QLHDCT HDCT = new QLHDCT(_idHD, _idSP, (double) txtsl.getValue());
+        System.out.println(HDCT.getIdHD());
+        System.out.println(HDCT.getIdSP());
+        System.out.println(1);
+        JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
+        System.out.println(2);
+        System.out.println(_idHD);
+        System.out.println(3);
+        System.out.println(hoaDonService.getOne(_idHD).getIDKH().getTen());
+        loadTablehoaDonCT(hoaDonService.getOne(_idHD));
+        txttien();
 
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-            System.out.println(_idHD);
-            System.out.println(_idSP);
-            System.out.println("12");
-            QLHDCT HDCT = new QLHDCT(_idHD, _idSP,(double)txtsl.getValue());
-            System.out.println(HDCT.getIdHD());
-            System.out.println(HDCT.getIdSP());
-            System.out.println(1);
-            JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
-            System.out.println(2);
-            System.out.println(_idHD);
-            System.out.println(3);
-            System.out.println(hoaDonService.getOne(_idHD).getHoTen());
-            loadTablehoaDonCT(hoaDonService.getOne(_idHD));
-            txttien();
+        System.out.println(_idHD);
+        System.out.println(_idSP);
+        System.out.println("12");
+        QLHDCT HDCT = new QLHDCT(_idHD, _idSP, (double) txtsl.getValue());
+        System.out.println(HDCT.getIdHD());
+        System.out.println(HDCT.getIdSP());
+        System.out.println(1);
+        JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
+        System.out.println(2);
+        System.out.println(_idHD);
+        System.out.println(3);
+        System.out.println(hoaDonService.getOne(_idHD).getIDKH().getTen());
+        loadTablehoaDonCT(hoaDonService.getOne(_idHD));
+        txttien();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -773,30 +776,16 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       HoaDon hd = getformHoaDon();
-       hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
-       hd.setTrangThai("DTT");
-       if(hoaDonRepository.update(hd)){
-            JOptionPane.showMessageDialog(this, "Succes");
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed");
-        }
-       loadTablehoaDon("CTT");
+    
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       HoaDon hd = getformHoaDon();
-       if(hoaDonRepository.update(hd)){
-            JOptionPane.showMessageDialog(this, "Succes");
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed");
-        }
-       loadTablehoaDon("CTT");
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-            _Model = new DefaultTableModel();
+        _Model = new DefaultTableModel();
         QLHDCTs.clear();
         QLHDCTs = new ArrayList<>();
         loadTablehoaDonCT(null);
@@ -811,8 +800,7 @@ public class BanHang extends javax.swing.JFrame {
         txtTenKH2.setText("");
         txtSdt.setText("");
         txtSdt.setText("");
-        
-        
+
         jButton3.setEnabled(false);
 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -829,15 +817,16 @@ public class BanHang extends javax.swing.JFrame {
         loadTablehoaDon("DH");
 
     }//GEN-LAST:event_rdoHDHActionPerformed
-    private void txttien(){
+    private void txttien() {
         tienTong = 0;
-        for(QLHDCT hdctt :QLHDCTs){
+        for (QLHDCT hdctt : QLHDCTs) {
             tienTong = tienTong + hdctt.getTien();
         }
         tienTT = tienTong - tienGiam;
-        txtTienTong.setText(tienTong+"");
-        txtTienGiam.setText(tienGiam+"");
-        txtTienTT.setText(tienTT+"");}
+        txtTienTong.setText(tienTong + "");
+        txtTienGiam.setText(tienGiam + "");
+        txtTienTT.setText(tienTT + "");
+    }
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         int rowIndex = tblHoaDon.getSelectedRow();
         if (rowIndex == -1) {
@@ -849,7 +838,7 @@ public class BanHang extends javax.swing.JFrame {
         loadTablehoaDonCT(hd);
         QLHDCTs = new ArrayList<>();
         QLHDCTs = hoaDonCTService.getListbyHD(_idHD);
-        _idKH = hd.getIDKH();
+        _idKH = hd.getIDKH().getId();
         KhachHangModel kh = khachHangService.getOne(_idKH);
         txtSdt.setText(kh.getSoDienThoai());
         txtTenKH.setText(kh.getTen());
@@ -885,7 +874,7 @@ public class BanHang extends javax.swing.JFrame {
         KhachHangModel khachHang = getKhachHangtxt();
         if (khachHangService.Save(khachHang) == true) {
             JOptionPane.showMessageDialog(this, "Thêm Thành công");
-            
+
         }
         JOptionPane.showMessageDialog(this, "Thêm Thất bại");
     }//GEN-LAST:event_jButton14ActionPerformed
@@ -893,13 +882,13 @@ public class BanHang extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         if (txtSdt.getText() == null) {
             System.out.println("1");
-      return;
-    }
+            return;
+        }
         System.out.println("2");
         String Sdt = txtSdt.getText();
         System.out.println(txtSdt.getText());
         System.out.println(Sdt);
-        if(khachHangService.getOne(Sdt)== null){
+        if (khachHangService.getOne(Sdt) == null) {
             return;
         }
         KhachHangModel kh = khachHangService.getOne(Sdt);
@@ -1021,5 +1010,4 @@ public class BanHang extends javax.swing.JFrame {
     private javax.swing.JLabel txtsp5;
     // End of variables declaration//GEN-END:variables
 
-    
 }

@@ -65,7 +65,7 @@ public class thu1 extends javax.swing.JPanel {
         lblTensp.setText(sp.getTenSP());
 
         lblGiaSP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblGiaSP.setText(sp.getGia()+ ".VND");
+        lblGiaSP.setText((int)sp.getGia()+ ".VND");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

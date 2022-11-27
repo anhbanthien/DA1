@@ -41,6 +41,7 @@ public class QLHDCT {
         return gia;
     }
     public float getTien() {
+        
         return gia*soLuong;
     }
 
