@@ -65,4 +65,9 @@ public class HoaDonServiceImpl implements HoaDonService {
         return new HoaDonModel(hoadonrepository.getOne(idHD));
     }
 
+    @Override
+    public boolean update(HoaDon hd, UUID id) {
+        return new HoaDonRepository().update(hd, id);
+    }
+
 }
