@@ -36,10 +36,24 @@ public class HoaDonRepository {
         return hd;
     }
 
+    public static void main(String[] args) {
+        
+            System.out.println(new HoaDonRepository().getHoaDonByCheck(3).get(0));
+        
+    }
+
     public List<HoaDon> getHoaDonByTT(String TT) {
         String sql = fromTable + " WHERE TrangThai = :id ";
         javax.persistence.Query query = session.createQuery(sql, HoaDon.class);
         query.setParameter("id", TT);
+        List<HoaDon> lists = query.getResultList();
+        return lists;
+    }
+
+    public List<HoaDon> getHoaDonByCheck(int IDB) {
+        String sql = fromTable + " WHERE IDB =  " + IDB;
+        javax.persistence.Query query = session.createQuery(sql, HoaDon.class);
+
         List<HoaDon> lists = query.getResultList();
         return lists;
     }
@@ -93,10 +107,4 @@ public class HoaDonRepository {
         return (List<HoaDon>) session.get(HoaDon.class, TrangThai);
     }
 
-    public static void main(String[] args) {
-        new HoaDonRepository().getAll().forEach(a -> System.out.println(a.toString()));
-        HoaDon hd = new HoaDon();
-        hd.setTrangThai("testHD");
-        System.out.println(new HoaDonRepository().update(hd, UUID.fromString("328c8322-a0f3-5345-810c-45d3a60ff32e")));
-    }
 }
