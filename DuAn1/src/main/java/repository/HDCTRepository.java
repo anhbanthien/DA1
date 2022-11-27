@@ -37,6 +37,14 @@ public class HDCTRepository {
         HDCT hdct = (HDCT) query.getSingleResult();
         return hdct;
     }
+    public HDCT getOne(UUID idHD, UUID idSP) {
+        String sql = fromTable + " WHERE IDHD = :idh ,IDHD = :ids ";
+        Query query = session.createQuery(sql, HDCT.class);
+        query.setParameter("idh", idHD);
+        query.setParameter("ids", idSP);
+        HDCT hdct = (HDCT) query.getSingleResult();
+        return hdct;
+    }
 //    public HDCT getOne(UUID idHD) {
 //        String sql = fromTable + " WHERE IDHDCT = :id ";
 //        Query query = session.createQuery(sql, HDCT.class);
@@ -89,4 +97,6 @@ public class HDCTRepository {
             System.out.println("ko chết bạn ê");
         }
     }
+
+    
 }
