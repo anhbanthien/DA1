@@ -24,17 +24,12 @@ public class ViewBan extends javax.swing.JFrame {
     private QuanLyBanServiceImpl impl = new QuanLyBanServiceImpl();
     private List<BanReponse> listBan = impl.getAll();
     private DefaultTableModel dtm = new DefaultTableModel();
-    private DefaultComboBoxModel boxModel = new DefaultComboBoxModel();
 
     public ViewBan() {
         initComponents();
         jTable1.setModel(dtm);
-        cbbSoBanGhep.setModel(boxModel);
-        String headers[] = {"Số bàn", "Trạng thái bàn", "Số bàn ghép"};
+        String headers[] = {"Số bàn", "Trạng thái bàn"};
         dtm.setColumnIdentifiers(headers);
-        for (int i = 0; i < 6; i++) {
-            boxModel.addElement(i);
-        }
         showData(listBan);
         setLocationRelativeTo(null);
     }
@@ -44,32 +39,6 @@ public class ViewBan extends javax.swing.JFrame {
         for (BanReponse banReponse : list) {
             dtm.addRow(banReponse.toRowData());
         }
-    }
-
-    private void fillData(int index) {
-        BanReponse ban = listBan.get(index);
-        txtID.setText(ban.getSoBan() + "");
-        txtTrangThai.setText(ban.getTrangThaiBan());
-        cbbSoBanGhep.setSelectedIndex(ban.getSoBanGhep());
-    }
-
-    private void clear() {
-        txtID.setText("");
-        txtTrangThai.setText("");
-        cbbSoBanGhep.setSelectedIndex(0);
-    }
-
-    private Ban getData() {
-        String trangThaiBan = txtTrangThai.getText();
-        int soBanGhep = Integer.parseInt(cbbSoBanGhep.getSelectedItem().toString());
-        return new Ban(trangThaiBan, soBanGhep);
-    }
-
-    private Ban updateBan() {
-        int id = Integer.parseInt(txtID.getText());
-        String trangThaiBan = txtTrangThai.getText();
-        int soBanGhep = Integer.parseInt(cbbSoBanGhep.getSelectedItem().toString());
-        return new Ban(id, trangThaiBan, soBanGhep);
     }
 
     /**
@@ -87,18 +56,12 @@ public class ViewBan extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
-        txtTrangThai = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        cbbSoBanGhep = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(102, 51, 0));
         jPanel1.setForeground(new java.awt.Color(204, 102, 0));
@@ -124,15 +87,21 @@ public class ViewBan extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 13, 952, -1));
+
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Số bàn", "Trạng Thái Bàn", "Số Bàn Ghép"
+                "Số bàn", "Trạng Thái Bàn"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -154,9 +123,11 @@ public class ViewBan extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 399, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 82, -1, 555));
 
         btnAdd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/plus (1).png"))); // NOI18N
         btnAdd.setText("Add");
@@ -165,144 +136,42 @@ public class ViewBan extends javax.swing.JFrame {
                 btnAddActionPerformed(evt);
             }
         });
+        getContentPane().add(btnAdd, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 99, -1));
 
-        btnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
-        btnUpdate.setText("Update");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
-        txtID.setEditable(false);
-
-        jLabel2.setText("ID");
-
-        jLabel3.setText("Trạng thái bàn");
-
-        jLabel4.setText("Số bàn ghép");
-
-        cbbSoBanGhep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/eraser.png"))); // NOI18N
-        jButton1.setText("Clear");
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/detail.png"))); // NOI18N
+        jButton1.setText("Detail Tables");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 290, 140, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/rsz_ban.jpg"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 460, 190));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cbbSoBanGhep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(btnAdd)
-                                    .addComponent(jLabel2))
-                                .addGap(23, 23, 23)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel3))
-                                    .addComponent(btnUpdate))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(cbbSoBanGhep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnDelete))))
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton1)
-                        .addGap(0, 43, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mergetable.png"))); // NOI18N
+        jButton3.setText("Merge Table");
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 290, 160, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Ban ban = getData();
-        JOptionPane.showMessageDialog(this, impl.add(ban));
-        listBan = impl.getAll();
-        showData(listBan);
-        clear();
+        Ban table = new Ban();
+        table.setTrangThaiBan("Còn Trống");
+        JOptionPane.showMessageDialog(this, new QuanLyBanServiceImpl().add(table));
+        showData(new QuanLyBanServiceImpl().getAll());
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        fillData(jTable1.getSelectedRow());
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        clear();
+
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        Ban ban = updateBan();
-        JOptionPane.showMessageDialog(this, impl.update(ban));
-        listBan = impl.getAll();
-        showData(listBan);
-        clear();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        Ban ban = updateBan();
-        JOptionPane.showMessageDialog(this, impl.delete(ban));
-        listBan = impl.getAll();
-        showData(listBan);
-        clear();        // TODO add your handling code here:
-    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,20 +211,13 @@ public class ViewBan extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
-    private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnUpdate;
-    private javax.swing.JComboBox<String> cbbSoBanGhep;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
 }
