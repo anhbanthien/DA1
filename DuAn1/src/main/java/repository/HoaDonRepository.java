@@ -35,6 +35,7 @@ public class HoaDonRepository {
         HoaDon hd = (HoaDon) query.getSingleResult();
         return hd;
     }
+
     public List<HoaDon> getHoaDonByTT(String TT) {
         String sql = fromTable + " WHERE TrangThai = :id ";
         javax.persistence.Query query = session.createQuery(sql, HoaDon.class);

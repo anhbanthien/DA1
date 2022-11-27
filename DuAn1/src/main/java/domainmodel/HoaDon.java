@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import domainmodel.Ban;
 
 /**
  *
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "HoaDon")
 public class HoaDon {
+
     @Id
     @Column(columnDefinition = "uniqueidentifier")
     @GeneratedValue
@@ -30,7 +32,9 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "IDKM")
     private KhuyenMai IDKM;
-
+    @ManyToOne
+    @JoinColumn(name = "IDB")
+    private Ban IDB;
     private String NgayTao;
     private String NgayTT;
     private float TienTra;
@@ -44,7 +48,7 @@ public class HoaDon {
         this.IDHD = IDHD;
     }
 
-    public HoaDon(UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, String NgayTao, String NgayTT, float TienTra, float TongTien, String TrangThai) {
+    public HoaDon(Ban IDB, UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, String NgayTao, String NgayTT, float TienTra, float TongTien, String TrangThai) {
         this.IDHD = IDHD;
         this.IDNV = IDNV;
         this.IDKH = IDKH;
@@ -54,6 +58,7 @@ public class HoaDon {
         this.TienTra = TienTra;
         this.TongTien = TongTien;
         this.TrangThai = TrangThai;
+        this.IDB = IDB;
     }
 
     public UUID getIDHD() {
@@ -128,9 +133,17 @@ public class HoaDon {
         this.TrangThai = TrangThai;
     }
 
+    public Ban getIDB() {
+        return IDB;
+    }
+
+    public void setIDB(Ban IDB) {
+        this.IDB = IDB;
+    }
+
     @Override
     public String toString() {
-        return "HoaDon{" + "IDHD=" + IDHD + ", IDNV=" + IDNV + ", IDKH=" + IDKH + ", IDKM=" + IDKM + ", NgayTao=" + NgayTao + ", NgayTT=" + NgayTT + ", TienTra=" + TienTra + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + '}';
+        return "HoaDon{" + "IDHD=" + IDHD + ", IDNV=" + IDNV + ", IDKH=" + IDKH + ", IDKM=" + IDKM + ", IDB=" + IDB + ", NgayTao=" + NgayTao + ", NgayTT=" + NgayTT + ", TienTra=" + TienTra + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + '}';
     }
 
 }

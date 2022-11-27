@@ -11,25 +11,24 @@ import domainmodel.Ban;
  * @author vutuo
  */
 public class BanReponse {
-    private int soBan;
+
+    private int IDB;
     private String trangThaiBan;
-    private int soBanGhep;
 
     public BanReponse() {
     }
 
     public BanReponse(Ban ban) {
-        this.soBan = ban.getSoBan();
+        this.IDB = ban.getIDB();
         this.trangThaiBan = ban.getTrangThaiBan();
-        this.soBanGhep = ban.getSoBanGhep();
     }
 
-    public int getSoBan() {
-        return soBan;
+    public int getIDB() {
+        return IDB;
     }
 
-    public void setSoBan(int soBan) {
-        this.soBan = soBan;
+    public void setIDB(int IDB) {
+        this.IDB = IDB;
     }
 
     public String getTrangThaiBan() {
@@ -40,23 +39,8 @@ public class BanReponse {
         this.trangThaiBan = trangThaiBan;
     }
 
-    public int getSoBanGhep() {
-        return soBanGhep;
+    public Object[] toRowData() {
+        return new Object[]{IDB, trangThaiBan};
     }
 
-    public void setSoBanGhep(int soBanGhep) {
-        this.soBanGhep = soBanGhep;
-    }
-
-
-
-    public Object[] toRowData(){
-    return new Object[]{soBan, trangThaiBan, soBanGhep};
-    }
-
-    @Override
-    public String toString() {
-        return "BanReponse{" + "soBan=" + soBan + ", trangThaiBan=" + trangThaiBan + ", soBanGhep=" + soBanGhep + '}';
-    }
-    
 }

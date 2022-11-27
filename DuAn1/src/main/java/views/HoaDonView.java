@@ -49,20 +49,20 @@ public class HoaDonView extends javax.swing.JFrame {
     private void showData(List<HoaDonModel> lists) {
         dtm.setRowCount(0);
         for (HoaDonModel hd : lists) {
-            dtm.addRow(hd.toDataRow());
+            dtm.addRow(new Object[]{hd.getIDB(), hd.getIDHD()});
         }
     }
 
     private void fillData(int i) {
-        HoaDonModel hm = listhd.get(i);
-        txtTenNV.setText(hm.getHoTen());
-        txtTenKH.setText(hm.getTen());
-        txtKM.setText(hm.getPhanTramKM());
-        txtTienTra.setText(String.valueOf(hm.getTienTra()));
-        txtTongTien.setText(String.valueOf(hm.getTongTien()));
-        cbbTinhTrang.setSelectedItem(hm.getTrangThai());
-        txtNgayTT.setText(hm.getNgayTT().toString());
-        txtNgayTao.setText(hm.getNgayTao().toString());
+//        HoaDonModel hm = listhd.get(i);
+//        txtTenNV.setText(hm.getHoTen());
+//        txtTenKH.setText(hm.getTen());
+//        txtKM.setText(hm.getPhanTramKM());
+//        txtTienTra.setText(String.valueOf(hm.getTienTra()));
+//        txtTongTien.setText(String.valueOf(hm.getTongTien()));
+//        cbbTinhTrang.setSelectedItem(hm.getTrangThai());
+//        txtNgayTT.setText(hm.getNgayTT().toString());
+//        txtNgayTao.setText(hm.getNgayTao().toString());
     }
 
     private void clearData() {
@@ -270,20 +270,20 @@ public class HoaDonView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        List<HoaDonModel> getAllSearch = new ArrayList<>();
-
-        for (HoaDonModel o : getAllSearch) {
-            if (o.getHoTen().equalsIgnoreCase(String.valueOf(cbbTinhTrang.getSelectedItem()))) {
-                getAllSearch.add(o);
-            }
-        }
-
-        if (getAllSearch.size() > 0) {
-            showData(getAllSearch);
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy");
-        } else {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy");
-        }
+//        List<HoaDonModel> getAllSearch = new ArrayList<>();
+//
+//        for (HoaDonModel o : getAllSearch) {
+//            if (o.getHoTen().equalsIgnoreCase(String.valueOf(cbbTinhTrang.getSelectedItem()))) {
+//                getAllSearch.add(o);
+//            }
+//        }
+//
+//        if (getAllSearch.size() > 0) {
+//            showData(getAllSearch);
+//            JOptionPane.showMessageDialog(this, "Đã tìm thấy");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Không tìm thấy");
+//        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
