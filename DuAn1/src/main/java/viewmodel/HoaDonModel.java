@@ -36,7 +36,7 @@ public class HoaDonModel {
         this.IDKH = hoadon.getIDKH();
         this.IDNV = hoadon.getIDNV();
         this.IDKM = hoadon.getIDKM();
-
+        this.IDB = hoadon.getIDB();
         this.NgayTao = hoadon.getNgayTao();
         this.NgayTT = hoadon.getNgayTT();
         this.TienTra = hoadon.getTienTra();
@@ -122,6 +122,11 @@ public class HoaDonModel {
 
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    @Override
+    public String toString() {
+        return "HoaDonModel{" + "IDHD=" + IDHD + ", IDNV=" + IDNV + ", IDKH=" + IDKH + ", IDKM=" + IDKM + ", IDB=" + IDB + ", NgayTao=" + NgayTao + ", NgayTT=" + NgayTT + ", TienTra=" + TienTra + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + '}';
     }
 
 }

@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import domainmodel.Ban;
+import viewmodel.HoaDonModel;
 
 /**
  *
@@ -59,6 +60,19 @@ public class HoaDon {
         this.TongTien = TongTien;
         this.TrangThai = TrangThai;
         this.IDB = IDB;
+    }
+
+    public HoaDon(HoaDonModel hoadon) {
+        this.IDHD = hoadon.getIDHD();
+        this.IDKH = hoadon.getIDKH();
+        this.IDNV = hoadon.getIDNV();
+        this.IDKM = hoadon.getIDKM();
+        this.IDB = hoadon.getIDB();
+        this.NgayTao = hoadon.getNgayTao();
+        this.NgayTT = hoadon.getNgayTT();
+        this.TienTra = hoadon.getTienTra();
+        this.TongTien = hoadon.getTongTien();
+        this.TrangThai = hoadon.getTrangThai();
     }
 
     public UUID getIDHD() {

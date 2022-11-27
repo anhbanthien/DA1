@@ -68,12 +68,21 @@ public class HoaDonRepository {
         }
     }
 
-    public Boolean update(HoaDon hoaDon) {
-        Transaction transaction = null;
-        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(hoaDon);
-            transaction.commit();
+    public Boolean update(HoaDon hoaDon, UUID IdInvoices) {
+        try {
+            HoaDon st = session.get(HoaDon.class, IdInvoices);
+            st.setIDB(hoaDon.getIDB());
+            st.setIDKH(hoaDon.getIDKH());
+            st.setIDKM(hoaDon.getIDKM());
+            st.setIDNV(hoaDon.getIDNV());
+            st.setNgayTT(hoaDon.getNgayTT());
+            st.setNgayTao(hoaDon.getNgayTao());
+            st.setTienTra(hoaDon.getTienTra());
+            st.setTongTien(hoaDon.getTongTien());
+            st.setTrangThai(hoaDon.getTrangThai());
+            session.getTransaction().begin();
+            session.save(st);
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;
@@ -86,5 +95,8 @@ public class HoaDonRepository {
 
     public static void main(String[] args) {
         new HoaDonRepository().getAll().forEach(a -> System.out.println(a.toString()));
+        HoaDon hd = new HoaDon();
+        hd.setTrangThai("testHD");
+        System.out.println(new HoaDonRepository().update(hd, UUID.fromString("328c8322-a0f3-5345-810c-45d3a60ff32e")));
     }
 }

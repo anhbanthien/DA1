@@ -6,6 +6,7 @@ package service;
 
 import java.util.List;
 import domainmodel.Ban;
+import java.util.UUID;
 import reponse.BanReponse;
 
 /**
@@ -13,7 +14,7 @@ import reponse.BanReponse;
  * @author vutuo
  */
 public interface QuanLyBanService {
-    
+
     List<BanReponse> getAll();
 
     String add(Ban ban);
@@ -21,4 +22,6 @@ public interface QuanLyBanService {
     String update(Ban ban);
 
     String delete(Ban ban);
+
+    Ban getOne(int IDB);
 }

@@ -776,26 +776,12 @@ public class BanHang extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        HoaDon hd = getformHoaDon();
-        hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
-        hd.setTrangThai("DTT");
-        if (hoaDonRepository.update(hd)) {
-            JOptionPane.showMessageDialog(this, "Succes");
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed");
-        }
-        loadTablehoaDon("CTT");
+    
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        HoaDon hd = getformHoaDon();
-        if (hoaDonRepository.update(hd)) {
-            JOptionPane.showMessageDialog(this, "Succes");
-        } else {
-            JOptionPane.showMessageDialog(this, "Failed");
-        }
-        loadTablehoaDon("CTT");
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
