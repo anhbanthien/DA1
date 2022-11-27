@@ -1,10 +1,10 @@
 ﻿USE [DuAn1]
 GO
 INSERT INTO [dbo].[SanPham]([IDSP],[TenSP],[Mota],[Image],[Gia],[TrangThai])
-VALUES('bc3a6843-ce94-4103-ba5a-cd9f8c9960d7','Coffee đen','nhiều đường','', 40000, 'ON'),
-('45384b43-3ca6-4842-844f-26fd72449d79','Coffee nhai luôn li','li làm từ bột mì','', 40000, 'ON'),
-('e21a8ac9-70a5-40cc-86a1-5c48c90683c9','Coffee sữa','nhiều nhiều sữa đó','', 40000, 'ON'),
-('063bfdb7-1ce3-4e39-9222-2de56523d9e4','bạc xỉu','sấp hay ngữa','', 40000, 'ON');
+VALUES('bc3a6843-ce94-4103-ba5a-cd9f8c9960d7','Coffee đen','nhiều đường','coffeden.png', 50000, 1),
+('45384b43-3ca6-4842-844f-26fd72449d79','Coffee nhai luôn li','li làm từ bột mì','coffeenhaili.png', 60000, 1),
+('e21a8ac9-70a5-40cc-86a1-5c48c90683c9','Coffee sữa','nhiều nhiều sữa đó','coffeesua.png', 20000, 1),
+('063bfdb7-1ce3-4e39-9222-2de56523d9e4','bạc xỉu','sấp hay ngữa','bacxiu.png', 70000, 1);
 go
 INSERT INTO [dbo].[KhachHang]([IdKhachHang],[Ten],[DiemTichLuy],[SoDienThoai],[TrangThai])
 VALUES('9d61d381-828d-45f2-a3b2-4cc77f1822a4',' Trần Tuấn Nam',5,'0397670676','ON'),
@@ -31,3 +31,4 @@ VALUES(N'admin','123','admin','0e0da193-d20d-496a-a0cb-5006cb530c29'),
 	  (N'an123','123','staff','50e77d8f-bd17-4c82-9152-6702239ba6f5'),
 	  (N'hieu456','123','staff','8f8d5655-bfc7-4072-93c1-d593157acb6b'),
 	  (N'long789','123','staff','1ab94bc6-384a-4f3a-b7e9-bc9e02e61d75');
+	  DELETE FROM [dbo].[SanPham]

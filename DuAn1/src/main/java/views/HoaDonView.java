@@ -57,7 +57,7 @@ public class HoaDonView extends javax.swing.JFrame {
         HoaDonModel hm = listhd.get(i);
         txtTenNV.setText(hm.getHoTen());
         txtTenKH.setText(hm.getTen());
-        txtKM.setText(hm.getPhanTramKM());
+        txtKM.setText(Float.toString(hm.getPhanTramKM()));
         txtTienTra.setText(String.valueOf(hm.getTienTra()));
         txtTongTien.setText(String.valueOf(hm.getTongTien()));
         cbbTinhTrang.setSelectedItem(hm.getTrangThai());
@@ -184,10 +184,10 @@ public class HoaDonView extends javax.swing.JFrame {
                 .addContainerGap(108, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))

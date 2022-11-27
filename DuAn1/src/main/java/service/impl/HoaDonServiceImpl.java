@@ -23,9 +23,15 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public List<HoaDonModel> getAllHoaDon() {
-        return (ArrayList<HoaDonModel>) new HoaDonRepository().getAll().stream().map(HoaDonModel::new).collect(Collectors.toList());
-    }
+        List<HoaDon> list = hoadonrepository.getAll();
+        List<HoaDonModel> hoadonmodel = new ArrayList<>();
 
+        for (HoaDon hd : list) {
+            HoaDonModel model = new HoaDonModel(hd);
+            hoadonmodel.add(model);
+        }
+        return hoadonmodel;
+    }
     @Override
     public List<HoaDonModel> getHoaDonByTT(String TT) {
         List<HoaDon> list = hoadonrepository.getHoaDonByTT(TT);
@@ -38,12 +44,12 @@ public class HoaDonServiceImpl implements HoaDonService {
         return hoadonmodel;
     }
 
-    public static void main(String[] args) {
-        List<HoaDonModel> lists = new HoaDonServiceImpl().getAllHoaDon();
-        for (HoaDonModel o : lists) {
-            System.out.println(o.toString());
-        }
-    }
+//    public static void main(String[] args) {
+//        List<HoaDonModel> lists = new HoaDonServiceImpl().getAllHoaDon();
+//        for (HoaDonModel hd : lists) {
+//            System.out.println(hd.toDataRow());
+//        }
+//    }
 //    @Override
 //    public String update(HoaDonModel hoadonModel) {
 //        boolean update = hoadonrepository.update(hoadonModel);
@@ -54,7 +60,6 @@ public class HoaDonServiceImpl implements HoaDonService {
 //            return "Update thất bại";
 //        }
 //    }
-
     @Override
     public List<HoaDonModel> getSearch() {
         return (ArrayList<HoaDonModel>) new HoaDonRepository().getAll().stream().map(HoaDonModel::new).collect(Collectors.toList());
@@ -62,7 +67,8 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public HoaDonModel getOne(UUID idHD) {
-        return new HoaDonModel(hoadonrepository.getOne(idHD));
+       return new HoaDonModel(hoadonrepository.getOne(idHD));
     }
+
 
 }

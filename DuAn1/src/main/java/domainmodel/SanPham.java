@@ -32,15 +32,15 @@ public class SanPham {
     private String image;
 
     @Column(name = "Gia")
-    private BigDecimal gia;
+    private float gia;
 
     @Column(name = "TrangThai")
-    private String trangThai;
+    private int trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(UUID idSP, String tenSP, String moTa, String image, BigDecimal gia, String trangThai) {
+    public SanPham(UUID idSP, String tenSP, String moTa, String image, float gia, int trangThai) {
         this.idSP = idSP;
         this.tenSP = tenSP;
         this.moTa = moTa;
@@ -81,19 +81,19 @@ public class SanPham {
         this.image = image;
     }
 
-    public BigDecimal getGia() {
+    public float getGia() {
         return gia;
     }
 
-    public void setGia(BigDecimal gia) {
+    public void setGia(float gia) {
         this.gia = gia;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 

@@ -18,7 +18,7 @@ public class HoaDonModel {
     private UUID IDKH;
     private String HoTen;
     private String Ten;
-    private String PhanTramKM;
+    private float PhanTramKM;
     private String NgayTao;
     private String NgayTT;
     private float TienTra;
@@ -73,11 +73,11 @@ public class HoaDonModel {
         this.Ten = Ten;
     }
 
-    public String getPhanTramKM() {
+    public float getPhanTramKM() {
         return PhanTramKM;
     }
 
-    public void setPhanTramKM(String PhanTramKM) {
+    public void setPhanTramKM(float PhanTramKM) {
         this.PhanTramKM = PhanTramKM;
     }
 
