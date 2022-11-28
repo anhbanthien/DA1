@@ -24,37 +24,42 @@ public class thu3 extends javax.swing.JFrame {
     /**
      * Creates new form thu3
      */
-    ArrayList<QLSanPham> list=new ArrayList<>();
-    int u= 0;
-    int temp= 0;
-    public thu3() throws HeadlessException{
+    ArrayList<QLSanPham> list = new ArrayList<>();
+    int u = 0;
+    int temp = 0;
+
+    public thu3() throws HeadlessException {
         super();
 //		initComponents();
-		this.setLayout(null);
-		this.setDefaultCloseOperation(2);
-		this.setSize(new Dimension(500,500));
+        this.setLayout(null);
+        this.setDefaultCloseOperation(2);
+        this.setSize(new Dimension(500, 500));
 //		 TODO Auto-generated constructor stub
-		list = (ArrayList<QLSanPham>) new ManageSanPhamService().getAll();
-                autoGen();
+        list = (ArrayList<QLSanPham>) new ManageSanPhamService().getAll();
+        autoGen();
     }
+
     void autoGen() {
-		int line=0;
-		for(int i=0;i<list.size();i++) {
+        int line = 0;
+        for (int i = 0; i < list.size(); i++) {
 //			System.out.println(line);
-                        thu1 th = new thu1(list.get(i),i);
-			th.setBounds(122*line++,120*Integer.parseInt(String.valueOf((i/4))) , 120, 150);
-			th.setBorder(BorderFactory.createEtchedBorder());
-                        th.addMouseListener(new MouseAdapter() {
-				 public void mouseClicked(MouseEvent e) {
+            thu1 th = new thu1(list.get(i), i);
+            th.setBounds(122 * line++, 120 * Integer.parseInt(String.valueOf((i / 4))), 120, 150);
+            th.setBorder(BorderFactory.createEtchedBorder());
+            th.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
 //					 th.setBackground(Color.red);
-                                         u = th.getU();
-					 System.out.println(u);
-				 }
-			});
-			add(th);
-			if(line>3)line=0;
-		}
-	}
+                    u = th.getU();
+                    System.out.println(u);
+                }
+            });
+            add(th);
+            if (line > 3) {
+                line = 0;
+            }
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -107,7 +112,7 @@ public class thu3 extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        new ManageSanPhamService().getAll().forEach(a -> System.out.print(a.getGia()));
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
