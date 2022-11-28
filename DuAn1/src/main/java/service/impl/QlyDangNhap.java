@@ -19,4 +19,9 @@ public class QlyDangNhap implements IQuanLyDangNhap {
         return new DangNhapRepository().CheckLogin(Acc, Pass);
     }
 
+    @Override
+    public boolean Update(DangNhap Login) {
+        return new DangNhapRepository().Update(Login);
+    }
+
 }
