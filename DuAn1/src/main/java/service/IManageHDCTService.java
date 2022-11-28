@@ -19,6 +19,7 @@ public interface IManageHDCTService {
     List<QLHDCT> getListbyHD(UUID hoaDon);
 
     QLHDCT getOne(UUID id);
+    QLHDCT getOne(UUID idHD,UUID idSP);
 
     String add(QLHDCT qlhdct);
 

@@ -49,9 +49,9 @@ public class QuanLyBanServiceImpl implements QuanLyBanService {
     public String update(Ban ban) {
         boolean update = repository.update(ban);
         if (update) {
-            return "Sửa thành công";
+            return "Sửa bàn thành công";
         } else {
-            return "Sửa thất bại";
+            return "Sửa bàn thất bại";
         }
     }
 

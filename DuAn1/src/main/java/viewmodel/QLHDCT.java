@@ -18,7 +18,7 @@ public class QLHDCT {
     private UUID idHD;
     private UUID idSP;
     private String tenSP;
-    private BigDecimal gia;
+    private float gia;
     private int soLuong;
     private int soBanCT;
 
@@ -37,18 +37,15 @@ public class QLHDCT {
     
     
     
-    public BigDecimal getGia() {
+    public float getGia() {
         return gia;
     }
     public float getTien() {
         
-        float giaf;
-        giaf= gia.floatValue();
-        float tien= giaf*soLuong;
-        return tien;
+        return gia*soLuong;
     }
 
-    public void setGia(BigDecimal gia) {
+    public void setGia(float gia) {
         this.gia = gia;
     }
     public QLHDCT(HDCT hdct) {
@@ -64,7 +61,7 @@ public class QLHDCT {
     public String getTenSP() {
         return tenSP;
     }
-    public QLHDCT(UUID idHDCT, UUID idHD, UUID idSP, String tenSP, BigDecimal gia, int soLuong, int soBanCT) {
+    public QLHDCT(UUID idHDCT, UUID idHD, UUID idSP, String tenSP, float gia, int soLuong, int soBanCT) {
         this.idHDCT = idHDCT;
         this.idHD = idHD;
         this.idSP = idSP;
