@@ -322,9 +322,9 @@ public class ViewBan extends javax.swing.JFrame {
 
         Ban ban = new Ban();
         if (rdbOn.isSelected()) {
-            ban.setTrangThaiBan("Còn Hoạt Động");
+            ban.setTrangThaiBan("ON");
         } else {
-            ban.setTrangThaiBan("Không Hoạt Động");
+            ban.setTrangThaiBan("OFF");
         }
         JOptionPane.showMessageDialog(this, new QuanLyBanServiceImpl().add(ban));
         fillToTable((ArrayList<BanReponse>) new QuanLyBanServiceImpl().getAll());
