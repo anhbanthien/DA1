@@ -25,6 +25,10 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import service.IManageSanPhamService;
 import service.impl.ManageSanPhamService;
 import service.impl.QlyNhanVienImpl;
@@ -503,11 +507,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
         try {
-            Workbook workbook = new HSSFWorkbook();
-            Sheet sheet = workbook.createSheet("danhsach");
-            Row row = null;
-            Cell cell = null;
-            row = sheet.createRow(1);
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("danhsach");
+            XSSFRow row = null;
+            XSSFCell cell = null;
+            row = sheet.createRow(0);
             cell = row.createCell(0, CellType.STRING);
             cell.setCellValue("STT");
 
@@ -528,7 +532,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
             for (int i = 0; i < lstQLSP.size(); i++) {
                 row = sheet.createRow(1 + i);
-
+                
                 cell = row.createCell(0, CellType.NUMERIC);
                 cell.setCellValue(i + 1);
 
