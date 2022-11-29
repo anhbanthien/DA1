@@ -8,7 +8,7 @@ import domainmodel.DangNhap;
 
 /**
  *
- * @author Admin
+ * @author thiennc
  */
 public class LoginSuccessfully extends javax.swing.JFrame {
 
