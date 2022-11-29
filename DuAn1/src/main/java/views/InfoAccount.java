@@ -163,7 +163,7 @@ public class InfoAccount extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 296, -1, -1));
 
         txtTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        getContentPane().add(txtTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 320, 190, 30));
+        getContentPane().add(txtTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 320, 190, 20));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 480, 10));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 102));
@@ -250,11 +250,9 @@ public class InfoAccount extends javax.swing.JFrame {
                 .addGap(30, 30, 30)
                 .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel6))
-                    .addComponent(jButton2))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jLabel6))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
 

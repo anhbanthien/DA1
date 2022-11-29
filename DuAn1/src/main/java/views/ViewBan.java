@@ -322,9 +322,9 @@ public class ViewBan extends javax.swing.JFrame {
 
         Ban ban = new Ban();
         if (rdbOn.isSelected()) {
-            ban.setTrangThaiBan("Còn Hoạt Động");
+            ban.setTrangThaiBan("ON");
         } else {
-            ban.setTrangThaiBan("Không Hoạt Động");
+            ban.setTrangThaiBan("OFF");
         }
         JOptionPane.showMessageDialog(this, new QuanLyBanServiceImpl().add(ban));
         fillToTable((ArrayList<BanReponse>) new QuanLyBanServiceImpl().getAll());
@@ -337,7 +337,7 @@ public class ViewBan extends javax.swing.JFrame {
     }//GEN-LAST:event_tblTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fillToTableSecond(listInvoices);
+        fillToTableSecond((ArrayList<HoaDonModel>) new HoaDonServiceImpl().getAllHoaDon());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
