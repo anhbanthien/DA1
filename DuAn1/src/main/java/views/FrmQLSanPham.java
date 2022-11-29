@@ -7,14 +7,24 @@ package views;
 
 import java.awt.Image;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import service.IManageSanPhamService;
 import service.impl.ManageSanPhamService;
 import service.impl.QlyNhanVienImpl;
@@ -247,6 +257,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
         btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnXuatExcel.setText("XUẤT FILE EXCEL");
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
@@ -392,7 +407,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQLNLActionPerformed
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
-       row = tblSP.getSelectedRow();
+        row = tblSP.getSelectedRow();
         txtTenSP.setText(lstQLSP.get(tblSP.getSelectedRow()).getTenSP());
         txtMoTa.setText(lstQLSP.get(tblSP.getSelectedRow()).getMoTa());
         txtImage.setText(lstQLSP.get(tblSP.getSelectedRow()).getImage());
@@ -485,6 +500,71 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         loadData(lstQLSP);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        try {
+            Workbook workbook = new HSSFWorkbook();
+            Sheet sheet = workbook.createSheet("danhsach");
+            Row row = null;
+            Cell cell = null;
+            row = sheet.createRow(1);
+            cell = row.createCell(0, CellType.STRING);
+            cell.setCellValue("STT");
+
+            cell = row.createCell(1, CellType.STRING);
+            cell.setCellValue("Tên sản phẩm");
+
+            cell = row.createCell(2, CellType.STRING);
+            cell.setCellValue("Mô tả");
+
+            cell = row.createCell(3, CellType.STRING);
+            cell.setCellValue("Image");
+
+            cell = row.createCell(4, CellType.STRING);
+            cell.setCellValue("Gía");
+
+            cell = row.createCell(5, CellType.STRING);
+            cell.setCellValue("Trạng Thái");
+
+            for (int i = 0; i < lstQLSP.size(); i++) {
+                row = sheet.createRow(1 + i);
+
+                cell = row.createCell(0, CellType.NUMERIC);
+                cell.setCellValue(i + 1);
+
+                cell = row.createCell(1, CellType.STRING);
+                cell.setCellValue(lstQLSP.get(i).getTenSP());
+
+                cell = row.createCell(2, CellType.STRING);
+                cell.setCellValue(lstQLSP.get(i).getMoTa());
+
+                cell = row.createCell(3, CellType.STRING);
+                cell.setCellValue(lstQLSP.get(i).getImage());
+
+                cell = row.createCell(4, CellType.NUMERIC);
+                cell.setCellValue(lstQLSP.get(i).getGia());
+
+                cell = row.createCell(5, CellType.STRING);
+                cell.setCellValue(lstQLSP.get(i).getTrangThai());
+
+            }
+
+            File f = new File("C:\\Users\\trong\\danhsach.xlsx");
+            try {
+                FileOutputStream fos = new FileOutputStream(f);
+                workbook.write(fos);
+                fos.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            JOptionPane.showMessageDialog(this, "In thành công!");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
 
     /**
      * @param args the command line arguments

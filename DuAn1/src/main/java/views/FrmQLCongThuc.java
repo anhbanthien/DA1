@@ -6,6 +6,7 @@
 package views;
 
 import java.util.List;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.IManageCongThucService;
@@ -29,7 +30,8 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
      */
     public FrmQLCongThuc() {
         initComponents();
-
+        setLocationRelativeTo(null);
+        
         loadDataToTable();
     }
 
