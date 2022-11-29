@@ -31,4 +31,9 @@ VALUES(N'admin','123','admin','0e0da193-d20d-496a-a0cb-5006cb530c29'),
 	  (N'an123','123','staff','50e77d8f-bd17-4c82-9152-6702239ba6f5'),
 	  (N'hieu456','123','staff','8f8d5655-bfc7-4072-93c1-d593157acb6b'),
 	  (N'long789','123','staff','1ab94bc6-384a-4f3a-b7e9-bc9e02e61d75');
-	  INSERT INTO [dbo].[Ban]([TrangThaiBan])VALUES(N'Còn Chống'),(N'Còn Chống'),(N'Còn Chống'),(N'Còn Chống')
+	  INSERT INTO [dbo].[Ban]([TrangThaiBan])VALUES(N'ON'),(N'ON'),(N'ON'),(N'ON');
+	  SELECT * FROM [dbo].[Ban]
+	  ii
+	  SELECT * FROM [dbo].[Ban]
+	  SELECT * FROM [dbo].[KhachHang]
+	  SELECT * FROM [dbo].[HoaDon] AS [HD]
