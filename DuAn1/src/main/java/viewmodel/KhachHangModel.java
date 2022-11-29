@@ -79,4 +79,7 @@ public class KhachHangModel {
         this.TrangThai = TrangThai;
     }
 
+    public Object[] toRowData() {
+        return new Object[]{id, Ten, DiemTichLuy, SoDienThoai, TrangThai};
+    }
 }
