@@ -413,7 +413,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(19, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -459,7 +459,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addGap(0, 29, Short.MAX_VALUE))
+                        .addGap(0, 26, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(j7, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -483,7 +483,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         );
         pnlBanLayout.setVerticalGroup(
             pnlBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
+            .addGap(0, 219, Short.MAX_VALUE)
         );
 
         jPanel8.setBackground(new java.awt.Color(249, 238, 231));
@@ -604,7 +604,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         );
         pnlSanPhamLayout.setVerticalGroup(
             pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 291, Short.MAX_VALUE)
+            .addGap(0, 288, Short.MAX_VALUE)
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -706,7 +706,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
         );
 
         lblanhSP.setBackground(new java.awt.Color(0, 0, 0));
@@ -769,7 +769,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addComponent(rdoHDD)
                 .addGap(30, 30, 30)
                 .addComponent(rdoHDH)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -825,7 +825,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
                                         .addGap(18, 18, 18))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(15, 15, 15)
@@ -870,7 +870,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         System.out.println(nhanVienRepository.getAll().get(0).getHoTen());
         hd.setIDNV(nhanVienRepository.getAll().get(0));
         hd.setIDKH(khachHangRepository.getAll().get(0));
-        hd.setIDKM(khuyenMaiRepository.getAll().get(0));
+        // hd.setIDKM(khuyenMaiRepository.getAll().get(0));
         //        hd.setNgayTao(new Date());
         //        hd.setNgayTT(new Date());
         hd.setNgayTao(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
