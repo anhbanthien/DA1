@@ -33,6 +33,13 @@ public class QLCongThuc {
         this.idMaNL = idMaNL;
     }
 
+    public QLCongThuc(String ten, String moTa, String image, String trangThai) {
+        this.ten = ten;
+        this.moTa = moTa;
+        this.image = image;
+        this.trangThai = trangThai;
+    }
+
     public UUID getIdCT() {
         return idCT;
     }
@@ -70,7 +77,7 @@ public class QLCongThuc {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = "null";
     }
 
     public String getTrangThai() {

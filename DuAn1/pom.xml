@@ -30,22 +30,17 @@
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>8.2.2.jre8</version>
-        </dependency>
-<<<<<<< HEAD
-     
-    </dependencies > 
-=======
-        <dependency>
+        </dependency>     
+       <dependency>
             <groupId>unknown.binary</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>SNAPSHOT</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout -->
+<!--         https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout -->
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE130</version>
         </dependency>
-    </dependencies >    
->>>>>>> 42f8dc69d0742d9ddcac932d27d45bcd1ccf9f19
+    </dependencies > 
 </project>

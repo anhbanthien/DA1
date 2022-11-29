@@ -30,13 +30,8 @@ public class CongThuc {
     @GeneratedValue
     private UUID idCT;
 
-<<<<<<< HEAD
     @OneToOne
     @JoinColumn(name = "IDSP", referencedColumnName = "IDSP")
-=======
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IDSP")
->>>>>>> cce1a3ca1b1289b51c05e8865e9edab2612a254f
     private SanPham sanPham;
     @Column(name = "Ten")
     private String ten;
@@ -46,13 +41,8 @@ public class CongThuc {
     private String image;
     @Column(name = "TrangThai")
     private String trangThai;
-<<<<<<< HEAD
-    @OneToMany
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "IdMaNL", referencedColumnName = "MaNL")
-=======
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdMaNL")
->>>>>>> cce1a3ca1b1289b51c05e8865e9edab2612a254f
     private NguyenLieu nguyenLieu;
 
     public CongThuc() {

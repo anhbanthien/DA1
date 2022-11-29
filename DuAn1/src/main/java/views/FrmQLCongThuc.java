@@ -5,17 +5,32 @@
  */
 package views;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import service.IManageCongThucService;
+import service.impl.ManageCongThucService;
+import viewmodel.QLCongThuc;
+import viewmodel.QLNguyenLieu;
+
 /**
  *
  * @author trong
  */
 public class FrmQLCongThuc extends javax.swing.JFrame {
 
+    DefaultTableModel dtm;
+    IManageCongThucService _iManageCongThucService = new ManageCongThucService();
+    int row;
+    List<QLCongThuc> lstQLCT;
+
     /**
      * Creates new form FrmQLCongThuc
      */
     public FrmQLCongThuc() {
         initComponents();
+
+        loadDataToTable();
     }
 
     /**
@@ -66,15 +81,15 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         tblQLyCongThuc.setForeground(new java.awt.Color(102, 102, 102));
         tblQLyCongThuc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tên Công Thức", "Mô Tả", "Image", "Trạng Thái"
+                "STT", "Tên Công Thức", "Mô Tả", "Image", "Trạng Thái"
             }
         ));
         tblQLyCongThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -235,25 +250,38 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 
-        
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblQLyCongThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLyCongThucMouseClicked
-      
+        row = tblQLyCongThuc.getSelectedRow();
+        txtTenCT.setText(tblQLyCongThuc.getValueAt(row, 1).toString());
+        txtImage.setText(tblQLyCongThuc.getValueAt(row, 3).toString());
+        txtTrangThai.setText(tblQLyCongThuc.getValueAt(row, 4).toString());
+        txtMoTa.setText(tblQLyCongThuc.getValueAt(row, 2).toString());
     }//GEN-LAST:event_tblQLyCongThucMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-       
+        int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm ko?", "Thêm", JOptionPane.YES_NO_OPTION);
+        if (hoi == JOptionPane.YES_OPTION) {
+            for (int i = 0; i < lstQLCT.size(); i++) {
+                if (lstQLCT.get(i).getTen().equalsIgnoreCase(txtTenCT.getText().trim())) {
+                    JOptionPane.showMessageDialog(this, "Tên công thức bị trùng");
+                    return;
+                }
+            }
+            JOptionPane.showMessageDialog(this, _iManageCongThucService.add(getData()));
+            loadDataToTable();
+        }
 
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-       
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -313,4 +341,23 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenCT;
     private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
+
+    private void loadDataToTable() {
+        dtm = (DefaultTableModel) tblQLyCongThuc.getModel();
+        dtm.setRowCount(0);
+        lstQLCT = _iManageCongThucService.getAll();
+        for (QLCongThuc x : lstQLCT) {
+            dtm.addRow(new Object[]{lstQLCT.indexOf(x) + 1, x.getTen(), x.getMoTa(), x.getImage(), x.getTrangThai()});
+        }
+    }
+
+    private QLCongThuc getData() {
+        QLCongThuc qlct = new QLCongThuc();
+        qlct.setTen(txtTenCT.getText());
+        qlct.setMoTa(txtMoTa.getText());
+        qlct.setImage(txtImage.getText());
+        qlct.setTrangThai(txtTrangThai.getText());
+        
+        return qlct;
+    }
 }

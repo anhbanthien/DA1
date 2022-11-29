@@ -5,10 +5,20 @@
  */
 package views;
 
+import java.awt.Image;
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import service.IManageSanPhamService;
 import service.impl.ManageSanPhamService;
+import service.impl.QlyNhanVienImpl;
+import viewmodel.QLNguyenLieu;
 import viewmodel.QLSanPham;
 
 /**
@@ -16,17 +26,19 @@ import viewmodel.QLSanPham;
  * @author trong
  */
 public class FrmQLSanPham extends javax.swing.JFrame {
-    IManageSanPhamService _iManageSanPhamService;
-    List<QLSanPham> lstQLSP;
+
+    IManageSanPhamService _iManageSanPhamService = new ManageSanPhamService();
+    List<QLSanPham> lstQLSP = _iManageSanPhamService.getAll();
     int row;
     DefaultTableModel dtm;
+
     /**
      * Creates new form FrmQLSanPham
      */
     public FrmQLSanPham() {
         initComponents();
-        
-        loadData();
+
+        loadData(lstQLSP);
     }
 
     /**
@@ -40,7 +52,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        txtTimKiem = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
         btnSPMAXGia = new javax.swing.JButton();
         btnSPMinGia = new javax.swing.JButton();
@@ -77,6 +89,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
         btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/timkiem.png"))); // NOI18N
         btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnSPMAXGia.setForeground(new java.awt.Color(255, 0, 0));
         btnSPMAXGia.setText("Sản Phẩm có giá cao nhất");
@@ -108,7 +125,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                         .addComponent(btnSPMinGia)
                         .addGap(166, 166, 166))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtTimKiem)
+                        .addComponent(txtSearch)
                         .addGap(18, 18, 18)
                         .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))))
@@ -118,7 +135,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiem))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -139,9 +156,19 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/refresh.png"))); // NOI18N
         btnSua.setText("Sửa ");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Tên Sản Phẩm:");
 
@@ -153,7 +180,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
         jLabel6.setText("Trạng Thái:");
 
-        lblHinhAnhSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ca-phe-trung1.jpg"))); // NOI18N
+        lblHinhAnhSP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHinhAnhSPMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -233,7 +264,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
             },
             new String [] {
-                "STT", "Tên Sản Phẩm", "Mô Tả", "Image", "Gía", "Trạng Thái", "Công Thức", " Nguyên Liệu"
+                "STT", "Tên Sản Phẩm", "Mô Tả", "Image", "Gía", "Trạng Thái"
             }
         ));
         tblSP.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -377,25 +408,94 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSPMinGiaActionPerformed
 
     private void btnQLCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLCTActionPerformed
-        // TODO add your handling code here:
+        new FrmQLCongThuc().setVisible(true);
     }//GEN-LAST:event_btnQLCTActionPerformed
 
     private void btnQLNLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLNLActionPerformed
-        // TODO add your handling code here:
+        new FrmQLNguyenLieu().setVisible(true);
     }//GEN-LAST:event_btnQLNLActionPerformed
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
         row = tblSP.getSelectedRow();
-        txtTenSP.setText((String) tblSP.getValueAt(row, 1));
-        txtMoTa.setText((String) tblSP.getValueAt(row, 2));
-        txtImage.setText((String) tblSP.getValueAt(row, 3));
-        txtGia.setText((String) tblSP.getValueAt(row, 4));
-        txtTrangThai.setText((String) tblSP.getValueAt(row, 5));
+        txtTenSP.setText(lstQLSP.get(row).getTenSP());
+        txtMoTa.setText(lstQLSP.get(row).getMoTa());
+        txtImage.setText(lstQLSP.get(row).getImage());
+        txtGia.setText(lstQLSP.get(row).getGia() + "");
+        txtTrangThai.setText(lstQLSP.get(row).getTrangThai());
+
+        if (lstQLSP.get(row).getImage() == null) {
+            lblHinhAnhSP.setText("null");
+            lblHinhAnhSP.setIcon(null);
+        } else {
+            lblHinhAnhSP.setText("");
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\trong\\OneDrive\\Máy tính\\DA1\\DuAn1\\src\\main\\resources\\" + tblSP.getValueAt(row, 3));
+            Image img = imgIcon.getImage();
+            img.getScaledInstance(lblHinhAnhSP.getWidth(), lblHinhAnhSP.getHeight(), 0);
+            lblHinhAnhSP.setIcon(imgIcon);
+        }
     }//GEN-LAST:event_tblSPMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         _iManageSanPhamService.add(getData());
+        loadData(_iManageSanPhamService.getAll());
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm muốn xóa!");
+            return;
+        }
+
+        int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa?", "Xóa", JOptionPane.YES_NO_OPTION);
+        if (hoi == JOptionPane.YES_OPTION) {
+            QLSanPham qlsp = new QLSanPham();
+            row = tblSP.getSelectedRow();
+            qlsp = _iManageSanPhamService.getAll().get(row);
+            _iManageSanPhamService.delete(qlsp);
+            loadData(_iManageSanPhamService.getAll());
+        }
+
+
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        if (row < 0) {
+            JOptionPane.showMessageDialog(this, "Mời chọn dòng muốn sửa!");
+            return;
+        }
+        int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa?", "Sửa", JOptionPane.YES_NO_OPTION);
+        if (hoi == JOptionPane.YES_OPTION) {
+            _iManageSanPhamService.update(getID(), getData());
+            loadData(_iManageSanPhamService.getAll());
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+    private String strHinhAnh = "";
+    private void lblHinhAnhSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnhSPMouseClicked
+        try {
+            JFileChooser jfc = new JFileChooser("C:\\Users\\trong\\OneDrive\\Máy tính\\DA1\\DuAn1\\src\\main\\resources");
+            jfc.showOpenDialog(null);
+            File file = jfc.getSelectedFile();
+            Image img = ImageIO.read(file);
+            strHinhAnh = file.getName();
+            lblHinhAnhSP.setText("");
+            int width = lblHinhAnhSP.getWidth();
+            int height = lblHinhAnhSP.getHeight();
+            lblHinhAnhSP.setIcon(new ImageIcon(img.getScaledInstance(width, height, 0)));
+            txtImage.setText(strHinhAnh);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Bạn đã huỷ chọn ảnh");
+        }
+    }//GEN-LAST:event_lblHinhAnhSPMouseClicked
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        List<QLSanPham> lstQLSPTimTheoTen = new ArrayList<>();
+        for (QLSanPham x : lstQLSP) {
+            if (txtSearch.getText().toLowerCase().trim().startsWith(x.getTenSP().toLowerCase())) {
+                lstQLSPTimTheoTen.add(x);
+            }
+        }
+
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,20 +559,20 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private javax.swing.JTextField txtGia;
     private javax.swing.JTextField txtImage;
     private javax.swing.JTextField txtMoTa;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTenSP;
-    private javax.swing.JTextField txtTimKiem;
     private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
 
-    private void loadData() {
-        lstQLSP = _iManageSanPhamService.getAll();
-        dtm = (DefaultTableModel) tblSP.getModel();
-        dtm.setRowCount(0);
-        for (QLSanPham x : lstQLSP) {
-            dtm.addRow(new Object[]{lstQLSP.indexOf(x),x.getTenSP(),x.getMoTa(),x.getImage(),x.getGia(),x.getTrangThai()});
-        }
-    }
-
+//    private void loadData() {
+//        
+//        lstQLSP = _iManageSanPhamService.getAll();
+//        dtm = (DefaultTableModel) tblSP.getModel();
+//        dtm.setRowCount(0);
+//        for (QLSanPham x : lstQLSP) {
+//            dtm.addRow(new Object[]{lstQLSP.indexOf(x),x.getTenSP(),x.getMoTa(),x.getImage(),x.getGia(),x.getTrangThai()});
+//        }
+//    }
     private QLSanPham getData() {
         QLSanPham qlsp = new QLSanPham();
         qlsp.setTenSP(txtTenSP.getText());
@@ -481,5 +581,17 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         qlsp.setGia(Float.parseFloat(txtGia.getText()));
         qlsp.setTrangThai(txtTrangThai.getText());
         return qlsp;
+    }
+
+    private UUID getID() {
+        return lstQLSP.get(row).getIDSP();
+    }
+
+    private void loadData(List<QLSanPham> lstQLSP) {
+        dtm = (DefaultTableModel) tblSP.getModel();
+        dtm.setRowCount(0);
+        for (QLSanPham x : lstQLSP) {
+            dtm.addRow(new Object[]{lstQLSP.indexOf(x), x.getTenSP(), x.getMoTa(), x.getImage(), x.getGia(), x.getTrangThai()});
+        }
     }
 }
