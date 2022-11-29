@@ -25,13 +25,13 @@ public class KhuyenMai {
     private UUID IDKM;
     private String NgayBatDau;
     private String NgayKetThuc;
-    private String PhanTramKM;
-    private String TrangThai;
+    private float PhanTramKM;
+    private int TrangThai;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(UUID IDKM, String NgayBatDau, String NgayKetThuc, String PhanTramKM, String TrangThai) {
+    public KhuyenMai(UUID IDKM, String NgayBatDau, String NgayKetThuc, float PhanTramKM, int TrangThai) {
         this.IDKM = IDKM;
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
@@ -63,19 +63,19 @@ public class KhuyenMai {
         this.NgayKetThuc = NgayKetThuc;
     }
 
-    public String getPhanTramKM() {
+    public float getPhanTramKM() {
         return PhanTramKM;
     }
 
-    public void setPhanTramKM(String PhanTramKM) {
+    public void setPhanTramKM(float PhanTramKM) {
         this.PhanTramKM = PhanTramKM;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return TrangThai;
     }
 
-    public void setTrangThai(String TrangThai) {
+    public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
 

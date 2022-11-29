@@ -17,7 +17,7 @@ public class QLSanPham {
     private String tenSP;
     private String moTa;
     private String image;
-    private BigDecimal gia;
+    private float gia;
     private String trangThai;
 
     public QLSanPham() {
@@ -64,11 +64,11 @@ public class QLSanPham {
         this.image = image;
     }
 
-    public BigDecimal getGia() {
+    public float getGia() {
         return gia;
     }
 
-    public void setGia(BigDecimal gia) {
+    public void setGia(float gia) {
         this.gia = gia;
     }
 

@@ -23,7 +23,7 @@ public interface HoaDonService {
 
     boolean update(HoaDon hd, UUID id);
 
-    HoaDonModel getOne(UUID _idHD);
+    HoaDonModel getOne(UUID idHD);
 
     List<HoaDon> getHoaDonByCheck(int IDB);
 }
