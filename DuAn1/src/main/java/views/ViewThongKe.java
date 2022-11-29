@@ -54,13 +54,14 @@ public class ViewThongKe extends javax.swing.JFrame {
     private List<HoaDonModel> listHD = donServiceImpl.getAllHoaDon();
     private ThongKeServiceImpl serviceImpl = new ThongKeServiceImpl();
     private List<Object[]> listTK = serviceImpl.getList();
+
     public ViewThongKe() {
         initComponents();
         setLocationRelativeTo(null);
         jTable2.setModel(dtm);
         String headers[] = {"Ngày", "Số đơn thanh toán", "Tổng tiền"};
         dtm.setColumnIdentifiers(headers);
-        
+
         String date = java.time.LocalDate.now().toString();
         txtTien.setText(tongDoanhThu(listHD, date) + " VNĐ");
         txtDaTT.setText(soDonDaBan(listHD, date) + "");
@@ -90,10 +91,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         txtTien1.setText(tongDoanhThu(listHD, ngayD, ngayC) + " VNĐ");
         txtDaTT1.setText(soDonDaBan(listHD, ngayD, ngayC) + "");
         showData(listTK);
-        
-        
 
- 
 //frame.add(datePicker);
     }
 
@@ -183,6 +181,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         txtTien1 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         txtDaTT1 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(930, 567));
@@ -295,6 +294,15 @@ public class ViewThongKe extends javax.swing.JFrame {
         txtDaTT1.setForeground(new java.awt.Color(255, 255, 255));
         txtDaTT1.setText("0");
 
+        jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 51, 51));
+        jButton5.setText("X");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -329,9 +337,6 @@ public class ViewThongKe extends javax.swing.JFrame {
                                         .addComponent(txtTongHQ, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel4)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(285, 285, 285)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(225, 225, 225)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,7 +345,13 @@ public class ViewThongKe extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtDaTT1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTien1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(txtTien1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 6, Short.MAX_VALUE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(285, 285, 285)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -348,7 +359,9 @@ public class ViewThongKe extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton5)
+                    .addComponent(jLabel3))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -408,7 +421,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
- String path = "";
+        String path = "";
         JFileChooser chooser = new JFileChooser();
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int x = chooser.showSaveDialog(this);
@@ -432,7 +445,6 @@ public class ViewThongKe extends javax.swing.JFrame {
                 String ngay = jTable2.getValueAt(i, 0).toString();
                 String soDon = jTable2.getValueAt(i, 1).toString();
                 String tongTien = jTable2.getValueAt(i, 2).toString();
-               
 
                 table.addCell(ngay);
                 table.addCell(soDon);
@@ -472,7 +484,6 @@ public class ViewThongKe extends javax.swing.JFrame {
 
 //                cell = row.createCell(0, CellType.NUMERIC);
 //                cell.setCellValue(i + 1);
-
                 cell = row.createCell(0, CellType.STRING);
                 cell.setCellValue(model[0].toString());
 
@@ -512,9 +523,13 @@ public class ViewThongKe extends javax.swing.JFrame {
 //                
 //            }
 //        }
-            
-            
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+       dispose();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -563,6 +578,7 @@ public class ViewThongKe extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
