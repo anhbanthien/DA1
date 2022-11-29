@@ -54,8 +54,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
-        btnSPMAXGia = new javax.swing.JButton();
-        btnSPMinGia = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -76,6 +74,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblSP = new javax.swing.JTable();
         btnXuatExcel = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btnQLCT = new javax.swing.JButton();
         btnQLNL = new javax.swing.JButton();
@@ -95,40 +94,16 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             }
         });
 
-        btnSPMAXGia.setForeground(new java.awt.Color(255, 0, 0));
-        btnSPMAXGia.setText("Sản Phẩm có giá cao nhất");
-        btnSPMAXGia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSPMAXGiaActionPerformed(evt);
-            }
-        });
-
-        btnSPMinGia.setForeground(new java.awt.Color(255, 51, 0));
-        btnSPMinGia.setText("Sản Phẩm có giá thấp nhất");
-        btnSPMinGia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSPMinGiaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSPMAXGia)
-                        .addGap(150, 150, 150)
-                        .addComponent(btnSPMinGia)
-                        .addGap(166, 166, 166))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtSearch)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
+                .addComponent(txtSearch)
+                .addGap(18, 18, 18)
+                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,11 +112,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiem))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSPMAXGia)
-                    .addComponent(btnSPMinGia))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin sản phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(0, 51, 255))); // NOI18N
@@ -277,6 +248,15 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         btnXuatExcel.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnXuatExcel.setText("XUẤT FILE EXCEL");
 
+        btnBack.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
+        btnBack.setText("BACK");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -287,6 +267,8 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnXuatExcel)
                 .addContainerGap())
         );
@@ -296,7 +278,9 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnXuatExcel)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXuatExcel)
+                    .addComponent(btnBack))
                 .addContainerGap())
         );
 
@@ -399,14 +383,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSPMAXGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPMAXGiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSPMAXGiaActionPerformed
-
-    private void btnSPMinGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPMinGiaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSPMinGiaActionPerformed
-
     private void btnQLCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLCTActionPerformed
         new FrmQLCongThuc().setVisible(true);
     }//GEN-LAST:event_btnQLCTActionPerformed
@@ -416,11 +392,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnQLNLActionPerformed
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
-        row = tblSP.getSelectedRow();
-        txtTenSP.setText(lstQLSP.get(row).getTenSP());
-        txtMoTa.setText(lstQLSP.get(row).getMoTa());
-        txtImage.setText(lstQLSP.get(row).getImage());
-        txtGia.setText(lstQLSP.get(row).getGia() + "");
+       row = tblSP.getSelectedRow();
+        txtTenSP.setText(lstQLSP.get(tblSP.getSelectedRow()).getTenSP());
+        txtMoTa.setText(lstQLSP.get(tblSP.getSelectedRow()).getMoTa());
+        txtImage.setText(lstQLSP.get(tblSP.getSelectedRow()).getImage());
+        txtGia.setText(lstQLSP.get(tblSP.getSelectedRow()).getGia() + "");
         txtTrangThai.setText(lstQLSP.get(row).getTrangThai());
 
         if (lstQLSP.get(row).getImage() == null) {
@@ -490,12 +466,25 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         List<QLSanPham> lstQLSPTimTheoTen = new ArrayList<>();
         for (QLSanPham x : lstQLSP) {
-            if (txtSearch.getText().toLowerCase().trim().startsWith(x.getTenSP().toLowerCase())) {
+            if (x.getTenSP().toLowerCase().startsWith(txtSearch.getText().toLowerCase())) {
                 lstQLSPTimTheoTen.add(x);
             }
         }
+        if (lstQLSPTimTheoTen.size() != 0) {
+            dtm = (DefaultTableModel) tblSP.getModel();
+            dtm.setRowCount(0);
+            for (QLSanPham x : lstQLSPTimTheoTen) {
+                dtm.addRow(new Object[]{lstQLSP.indexOf(x) + 1, x.getTenSP(), x.getMoTa(), x.getImage(), x.getGia(), x.getTrangThai()});
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy!");
+        }
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        loadData(lstQLSP);
+    }//GEN-LAST:event_btnBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -533,10 +522,9 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnQLCT;
     private javax.swing.JButton btnQLNL;
-    private javax.swing.JButton btnSPMAXGia;
-    private javax.swing.JButton btnSPMinGia;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
@@ -591,7 +579,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         dtm = (DefaultTableModel) tblSP.getModel();
         dtm.setRowCount(0);
         for (QLSanPham x : lstQLSP) {
-            dtm.addRow(new Object[]{lstQLSP.indexOf(x), x.getTenSP(), x.getMoTa(), x.getImage(), x.getGia(), x.getTrangThai()});
+            dtm.addRow(new Object[]{lstQLSP.indexOf(x) + 1, x.getTenSP(), x.getMoTa(), x.getImage(), x.getGia(), x.getTrangThai()});
         }
     }
 }
