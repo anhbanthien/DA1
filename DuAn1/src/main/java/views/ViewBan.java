@@ -337,7 +337,7 @@ public class ViewBan extends javax.swing.JFrame {
     }//GEN-LAST:event_tblTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fillToTableSecond(listInvoices);
+        fillToTableSecond((ArrayList<HoaDonModel>) new HoaDonServiceImpl().getAllHoaDon());
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
