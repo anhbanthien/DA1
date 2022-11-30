@@ -26,4 +26,8 @@ public interface HoaDonService {
     HoaDonModel getOne(UUID idHD);
 
     List<HoaDon> getHoaDonByCheck(int IDB);
+    
+    List<FormHoaDon> getAllHoaDon1();
+
+    List<FormHoaDon> getHoaDonByTT1(String TT);
 }
