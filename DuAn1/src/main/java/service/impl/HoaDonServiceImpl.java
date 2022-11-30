@@ -74,5 +74,22 @@ public class HoaDonServiceImpl implements HoaDonService {
     public List<HoaDon> getHoaDonByCheck(int IDB) {
         return new HoaDonRepository().getHoaDonByCheck(IDB);
     }
+    
+    @Override
+    public List<FormHoaDon> getAllHoaDon1() {
+        return (ArrayList<FormHoaDon>) new HoaDonRepository().getAll().stream().map(FormHoaDon::new).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<FormHoaDon> getHoaDonByTT1(String TT) {
+        List<HoaDon> list = hoadonrepository.getHoaDonByTT(TT);
+        List<FormHoaDon> formhd = new ArrayList<>();
+
+        for (HoaDon hd : list) {
+            FormHoaDon model = new FormHoaDon(hd);
+            formhd.add(model);
+        }
+        return formhd;
+    }
 
 }
