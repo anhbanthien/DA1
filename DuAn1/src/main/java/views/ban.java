@@ -8,9 +8,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import reponse.BanReponse;
-import service.HoaDonService;
 import service.QuanLyBanService;
-import service.impl.HoaDonServiceImpl;
 import service.impl.QuanLyBanServiceImpl;
 
 /**
@@ -22,7 +20,6 @@ public class ban extends javax.swing.JPanel {
     /**
      * Creates new form ban
      */
-    HoaDonService hdSe = new HoaDonServiceImpl();
     BanReponse ban;
     int a ;
 
@@ -63,7 +60,7 @@ public class ban extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
 //        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Bàn "+ ban.getIDB());
-        if (ban.getTrangThaiBan().equals("ON")||hdSe.getHoaDonByCheck(ban.getIDB()).size()==0) {
+        if (ban.getTrangThaiBan().equals("Còn Chống")) {
             this.setBackground(Color.GREEN);
         }else{
             this.setBackground(Color.ORANGE);
