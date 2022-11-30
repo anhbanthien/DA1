@@ -23,18 +23,18 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public List<HoaDonModel> getAllHoaDon() {
-        List<HoaDon> list = hoadonrepository.getAll();
-        List<HoaDonModel> hoadonmodel = new ArrayList<>();
-
-        for (HoaDon hd : list) {
-            HoaDonModel model = new HoaDonModel(hd);
-            hoadonmodel.add(model);
-        }
-        return hoadonmodel;
+        return (ArrayList<HoaDonModel>) new HoaDonRepository().getAll().stream().map(HoaDonModel::new).collect(Collectors.toList());
     }
+
+    public static void main(String[] args) {
+        for (HoaDonModel o : new HoaDonServiceImpl().getAllHoaDon()) {
+            System.out.println(o.toString());
+        }
+    }
+
     @Override
-    public List<HoaDonModel> getHoaDonByTT(String TT) {
-        List<HoaDon> list = hoadonrepository.getHoaDonByTT(TT);
+    public List<HoaDonModel> getHoaDonByTT() {
+        List<HoaDon> list = hoadonrepository.getHoaDonByTT();
         List<HoaDonModel> hoadonmodel = new ArrayList<>();
 
         for (HoaDon hd : list) {
@@ -44,12 +44,6 @@ public class HoaDonServiceImpl implements HoaDonService {
         return hoadonmodel;
     }
 
-//    public static void main(String[] args) {
-//        List<HoaDonModel> lists = new HoaDonServiceImpl().getAllHoaDon();
-//        for (HoaDonModel hd : lists) {
-//            System.out.println(hd.toDataRow());
-//        }
-//    }
 //    @Override
 //    public String update(HoaDonModel hoadonModel) {
 //        boolean update = hoadonrepository.update(hoadonModel);
@@ -67,8 +61,29 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public HoaDonModel getOne(UUID idHD) {
-       return new HoaDonModel(hoadonrepository.getOne(idHD));
+        return new HoaDonModel(hoadonrepository.getOne(idHD));
     }
 
+    @Override
+    public boolean update(HoaDon hd, UUID id) {
+        return new HoaDonRepository().update(hd, id);
+    }
+
+    @Override
+    public List<HoaDon> getHoaDonByCheck(int IDB) {
+        return new HoaDonRepository().getHoaDonByCheck(IDB);
+    }
+
+    @Override
+    public List<HoaDonModel> getHoaDonByTT(String TT) {
+        List<HoaDon> list = hoadonrepository.getHoaDonByTT(TT);
+        List<HoaDonModel> hoadonmodel = new ArrayList<>();
+
+        for (HoaDon hd : list) {
+            HoaDonModel model = new HoaDonModel(hd);
+            hoadonmodel.add(model);
+        }
+        return hoadonmodel;
+    }
 
 }

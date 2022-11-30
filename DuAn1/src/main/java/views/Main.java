@@ -14,27 +14,30 @@ import javax.swing.JPanel;
  */
 public class Main extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Main
-     */
     public Main() {
         initComponents();
     }
-    
+
+    public void Logout() {
+        this.dispose();
+    }
+
     DangNhap logg = new DangNhap();
-    
+
     public Main(DangNhap log) {
         initComponents();
         jbtProfile.setText(log.getTenTaiKhoan());
         logg = log;
         if (!log.getQuyen().equalsIgnoreCase("admin")) {
             Jbtqlynv.setEnabled(false);
+            JbtOut.setEnabled(false);
         } else {
             Jbtqlynv.setEnabled(true);
+            JbtOut.setEnabled(true);
         }
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -44,9 +47,20 @@ public class Main extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Jbtqlynv = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        Jbtqlynv = new javax.swing.JButton();
+        JbtOut = new javax.swing.JButton();
+        JbtBan = new javax.swing.JButton();
+        JbtOut1 = new javax.swing.JButton();
+        Jbtqlynv1 = new javax.swing.JButton();
+        JbtBan1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jbtProfile = new javax.swing.JButton();
@@ -71,12 +85,16 @@ public class Main extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1154, 141, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(140, 110, 98));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lmain.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 0, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Gill Sans Ultra Bold", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ANHBANTHIEN");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 110, -1, -1));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 143, 160, 10));
 
         Jbtqlynv.setBackground(new java.awt.Color(105, 82, 73));
         Jbtqlynv.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -91,34 +109,89 @@ public class Main extends javax.swing.JFrame {
                 JbtqlynvActionPerformed(evt);
             }
         });
+        jPanel2.add(Jbtqlynv, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 442, 136, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(23, Short.MAX_VALUE))
-            .addComponent(Jbtqlynv, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSeparator1)
-            .addComponent(jSeparator3)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Jbtqlynv))
-        );
+        JbtOut.setBackground(new java.awt.Color(105, 82, 73));
+        JbtOut.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JbtOut.setForeground(new java.awt.Color(255, 255, 255));
+        JbtOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/invoicePNG.png"))); // NOI18N
+        JbtOut.setText("Hoá Đơn");
+        JbtOut.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        JbtOut.setBorderPainted(false);
+        JbtOut.setContentAreaFilled(false);
+        JbtOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtOutActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JbtOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 136, 50));
+
+        JbtBan.setBackground(new java.awt.Color(105, 82, 73));
+        JbtBan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JbtBan.setForeground(new java.awt.Color(255, 255, 255));
+        JbtBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mergetable.png"))); // NOI18N
+        JbtBan.setText("   Bàn");
+        JbtBan.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        JbtBan.setBorderPainted(false);
+        JbtBan.setContentAreaFilled(false);
+        JbtBan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtBanActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JbtBan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 136, 67));
+
+        JbtOut1.setBackground(new java.awt.Color(105, 82, 73));
+        JbtOut1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JbtOut1.setForeground(new java.awt.Color(255, 255, 255));
+        JbtOut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/10955895351582988856-48.png"))); // NOI18N
+        JbtOut1.setText("Chuyển TK");
+        JbtOut1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        JbtOut1.setBorderPainted(false);
+        JbtOut1.setContentAreaFilled(false);
+        JbtOut1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtOut1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JbtOut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 519, 136, -1));
+
+        Jbtqlynv1.setBackground(new java.awt.Color(105, 82, 73));
+        Jbtqlynv1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Jbtqlynv1.setForeground(new java.awt.Color(255, 255, 255));
+        Jbtqlynv1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chartPNG.png"))); // NOI18N
+        Jbtqlynv1.setText("Thống Kê");
+        Jbtqlynv1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        Jbtqlynv1.setBorderPainted(false);
+        Jbtqlynv1.setContentAreaFilled(false);
+        Jbtqlynv1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Jbtqlynv1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Jbtqlynv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 136, -1));
+
+        JbtBan1.setBackground(new java.awt.Color(105, 82, 73));
+        JbtBan1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JbtBan1.setForeground(new java.awt.Color(255, 255, 255));
+        JbtBan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sellPNG.png"))); // NOI18N
+        JbtBan1.setText("Bán Hàng");
+        JbtBan1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        JbtBan1.setBorderPainted(false);
+        JbtBan1.setContentAreaFilled(false);
+        JbtBan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtBan1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JbtBan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 160, 136, 56));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 160, -1));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 160, -1));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 160, -1));
+        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 160, -1));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 160, 20));
+        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 160, 10));
+        jPanel2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 160, 10));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 568));
 
@@ -162,9 +235,9 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(292, 292, 292)
+                .addGap(289, 289, 289)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 408, Short.MAX_VALUE))
+                .addGap(0, 411, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,8 +257,31 @@ public class Main extends javax.swing.JFrame {
         new InfoAccount(logg).setVisible(true);
     }//GEN-LAST:event_jbtProfileActionPerformed
 
+    private void JbtBan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBan1ActionPerformed
+        new BanHangJDialog(this, true).setVisible(true);
+    }//GEN-LAST:event_JbtBan1ActionPerformed
+
+    private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
+        new ViewThongKe().setVisible(true);
+    }//GEN-LAST:event_Jbtqlynv1ActionPerformed
+
+    private void JbtOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut1ActionPerformed
+        new Login().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtOut1ActionPerformed
+
+    private void JbtBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBanActionPerformed
+        new ViewBan().setVisible(true);
+    }//GEN-LAST:event_JbtBanActionPerformed
+
+    private void JbtOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOutActionPerformed
+
+        new HoaDonView().setVisible(true);
+
+    }//GEN-LAST:event_JbtOutActionPerformed
+
     private void JbtqlynvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtqlynvActionPerformed
-        new QlyNhanVien().setVisible(true);
+        new QlyNhanVienDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtqlynvActionPerformed
 
     /**
@@ -225,7 +321,12 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton JbtBan;
+    private javax.swing.JButton JbtBan1;
+    private javax.swing.JButton JbtOut;
+    private javax.swing.JButton JbtOut1;
     private javax.swing.JButton Jbtqlynv;
+    private javax.swing.JButton Jbtqlynv1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -236,6 +337,12 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private javax.swing.JButton jbtProfile;
     // End of variables declaration//GEN-END:variables
 }

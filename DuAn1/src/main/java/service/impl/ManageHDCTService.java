@@ -55,6 +55,16 @@ public class ManageHDCTService implements IManageHDCTService {
         return qlhdct;
     }
     @Override
+    public QLHDCT getOne(UUID idHD, UUID idSP) {
+        HDCT hdct = hDCTRepository.getOne(idHD,idHD);
+        QLHDCT qlhdct = new QLHDCT();
+        qlhdct.setIdHDCT(hdct.getIDHDCT());
+        qlhdct.setIdHD(hdct.getIDHD().getIDHD());
+        qlhdct.setIdSP(hdct.getIDSP().getIdSP());
+        qlhdct.setSoLuong(hdct.getSoLuong());
+        return qlhdct;
+    }
+    @Override
     public List<QLHDCT> getListbyHD(UUID hoaDon) {
         List<HDCT> lstHDCT = hDCTRepository.getAll();
         List<QLHDCT> lstQLHDCT = new ArrayList<>();
@@ -104,6 +114,8 @@ public class ManageHDCTService implements IManageHDCTService {
     private void valueOf() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
 
     
 

@@ -15,6 +15,7 @@ public class NhanVienModel {
     private String SDT;
     private String GioiTinh;
     private String TrangThai;
+    private String Image;
 
     public NhanVienModel() {
     }
@@ -26,6 +27,7 @@ public class NhanVienModel {
         this.SDT = staff.getSDT();
         this.GioiTinh = staff.getGioiTinh();
         this.TrangThai = staff.getTrangThai();
+        this.Image = staff.getImage();
     }
 
     public UUID getIdNhanVien() {
@@ -74,6 +76,19 @@ public class NhanVienModel {
 
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    public String getImage() {
+        return Image;
+    }
+
+    public void setImage(String Image) {
+        this.Image = Image;
+    }
+
+    @Override
+    public String toString() {
+        return "NhanVienModel{" + "IdNhanVien=" + IdNhanVien + ", HoTen=" + HoTen + ", Email=" + Email + ", SDT=" + SDT + ", GioiTinh=" + GioiTinh + ", TrangThai=" + TrangThai + ", Image=" + Image + '}';
     }
 
 }

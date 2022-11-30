@@ -5,7 +5,7 @@
 package config;
 
 import domainmodel.Ban;
-import domainmodel.BanChiTiet;
+
 import java.util.Properties;
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
@@ -41,10 +41,9 @@ public class HibernatUtil {
         conf.addAnnotatedClass(HoaDon.class);
         conf.addAnnotatedClass(HDCT.class);
         conf.addAnnotatedClass(KhuyenMai.class);
-        conf.addAnnotatedClass(BanChiTiet.class);
+
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(SanPham.class);
-
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);

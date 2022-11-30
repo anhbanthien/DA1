@@ -4,9 +4,12 @@
  */
 package viewmodel;
 
+import domainmodel.Ban;
 import java.util.UUID;
 import domainmodel.HoaDon;
-import java.util.Date;
+import domainmodel.KhachHang;
+import domainmodel.KhuyenMai;
+import domainmodel.NhanVien;
 
 /**
  *
@@ -15,10 +18,10 @@ import java.util.Date;
 public class HoaDonModel {
 
     private UUID IDHD;
-    private UUID IDKH;
-    private String HoTen;
-    private String Ten;
-    private String PhanTramKM;
+    private NhanVien IDNV;
+    private KhachHang IDKH;
+    private KhuyenMai IDKM;
+    private Ban IDB;
     private String NgayTao;
     private String NgayTT;
     private float TienTra;
@@ -30,23 +33,15 @@ public class HoaDonModel {
 
     public HoaDonModel(HoaDon hoadon) {
         this.IDHD = hoadon.getIDHD();
-        this.IDKH = hoadon.getIDKH().getId();
-        this.HoTen = hoadon.getIDNV().getHoTen();
-        this.Ten = hoadon.getIDKH().getTen();
-        this.PhanTramKM = hoadon.getIDKM().getPhanTramKM();
+        this.IDKH = hoadon.getIDKH();
+        this.IDNV = hoadon.getIDNV();
+        this.IDKM = hoadon.getIDKM();
+        this.IDB = hoadon.getIDB();
         this.NgayTao = hoadon.getNgayTao();
         this.NgayTT = hoadon.getNgayTT();
         this.TienTra = hoadon.getTienTra();
         this.TongTien = hoadon.getTongTien();
         this.TrangThai = hoadon.getTrangThai();
-    }
-
-    public UUID getIDKH() {
-        return IDKH;
-    }
-
-    public void setIDKH(UUID IDKH) {
-        this.IDKH = IDKH;
     }
 
     public UUID getIDHD() {
@@ -57,28 +52,36 @@ public class HoaDonModel {
         this.IDHD = IDHD;
     }
 
-    public String getHoTen() {
-        return HoTen;
+    public NhanVien getIDNV() {
+        return IDNV;
     }
 
-    public void setHoTen(String HoTen) {
-        this.HoTen = HoTen;
+    public void setIDNV(NhanVien IDNV) {
+        this.IDNV = IDNV;
     }
 
-    public String getTen() {
-        return Ten;
+    public KhachHang getIDKH() {
+        return IDKH;
     }
 
-    public void setTen(String Ten) {
-        this.Ten = Ten;
+    public void setIDKH(KhachHang IDKH) {
+        this.IDKH = IDKH;
     }
 
-    public String getPhanTramKM() {
-        return PhanTramKM;
+    public KhuyenMai getIDKM() {
+        return IDKM;
     }
 
-    public void setPhanTramKM(String PhanTramKM) {
-        this.PhanTramKM = PhanTramKM;
+    public void setIDKM(KhuyenMai IDKM) {
+        this.IDKM = IDKM;
+    }
+
+    public Ban getIDB() {
+        return IDB;
+    }
+
+    public void setIDB(Ban IDB) {
+        this.IDB = IDB;
     }
 
     public String getNgayTao() {
@@ -123,11 +126,7 @@ public class HoaDonModel {
 
     @Override
     public String toString() {
-        return "HoaDonModel{" + "IDHD=" + IDHD + ", HoTen=" + HoTen + ", Ten=" + Ten + ", PhanTramKM=" + PhanTramKM + ", NgayTao=" + NgayTao + ", NgayTT=" + NgayTT + ", TienTra=" + TienTra + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + '}';
-    }
-
-    public Object[] toDataRow() {
-        return new Object[]{HoTen, Ten, PhanTramKM, NgayTao, NgayTT, TienTra, TongTien, TrangThai};
+        return "HoaDonModel{" + "IDHD=" + IDHD + ", IDNV=" + IDNV + ", IDKH=" + IDKH + ", IDKM=" + IDKM + ", IDB=" + IDB + ", NgayTao=" + NgayTao + ", NgayTT=" + NgayTT + ", TienTra=" + TienTra + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + '}';
     }
 
 }
