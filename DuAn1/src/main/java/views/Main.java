@@ -64,6 +64,7 @@ public class Main extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jbtProfile = new javax.swing.JButton();
+        JbtOut2 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -144,8 +145,8 @@ public class Main extends javax.swing.JFrame {
         JbtOut1.setBackground(new java.awt.Color(105, 82, 73));
         JbtOut1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JbtOut1.setForeground(new java.awt.Color(255, 255, 255));
-        JbtOut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/10955895351582988856-48.png"))); // NOI18N
-        JbtOut1.setText("Chuyển TK");
+        JbtOut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/productPNG.png"))); // NOI18N
+        JbtOut1.setText("SẢN PHẨM");
         JbtOut1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         JbtOut1.setBorderPainted(false);
         JbtOut1.setContentAreaFilled(false);
@@ -212,17 +213,34 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        JbtOut2.setBackground(new java.awt.Color(105, 82, 73));
+        JbtOut2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JbtOut2.setForeground(new java.awt.Color(255, 255, 255));
+        JbtOut2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/10955895351582988856-48.png"))); // NOI18N
+        JbtOut2.setText("Chuyển TK");
+        JbtOut2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        JbtOut2.setBorderPainted(false);
+        JbtOut2.setContentAreaFilled(false);
+        JbtOut2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtOut2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(JbtOut2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbtProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jbtProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
+            .addComponent(jbtProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+            .addComponent(JbtOut2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/news.png"))); // NOI18N
@@ -243,7 +261,7 @@ public class Main extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 161, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(93, 93, 93))
         );
@@ -266,8 +284,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_Jbtqlynv1ActionPerformed
 
     private void JbtOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut1ActionPerformed
-        new Login().setVisible(true);
-        dispose();
+        new FrmQLSanPham().setVisible(true);
     }//GEN-LAST:event_JbtOut1ActionPerformed
 
     private void JbtBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBanActionPerformed
@@ -283,6 +300,11 @@ public class Main extends javax.swing.JFrame {
     private void JbtqlynvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtqlynvActionPerformed
         new QlyNhanVienDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtqlynvActionPerformed
+
+    private void JbtOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut2ActionPerformed
+        new Login().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtOut2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -325,6 +347,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton JbtBan1;
     private javax.swing.JButton JbtOut;
     private javax.swing.JButton JbtOut1;
+    private javax.swing.JButton JbtOut2;
     private javax.swing.JButton Jbtqlynv;
     private javax.swing.JButton Jbtqlynv1;
     private javax.swing.JLabel jLabel1;
