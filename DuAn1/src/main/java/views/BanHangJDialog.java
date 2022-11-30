@@ -81,7 +81,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }
     private void loadTablehoaDon(String TT) {
         List<HoaDonModel> hoaDonlist = new ArrayList<>();
-        hoaDonlist = hoaDonService.getHoaDonByTT(TT);
+        hoaDonlist = new HoaDonServiceImpl().getHoaDonByTT(TT);
         _Model = new DefaultTableModel();
         _Model = (DefaultTableModel) tblHoaDon.getModel();
         _Model.setRowCount(0);
@@ -120,7 +120,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         if(hoaDon ==null){
             return;
         }
-        QLHDCTs = hoaDonCTService.getListbyHD(_idHD);       
+        QLHDCTs = new ManageHDCTService().getListbyHD(_idHD);       
         if(QLHDCTs.size() == 0){
             return;
         }
@@ -830,7 +830,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addGap(422, 422, 422))
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(27, 27, 27)
@@ -1215,14 +1215,6 @@ public class BanHangJDialog extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(BanHangJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
