@@ -220,7 +220,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="88" y="320" width="190" height="30"/>
+          <AbsoluteConstraints x="88" y="320" width="190" height="20"/>
         </Constraint>
       </Constraints>
     </Component>
@@ -302,10 +302,6 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <EmptySpace min="312" pref="312" max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" pref="110" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="312" pref="312" max="-2" attributes="0"/>
                           <Component id="lblAnh" min="-2" pref="110" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -313,6 +309,13 @@
                           <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="243" pref="243" max="-2" attributes="0"/>
                           <Component id="jButton2" min="-2" pref="110" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="312" pref="312" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jButton1" pref="110" max="32767" attributes="0"/>
+                              <Component id="jButton3" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace pref="38" max="32767" attributes="0"/>
@@ -324,17 +327,16 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="21" pref="21" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" pref="33" max="-2" attributes="0"/>
-                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <Component id="jButton3" min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="lblAnh" min="-2" pref="132" max="-2" attributes="0"/>
-                  <EmptySpace min="29" pref="29" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="8" pref="8" max="-2" attributes="0"/>
-                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="32" max="32767" attributes="0"/>
+                  <EmptySpace pref="39" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -391,6 +393,19 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblAnhMouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton3">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/backPng.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Back"/>
+            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                <EtchetBorder/>
+              </Border>
+            </Property>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

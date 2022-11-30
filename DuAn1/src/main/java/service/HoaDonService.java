@@ -17,8 +17,8 @@ public interface HoaDonService {
 
     List<HoaDonModel> getAllHoaDon();
 
+    List<HoaDonModel> getHoaDonByTT();
     List<HoaDonModel> getHoaDonByTT(String TT);
-
     List<HoaDonModel> getSearch();
 
     boolean update(HoaDon hd, UUID id);

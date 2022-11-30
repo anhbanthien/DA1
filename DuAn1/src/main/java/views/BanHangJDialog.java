@@ -87,9 +87,9 @@ public class BanHangJDialog extends javax.swing.JDialog {
         _Model.setRowCount(0);
         hoaDons.clear();
         hoaDons = hoaDonlist;
-        if (TT.equals("CTT")) {
+        if (TT.equals("Chờ TT")) {
             TT = "chưa thanh toán";
-        } else if (TT.equals("DTT")) {
+        } else if (TT.equals("Đã TT")) {
             TT = "Đã thanh toán";
         } else if (TT.equals("DH")) {
             TT = "Đã hủy";
@@ -889,7 +889,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         HoaDon hd = new HoaDon();
-        hd.setTrangThai("CTT");
+        hd.setTrangThai("Chờ TT");
         System.out.println(nhanVienRepository.getAll().get(0).getHoTen());
         hd.setIDNV(nhanVienRepository.getAll().get(0));
         hd.setIDKH(khachHangRepository.getAll().get(0));
@@ -905,7 +905,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         }
 
         rdoHDC.setEnabled(true);
-        loadTablehoaDon("CTT");
+        loadTablehoaDon("Chờ TT");
         loadTableSanPham();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -916,7 +916,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         KhachHang kh = new KhachHangRepository().getOne(_idKH);
         hd.setIDKH(kh);
         hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
-        hd.setTrangThai("DTT");
+        hd.setTrangThai("Đã TT");
         if (hoaDonRepository.Update(hd)) {
             JOptionPane.showMessageDialog(this, "Succes");
             Ban banv = banService.getOne(_ban);
@@ -926,7 +926,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Failed");
         }
         txtTienKD.setText("");
-        loadTablehoaDon("CTT");
+        loadTablehoaDon("Chờ TT");
         loadTableBan();
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
@@ -944,7 +944,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Failed");
         }
         txtTienKD.setText("");
-        loadTablehoaDon("CTT");
+        loadTablehoaDon("Chờ TT");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -1161,11 +1161,11 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     private void rdoHDCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDCActionPerformed
-        loadTablehoaDon("CTT");
+        loadTablehoaDon("Chờ TT");
     }//GEN-LAST:event_rdoHDCActionPerformed
 
     private void rdoHDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDDActionPerformed
-        loadTablehoaDon("DTT");
+        loadTablehoaDon("Đã TT");
     }//GEN-LAST:event_rdoHDDActionPerformed
 
     private void rdoHDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDHActionPerformed

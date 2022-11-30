@@ -18,7 +18,7 @@ public class ViewBan extends javax.swing.JFrame {
     private ArrayList<BanReponse> listTables = (ArrayList<BanReponse>) new QuanLyBanServiceImpl().getAll();
     private DefaultTableModel dtm = new DefaultTableModel();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
-    private ArrayList<HoaDonModel> listInvoices = (ArrayList<HoaDonModel>) new HoaDonServiceImpl().getAllHoaDon();
+    private ArrayList<HoaDonModel> listInvoices = (ArrayList<HoaDonModel>) new HoaDonServiceImpl().getHoaDonByTT();
     private DefaultTableModel dtmSecond = new DefaultTableModel();
 
     public void fillIDB() {
@@ -322,9 +322,9 @@ public class ViewBan extends javax.swing.JFrame {
 
         Ban ban = new Ban();
         if (rdbOn.isSelected()) {
-            ban.setTrangThaiBan("Còn Hoạt Động");
+            ban.setTrangThaiBan("ON");
         } else {
-            ban.setTrangThaiBan("Không Hoạt Động");
+            ban.setTrangThaiBan("OFF");
         }
         JOptionPane.showMessageDialog(this, new QuanLyBanServiceImpl().add(ban));
         fillToTable((ArrayList<BanReponse>) new QuanLyBanServiceImpl().getAll());
@@ -337,8 +337,7 @@ public class ViewBan extends javax.swing.JFrame {
     }//GEN-LAST:event_tblTableMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        fillToTableSecond(listInvoices);
-
+        fillToTableSecond((ArrayList<HoaDonModel>) new HoaDonServiceImpl().getHoaDonByTT());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
@@ -352,7 +351,7 @@ public class ViewBan extends javax.swing.JFrame {
 
         if (new HoaDonServiceImpl().update(Hdm, listInvoices.get(tblHoaDon.getSelectedRow()).getIDHD())) {
             JOptionPane.showMessageDialog(this, "Merge Table succesfully");
-            fillToTableSecond((ArrayList<HoaDonModel>) new HoaDonServiceImpl().getAllHoaDon());
+            fillToTableSecond((ArrayList<HoaDonModel>) new HoaDonServiceImpl().getHoaDonByTT());
             fillToTable((ArrayList<BanReponse>) new QuanLyBanServiceImpl().getAll());
         } else {
             JOptionPane.showMessageDialog(this, "Merge Table failed");

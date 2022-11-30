@@ -4,60 +4,17 @@
  */
 package views;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.HeadlessException;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import javax.swing.BorderFactory;
-import service.impl.ManageSanPhamService;
-import viewmodel.QLSanPham;
-
 /**
  *
- * @author vanlo
+ * @author vutuo
  */
-public class thu3 extends javax.swing.JFrame {
+public class Test extends javax.swing.JFrame {
 
     /**
-     * Creates new form thu3
+     * Creates new form Test
      */
-    ArrayList<QLSanPham> list = new ArrayList<>();
-    int u = 0;
-    int temp = 0;
-
-    public thu3() throws HeadlessException {
-        super();
-//		initComponents();
-        this.setLayout(null);
-        this.setDefaultCloseOperation(2);
-        this.setSize(new Dimension(500, 500));
-//		 TODO Auto-generated constructor stub
-        list = (ArrayList<QLSanPham>) new ManageSanPhamService().getAll();
-        autoGen();
-    }
-
-    void autoGen() {
-        int line = 0;
-        for (int i = 0; i < list.size(); i++) {
-//			System.out.println(line);
-            thu1 th = new thu1(list.get(i), i);
-            th.setBounds(122 * line++, 120 * Integer.parseInt(String.valueOf((i / 4))), 120, 150);
-            th.setBorder(BorderFactory.createEtchedBorder());
-            th.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-//					 th.setBackground(Color.red);
-                    u = th.getU();
-                    System.out.println(u);
-                }
-            });
-            add(th);
-            if (line > 3) {
-                line = 0;
-            }
-        }
+    public Test() {
+        initComponents();
     }
 
     /**
@@ -75,11 +32,11 @@ public class thu3 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
@@ -102,21 +59,20 @@ public class thu3 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(thu3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(thu3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(thu3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(thu3.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Test.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        new ManageSanPhamService().getAll().forEach(a -> System.out.print(a.getGia()));
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new thu3().setVisible(true);
+                new Test().setVisible(true);
             }
         });
     }
