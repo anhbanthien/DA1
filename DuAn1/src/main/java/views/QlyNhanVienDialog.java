@@ -79,6 +79,12 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         lblAnh = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -133,7 +139,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(tblQlyNhanVien);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 322, 644, 126));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 644, 126));
         getContentPane().add(txtNumberPhone, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 181, 270, -1));
 
         jButton2.setFont(new java.awt.Font("Segoe UI Symbol", 1, 12)); // NOI18N
@@ -237,6 +243,20 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             }
         });
         getContentPane().add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 100, 104, 122));
+
+        jLabel8.setText("Account");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 290, -1, -1));
+
+        jLabel9.setText("Pass");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 322, -1, -1));
+
+        jLabel10.setText("Position");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 351, -1, -1));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(89, 287, 260, -1));
+        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 260, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Staff", " " }));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 90, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -435,15 +455,21 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblAnh;
     private javax.swing.JRadioButton rdoFemale;
     private javax.swing.JRadioButton rdoMale;
