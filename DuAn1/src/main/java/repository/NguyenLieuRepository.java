@@ -20,6 +20,7 @@ import org.hibernate.Transaction;
  */
 public class NguyenLieuRepository {
 
+    CongThucRepository congThucRepository = new CongThucRepository();
     Session session = HibernatUtil.getFACTORY().openSession();
     private String fromTable = "FROM NguyenLieu";
 
@@ -29,10 +30,17 @@ public class NguyenLieuRepository {
         return lists;
     }
 
-    public NguyenLieu getOne(String maNL) {
-        String sql = fromTable + " WHERE MaNL = :maNL ";
+    public NguyenLieu getOne(UUID idNL) {
+        String sql = fromTable + " WHERE IDNL = :idNL ";
         Query query = session.createQuery(sql, NguyenLieu.class);
-        query.setParameter("maNL", maNL);
+        query.setParameter("idNL", idNL);
+        NguyenLieu nguyenLieu = (NguyenLieu) query.getSingleResult();
+        return nguyenLieu;
+    }
+    public NguyenLieu getOneByTen(String tenNL) {
+        String sql = fromTable + " WHERE TenNL = :tenNL ";
+        Query query = session.createQuery(sql, NguyenLieu.class);
+        query.setParameter("tenNL", tenNL);
         NguyenLieu nguyenLieu = (NguyenLieu) query.getSingleResult();
         return nguyenLieu;
     }
@@ -50,7 +58,7 @@ public class NguyenLieuRepository {
 
     }
 
-    public boolean Update(String maNL, NguyenLieu nl) {
+    public boolean Update(UUID idNL, NguyenLieu nl) {
         Transaction transaction = null;
         try (Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
@@ -74,13 +82,15 @@ public class NguyenLieuRepository {
             return false;
         }
 
-        
     }
+
     public static void main(String[] args) {
+        CongThucRepository congThucRepository = new CongThucRepository();
         NguyenLieuRepository nl = new NguyenLieuRepository();
         List<NguyenLieu> lst = nl.getAll();
         for (NguyenLieu x : lst) {
             System.out.println(x.toString());
         }
+      //  nl.Delete(lst.get(4));
     }
 }

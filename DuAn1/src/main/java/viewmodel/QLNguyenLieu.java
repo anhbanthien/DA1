@@ -5,19 +5,32 @@
  */
 package viewmodel;
 
+import java.util.UUID;
+
 /**
  *
  * @author trong
  */
 public class QLNguyenLieu {
-    private String maNL;
+    private UUID idNL;
     private String tenNL;
     private int soLuong;
     private String dvt;
     private String ngayNhap;
     private int hsd;
+    private UUID idCT;
 
     public QLNguyenLieu() {
+    }
+
+    public QLNguyenLieu(UUID idNL, String tenNL, int soLuong, String dvt, String ngayNhap, int hsd, UUID idCT) {
+        this.idNL = idNL;
+        this.tenNL = tenNL;
+        this.soLuong = soLuong;
+        this.dvt = dvt;
+        this.ngayNhap = ngayNhap;
+        this.hsd = hsd;
+        this.idCT = idCT;
     }
 
     public QLNguyenLieu(String tenNL, int soLuong, String dvt, String ngayNhap, int hsd) {
@@ -28,23 +41,12 @@ public class QLNguyenLieu {
         this.hsd = hsd;
     }
 
-    
-    
-    public QLNguyenLieu(String maNL, String tenNL, int soLuong, String dvt, String ngayNhap, int hsd) {
-        this.maNL = maNL;
-        this.tenNL = tenNL;
-        this.soLuong = soLuong;
-        this.dvt = dvt;
-        this.ngayNhap = ngayNhap;
-        this.hsd = hsd;
+    public UUID getIdNL() {
+        return idNL;
     }
 
-    public String getMaNL() {
-        return maNL;
-    }
-
-    public void setMaNL(String maNL) {
-        this.maNL = maNL;
+    public void setIdNL(UUID idNL) {
+        this.idNL = idNL;
     }
 
     public String getTenNL() {
@@ -87,10 +89,18 @@ public class QLNguyenLieu {
         this.hsd = hsd;
     }
 
+    public UUID getIdCT() {
+        return idCT;
+    }
+
+    public void setIdCT(UUID idCT) {
+        this.idCT = idCT;
+    }
+
     @Override
     public String toString() {
-        return "QLNguyenLieu{" + "maNL=" + maNL + ", tenNL=" + tenNL + ", soLuong=" + soLuong + ", dvt=" + dvt + ", ngayNhap=" + ngayNhap + ", hsd=" + hsd + '}';
+        return "QLNguyenLieu{" + "idNL=" + idNL + ", tenNL=" + tenNL + ", soLuong=" + soLuong + ", dvt=" + dvt + ", ngayNhap=" + ngayNhap + ", hsd=" + hsd + ", idCT=" + idCT + '}';
     }
-    
+
     
 }

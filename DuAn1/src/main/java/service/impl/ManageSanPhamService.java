@@ -104,4 +104,17 @@ public class ManageSanPhamService implements IManageSanPhamService {
 //        manageSanPhamService.update(lstQLSP.get(0).getIDSP(), qlsp);
     }
 
+    @Override
+    public QLSanPham getOneByTen(String ten) {
+        SanPham x = sanPhamRepository.getOneByTen(ten);
+        QLSanPham qlsp = new QLSanPham();
+        qlsp.setIDSP(x.getIdSP());
+        qlsp.setTenSP(x.getTenSP());
+        qlsp.setMoTa(x.getMoTa());
+        qlsp.setImage(x.getImage());
+        qlsp.setGia(x.getGia());
+        qlsp.setTrangThai(x.getTrangThai());
+        return qlsp;
+    }
+
 }

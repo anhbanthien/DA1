@@ -30,7 +30,7 @@ public class CongThuc {
     @GeneratedValue
     private UUID idCT;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "IDSP", referencedColumnName = "IDSP")
     private SanPham sanPham;
     @Column(name = "Ten")
@@ -41,21 +41,17 @@ public class CongThuc {
     private String image;
     @Column(name = "TrangThai")
     private String trangThai;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "IdMaNL", referencedColumnName = "MaNL")
-    private NguyenLieu nguyenLieu;
 
     public CongThuc() {
     }
 
-    public CongThuc(UUID idCT, SanPham sanPham, String ten, String moTa, String image, String trangThai, NguyenLieu nguyenLieu) {
+    public CongThuc(UUID idCT, SanPham sanPham, String ten, String moTa, String image, String trangThai) {
         this.idCT = idCT;
         this.sanPham = sanPham;
         this.ten = ten;
         this.moTa = moTa;
         this.image = image;
         this.trangThai = trangThai;
-        this.nguyenLieu = nguyenLieu;
     }
 
     public UUID getIdCT() {
@@ -106,21 +102,10 @@ public class CongThuc {
         this.trangThai = trangThai;
     }
 
-    public NguyenLieu getNguyenLieu() {
-        return nguyenLieu;
-    }
-
-    public void setNguyenLieu(NguyenLieu nguyenLieu) {
-        this.nguyenLieu = nguyenLieu;
-    }
-
     @Override
     public String toString() {
-        return "CongThuc{" + "idCT=" + idCT + ", sanPham=" + sanPham + ", ten=" + ten + ", moTa=" + moTa + ", image=" + image + ", trangThai=" + trangThai + ", nguyenLieu=" + nguyenLieu + '}';
+        return "CongThuc{" + "idCT=" + idCT + ", sanPham=" + sanPham + ", ten=" + ten + ", moTa=" + moTa + ", image=" + image + ", trangThai=" + trangThai + '}';
     }
-
     
     
-    
-
 }

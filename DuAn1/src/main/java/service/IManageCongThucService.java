@@ -21,6 +21,8 @@ public interface IManageCongThucService {
 
     QLCongThuc getOne(UUID idCT);
 
+    QLCongThuc getOneByTen(String ten);
+    
     String add(QLCongThuc qlct);
 
     String update(UUID idCT, QLCongThuc qlct);

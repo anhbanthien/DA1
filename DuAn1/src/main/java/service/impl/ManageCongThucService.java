@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import repository.CongThucRepository;
+import repository.SanPhamRepository;
 import service.IManageCongThucService;
 import viewmodel.QLCongThuc;
 import viewmodel.QLNguyenLieu;
@@ -22,7 +23,7 @@ import viewmodel.QLNguyenLieu;
 public class ManageCongThucService implements IManageCongThucService {
 
     CongThucRepository congThucRepository = new CongThucRepository();
-
+    SanPhamRepository sanPhamRepository = new SanPhamRepository();
 //    @Override
 //    public List<QLCongThuc> getAll() {
 //        List<CongThuc> lstCT = congThucRepository.getAll();
@@ -38,6 +39,7 @@ public class ManageCongThucService implements IManageCongThucService {
 //            qlct.setIdMaNL(x.getNguyenLieu().getMaNL());
 //            lstQLCT.add(qlct);
 //        }
+
     @Override
     public List<QLCongThuc> getAll() {
         List<CongThuc> lstCT = congThucRepository.getAll();
@@ -50,7 +52,6 @@ public class ManageCongThucService implements IManageCongThucService {
             qlct.setMoTa(x.getMoTa());
             qlct.setImage(x.getImage());
             qlct.setTrangThai(x.getTrangThai());
-            qlct.setIdMaNL(x.getNguyenLieu().getMaNL());
             lstQLCT.add(qlct);
         }
         return lstQLCT;
@@ -58,32 +59,40 @@ public class ManageCongThucService implements IManageCongThucService {
 
     @Override
     public QLCongThuc getOne(UUID idCT) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        CongThuc x = congThucRepository.getOne(idCT);
+        QLCongThuc qlct = new QLCongThuc();
+
+        qlct.setIdCT(x.getIdCT());
+        qlct.setIdSP(x.getSanPham().getIdSP());
+        qlct.setTen(x.getTen());
+        qlct.setMoTa(x.getMoTa());
+        qlct.setImage(x.getImage());
+        qlct.setTrangThai(x.getTrangThai());
+        return qlct;
+
     }
 
     @Override
     public String add(QLCongThuc qlct) {
         CongThuc ct = new CongThuc();
         ct.setIdCT(qlct.getIdCT());
-        ct.getSanPham().setIdSP(qlct.getIdSP());
+        ct.setSanPham(sanPhamRepository.getOne(qlct.getIdSP()));
         ct.setTen(qlct.getTen());
         ct.setMoTa(qlct.getMoTa());
         ct.setImage(qlct.getImage());
         ct.setTrangThai(qlct.getTrangThai());
-        ct.getNguyenLieu().setMaNL(qlct.getIdMaNL());
         return congThucRepository.Add(ct) ? "Thêm thành công" : "Thêm thất bại";
     }
 
     @Override
     public String update(UUID idCT, QLCongThuc qlct) {
         CongThuc ct = new CongThuc();
-        ct.setIdCT(idCT);
-        ct.getSanPham().setIdSP(qlct.getIdSP());
+        ct.setIdCT(qlct.getIdCT());
+        ct.setSanPham(sanPhamRepository.getOne(qlct.getIdSP()));
         ct.setTen(qlct.getTen());
         ct.setMoTa(qlct.getMoTa());
         ct.setImage(qlct.getImage());
         ct.setTrangThai(qlct.getTrangThai());
-        ct.getNguyenLieu().setMaNL(qlct.getIdMaNL());
 
         return congThucRepository.Update(idCT, ct) ? "Sửa thành công" : "Sửa thất bại";
     }
@@ -92,12 +101,11 @@ public class ManageCongThucService implements IManageCongThucService {
     public String delete(QLCongThuc qlct) {
         CongThuc ct = new CongThuc();
         ct.setIdCT(qlct.getIdCT());
-        ct.getSanPham().setIdSP(qlct.getIdSP());
+        ct.setSanPham(sanPhamRepository.getOne(qlct.getIdSP()));
         ct.setTen(qlct.getTen());
         ct.setMoTa(qlct.getMoTa());
         ct.setImage(qlct.getImage());
         ct.setTrangThai(qlct.getTrangThai());
-        ct.getNguyenLieu().setMaNL(qlct.getIdMaNL());
         return congThucRepository.Delete(ct) ? "Xóa thành công" : "Xóa thất bại";
     }
 
@@ -107,5 +115,19 @@ public class ManageCongThucService implements IManageCongThucService {
         for (QLCongThuc x : lst) {
             System.out.println(x.toString());
         }
+    }
+
+    @Override
+    public QLCongThuc getOneByTen(String ten) {
+        CongThuc x = congThucRepository.getOneByTen(ten);
+        QLCongThuc qlct = new QLCongThuc();
+
+        qlct.setIdCT(x.getIdCT());
+        qlct.setIdSP(x.getSanPham().getIdSP());
+        qlct.setTen(x.getTen());
+        qlct.setMoTa(x.getMoTa());
+        qlct.setImage(x.getImage());
+        qlct.setTrangThai(x.getTrangThai());
+        return qlct;
     }
 }

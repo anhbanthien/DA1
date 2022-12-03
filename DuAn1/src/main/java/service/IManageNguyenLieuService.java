@@ -17,11 +17,13 @@ import viewmodel.QLSanPham;
 public interface IManageNguyenLieuService {
     List<QLNguyenLieu> getAll();
 
-    QLNguyenLieu getOne(String maNL);
+    QLNguyenLieu getOne(UUID idNL);
 
+    QLNguyenLieu getOneByTen(String tenNL);
+    
     String add(QLNguyenLieu qlnl);
 
-    String update(String maNL, QLNguyenLieu qlnl);
+    String update(UUID idNL, QLNguyenLieu qlnl);
 
     String delete(QLNguyenLieu qlnl);
 }

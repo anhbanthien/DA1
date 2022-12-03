@@ -18,27 +18,27 @@ public class QLCongThuc {
     private String moTa;
     private String image;
     private String trangThai;
-    private String idMaNL;
 
     public QLCongThuc() {
     }
 
-    public QLCongThuc(UUID idCT, UUID idSP, String ten, String moTa, String image, String trangThai, String idMaNL) {
+    public QLCongThuc(UUID idCT, UUID idSP, String ten, String moTa, String image, String trangThai) {
         this.idCT = idCT;
         this.idSP = idSP;
         this.ten = ten;
         this.moTa = moTa;
         this.image = image;
         this.trangThai = trangThai;
-        this.idMaNL = idMaNL;
     }
 
-    public QLCongThuc(String ten, String moTa, String image, String trangThai) {
+    public QLCongThuc(UUID idSP, String ten, String moTa, String image, String trangThai) {
+        this.idSP = idSP;
         this.ten = ten;
         this.moTa = moTa;
         this.image = image;
         this.trangThai = trangThai;
     }
+    
 
     public UUID getIdCT() {
         return idCT;
@@ -77,7 +77,7 @@ public class QLCongThuc {
     }
 
     public void setImage(String image) {
-        this.image = "null";
+        this.image = image;
     }
 
     public String getTrangThai() {
@@ -88,19 +88,11 @@ public class QLCongThuc {
         this.trangThai = trangThai;
     }
 
-    public String getIdMaNL() {
-        return idMaNL;
-    }
-
-    public void setIdMaNL(String idMaNL) {
-        this.idMaNL = idMaNL;
-    }
-
     @Override
     public String toString() {
-        return "QLCongThuc{" + "idCT=" + idCT + ", idSP=" + idSP + ", ten=" + ten + ", moTa=" + moTa + ", image=" + image + ", trangThai=" + trangThai + ", idMaNL=" + idMaNL + '}';
+        return "QLCongThuc{" + "idCT=" + idCT + ", idSP=" + idSP + ", ten=" + ten + ", moTa=" + moTa + ", image=" + image + ", trangThai=" + trangThai + '}';
     }
-    
+
     
     
 }

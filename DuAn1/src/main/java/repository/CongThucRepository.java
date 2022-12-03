@@ -36,6 +36,14 @@ public class CongThucRepository {
         CongThuc congThuc = (CongThuc) query.getSingleResult();
         return congThuc;
     }
+    
+    public CongThuc getOneByTen(String tenCT) {
+        String sql = fromTable + " WHERE Ten = :tenCT ";
+        Query query = session.createQuery(sql, CongThuc.class);
+        query.setParameter("tenCT", tenCT);
+        CongThuc congThuc = (CongThuc) query.getSingleResult();
+        return congThuc;
+    }
 
     public boolean Add(CongThuc ct) {
         Transaction transaction = null;
@@ -77,11 +85,15 @@ public class CongThucRepository {
 
     public static void main(String[] args) {
         CongThucRepository ct = new CongThucRepository();
-        List<CongThuc> lst = ct.getAll();
-        for (CongThuc x : lst) {
-
-        }
+        CongThuc congThuc = new CongThuc();
+        SanPhamRepository sp =new SanPhamRepository();
+        congThuc.setSanPham(sp.getOne(UUID.fromString("2e114e6f-3306-4e8b-a4e4-1733e6a20aea")));
+        
+//        List<CongThuc> lst = ct.getAll();
+//        for (CongThuc x : lst) {
+//
+//        }
    //     new CongThucRepository().getAll().forEach(a -> System.out.println(a.toString()));
-
+            System.out.println(ct.Add(congThuc));
     }
 }

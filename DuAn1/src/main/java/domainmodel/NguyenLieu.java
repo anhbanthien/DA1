@@ -6,9 +6,13 @@
 package domainmodel;
 
 import java.io.Serializable;
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,45 +21,51 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "NguyenLieu")
-public class NguyenLieu implements Serializable{
-    
+public class NguyenLieu implements Serializable {
+
     @Id
-    @Column(name = "MaNL")
-    private String maNL;
-    
+    @Column(columnDefinition = "uniqueidentifier")
+    @GeneratedValue
+    private UUID IDNL;
+
     @Column(name = "TenNL")
     private String tenNL;
-    
+
     @Column(name = "SoLuong")
     private int soLuong;
-    
+
     @Column(name = "DVT")
     private String dvt;
-    
+
     @Column(name = "NgayNhap")
     private String ngayNhap;
-    
+
     @Column(name = "HSD")
     private int hsd;
+
+    @ManyToOne
+    @JoinColumn(name = "IDCT")
+    private CongThuc congthuc;
 
     public NguyenLieu() {
     }
 
-    public NguyenLieu(String maNL, String tenNL, int soLuong, String dvt, String ngayNhap, int hsd) {
-        this.maNL = maNL;
+    public NguyenLieu(UUID IDNL, String tenNL, int soLuong, String dvt, String ngayNhap, int hsd, CongThuc congthuc) {
+        this.IDNL = IDNL;
         this.tenNL = tenNL;
         this.soLuong = soLuong;
         this.dvt = dvt;
         this.ngayNhap = ngayNhap;
         this.hsd = hsd;
+        this.congthuc = congthuc;
     }
 
-    public String getMaNL() {
-        return maNL;
+    public UUID getIDNL() {
+        return IDNL;
     }
 
-    public void setMaNL(String maNL) {
-        this.maNL = maNL;
+    public void setIDNL(UUID IDNL) {
+        this.IDNL = IDNL;
     }
 
     public String getTenNL() {
@@ -98,14 +108,18 @@ public class NguyenLieu implements Serializable{
         this.hsd = hsd;
     }
 
-    @Override
-    public String toString() {
-        return "NguyenLieu{" + "maNL=" + maNL + ", tenNL=" + tenNL + ", soLuong=" + soLuong + ", dvt=" + dvt + ", ngayNhap=" + ngayNhap + ", hsd=" + hsd + '}';
+    public CongThuc getCongthuc() {
+        return congthuc;
     }
 
-    
+    public void setCongthuc(CongThuc congthuc) {
+        this.congthuc = congthuc;
+    }
 
-    
-    
+    @Override
+    public String toString() {
+        return "NguyenLieu{" + "IDNL=" + IDNL + ", tenNL=" + tenNL + ", soLuong=" + soLuong + ", dvt=" + dvt + ", ngayNhap=" + ngayNhap + ", hsd=" + hsd + ", congthuc=" + congthuc + '}';
+    }
+
     
 }

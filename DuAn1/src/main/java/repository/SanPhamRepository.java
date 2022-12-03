@@ -32,6 +32,14 @@ public class SanPhamRepository {
         SanPham sanPham = (SanPham) query.getSingleResult();
         return sanPham;
     }
+    
+    public SanPham getOneByTen(String ten) {
+        String sql = fromTable + " WHERE TenSP = :ten ";
+        Query query = session.createQuery(sql, SanPham.class);
+        query.setParameter("ten", ten);
+        SanPham sanPham = (SanPham) query.getSingleResult();
+        return sanPham;
+    }
 
     public boolean Add(SanPham sp) {
         Transaction transaction = null;

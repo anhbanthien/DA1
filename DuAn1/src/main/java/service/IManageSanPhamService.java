@@ -19,12 +19,12 @@ public interface IManageSanPhamService {
 
     QLSanPham getOne(UUID id);
 
+    QLSanPham getOneByTen(String ten);
+
     String add(QLSanPham qlsp);
 
     String update(UUID id, QLSanPham qlsp);
 
     String delete(QLSanPham qlsp);
-
-    
 
 }
