@@ -16,6 +16,7 @@ public class NhanVienModel {
     private String GioiTinh;
     private String TrangThai;
     private String Image;
+    private String MaNhanVien;
 
     public NhanVienModel() {
     }
@@ -28,6 +29,15 @@ public class NhanVienModel {
         this.GioiTinh = staff.getGioiTinh();
         this.TrangThai = staff.getTrangThai();
         this.Image = staff.getImage();
+        this.MaNhanVien = staff.getMaNhanVien();
+    }
+
+    public String getMaNhanVien() {
+        return MaNhanVien;
+    }
+
+    public void setMaNhanVien(String MaNhanVien) {
+        this.MaNhanVien = MaNhanVien;
     }
 
     public UUID getIdNhanVien() {

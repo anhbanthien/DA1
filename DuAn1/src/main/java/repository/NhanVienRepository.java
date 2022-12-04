@@ -26,6 +26,14 @@ public class NhanVienRepository {
         return session.get(NhanVien.class, ID);
     }
 
+    public List<NhanVien> getNhanVienByMa(String TT) {
+        String sql = fromTable + " WHERE MaNhanVien = :id ";
+        javax.persistence.Query query = session.createQuery(sql, NhanVien.class);
+        query.setParameter("id", TT);
+        List<NhanVien> lists = query.getResultList();
+        return lists;
+    }
+
     public boolean Save(NhanVien Staff) {
         try {
             session.getTransaction().begin();
@@ -68,7 +76,7 @@ public class NhanVienRepository {
     }
 
     public static void main(String[] args) {
-//        new NhanVienRepository().getAll().forEach(a -> System.out.print(a.toString()));
+        new NhanVienRepository().getNhanVienByMa("NV01").forEach(a -> System.out.print(a.toString()));
 //        NhanVien Staff = new NhanVien("testUpdate123", "", "", "", "", "1.png");
 //        System.out.println(Staff.toString());
 //        new NhanVienRepository().Update(UUID.fromString("64173bba-efac-1940-a2d8-64109fbc2e5b"), Staff);
