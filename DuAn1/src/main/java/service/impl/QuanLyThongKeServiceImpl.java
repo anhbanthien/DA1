@@ -9,13 +9,13 @@ import java.util.List;
 import repository.ThongKeRepository;
 import repository.ThongKeRepository1;
 import service.ThongKeService;
-import service.ThongKeService1;
+import service.QuanLyThongKeService;
 
 /**
  *
  * @author vutuo
  */
-public class ThongKeServiceImpl implements ThongKeService1 {
+public class QuanLyThongKeServiceImpl implements QuanLyThongKeService {
 
     private ThongKeRepository1 repository = new ThongKeRepository1();
 
@@ -30,6 +30,13 @@ public class ThongKeServiceImpl implements ThongKeService1 {
         return repository.soLuong(date);
     }
 
-    
+    @Override
+    public List<Object[]> getListTK() {
+        return repository.listThongKeKH();
+    }
 
+//    @Override
+//    public List<Object[]> getListSP() {
+//        return repository.listThongKeSP();
+//    }
 }

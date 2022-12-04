@@ -34,7 +34,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.jfree.data.category.DefaultCategoryDataset;
 import service.impl.HoaDonServiceImpl;
 import service.impl.KhachHangServiceImpl;
-import service.impl.ThongKeServiceImpl;
+import service.impl.QuanLyThongKeServiceImpl;
 import viewmodel.HoaDonModel;
 import viewmodel.KhachHangModel;
 
@@ -52,7 +52,7 @@ public class ViewThongKe_1 extends javax.swing.JFrame {
     private DefaultTableModel dtm = new DefaultTableModel();
     private HoaDonServiceImpl donServiceImpl = new HoaDonServiceImpl();
     private List<HoaDonModel> listHD = donServiceImpl.getAllHoaDon();
-    private ThongKeServiceImpl serviceImpl = new ThongKeServiceImpl();
+    private QuanLyThongKeServiceImpl serviceImpl = new QuanLyThongKeServiceImpl();
     private List<Object[]> listTK = serviceImpl.getList();
 
     public ViewThongKe_1() {

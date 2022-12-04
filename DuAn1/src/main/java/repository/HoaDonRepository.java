@@ -6,6 +6,7 @@ package repository;
 
 import config.HibernatUtil;
 import domainmodel.HoaDon;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
@@ -25,6 +26,7 @@ public class HoaDonRepository {
     public List<HoaDon> getAll() {
         Query query = session.createQuery(fromTable, HoaDon.class);
         List<HoaDon> lists = query.getResultList();
+//        List<HoaDon> lists = new ArrayList<>();
         return lists;
     }
 

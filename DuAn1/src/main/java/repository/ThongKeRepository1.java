@@ -34,6 +34,35 @@ public class ThongKeRepository1 {
 
     }
 
+    public List<Object[]> listThongKeKH() {
+        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+            String HQL = "   select KH.Ten, KH.SoDienThoai,SUM(HD.SoLuong) AS SL, COUNT(H.IDKH) AS TONGHD, KH.DiemTichLuy from HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD JOIN KhachHang KH ON H.IDKH = KH.IdKhachHang WHERE H.TrangThai = 'DTT' GROUP BY KH.Ten, KH.DiemTichLuy, KH.SoDienThoai ORDER BY SUM(HD.SoLuong) DESC";
+            Query query = session.createQuery(HQL, Object[].class);
+            List<Object[]> lists = query.getResultList();
+            return lists;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+
+    }
+
+//    public List<Object[]> listThongKeSP() {
+//        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+//            String HQL = "    select SP.TenSP, SUM(HD.SoLuong) from HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD JOIN SanPham SP ON SP.IDSP = HD.IDSP WHERE H.TrangThai = 'DTT' GROUP BY SP.TenSP ORDER BY SUM(HD.SoLuong) DESC";
+//            Query query = session.createQuery(HQL, Object[].class);
+////            List<Object[]> lists = query.getResultList();
+//            List<Object[]> lists = new ArrayList<>();
+//            System.out.println("K tạch");
+//            return lists;
+//        } catch (Exception e) {
+//            e.printStackTrace(System.out);
+//            System.out.println("tạch");
+//            return null;
+//        }
+
+//    }
+
     public List<Object> soLuong(String date) {
         String HQL = " SELECT SUM(HD.SoLuong) FROM HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD WHERE H.TrangThai = 'DTT' AND H.NgayTT = :ngayTT GROUP BY H.NgayTT";
         Query query = session.createQuery(HQL, Object.class);
@@ -48,11 +77,11 @@ public class ThongKeRepository1 {
         }
     }
 
-    public List<Object> soLuongNgay( String ngayBD, String ngayKT) {
+    public List<Object> soLuongNgay(String ngayBD, String ngayKT) {
         String HQL = "SELECT SUM(HD.SoLuong) FROM HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD WHERE H.TrangThai = 'DTT' AND H.NgayTT = :ngayBD BETWEEN H.NgayTT = :ngayKT GROUP BY H.NgayTT";
         Query query = session.createQuery(HQL, Object.class);
-         query.setParameter("ngayBD", ngayBD);
-         query.setParameter("ngayKT", ngayKT);
+        query.setParameter("ngayBD", ngayBD);
+        query.setParameter("ngayKT", ngayKT);
         List<Object> list = query.getResultList();
         if (list.isEmpty()) {
             List<Object> listRong = new ArrayList<>();
@@ -64,6 +93,7 @@ public class ThongKeRepository1 {
     }
 
     public static void main(String[] args) {
-        List<Object> xuat = new ThongKeRepository1().soLuongNgay("2022-12-02", "2022-12-04");
+//        List<Object[]> xuat = new ThongKeRepository1().listThongKeSP();
+//        System.out.println(xuat.toString());
     }
 }
