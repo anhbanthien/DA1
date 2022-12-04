@@ -114,6 +114,7 @@ public class HoaDonRepository {
     public List<HoaDon> search(String TrangThai) {
         return (List<HoaDon>) session.get(HoaDon.class, TrangThai);
     }
+
     public Boolean Update(HoaDon hoaDon) {
         Transaction transaction = null;
         try ( Session session = HibernatUtil.getFACTORY().openSession()) {

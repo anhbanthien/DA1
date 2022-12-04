@@ -26,11 +26,12 @@ public class NhanVien {
     private String GioiTinh;
     private String TrangThai;
     private String Image;
+    private String MaNhanVien;
 
     public NhanVien() {
     }
 
-    public NhanVien(String HoTen, String Email, String SDT, String GioiTinh, String TrangThai, String Image) {
+    public NhanVien(String HoTen, String Email, String SDT, String GioiTinh, String TrangThai, String Image, String MaNhanVien) {
 
         this.HoTen = HoTen;
         this.Email = Email;
@@ -38,6 +39,7 @@ public class NhanVien {
         this.GioiTinh = GioiTinh;
         this.TrangThai = TrangThai;
         this.Image = Image;
+        this.MaNhanVien = MaNhanVien;
     }
 
     public NhanVien(NhanVienModel nv) {
@@ -49,6 +51,7 @@ public class NhanVien {
         this.TrangThai = nv.getTrangThai();
         this.IdNhanVien = nv.getIdNhanVien();
         this.Image = nv.getImage();
+
     }
 
     public UUID getIdNhanVien() {
@@ -110,6 +113,14 @@ public class NhanVien {
 
     public void setImage(String Image) {
         this.Image = Image;
+    }
+
+    public String getMaNhanVien() {
+        return MaNhanVien;
+    }
+
+    public void setMaNhanVien(String MaNhanVien) {
+        this.MaNhanVien = MaNhanVien;
     }
 
 }

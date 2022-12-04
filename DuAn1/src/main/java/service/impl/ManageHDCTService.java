@@ -68,6 +68,7 @@ public class ManageHDCTService implements IManageHDCTService {
     public List<QLHDCT> getListbyHD(UUID hoaDon) {
         List<HDCT> lstHDCT = hDCTRepository.getAll();
         List<QLHDCT> lstQLHDCT = new ArrayList<>();
+        
         for (HDCT x : lstHDCT) {
             if(x.getIDHD().getIDHD().equals(hoaDon)){
             QLHDCT qlhdct = new QLHDCT();
