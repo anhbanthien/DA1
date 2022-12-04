@@ -8,6 +8,7 @@ import config.HibernatUtil;
 import java.util.List;
 import javax.persistence.Query;
 import domainmodel.Ban;
+import java.util.UUID;
 import org.hibernate.Session;
 
 /**
@@ -31,6 +32,13 @@ public class BanRepository {
             e.printStackTrace(System.out);
             return null;
         }
+    }
+
+  
+ 
+
+    public Ban getOne(int IDB) {
+        return session.get(Ban.class, IDB);
     }
 
     public Boolean add(Ban ban) {
@@ -62,20 +70,22 @@ public class BanRepository {
             session.getTransaction().begin();
             session.delete(ban);
             session.getTransaction().commit();
-            
+
             return true;
         } catch (Exception e) {
             e.printStackTrace(System.out);
             return false;
         }
     }
-    public static void main(String[] args) {
-        BanRepository repository = new BanRepository();
-        List<Ban> list = repository.getAll();
-        for (Ban ban : list) {
-            System.out.println(ban);
-        }
-    }
+
+//    public static void main(String[] args) {
+//        BanRepository repository = new BanRepository();
+//        List<Ban> list = repository.getAll();
+//        for (Ban ban : list) {
+//            System.out.println(ban);
+//        }
+//        System.out.println(repository.getOne(1));
+//    }
 //        private static final Logger logger = Logger.getLogger(CategoryRepository.class);
 //
 //    private Session session = HibernatUtil.getFACTORY().openSession();
@@ -148,4 +158,6 @@ public class BanRepository {
 ////        System.out.println(new CategoryRepository().getOne(1L).toString());
 ////    }
 //}
+
+    
 }

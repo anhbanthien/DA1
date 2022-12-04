@@ -19,9 +19,9 @@ import viewmodel.QLSanPham;
  * @author trong
  */
 public class ManageSanPhamService implements IManageSanPhamService {
-
+    
     private SanPhamRepository sanPhamRepository = new SanPhamRepository();
-
+    
     @Override
     public List<QLSanPham> getAll() {
         List<SanPham> lstSP = sanPhamRepository.getAll();
@@ -39,7 +39,13 @@ public class ManageSanPhamService implements IManageSanPhamService {
         }
         return lstQLSP;
     }
-
+    
+    public static void main(String[] args) {
+        
+        new ManageSanPhamService().getAll().forEach(a -> System.out.print(""));
+        
+    }
+    
     @Override
     public QLSanPham getOne(UUID id) {
         SanPham x = sanPhamRepository.getOne(id);
@@ -53,7 +59,7 @@ public class ManageSanPhamService implements IManageSanPhamService {
         qlsp.setTrangThai(x.getTrangThai());
         return qlsp;
     }
-
+    
     @Override
     public String add(QLSanPham qlsp) {
         SanPham sp = new SanPham();
@@ -63,10 +69,10 @@ public class ManageSanPhamService implements IManageSanPhamService {
         sp.setImage(qlsp.getImage());
         sp.setGia(qlsp.getGia());
         sp.setTrangThai(qlsp.getTrangThai());
-
+        
         return sanPhamRepository.Add(sp) ? "Thêm thành công" : "Thêm thất bại";
     }
-
+    
     @Override
     public String update(UUID id, QLSanPham qlsp) {
         SanPham sp = new SanPham();
@@ -76,10 +82,15 @@ public class ManageSanPhamService implements IManageSanPhamService {
         sp.setImage(qlsp.getImage());
         sp.setGia(qlsp.getGia());
         sp.setTrangThai(qlsp.getTrangThai());
+<<<<<<< HEAD
 
         return sanPhamRepository.Update(id, sp) ? "Sửa thành công" : "Sửa thất bại";
+=======
+        
+        return sanPhamRepository.Add(sp) ? "Sửa thành công" : "Sửa thất bại";
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
     }
-
+    
     @Override
     public String delete(QLSanPham qlsp) {
         SanPham sp = new SanPham();
@@ -116,5 +127,5 @@ public class ManageSanPhamService implements IManageSanPhamService {
         qlsp.setTrangThai(x.getTrangThai());
         return qlsp;
     }
-
+    
 }

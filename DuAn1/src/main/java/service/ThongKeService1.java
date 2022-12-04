@@ -4,21 +4,17 @@
  */
 package service;
 
+import java.util.Date;
 import java.util.List;
-import domainmodel.BanChiTiet;
-import reponse.BanChiTietReponse;
 
 /**
  *
  * @author vutuo
  */
-public interface QuanLyBanChiTietService {
+public interface ThongKeService1 {
 
-    List<BanChiTietReponse> getAll();
+    List<Object[]> getList();
 
-    String add(BanChiTiet bct);
+    List<Object> soLuong(String date);
 
-    String update(BanChiTiet bct);
-
-    String delete(BanChiTiet bct);
 }

@@ -49,20 +49,20 @@ public class HoaDonView extends javax.swing.JFrame {
     private void showData(List<HoaDonModel> lists) {
         dtm.setRowCount(0);
         for (HoaDonModel hd : lists) {
-            dtm.addRow(hd.toDataRow());
+            dtm.addRow(new Object[]{hd.getIDB(), hd.getIDHD()});
         }
     }
 
     private void fillData(int i) {
-        HoaDonModel hm = listhd.get(i);
-        txtTenNV.setText(hm.getHoTen());
-        txtTenKH.setText(hm.getTen());
-        txtKM.setText(hm.getPhanTramKM());
-        txtTienTra.setText(String.valueOf(hm.getTienTra()));
-        txtTongTien.setText(String.valueOf(hm.getTongTien()));
-        cbbTinhTrang.setSelectedItem(hm.getTrangThai());
-        txtNgayTT.setText(hm.getNgayTT().toString());
-        txtNgayTao.setText(hm.getNgayTao().toString());
+//        HoaDonModel hm = listhd.get(i);
+//        txtTenNV.setText(hm.getHoTen());
+//        txtTenKH.setText(hm.getTen());
+//        txtKM.setText(hm.getPhanTramKM());
+//        txtTienTra.setText(String.valueOf(hm.getTienTra()));
+//        txtTongTien.setText(String.valueOf(hm.getTongTien()));
+//        cbbTinhTrang.setSelectedItem(hm.getTrangThai());
+//        txtNgayTT.setText(hm.getNgayTT().toString());
+//        txtNgayTao.setText(hm.getNgayTao().toString());
     }
 
     private void clearData() {
@@ -106,6 +106,7 @@ public class HoaDonView extends javax.swing.JFrame {
         txtTongTien = new javax.swing.JTextField();
         txtKM = new javax.swing.JTextField();
         cbbTinhTrang = new javax.swing.JComboBox<>();
+        btnSearch1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -162,6 +163,14 @@ public class HoaDonView extends javax.swing.JFrame {
 
         cbbTinhTrang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        btnSearch1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
+        btnSearch1.setText("Pack");
+        btnSearch1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearch1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,9 +183,12 @@ public class HoaDonView extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(220, 220, 220)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtKM, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtKM, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(38, 38, 38)
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -184,10 +196,10 @@ public class HoaDonView extends javax.swing.JFrame {
                 .addContainerGap(108, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenKH, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -251,7 +263,8 @@ public class HoaDonView extends javax.swing.JFrame {
                 .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnSearch1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -270,21 +283,25 @@ public class HoaDonView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        List<HoaDonModel> getAllSearch = new ArrayList<>();
-
-        for (HoaDonModel o : getAllSearch) {
-            if (o.getHoTen().equalsIgnoreCase(String.valueOf(cbbTinhTrang.getSelectedItem()))) {
-                getAllSearch.add(o);
-            }
-        }
-
-        if (getAllSearch.size() > 0) {
-            showData(getAllSearch);
-            JOptionPane.showMessageDialog(this, "Đã tìm thấy");
-        } else {
-            JOptionPane.showMessageDialog(this, "Không tìm thấy");
-        }
+//        List<HoaDonModel> getAllSearch = new ArrayList<>();
+//
+//        for (HoaDonModel o : getAllSearch) {
+//            if (o.getHoTen().equalsIgnoreCase(String.valueOf(cbbTinhTrang.getSelectedItem()))) {
+//                getAllSearch.add(o);
+//            }
+//        }
+//
+//        if (getAllSearch.size() > 0) {
+//            showData(getAllSearch);
+//            JOptionPane.showMessageDialog(this, "Đã tìm thấy");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Không tìm thấy");
+//        }
     }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnSearch1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -324,6 +341,7 @@ public class HoaDonView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnSearch1;
     private javax.swing.JComboBox<String> cbbTinhTrang;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

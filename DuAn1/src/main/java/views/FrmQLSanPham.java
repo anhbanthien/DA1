@@ -357,7 +357,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnQLCT, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(98, 98, 98))
+                .addGap(116, 116, 116))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(117, 117, 117)
@@ -367,9 +367,9 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(34, Short.MAX_VALUE)
                 .addComponent(btnQLCT, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(21, 21, 21))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                     .addContainerGap(37, Short.MAX_VALUE)
@@ -377,8 +377,12 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                     .addGap(18, 18, 18)))
         );
 
+<<<<<<< HEAD
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close-icon_1.png"))); // NOI18N
         jButton1.setText("CLOSE");
+=======
+        jButton1.setText("Close");
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -401,18 +405,31 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
+<<<<<<< HEAD
                 .addGap(396, 396, 396)
                 .addComponent(jButton1)
                 .addContainerGap())
+=======
+                .addGap(344, 344, 344)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jButton1))
                 .addGap(25, 25, 25)
+=======
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jButton1))
+                .addGap(28, 28, 28)
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -451,6 +468,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         new FrmQLNguyenLieu().setVisible(true);
     }//GEN-LAST:event_btnQLNLActionPerformed
 
+<<<<<<< HEAD
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
         row = tblSP.getSelectedRow();
 //        txtTenSP.setText(_iManageSanPhamService.getOne(getID()).getTenSP());
@@ -684,6 +702,8 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         loadData(lstSPMIN);
     }//GEN-LAST:event_btnThapNhatActionPerformed
 
+=======
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed

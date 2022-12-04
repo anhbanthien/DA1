@@ -88,4 +88,5 @@ public class KhachHang {
     public void setTrangThai(String TrangThai) {
         this.TrangThai = TrangThai;
     }
+    
 }

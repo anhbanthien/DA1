@@ -81,11 +81,11 @@ public class SanPhamRepository {
     }
 
     public static void main(String[] args) {
-      
+
         List<SanPham> lists = new SanPhamRepository().getAll();
-      
+
         for (SanPham list : lists) {
-            System.out.println(list.toString());
+            System.out.println(list.getGia());
         }
     }
 
