@@ -276,15 +276,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtProfileActionPerformed
 
     private void JbtBan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBan1ActionPerformed
-        new BanHangJDialog(this, true).setVisible(true);
+        //new BanHangJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtBan1ActionPerformed
 
     private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
-        new ViewThongKe().setVisible(true);
+        //new ViewThongKe().setVisible(true);
     }//GEN-LAST:event_Jbtqlynv1ActionPerformed
 
     private void JbtOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut1ActionPerformed
-        new FrmQLSanPham().setVisible(true);
+        //new FrmQLSanPham().setVisible(true);
     }//GEN-LAST:event_JbtOut1ActionPerformed
 
     private void JbtBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBanActionPerformed
