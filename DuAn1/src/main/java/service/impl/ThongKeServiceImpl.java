@@ -4,19 +4,32 @@
  */
 package service.impl;
 
+import java.util.Date;
 import java.util.List;
 import repository.ThongKeRepository;
+import repository.ThongKeRepository1;
 import service.ThongKeService;
+import service.ThongKeService1;
 
 /**
  *
  * @author vutuo
  */
-public class ThongKeServiceImpl implements ThongKeService{
-    private ThongKeRepository repository = new ThongKeRepository();
+public class ThongKeServiceImpl implements ThongKeService1 {
+
+    private ThongKeRepository1 repository = new ThongKeRepository1();
+
     @Override
     public List<Object[]> getList() {
+
         return repository.listThongKe();
     }
+
+    @Override
+    public List<Object> soLuong(String date) {
+        return repository.soLuong(date);
+    }
+
     
+
 }
