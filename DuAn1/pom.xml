@@ -30,9 +30,19 @@
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
             <version>8.2.2.jre8</version>
+<<<<<<< HEAD
+        </dependency>     
+        <dependency>
+            <groupId>unknown.binary</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>SNAPSHOT</version>
+        </dependency>
+        <!--         https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout -->
+=======
         </dependency>
         
         <!-- https://mvnrepository.com/artifact/org.netbeans.external/AbsoluteLayout -->
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
         <dependency>
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
@@ -41,6 +51,12 @@
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
+<<<<<<< HEAD
+            <artifactId>poi-ooxml</artifactId>
+            <version>3.17</version>
+        </dependency>
+
+=======
             <artifactId>poi</artifactId>
             <version>3.17</version>
         </dependency>
@@ -100,6 +116,7 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
 
     </dependencies > 
 </project>

@@ -887,6 +887,61 @@ public class BanHangJDialog extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+<<<<<<< HEAD:DuAn1/src/main/java/views/BanHang.java
+    private void txtslStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtslStateChanged
+        for (int i = 0; i < sanPhams.size(); i++) {
+            if (sanPhams.get(i).getIDSP() == _idSP) {
+                BigDecimal tien = new BigDecimal(Double.toString((double) txtsl.getValue()));
+            //    tien = sanPhams.get(i).getGia().multiply(tien);
+                txtTien.setText(tien.toString());
+
+                return;
+            }
+        }
+    }//GEN-LAST:event_txtslStateChanged
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+            System.out.println(_idHD);
+            System.out.println(_idSP);
+            System.out.println("12");
+            QLHDCT HDCT = new QLHDCT(_idHD, _idSP,(double)txtsl.getValue());
+            System.out.println(HDCT.getIdHD());
+            System.out.println(HDCT.getIdSP());
+            System.out.println(1);
+            JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
+            System.out.println(2);
+            System.out.println(_idHD);
+            System.out.println(3);
+            System.out.println(hoaDonService.getOne(_idHD).getHoTen());
+            loadTablehoaDonCT(hoaDonService.getOne(_idHD));
+            txttien();
+
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+            System.out.println(_idHD);
+            System.out.println(_idSP);
+            System.out.println("12");
+            QLHDCT HDCT = new QLHDCT(_idHD, _idSP,(double)txtsl.getValue());
+            System.out.println(HDCT.getIdHD());
+            System.out.println(HDCT.getIdSP());
+            System.out.println(1);
+            JOptionPane.showMessageDialog(this, hoaDonCTService.add(HDCT));
+            System.out.println(2);
+            System.out.println(_idHD);
+            System.out.println(3);
+            System.out.println(hoaDonService.getOne(_idHD).getHoTen());
+            loadTablehoaDonCT(hoaDonService.getOne(_idHD));
+            txttien();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+=======
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae:DuAn1/src/main/java/views/BanHangJDialog.java
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         HoaDon hd = new HoaDon();
         hd.setTrangThai("Chờ TT");
@@ -1001,6 +1056,14 @@ public class BanHangJDialog extends javax.swing.JDialog {
         if (txtSdt.getText().isBlank()) {
             return;
         }
+<<<<<<< HEAD:DuAn1/src/main/java/views/BanHang.java
+        _idSP = sanPhams.get(rowIndex).getIDSP();
+        txtsp1.setText(sanPhams.get(rowIndex).getTenSP());
+        BigDecimal tien = new BigDecimal(Double.toString((double) txtsl.getValue()));
+       // tien = sanPhams.get(rowIndex).getGia().multiply(tien);
+        txtTien.setText(String.valueOf(tien));
+    }//GEN-LAST:event_tblSanPhamMouseClicked
+=======
         return;
         //        try {
             //            Integer.parseInt(txtSdt.getText());
@@ -1089,6 +1152,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         int  tien = (int) sanPham.getGia() * (int) txtsl.getValue();
         txtTien.setText(Float.toString(tien));
     }//GEN-LAST:event_txtslStateChanged
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae:DuAn1/src/main/java/views/BanHangJDialog.java
 
     private void txtSDT2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSDT2MouseExited
         if (txtSDT2.getText().isBlank()) {
@@ -1122,12 +1186,19 @@ public class BanHangJDialog extends javax.swing.JDialog {
         if (rowIndex == -1) {
             return;
         }
+<<<<<<< HEAD:DuAn1/src/main/java/views/BanHang.java
+        _idSP = sanPhams.get(rowIndex).getIDSP();
+        txtsp1.setText(sanPhams.get(rowIndex).getTenSP());
+        BigDecimal tien = new BigDecimal(Double.toString((double) txtsl.getValue()));
+    //    tien = sanPhams.get(rowIndex).getGia().multiply(tien);
+=======
         _idHDCT =QLHDCTs.get(rowIndex).getIdHDCT();
         _idSP = QLHDCTs.get(rowIndex).getIdSP();
         QLSanPham sp = sanPhamService.getOne(_idSP);
         txtsp1.setText(sp.getTenSP());
         txtsl.setValue(QLHDCTs.get(rowIndex).getSoLuong());  
         int tien = (int) sp.getGia()*(int) txtsl.getValue();
+>>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae:DuAn1/src/main/java/views/BanHangJDialog.java
         txtTien.setText(String.valueOf(tien));
     }//GEN-LAST:event_tblHoaDonCTMouseClicked
 
