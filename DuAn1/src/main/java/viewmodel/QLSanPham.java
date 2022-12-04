@@ -23,25 +23,14 @@ public class QLSanPham {
     public QLSanPham() {
     }
 
-    public QLSanPham(UUID IDSP, String tenSP, String moTa, String image, float gia, String trangThai) {
-        this.IDSP = IDSP;
-        this.tenSP = tenSP;
-        this.moTa = moTa;
-        this.image = image;
-        this.gia = gia;
-        this.trangThai = trangThai;
+    public QLSanPham(SanPham sp) {
+        this.IDSP = sp.getIdSP();
+        this.tenSP = sp.getTenSP();
+        this.moTa = sp.getMoTa();
+        this.image = sp.getImage();
+        this.gia = sp.getGia();
+        this.trangThai = sp.getTrangThai();
     }
-
-    
-
-    public QLSanPham(String tenSP, String moTa, String image, float gia, String trangThai) {
-        this.tenSP = tenSP;
-        this.moTa = moTa;
-        this.image = image;
-        this.gia = gia;
-        this.trangThai = trangThai;
-    }
-    
 
     public UUID getIDSP() {
         return IDSP;
