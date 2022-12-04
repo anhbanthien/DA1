@@ -32,6 +32,14 @@ public class SanPhamRepository {
         SanPham sanPham = (SanPham) query.getSingleResult();
         return sanPham;
     }
+    
+    public SanPham getOneByTen(String ten) {
+        String sql = fromTable + " WHERE TenSP = :ten ";
+        Query query = session.createQuery(sql, SanPham.class);
+        query.setParameter("ten", ten);
+        SanPham sanPham = (SanPham) query.getSingleResult();
+        return sanPham;
+    }
 
     public boolean Add(SanPham sp) {
         Transaction transaction = null;
@@ -59,11 +67,11 @@ public class SanPhamRepository {
 
     }
 
-    public boolean Delete(UUID id) {
+    public boolean Delete(SanPham sp) {
         Transaction transaction = null;
         try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(id);
+            session.delete(sp);
             transaction.commit();
             return true;
         } catch (Exception e) {
