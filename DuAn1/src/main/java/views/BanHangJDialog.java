@@ -91,7 +91,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         hoaDons = hoaDonlist;
         if (TT.equals("Chờ TT")) {
             TT = "chưa thanh toán";
-        } else if (TT.equals("Đã TT")) {
+        } else if (TT.equals("DTT")) {
             TT = "Đã thanh toán";
         } else if (TT.equals("DH")) {
             TT = "Đã hủy";
@@ -926,11 +926,11 @@ public class BanHangJDialog extends javax.swing.JDialog {
         KhachHang kh = new KhachHangRepository().getOne(_idKH);
         hd.setIDKH(kh);
         hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
-        hd.setTrangThai("Đã TT");
+        hd.setTrangThai("DTT");
         if (hoaDonRepository.Update(hd)) {
             JOptionPane.showMessageDialog(this, "Succes");
             Ban banv = banService.getOne(_ban);
-            banv.setTrangThaiBan("Hết Chống");
+            banv.setTrangThaiBan("Đang Hoạt Động");
             JOptionPane.showMessageDialog(this, banService.update(banv));
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
@@ -1176,7 +1176,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_rdoHDCActionPerformed
 
     private void rdoHDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDDActionPerformed
-        loadTablehoaDon("Đã TT");
+        loadTablehoaDon("DTT");
     }//GEN-LAST:event_rdoHDDActionPerformed
 
     private void rdoHDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDHActionPerformed

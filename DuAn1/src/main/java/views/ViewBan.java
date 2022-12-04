@@ -64,7 +64,7 @@ public class ViewBan extends javax.swing.JFrame {
         dtmSecond.setRowCount(0);
         for (HoaDonModel o : getAllInvoices) {
             dtmSecond.addRow(new Object[]{
-                o.getIDB().getIDB(), o.getIDHD(), o.getIDKH().getTen(), o.getIDNV().getHoTen(),
+                o.getIDB().getIDB(), o.getIDKH().getTen(), o.getIDNV().getHoTen(),
                 new BanRepository().getTotolCustomer(o.getIDB().getIDB()).get(0)
 
             });
@@ -200,29 +200,29 @@ public class ViewBan extends javax.swing.JFrame {
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Bàn Số", "ID Hoá Đơn", "Tên Khách Hàng", "Nhân Viên Phụ Trách", "Số Người"
+                "Bàn Số", "Tên Khách Hàng", "Nhân Viên Phụ Trách", "Số Người"
             }
         ));
         tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
