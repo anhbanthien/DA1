@@ -16,7 +16,7 @@ import org.hibernate.query.Query;
 public class ThongKeRepository {
      private Session session = HibernatUtil.getFACTORY().openSession();
       public List<Object[]> listThongKe() {
-        String HQL = "select H.NgayTT, COUNT(H.NgayTT), SUM(H.TongTien)  from HoaDon H GROUP BY H.NgayTT ORDER BY H.NgayTT DESC";
+        String HQL = "select H.NgayTT, COUNT(H.NgayTT), SUM(H.TongTien)  from HoaDon H where H.TrangThai = 'DTT' Group BY H.NgayTT ORDER BY H.NgayTT DESC";
         Query query = session.createQuery(HQL, Object[].class);
         List<Object[]> lists = query.getResultList();
         return lists;
