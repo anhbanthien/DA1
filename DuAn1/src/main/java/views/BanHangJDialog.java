@@ -58,7 +58,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     QuanLyBanService banService = new QuanLyBanServiceImpl();
     List<BanReponse> bans = new ArrayList<>();
     List<ban> banss = new ArrayList<>();
-    int _ban = 0;
+    int _ban = 0;    
     UUID _idHD = null;
     UUID _idSP = null;
     UUID _idKH = null;
@@ -66,8 +66,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     float tienTong;
     float tienGiam = 0;
     float tienTT;
-    int u = 0;
-
+    int u= 0;
     public BanHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -78,9 +77,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
         txtTienTT.setEnabled(false);
         txtTienTong.setEnabled(false);
         btnThanhToan.setEnabled(false);
-
+        
     }
-
     private void loadTablehoaDon(String TT) {
         List<HoaDonModel> hoaDonlist = new ArrayList<>();
         hoaDonlist = new HoaDonServiceImpl().getHoaDonByTT(TT);
@@ -97,12 +95,11 @@ public class BanHangJDialog extends javax.swing.JDialog {
             TT = "Đã hủy";
         }
         for (int i = 0; i < hoaDonlist.size(); i++) {
-            _Model.addRow(new Object[]{hoaDons.get(i).getIDKH().getTen(), hoaDonlist.get(i).getNgayTao(), TT});
+            _Model.addRow(new Object[]{hoaDons.get(i).getIDKH().getTen(),hoaDonlist.get(i).getNgayTao(), TT});
 
         }
 
     }
-
     private void txttien() {
         tienTong = 0;
         for (QLHDCT hdctt : QLHDCTs) {
@@ -115,16 +112,16 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }
 
     private void loadTablehoaDonCT(HoaDonModel hoaDon) {
-
+        
         _Model = new DefaultTableModel();
         QLHDCTs = new ArrayList<>();
         _Model = (DefaultTableModel) tblHoaDonCT.getModel();
         _Model.setRowCount(0);
-        if (hoaDon == null) {
+        if(hoaDon ==null){
             return;
         }
-        QLHDCTs = new ManageHDCTService().getListbyHD(_idHD);
-        if (QLHDCTs.size() == 0) {
+        QLHDCTs = new ManageHDCTService().getListbyHD(_idHD);       
+        if(QLHDCTs.size() == 0){
             return;
         }
         for (int i = 0; i < QLHDCTs.size(); i++) {
@@ -150,7 +147,6 @@ public class BanHangJDialog extends javax.swing.JDialog {
 
         return hd;
     }
-
     public void loadTableBan() {
         bans.clear();
         bans = new ArrayList<>();
@@ -158,92 +154,87 @@ public class BanHangJDialog extends javax.swing.JDialog {
         bans = banService.getAll();
 //        pnlBan.removeAll();
         pnlBan.setLayout(null);
-        pnlBan.setSize(new Dimension(500, 243));
+	pnlBan.setSize(new Dimension(500,243));
         autoGenBan();
         JScrollPane cuon = new JScrollPane();
         pnlBan.add(cuon);
-
+        
     }
-
-    void autoGenBan() {
-        int line = 0;
-        for (int i = 0; i < bans.size(); i++) {
+     void autoGenBan() {
+		int line=0;
+		for(int i=0;i<bans.size();i++) {
 //			System.out.println(line);
-            ban ba = new ban(bans.get(i), i);
-            if (bans.get(i).getIDB() == _ban && _ban != 0) {
-                ba.setBackground(Color.BLUE);
-                System.out.println(_ban);
-                _ban = 0;
-            }
-            ba.setBounds((122 * line++) + 5, (80 * Integer.parseInt(String.valueOf((i / 4))) + 25), 120, 80);
-            ba.setBorder(BorderFactory.createEtchedBorder());
-            ba.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
-                    if (ba.getBackground() == Color.PINK) {
-                        for (int i = 0; i < banss.size(); i++) {
-                            banss.get(i).setBackground(Color.GREEN);
-
+                        ban ba = new ban(bans.get(i),i);
+                        if(bans.get(i).getIDB()==_ban&&_ban!=0){
+                             ba.setBackground(Color.BLUE);
+                             System.out.println(_ban);
+                             _ban=0;
                         }
-                        ba.setBackground(Color.PINK);
-                    }
-                    for (int i = 0; i < banss.size(); i++) {
-                        banss.get(i).setBackground(Color.GREEN);
-
-                    }
-                    _ban = ba.getBan().getIDB();
-                    ba.setBackground(Color.PINK);
-
-                }
-            });
-            banss.add(ba);
-            pnlBan.add(banss.get(i));
-            if (line > 3) {
-                line = 0;
-            }
-        }
-
-    }
-
+			ba.setBounds((122*line++)+5,(80*Integer.parseInt(String.valueOf((i/4))) +25) , 120, 80);
+			ba.setBorder(BorderFactory.createEtchedBorder());
+                        ba.addMouseListener(new MouseAdapter() {
+				 public void mouseClicked(MouseEvent e) {
+                                     if(ba.getBackground()==Color.PINK){
+                                         for (int i = 0; i < banss.size(); i++) {
+                                        banss.get(i).setBackground(Color.GREEN);
+                                        
+                                      } 
+                                     ba.setBackground(Color.PINK);
+                                     }
+                                     for (int i = 0; i < banss.size(); i++) {
+                                        banss.get(i).setBackground(Color.GREEN);
+                                        
+                                      }                                     
+                                     _ban = ba.getBan().getIDB();
+                                     ba.setBackground(Color.PINK);        
+                                     
+                                         
+				 }
+			});
+                        banss.add(ba);
+			pnlBan.add(banss.get(i));
+			if(line>3)line=0;
+		}
+                
+	}
     public void loadTableSanPham() {
         sanPhams.clear();
         sanPhams = new ArrayList<>();
 
         sanPhams = sanPhamService.getAll();
         pnlSanPham.setLayout(null);
-        pnlSanPham.setSize(new Dimension(500, 243));
+	pnlSanPham.setSize(new Dimension(500,243));
         autoGenSP();
         JScrollPane cuon = new JScrollPane();
         pnlSanPham.add(cuon);
-
+        
     }
-
-    void autoGenSP() {
-        int line = 0;
-        for (int i = 0; i < sanPhams.size(); i++) {
+     void autoGenSP() {
+		int line=0;
+		for(int i=0;i<sanPhams.size();i++) {
 //			System.out.println(line);
-            BSanPham th = new BSanPham(sanPhams.get(i), i);
-            th.setBounds((122 * line++) + 5, (120 * Integer.parseInt(String.valueOf((i / 4))) + 25), 120, 150);
-            th.setBorder(BorderFactory.createEtchedBorder());
-            th.addMouseListener(new MouseAdapter() {
-                public void mouseClicked(MouseEvent e) {
+                        BSanPham th = new BSanPham(sanPhams.get(i),i);
+			th.setBounds((122*line++)+5,(120*Integer.parseInt(String.valueOf((i/4))) +25) , 120, 150);
+			th.setBorder(BorderFactory.createEtchedBorder());
+                        th.addMouseListener(new MouseAdapter() {
+				 public void mouseClicked(MouseEvent e) {
 //					 th.setBackground(Color.red);
-                    u = th.getU();
-                    System.out.println(u);
-                    _idSP = th.getSp().getIDSP();
-                    txtsp1.setText(th.getSp().getTenSP());
-                    int tien = (int) th.getSp().getGia() * (int) txtsl.getValue();
-                    System.out.println(tien);
-                    txtTien.setText(String.valueOf(tien));
-                    lblanhSP.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/" + th.getSp().getImage())).getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_DEFAULT)));
+                                         u = th.getU();
+					 System.out.println(u);
+                                         _idSP = th.getSp().getIDSP();
+                                            txtsp1.setText(th.getSp().getTenSP());
+                                         int tien = (int) th.getSp().getGia() * (int) txtsl.getValue();
+                                         System.out.println(tien);
+                                         txtTien.setText(String.valueOf(tien));
+                                         lblanhSP.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/"+th.getSp().getImage())).getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_DEFAULT)));
+        
+				 }
+			});
+			pnlSanPham.add(th);
+			if(line>3)line=0;
+		}
+	}
 
-                }
-            });
-            pnlSanPham.add(th);
-            if (line > 3) {
-                line = 0;
-            }
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -920,9 +911,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         HoaDon hd = getformHoaDon();
-        if (_ban != 0) {
-            hd.setIDB(banService.getOne(_ban));
-        }
+        if(_ban!=0){
+        hd.setIDB(banService.getOne(_ban));}
         KhachHang kh = new KhachHangRepository().getOne(_idKH);
         hd.setIDKH(kh);
         hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
@@ -944,10 +934,9 @@ public class BanHangJDialog extends javax.swing.JDialog {
         HoaDon hd = getformHoaDon();
         KhachHang kh = new KhachHangRepository().getOne(_idKH);
         System.out.println(_ban);
-        if (_ban != 0) {
-            hd.setIDB(banService.getOne(_ban));
-        }
-
+        if(_ban!=0){
+        hd.setIDB(banService.getOne(_ban));}
+        
         hd.setIDKH(kh);
         if (hoaDonRepository.Update(hd)) {
             JOptionPane.showMessageDialog(this, "Succes");
@@ -999,8 +988,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         KhachHangModel kh = new KhachHangModel();
         try {
             kh = khachHangService.getOne(Sdt);
-        } catch (Exception e) {
-        }
+        }catch(Exception e){}
         if (khachHangService.getOne(Sdt) == null) {
             return;
         }
@@ -1015,15 +1003,16 @@ public class BanHangJDialog extends javax.swing.JDialog {
         }
         return;
         //        try {
-        //            Integer.parseInt(txtSdt.getText());
-        //        } catch (Exception e) {
-        //            JOptionPane.showMessageDialog(this, "SĐT chỉ đc nhập số");
-        //        }
+            //            Integer.parseInt(txtSdt.getText());
+            //        } catch (Exception e) {
+            //            JOptionPane.showMessageDialog(this, "SĐT chỉ đc nhập số");
+            //        }
     }//GEN-LAST:event_txtSdtMouseExited
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-
-        JOptionPane.showMessageDialog(this, hoaDonCTService.delete(_idHDCT));
+        
+        
+        JOptionPane.showMessageDialog(this,hoaDonCTService.delete(_idHDCT));
         System.out.println(2);
         System.out.println(_idHD);
         System.out.println(3);
@@ -1034,7 +1023,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-
+         
         System.out.println(_idHD);
         System.out.println(_idSP);
         System.out.println("12");
@@ -1044,8 +1033,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
         System.out.println(HDCT.getIdHD());
         System.out.println(HDCT.getIdSP());
         System.out.println(1);
-
-        JOptionPane.showMessageDialog(this, hoaDonCTService.update(HDCT.getIdHD(), HDCT));
+        
+        JOptionPane.showMessageDialog(this,hoaDonCTService.update(HDCT.getIdHD(),HDCT));
         System.out.println(2);
         System.out.println(_idHD);
         System.out.println(3);
@@ -1070,8 +1059,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
             for (int i = 0; i < QLHDCTs.size(); i++) {
                 if (QLHDCTs.get(i).getIdSP() == _idSP) {
                     QLHDCT HDCT = QLHDCTs.get(i);
-                    HDCT.setSoLuong((int) txtsl.getValue() + QLHDCTs.get(i).getSoLuong());
-                    JOptionPane.showMessageDialog(this, hoaDonCTService.update(HDCT.getIdHD(), HDCT));
+                    HDCT.setSoLuong((int) txtsl.getValue()+QLHDCTs.get(i).getSoLuong());
+                    JOptionPane.showMessageDialog(this, hoaDonCTService.update(HDCT.getIdHD(),HDCT));
                     JOptionPane.showMessageDialog(this, "Đã có sản Phầm này");
                     return;
                 }
@@ -1097,7 +1086,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     private void txtslStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_txtslStateChanged
 
         QLSanPham sanPham = sanPhamService.getOne(_idSP);
-        int tien = (int) sanPham.getGia() * (int) txtsl.getValue();
+        int  tien = (int) sanPham.getGia() * (int) txtsl.getValue();
         txtTien.setText(Float.toString(tien));
     }//GEN-LAST:event_txtslStateChanged
 
@@ -1122,8 +1111,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
         if (khachHangService.Save(khachHang) == true) {
             JOptionPane.showMessageDialog(this, "Thêm Thành công");
 
-        } else {
-            JOptionPane.showMessageDialog(this, "Thêm Thất bại");
+        }else{
+        JOptionPane.showMessageDialog(this, "Thêm Thất bại");
         }
     }//GEN-LAST:event_jButton14ActionPerformed
 
@@ -1133,12 +1122,12 @@ public class BanHangJDialog extends javax.swing.JDialog {
         if (rowIndex == -1) {
             return;
         }
-        _idHDCT = QLHDCTs.get(rowIndex).getIdHDCT();
+        _idHDCT =QLHDCTs.get(rowIndex).getIdHDCT();
         _idSP = QLHDCTs.get(rowIndex).getIdSP();
         QLSanPham sp = sanPhamService.getOne(_idSP);
         txtsp1.setText(sp.getTenSP());
-        txtsl.setValue(QLHDCTs.get(rowIndex).getSoLuong());
-        int tien = (int) sp.getGia() * (int) txtsl.getValue();
+        txtsl.setValue(QLHDCTs.get(rowIndex).getSoLuong());  
+        int tien = (int) sp.getGia()*(int) txtsl.getValue();
         txtTien.setText(String.valueOf(tien));
     }//GEN-LAST:event_tblHoaDonCTMouseClicked
 
@@ -1157,15 +1146,15 @@ public class BanHangJDialog extends javax.swing.JDialog {
         txtSdt.setText(kh.getSoDienThoai());
         txtTenKH.setText(kh.getTen());
 //        _ban = hd.getIDB().getIDB();
-        if (hd.getIDB() != null) {
+        if(hd.getIDB() != null){
             _ban = hd.getIDB().getIDB();
         }
         txttien();
         txtTienKD.setText("");
         for (int i = 0; i < banss.size(); i++) {
             banss.get(i).setBackground(Color.GREEN);
-            if (banss.get(i).getBan().getIDB() == _ban) {
-                banss.get(i).setBackground(Color.PINK);
+            if(banss.get(i).getBan().getIDB()==_ban){
+            banss.get(i).setBackground(Color.PINK);
             }
         }
         System.out.println(_ban);
@@ -1184,22 +1173,21 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_rdoHDHActionPerformed
 
     private void txtTienKDCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtTienKDCaretUpdate
-        if (txtTienKD.getText() == null) {
+        if(txtTienKD.getText()== null){
             return;
         }
         float tienKD = 0;
         try {
-            tienKD = Float.parseFloat(txtTienKD.getText());
-        } catch (Exception e) {
+            tienKD =  Float.parseFloat(txtTienKD.getText());
+        }catch (Exception e) {
         }
 
         float tienthua = tienKD - tienTT;
         txtTienThua.setText(Float.toString(tienthua));
         btnThanhToan.setEnabled(false);
-        if (tienKD >= tienTT) {
-            btnThanhToan.setEnabled(true);
-        }
-
+        if(tienKD >= tienTT){
+        btnThanhToan.setEnabled(true);}
+        
     }//GEN-LAST:event_txtTienKDCaretUpdate
 
     /**
