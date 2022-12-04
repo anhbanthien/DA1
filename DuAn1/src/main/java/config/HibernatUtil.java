@@ -5,12 +5,6 @@
 package config;
 
 import domainmodel.Ban;
-<<<<<<< HEAD
-import domainmodel.BanChiTiet;
-import domainmodel.CongThuc;
-=======
-
->>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
 import java.util.Properties;
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
@@ -37,11 +31,8 @@ public class HibernatUtil {
         Properties properties = new Properties();
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DuAn1");
         properties.put(Environment.USER, "sa");
-<<<<<<< HEAD
-        properties.put(Environment.PASS, "hieuhlu97@");
-=======
-        properties.put(Environment.PASS, "123456");
->>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
+        properties.put(Environment.PASS, "16102003");
+
         properties.put(Environment.SHOW_SQL, "true");
 
         conf.setProperties(properties);
@@ -54,12 +45,11 @@ public class HibernatUtil {
 
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(SanPham.class);
-<<<<<<< HEAD
+
         conf.addAnnotatedClass(NguyenLieu.class);
        conf.addAnnotatedClass(CongThuc.class);
 
-=======
->>>>>>> 407d4ca2c0d7e254caef772b5040ab2f58ef09ae
+
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);
