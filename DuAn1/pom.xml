@@ -93,8 +93,13 @@
             <artifactId>jfreechart</artifactId>
             <version>1.0.19</version>
         </dependency>
-<!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
-
+        <!-- https://mvnrepository.com/artifact/com.toedter/jcalendar -->
+        <!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4.7</version>
+        </dependency>
 
     </dependencies > 
 </project>

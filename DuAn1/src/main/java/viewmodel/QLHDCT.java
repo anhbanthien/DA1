@@ -42,7 +42,14 @@ public class QLHDCT {
     }
     public float getTien() {
         
+
+        float giaf;
+        giaf= gia;
+        float tien= giaf*soLuong;
+       
+
         return gia*soLuong;
+
     }
 
     public void setGia(float gia) {
