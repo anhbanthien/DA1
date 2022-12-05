@@ -140,5 +140,8 @@ public class QLHDCT {
         return "QLHDCT{" + "idHDCT=" + idHDCT + ", idHD=" + idHD + ", idSP=" + idSP + ", soLuong=" + soLuong + ", soBanCT=" + soBanCT + '}';
     }
     
+    public Object[] toDataRow(){
+        return new Object[]{tenSP, gia, soLuong, getTien()};
+    }
     
 }

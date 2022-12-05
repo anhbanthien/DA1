@@ -276,7 +276,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtProfileActionPerformed
 
     private void JbtBan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBan1ActionPerformed
-       
+        new BanHangJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtBan1ActionPerformed
 
     private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
