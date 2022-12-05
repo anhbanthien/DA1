@@ -85,15 +85,14 @@ public class CongThucRepository {
 
     public static void main(String[] args) {
         CongThucRepository ct = new CongThucRepository();
-        CongThuc congThuc = new CongThuc();
-        SanPhamRepository sp =new SanPhamRepository();
-        congThuc.setSanPham(sp.getOne(UUID.fromString("2e114e6f-3306-4e8b-a4e4-1733e6a20aea")));
+//        SanPhamRepository sp =new SanPhamRepository();
+//        congThuc.setSanPham(sp.getOne(UUID.fromString("2e114e6f-3306-4e8b-a4e4-1733e6a20aea")));
         
-//        List<CongThuc> lst = ct.getAll();
-//        for (CongThuc x : lst) {
-//
-//        }
+        List<CongThuc> lst = ct.getAll();
+        for (CongThuc x : lst) {
+
+        }
    //     new CongThucRepository().getAll().forEach(a -> System.out.println(a.toString()));
-            System.out.println(ct.Add(congThuc));
+//            System.out.println(ct.Add(congThuc));
     }
 }

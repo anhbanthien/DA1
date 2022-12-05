@@ -5,6 +5,7 @@
 package config;
 
 import domainmodel.Ban;
+import domainmodel.CongThuc;
 import java.util.Properties;
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
@@ -12,6 +13,7 @@ import domainmodel.HoaDon;
 import domainmodel.HDCT;
 import domainmodel.KhachHang;
 import domainmodel.KhuyenMai;
+import domainmodel.NguyenLieu;
 
 import domainmodel.SanPham;
 import org.hibernate.SessionFactory;
@@ -30,7 +32,7 @@ public class HibernatUtil {
         Properties properties = new Properties();
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DuAn1");
         properties.put(Environment.USER, "sa");
-        properties.put(Environment.PASS, "16102003");
+        properties.put(Environment.PASS, "hieuhlu97@");
         properties.put(Environment.SHOW_SQL, "true");
         conf.setProperties(properties);
         conf.addAnnotatedClass(NhanVien.class);
@@ -39,7 +41,8 @@ public class HibernatUtil {
         conf.addAnnotatedClass(HoaDon.class);
         conf.addAnnotatedClass(HDCT.class);
         conf.addAnnotatedClass(KhuyenMai.class);
-
+        conf.addAnnotatedClass(CongThuc.class);
+        conf.addAnnotatedClass(NguyenLieu.class);
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(SanPham.class);
 
