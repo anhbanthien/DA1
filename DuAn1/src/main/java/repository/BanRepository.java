@@ -33,7 +33,10 @@ public class BanRepository {
             return null;
         }
     }
-
+    
+    public static void main(String[] args) {
+        System.out.println(new BanRepository().getOne(1).toString());
+    }
     public List<Object[]> getTotolCustomer(int idTable) {
         Query q = session.createQuery("SELECT COUNT(DISTINCT H.IDKH) FROM HoaDon H JOIN Ban B ON H.IDB = B.IDB WHERE H.IDB = " + idTable);
         List<Object[]> countCus = q.getResultList();
@@ -41,12 +44,7 @@ public class BanRepository {
 
     }
 
-    public static void main(String[] args) {
-//        Query q = session.createQuery("SELECT COUNT(H.IDKH) FROM HoaDon H JOIN Ban B ON H.IDB = B.IDB WHERE H.IDB = 1");
-//        List<Object[]> countCus = q.getResultList();
-//        System.out.println(countCus.get(0));
-        System.out.println(new BanRepository().getTotolCustomer(1).get(0));
-    }
+
 
     public Ban getOne(int IDB) {
         return session.get(Ban.class, IDB);

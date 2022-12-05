@@ -60,6 +60,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         initComponents();
         fillToTable(getAll);
         fillCBB(new QlyNhanVienImpl().getAllStaff());
+        showDetailIndex();
     }
 
     /**
@@ -374,6 +375,33 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbPositionActionPerformed
 
+    public void showDetailIndex() {
+        txtName.setText(new QlyNhanVienImpl().getAllStaff().get(1).getHoTen());
+        txtEmail.setText(new QlyNhanVienImpl().getAllStaff().get(1).getEmail());
+        txtNumberPhone.setText(new QlyNhanVienImpl().getAllStaff().get(1).getSDT());
+        if (new QlyNhanVienImpl().getAllStaff().get(1).getImage() == null) {
+            lblAnh.setText("null");
+            lblAnh.setIcon(null);
+        } else {
+            lblAnh.setText("");
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(1).getImage());
+            Image img = imgIcon.getImage();
+            img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), 0);
+            lblAnh.setIcon(imgIcon);
+        }
+        if (new QlyNhanVienImpl().getAllStaff().get(1).getTrangThai().equalsIgnoreCase("ON")) {
+            rdoOn.setSelected(true);
+        } else {
+            rdoOFF.setSelected(true);
+        }
+        if (new QlyNhanVienImpl().getAllStaff().get(1).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
+            rdoMale.setSelected(true);
+        } else {
+            rdoFemale.setSelected(true);
+        }
+    }
+
+
     private void tblQlyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQlyNhanVienMouseClicked
 
         txtName.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getHoTen());
@@ -384,17 +412,17 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             lblAnh.setIcon(null);
         } else {
             lblAnh.setText("");
-            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getImage());
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(1).getImage());
             Image img = imgIcon.getImage();
             img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), 0);
             lblAnh.setIcon(imgIcon);
         }
-        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
+        if (new QlyNhanVienImpl().getAllStaff().get(1).getTrangThai().equalsIgnoreCase("ON")) {
             rdoOn.setSelected(true);
         } else {
             rdoOFF.setSelected(true);
         }
-        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
+        if (new QlyNhanVienImpl().getAllStaff().get(1).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
             rdoMale.setSelected(true);
         } else {
             rdoFemale.setSelected(true);

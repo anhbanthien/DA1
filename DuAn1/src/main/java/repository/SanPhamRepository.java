@@ -32,6 +32,13 @@ public class SanPhamRepository {
         SanPham sanPham = (SanPham) query.getSingleResult();
         return sanPham;
     }
+     public SanPham getOneByTen(String ten) {
+        String sql = fromTable + " WHERE TenSP = :ten ";
+        Query query = session.createQuery(sql, SanPham.class);
+        query.setParameter("ten", ten);
+        SanPham sanPham = (SanPham) query.getSingleResult();
+        return sanPham;
+    }
 
     public boolean Add(SanPham sp) {
         Transaction transaction = null;
@@ -59,11 +66,11 @@ public class SanPhamRepository {
 
     }
 
-    public boolean Delete(UUID id) {
+    public boolean Delete(SanPham sp) {
         Transaction transaction = null;
         try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();
-            session.delete(id);
+            session.delete(sp);
             transaction.commit();
             return true;
         } catch (Exception e) {
@@ -74,11 +81,16 @@ public class SanPhamRepository {
 
     public static void main(String[] args) {
 
-        List<SanPham> lists = new SanPhamRepository().getAll();
-
-        for (SanPham list : lists) {
-            System.out.println(list.getGia());
-        }
+//        List<SanPham> lists = new SanPhamRepository().getAll();
+//
+//        for (SanPham list : lists) {
+//            System.out.println(list.getGia());
+//        }
+    SanPhamRepository spre = new SanPhamRepository();
+    SanPham sp = spre.getOneByTen("Cà Phê Trứng");
+        System.out.println(sp.toString());
+        
+        //spre.Delete(spre.getOneByTen("Cà Phê Trứng").getIdSP());
     }
 
 }
