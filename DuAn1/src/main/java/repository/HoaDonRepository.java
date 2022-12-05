@@ -46,7 +46,7 @@ public class HoaDonRepository {
 
     public static void main(String[] args) {
 
-        new HoaDonRepository().getHoaDonByTT().forEach(a -> System.out.println(a.toString()));
+        new HoaDonRepository().getAll().forEach(a -> System.out.println(a.toString()));
 
     }
 
