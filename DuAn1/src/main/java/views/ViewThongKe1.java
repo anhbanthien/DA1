@@ -47,7 +47,6 @@ import service.impl.ThongKeServiceImpl;
 import viewmodel.HoaDonModel;
 import viewmodel.KhachHangModel;
 
-
 /**
  *
  * @author vutuo
@@ -958,7 +957,7 @@ public class ViewThongKe1 extends javax.swing.JFrame {
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         int row = jTable2.getSelectedRow();
         Object[] listTest = listTK.get(row);
-        
+
     }//GEN-LAST:event_jTable2MouseClicked
 
     /**

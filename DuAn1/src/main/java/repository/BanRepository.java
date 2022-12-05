@@ -35,7 +35,7 @@ public class BanRepository {
     }
 
     public List<Object[]> getTotolCustomer(int idTable) {
-        Query q = session.createQuery("SELECT COUNT(H.IDKH) FROM HoaDon H JOIN Ban B ON H.IDB = B.IDB WHERE H.IDB = " + idTable);
+        Query q = session.createQuery("SELECT COUNT(DISTINCT H.IDKH) FROM HoaDon H JOIN Ban B ON H.IDB = B.IDB WHERE H.IDB = " + idTable);
         List<Object[]> countCus = q.getResultList();
         return countCus;
 
