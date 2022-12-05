@@ -5,6 +5,7 @@
 package config;
 
 import domainmodel.Ban;
+import domainmodel.CongThuc;
 import java.util.Properties;
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
@@ -12,6 +13,7 @@ import domainmodel.HoaDon;
 import domainmodel.HDCT;
 import domainmodel.KhachHang;
 import domainmodel.KhuyenMai;
+import domainmodel.NguyenLieu;
 
 import domainmodel.SanPham;
 import org.hibernate.SessionFactory;
@@ -39,7 +41,8 @@ public class HibernatUtil {
         conf.addAnnotatedClass(HoaDon.class);
         conf.addAnnotatedClass(HDCT.class);
         conf.addAnnotatedClass(KhuyenMai.class);
-
+        conf.addAnnotatedClass(CongThuc.class);
+        conf.addAnnotatedClass(NguyenLieu.class);
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(SanPham.class);
 

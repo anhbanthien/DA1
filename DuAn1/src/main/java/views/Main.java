@@ -280,7 +280,7 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_JbtBan1ActionPerformed
 
     private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
-        new ViewThongKe1().setVisible(true);
+        new ViewThongKe().setVisible(true);
     }//GEN-LAST:event_Jbtqlynv1ActionPerformed
 
     private void JbtOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut1ActionPerformed

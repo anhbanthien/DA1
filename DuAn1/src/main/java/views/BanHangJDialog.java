@@ -5,6 +5,7 @@
 package views;
 
 import domainmodel.Ban;
+import domainmodel.DangNhap;
 import domainmodel.HoaDon;
 import domainmodel.KhachHang;
 import java.awt.Color;
@@ -42,6 +43,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
      * Creates new form BanHangJDialog
      */
     IManageSanPhamService sanPhamService = new ManageSanPhamService();
+    DangNhap _dn = null;
     List<QLSanPham> sanPhams = new ArrayList<>();
     HoaDonService hoaDonService = new HoaDonServiceImpl();
     HoaDonRepository hoaDonRepository = new HoaDonRepository();
@@ -81,6 +83,20 @@ public class BanHangJDialog extends javax.swing.JDialog {
 
     }
 
+    public BanHangJDialog(java.awt.Frame parent, boolean modal, DangNhap dn) {
+        super(parent, modal);
+        _dn = dn;
+        initComponents();
+        loadTableSanPham();
+        loadTableBan();
+        txtTienTong.setEnabled(false);
+        txtTienGiam.setEnabled(false);
+        txtTienTT.setEnabled(false);
+        txtTienTong.setEnabled(false);
+        btnThanhToan.setEnabled(false);
+
+    }
+
     private void loadTablehoaDon(String TT) {
         List<HoaDonModel> hoaDonlist = new ArrayList<>();
         hoaDonlist = new HoaDonServiceImpl().getHoaDonByTT(TT);
@@ -91,13 +107,17 @@ public class BanHangJDialog extends javax.swing.JDialog {
         hoaDons = hoaDonlist;
         if (TT.equals("Chờ TT")) {
             TT = "chưa thanh toán";
-        } else if (TT.equals("DTT")) {
+        } else if (TT.equals("Đã TT")) {
             TT = "Đã thanh toán";
         } else if (TT.equals("DH")) {
             TT = "Đã hủy";
         }
         for (int i = 0; i < hoaDonlist.size(); i++) {
-            _Model.addRow(new Object[]{hoaDons.get(i).getIDKH().getTen(), hoaDonlist.get(i).getNgayTao(), TT});
+            if (hoaDons.get(i).getIDKH() == null) {
+                _Model.addRow(new Object[]{"Chưa có tên", hoaDonlist.get(i).getNgayTao(), TT});
+            } else {
+                _Model.addRow(new Object[]{hoaDons.get(i).getIDKH().getTen(), hoaDonlist.get(i).getNgayTao(), TT});
+            }
 
         }
 
@@ -143,8 +163,10 @@ public class BanHangJDialog extends javax.swing.JDialog {
 
     private HoaDon getformHoaDon() {
         HoaDon hd = hoaDonRepository.getOne(_idHD);
-        KhachHang kh = new KhachHangRepository().getOne(_idKH);
-        hd.setIDKH(kh);
+        if (_idKH != null) {
+            KhachHang kh = new KhachHangRepository().getOne(_idKH);
+            hd.setIDKH(kh);
+        }
         hd.setTongTien(tienTong);
         hd.setTienTra(tienTT);
 
@@ -222,7 +244,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         for (int i = 0; i < sanPhams.size(); i++) {
 //			System.out.println(line);
             BSanPham th = new BSanPham(sanPhams.get(i), i);
-            th.setBounds((122 * line++) + 5, (120 * Integer.parseInt(String.valueOf((i / 4))) + 25), 120, 150);
+            th.setBounds((122 * line++) + 5, (150 * Integer.parseInt(String.valueOf((i / 4))) + 25), 122, 150);
             th.setBorder(BorderFactory.createEtchedBorder());
             th.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
@@ -445,7 +467,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(19, Short.MAX_VALUE))
+                        .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -491,7 +513,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jButton4)
-                        .addGap(0, 29, Short.MAX_VALUE))
+                        .addGap(0, 26, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(j7, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -515,7 +537,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         );
         pnlBanLayout.setVerticalGroup(
             pnlBanLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 222, Short.MAX_VALUE)
+            .addGap(0, 186, Short.MAX_VALUE)
         );
 
         jPanel8.setBackground(new java.awt.Color(249, 238, 231));
@@ -636,7 +658,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         );
         pnlSanPhamLayout.setVerticalGroup(
             pnlSanPhamLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 291, Short.MAX_VALUE)
+            .addGap(0, 321, Short.MAX_VALUE)
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -738,7 +760,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
         );
 
         lblanhSP.setBackground(new java.awt.Color(0, 0, 0));
@@ -801,7 +823,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addComponent(rdoHDD)
                 .addGap(30, 30, 30)
                 .addComponent(rdoHDH)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
@@ -839,7 +861,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                             .addComponent(jLabel2)
                             .addGap(422, 422, 422))
                         .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(27, 27, 27)
@@ -857,7 +879,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 175, Short.MAX_VALUE)
                                         .addGap(18, 18, 18))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGap(15, 15, 15)
@@ -873,10 +895,10 @@ public class BanHangJDialog extends javax.swing.JDialog {
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(pnlBan, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlBan, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnlSanPham, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -900,11 +922,12 @@ public class BanHangJDialog extends javax.swing.JDialog {
         HoaDon hd = new HoaDon();
         hd.setTrangThai("Chờ TT");
         System.out.println(nhanVienRepository.getAll().get(0).getHoTen());
-        hd.setIDNV(nhanVienRepository.getAll().get(0));
-        hd.setIDKH(khachHangRepository.getAll().get(0));
-        hd.setIDKM(khuyenMaiRepository.getAll().get(0));
-        //        hd.setNgayTao(new Date());
-        //        hd.setNgayTT(new Date());
+        if (_dn == null) {
+            hd.setIDNV(nhanVienRepository.getAll().get(0));
+        } else {
+            hd.setIDNV(nhanVienRepository.getOne(_dn.getIdNhanVien().getIdNhanVien()));
+        }
+//        hd.setIDKM(khuyenMaiRepository.getAll().get(0));
         hd.setNgayTao(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
         hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
         if (new HoaDonRepository().add(hd)) {
@@ -923,8 +946,6 @@ public class BanHangJDialog extends javax.swing.JDialog {
         if (_ban != 0) {
             hd.setIDB(banService.getOne(_ban));
         }
-        KhachHang kh = new KhachHangRepository().getOne(_idKH);
-        hd.setIDKH(kh);
         hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
         hd.setTrangThai("DTT");
         if (hoaDonRepository.Update(hd)) {
@@ -937,18 +958,17 @@ public class BanHangJDialog extends javax.swing.JDialog {
         }
         txtTienKD.setText("");
         loadTablehoaDon("Chờ TT");
-        loadTableBan();
+        loadTableBan();;
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         HoaDon hd = getformHoaDon();
-        KhachHang kh = new KhachHangRepository().getOne(_idKH);
+
         System.out.println(_ban);
         if (_ban != 0) {
             hd.setIDB(banService.getOne(_ban));
         }
 
-        hd.setIDKH(kh);
         if (hoaDonRepository.Update(hd)) {
             JOptionPane.showMessageDialog(this, "Succes");
         } else {
@@ -1000,6 +1020,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         try {
             kh = khachHangService.getOne(Sdt);
         } catch (Exception e) {
+            return;
         }
         if (khachHangService.getOne(Sdt) == null) {
             return;
@@ -1136,6 +1157,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         _idHDCT = QLHDCTs.get(rowIndex).getIdHDCT();
         _idSP = QLHDCTs.get(rowIndex).getIdSP();
         QLSanPham sp = sanPhamService.getOne(_idSP);
+        lblanhSP.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/" + sp.getImage())).getImage().getScaledInstance(100, 100, java.awt.Image.SCALE_DEFAULT)));
         txtsp1.setText(sp.getTenSP());
         txtsl.setValue(QLHDCTs.get(rowIndex).getSoLuong());
         int tien = (int) sp.getGia() * (int) txtsl.getValue();
@@ -1152,10 +1174,16 @@ public class BanHangJDialog extends javax.swing.JDialog {
         loadTablehoaDonCT(hd);
         QLHDCTs = new ArrayList<>();
         QLHDCTs = hoaDonCTService.getListbyHD(_idHD);
-        _idKH = hd.getIDKH().getId();
-        KhachHangModel kh = khachHangService.getOne(_idKH);
-        txtSdt.setText(kh.getSoDienThoai());
-        txtTenKH.setText(kh.getTen());
+        if (hd.getIDKH() == null) {
+            txtSdt.setText("");
+            txtTenKH.setText("");
+        } else {
+            _idKH = hd.getIDKH().getId();
+            KhachHangModel kh = khachHangService.getOne(_idKH);
+            txtSdt.setText(kh.getSoDienThoai());
+            txtTenKH.setText(kh.getTen());
+        }
+
 //        _ban = hd.getIDB().getIDB();
         if (hd.getIDB() != null) {
             _ban = hd.getIDB().getIDB();
@@ -1176,7 +1204,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_rdoHDCActionPerformed
 
     private void rdoHDDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDDActionPerformed
-        loadTablehoaDon("DTT");
+        loadTablehoaDon("Đã TT");
     }//GEN-LAST:event_rdoHDDActionPerformed
 
     private void rdoHDHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdoHDHActionPerformed
