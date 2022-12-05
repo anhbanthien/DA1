@@ -4,17 +4,19 @@
  */
 package service;
 
-import java.util.Date;
 import java.util.List;
 
 /**
  *
  * @author vutuo
  */
-public interface ThongKeService1 {
+public interface QuanLyThongKeService {
 
     List<Object[]> getList();
 
     List<Object> soLuong(String date);
 
+    List<Object[]> getListTK();
+
+//    List<Object[]> getListSP();
 }

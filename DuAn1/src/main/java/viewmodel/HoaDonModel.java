@@ -27,6 +27,10 @@ public class HoaDonModel {
     private float TienTra;
     private float TongTien;
     private String TrangThai;
+    private String Ten;
+    private String SoDienThoai;
+    private float PhanTramKM;
+    private String HoTen;
 
     public HoaDonModel() {
     }
@@ -42,6 +46,10 @@ public class HoaDonModel {
         this.TienTra = hoadon.getTienTra();
         this.TongTien = hoadon.getTongTien();
         this.TrangThai = hoadon.getTrangThai();
+//        this.Ten = hoadon.getIDKH().getTen();
+//        this.SoDienThoai = hoadon.getIDKH().getSoDienThoai();
+        
+        this.HoTen = hoadon.getIDNV().getHoTen();
     }
 
     public UUID getIDHD() {
@@ -58,6 +66,38 @@ public class HoaDonModel {
 
     public void setIDNV(NhanVien IDNV) {
         this.IDNV = IDNV;
+    }
+
+    public String getHoTen() {
+        return HoTen;
+    }
+
+    public void setHoTen(String HoTen) {
+        this.HoTen = HoTen;
+    }
+
+    public String getTen() {
+        return Ten;
+    }
+
+    public void setTen(String Ten) {
+        this.Ten = Ten;
+    }
+
+    public String getSoDienThoai() {
+        return SoDienThoai;
+    }
+
+    public void setSoDienThoai(String SoDienThoai) {
+        this.SoDienThoai = SoDienThoai;
+    }
+
+    public float getPhanTramKM() {
+        return PhanTramKM;
+    }
+
+    public void setPhanTramKM(float PhanTramKM) {
+        this.PhanTramKM = PhanTramKM;
     }
 
     public KhachHang getIDKH() {
@@ -129,4 +169,7 @@ public class HoaDonModel {
         return "HoaDonModel{" + "IDHD=" + IDHD + ", IDNV=" + IDNV + ", IDKH=" + IDKH + ", IDKM=" + IDKM + ", IDB=" + IDB + ", NgayTao=" + NgayTao + ", NgayTT=" + NgayTT + ", TienTra=" + TienTra + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + '}';
     }
 
+    public Object[] toDataRow() {
+        return new Object[]{IDHD, HoTen, NgayTao, TongTien, TrangThai};
+    }
 }
