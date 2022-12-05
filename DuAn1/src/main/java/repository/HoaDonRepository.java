@@ -26,7 +26,6 @@ public class HoaDonRepository {
     public List<HoaDon> getAll() {
         Query query = session.createQuery(fromTable, HoaDon.class);
         List<HoaDon> lists = query.getResultList();
-//        List<HoaDon> lists = new ArrayList<>();
         return lists;
     }
 
@@ -48,7 +47,7 @@ public class HoaDonRepository {
 
     public static void main(String[] args) {
 
-        new HoaDonRepository().getHoaDonByTT().forEach(a -> System.out.println(a.toString()));
+        new HoaDonRepository().getAll().forEach(a -> System.out.println(a.toString()));
 
     }
 

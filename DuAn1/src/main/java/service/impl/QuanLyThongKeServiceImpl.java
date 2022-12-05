@@ -4,11 +4,8 @@
  */
 package service.impl;
 
-import java.util.Date;
 import java.util.List;
 import repository.ThongKeRepository;
-import repository.ThongKeRepository1;
-import service.ThongKeService;
 import service.QuanLyThongKeService;
 
 /**
@@ -17,7 +14,7 @@ import service.QuanLyThongKeService;
  */
 public class QuanLyThongKeServiceImpl implements QuanLyThongKeService {
 
-    private ThongKeRepository1 repository = new ThongKeRepository1();
+    private ThongKeRepository repository = new ThongKeRepository();
 
     @Override
     public List<Object[]> getList() {
