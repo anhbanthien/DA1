@@ -195,6 +195,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         jLabel6.setText("Trạng Thái:");
 
         lblHinhAnhSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ca-phe-trung1.jpg"))); // NOI18N
+        lblHinhAnhSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblHinhAnhSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblHinhAnhSPMouseClicked(evt);
@@ -221,7 +222,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                         .addComponent(btnSua)
                         .addGap(18, 18, 18)
                         .addComponent(btnXoa)
-                        .addGap(0, 35, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -512,7 +513,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             lblHinhAnhSP.setIcon(null);
         } else {
             lblHinhAnhSP.setText("");
-            ImageIcon imgIcon = new ImageIcon("C:\\Users\\trong\\OneDrive\\Máy tính\\DA1_FINAL_01\\DuAn1\\src\\main\\resources\\" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage());
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage());
             Image img = imgIcon.getImage();
             img.getScaledInstance(lblHinhAnhSP.getWidth(), lblHinhAnhSP.getHeight(), 0);
             lblHinhAnhSP.setIcon(imgIcon);
@@ -681,7 +682,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 cell.setCellValue(_iManageSanPhamService.getAll().get(i).getTrangThai() == 1 ? "Đang kinh doanh" : "Ngừng kinh doanh");
 
             }
-            File f = new File("C:\\Users\\trong\\JAVA_STUDY\\danhsach.xlsx");
+            File f = new File("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\Danhsach.xlsx");
             try {
                 FileOutputStream fos = new FileOutputStream(f);
                 workbook.write(fos);
