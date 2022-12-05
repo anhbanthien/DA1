@@ -1,6 +1,7 @@
 package domainmodel;
 
-import java.util.Date;
+import java.sql.Date;
+
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -36,8 +37,8 @@ public class HoaDon {
     @ManyToOne
     @JoinColumn(name = "IDB")
     private Ban IDB;
-    private String NgayTao;
-    private String NgayTT;
+    private Date NgayTao;
+    private Date NgayTT;
     private float TienTra;
     private float TongTien;
     private String TrangThai;
@@ -49,7 +50,7 @@ public class HoaDon {
         this.IDHD = IDHD;
     }
 
-    public HoaDon(Ban IDB, UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, String NgayTao, String NgayTT, float TienTra, float TongTien, String TrangThai) {
+    public HoaDon(Ban IDB, UUID IDHD, NhanVien IDNV, KhachHang IDKH, KhuyenMai IDKM, Date NgayTao, Date NgayTT, float TienTra, float TongTien, String TrangThai) {
         this.IDHD = IDHD;
         this.IDNV = IDNV;
         this.IDKH = IDKH;
@@ -107,19 +108,19 @@ public class HoaDon {
         this.IDKM = IDKM;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return NgayTao;
     }
 
-    public void setNgayTao(String NgayTao) {
+    public void setNgayTao(Date NgayTao) {
         this.NgayTao = NgayTao;
     }
 
-    public String getNgayTT() {
+    public Date getNgayTT() {
         return NgayTT;
     }
 
-    public void setNgayTT(String NgayTT) {
+    public void setNgayTT(Date NgayTT) {
         this.NgayTT = NgayTT;
     }
 
@@ -159,5 +160,5 @@ public class HoaDon {
     public String toString() {
         return "HoaDon{" + "IDHD=" + IDHD + ", IDNV=" + IDNV + ", IDKH=" + IDKH + ", IDKM=" + IDKM + ", IDB=" + IDB + ", NgayTao=" + NgayTao + ", NgayTT=" + NgayTT + ", TienTra=" + TienTra + ", TongTien=" + TongTien + ", TrangThai=" + TrangThai + '}';
     }
-    
+
 }
