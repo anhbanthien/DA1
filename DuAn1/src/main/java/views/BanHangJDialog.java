@@ -947,7 +947,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
             hd.setIDB(banService.getOne(_ban));
         }
         hd.setNgayTT(new SimpleDateFormat("yyyy-MM-dd").format(new Date()).toString());
-        hd.setTrangThai("Đã TT");
+        hd.setTrangThai("DTT");
         if (hoaDonRepository.Update(hd)) {
             JOptionPane.showMessageDialog(this, "Succes");
             Ban banv = banService.getOne(_ban);
