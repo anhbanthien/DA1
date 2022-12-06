@@ -11,6 +11,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -41,6 +44,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     List<QLSanPham> lstSP = new ArrayList<>();
     DefaultTableModel dtm;
     int row = -1;
+    float gia;
 
     /**
      * Creates new form FrmQLSanPham
@@ -65,8 +69,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         txtTimKiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
-        btnSPMAXGia = new javax.swing.JButton();
-        btnSPMinGia = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -89,6 +91,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         tblSP = new javax.swing.JTable();
         btnXuatExcel = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        cboSapXep = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         btnQLCT = new javax.swing.JButton();
         btnQLNL = new javax.swing.JButton();
@@ -109,40 +112,16 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             }
         });
 
-        btnSPMAXGia.setForeground(new java.awt.Color(255, 0, 0));
-        btnSPMAXGia.setText("Sản Phẩm có giá cao nhất");
-        btnSPMAXGia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSPMAXGiaActionPerformed(evt);
-            }
-        });
-
-        btnSPMinGia.setForeground(new java.awt.Color(255, 51, 0));
-        btnSPMinGia.setText("Sản Phẩm có giá thấp nhất");
-        btnSPMinGia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSPMinGiaActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnSPMAXGia)
-                        .addGap(150, 150, 150)
-                        .addComponent(btnSPMinGia)
-                        .addGap(148, 148, 148))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(txtTimKiem)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))))
+                .addComponent(txtTimKiem)
+                .addGap(18, 18, 18)
+                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,11 +130,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimKiem))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSPMAXGia)
-                    .addComponent(btnSPMinGia))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin sản phẩm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(0, 51, 255))); // NOI18N
@@ -318,26 +293,45 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             }
         });
 
+        cboSapXep.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sắp Xếp Theo Gía", "giảm", "tăng" }));
+        cboSapXep.setName("Sắp Xếp"); // NOI18N
+        cboSapXep.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboSapXepItemStateChanged(evt);
+            }
+        });
+        cboSapXep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSapXepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnXuatExcel)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 786, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                                .addComponent(btnBack)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnXuatExcel))
+                            .addComponent(cboSapXep, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE)
+                .addComponent(cboSapXep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXuatExcel)
@@ -455,38 +449,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnSPMAXGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPMAXGiaActionPerformed
-        float max = 0;
-        List<QLSanPham> lstSPMAX = new ArrayList<>();
-        for (QLSanPham x : _iManageSanPhamService.getAll()) {
-            if (x.getGia() > max) {
-                max = x.getGia();
-            }
-        }
-        for (QLSanPham y : _iManageSanPhamService.getAll()) {
-            if (y.getGia() == max) {
-                lstSPMAX.add(y);
-            }
-        }
-        loadData(lstSPMAX);
-    }//GEN-LAST:event_btnSPMAXGiaActionPerformed
-
-    private void btnSPMinGiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPMinGiaActionPerformed
-        float min = _iManageSanPhamService.getAll().get(0).getGia();
-        List<QLSanPham> lstSPMIN = new ArrayList<>();
-        for (QLSanPham x : _iManageSanPhamService.getAll()) {
-            if (x.getGia() < min) {
-                min = x.getGia();
-            }
-        }
-        for (QLSanPham y : _iManageSanPhamService.getAll()) {
-            if (y.getGia() == min) {
-                lstSPMIN.add(y);
-            }
-        }
-        loadData(lstSPMIN);
-    }//GEN-LAST:event_btnSPMinGiaActionPerformed
 
     private void btnQLCTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLCTActionPerformed
         new FrmQLCongThuc().setVisible(true);
@@ -687,15 +649,35 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 FileOutputStream fos = new FileOutputStream(f);
                 workbook.write(fos);
                 fos.close();
-            } catch (Exception e) {
-                e.printStackTrace();
-                JOptionPane.showMessageDialog(this, "In thành công");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace(System.out);
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            } catch (IOException ex) {
+                ex.printStackTrace(System.out);
             }
+            JOptionPane.showMessageDialog(this, "In thành công");
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             JOptionPane.showMessageDialog(this, "Lỗi mở file");
         }
     }//GEN-LAST:event_btnXuatExcelActionPerformed
+
+    private void cboSapXepItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSapXepItemStateChanged
+        String name = cboSapXep.getSelectedItem().toString();
+        if (name.equals("tăng")) {
+            Collections.sort(lstSP, new GiaComparator());
+            loadData(lstSP);
+        } else if (name.equals("giảm")) {
+            Collections.sort(lstSP, new GiaComparator());
+            Collections.reverse(lstSP);
+            loadData(lstSP);
+        } 
+
+    }//GEN-LAST:event_cboSapXepItemStateChanged
+
+    private void cboSapXepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSapXepActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboSapXepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -740,14 +722,13 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnQLCT;
     private javax.swing.JButton btnQLNL;
-    private javax.swing.JButton btnSPMAXGia;
-    private javax.swing.JButton btnSPMinGia;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXuatExcel;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cboSapXep;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -823,4 +804,5 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         }
         return null;
     }
+
 }
