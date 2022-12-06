@@ -46,21 +46,19 @@ public class Main extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         Jbtqlynv = new javax.swing.JButton();
         JbtOut = new javax.swing.JButton();
         JbtBan = new javax.swing.JButton();
         JbtOut1 = new javax.swing.JButton();
         Jbtqlynv1 = new javax.swing.JButton();
-        JbtBan1 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jSeparator6 = new javax.swing.JSeparator();
         jSeparator7 = new javax.swing.JSeparator();
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
+        JbtBan2 = new javax.swing.JButton();
+        JbtOut3 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jbtProfile = new javax.swing.JButton();
@@ -89,19 +87,14 @@ public class Main extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lmain.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 0, -1, -1));
-
-        jLabel2.setFont(new java.awt.Font("Gill Sans Ultra Bold", 0, 12)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("ANHBANTHIEN");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 110, -1, -1));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 143, 160, 10));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 110));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 160, 20));
 
         Jbtqlynv.setBackground(new java.awt.Color(105, 82, 73));
         Jbtqlynv.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Jbtqlynv.setForeground(new java.awt.Color(255, 255, 255));
-        Jbtqlynv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/QlyNhanVien.png"))); // NOI18N
-        Jbtqlynv.setText("Nhân Viên");
+        Jbtqlynv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NV.png"))); // NOI18N
+        Jbtqlynv.setText("   Nhân Viên");
         Jbtqlynv.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         Jbtqlynv.setBorderPainted(false);
         Jbtqlynv.setContentAreaFilled(false);
@@ -110,13 +103,14 @@ public class Main extends javax.swing.JFrame {
                 JbtqlynvActionPerformed(evt);
             }
         });
-        jPanel2.add(Jbtqlynv, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 442, 136, -1));
+        jPanel2.add(Jbtqlynv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 140, 30));
 
         JbtOut.setBackground(new java.awt.Color(105, 82, 73));
-        JbtOut.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JbtOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JbtOut.setForeground(new java.awt.Color(255, 255, 255));
-        JbtOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/invoicePNG.png"))); // NOI18N
-        JbtOut.setText("Hoá Đơn");
+        JbtOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cusPng.png"))); // NOI18N
+        JbtOut.setText("   Khách Hàng");
+        JbtOut.setToolTipText(" ");
         JbtOut.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         JbtOut.setBorderPainted(false);
         JbtOut.setContentAreaFilled(false);
@@ -125,10 +119,10 @@ public class Main extends javax.swing.JFrame {
                 JbtOutActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 136, 50));
+        jPanel2.add(JbtOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 136, 40));
 
         JbtBan.setBackground(new java.awt.Color(105, 82, 73));
-        JbtBan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        JbtBan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         JbtBan.setForeground(new java.awt.Color(255, 255, 255));
         JbtBan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mergetable.png"))); // NOI18N
         JbtBan.setText("   Bàn");
@@ -140,13 +134,13 @@ public class Main extends javax.swing.JFrame {
                 JbtBanActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtBan, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 136, 67));
+        jPanel2.add(JbtBan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 136, 60));
 
         JbtOut1.setBackground(new java.awt.Color(105, 82, 73));
-        JbtOut1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JbtOut1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         JbtOut1.setForeground(new java.awt.Color(255, 255, 255));
         JbtOut1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/productPNG.png"))); // NOI18N
-        JbtOut1.setText("SẢN PHẨM");
+        JbtOut1.setText(" SẢN PHẨM");
         JbtOut1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         JbtOut1.setBorderPainted(false);
         JbtOut1.setContentAreaFilled(false);
@@ -158,10 +152,10 @@ public class Main extends javax.swing.JFrame {
         jPanel2.add(JbtOut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 519, 136, -1));
 
         Jbtqlynv1.setBackground(new java.awt.Color(105, 82, 73));
-        Jbtqlynv1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        Jbtqlynv1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Jbtqlynv1.setForeground(new java.awt.Color(255, 255, 255));
         Jbtqlynv1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/chartPNG.png"))); // NOI18N
-        Jbtqlynv1.setText("Thống Kê");
+        Jbtqlynv1.setText("    Thống Kê");
         Jbtqlynv1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         Jbtqlynv1.setBorderPainted(false);
         Jbtqlynv1.setContentAreaFilled(false);
@@ -170,29 +164,42 @@ public class Main extends javax.swing.JFrame {
                 Jbtqlynv1ActionPerformed(evt);
             }
         });
-        jPanel2.add(Jbtqlynv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 136, -1));
+        jPanel2.add(Jbtqlynv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 136, -1));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 160, 20));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 160, 20));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 160, 20));
+        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 160, 10));
+        jPanel2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 160, 20));
 
-        JbtBan1.setBackground(new java.awt.Color(105, 82, 73));
-        JbtBan1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        JbtBan1.setForeground(new java.awt.Color(255, 255, 255));
-        JbtBan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sellPNG.png"))); // NOI18N
-        JbtBan1.setText("Bán Hàng");
-        JbtBan1.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
-        JbtBan1.setBorderPainted(false);
-        JbtBan1.setContentAreaFilled(false);
-        JbtBan1.addActionListener(new java.awt.event.ActionListener() {
+        JbtBan2.setBackground(new java.awt.Color(105, 82, 73));
+        JbtBan2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JbtBan2.setForeground(new java.awt.Color(255, 255, 255));
+        JbtBan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/sellPNG.png"))); // NOI18N
+        JbtBan2.setText("    Bán Hàng");
+        JbtBan2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        JbtBan2.setBorderPainted(false);
+        JbtBan2.setContentAreaFilled(false);
+        JbtBan2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                JbtBan1ActionPerformed(evt);
+                JbtBan2ActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtBan1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 160, 136, 56));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 160, -1));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 160, -1));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 160, -1));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 160, -1));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 360, 160, 20));
-        jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 160, 10));
-        jPanel2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 510, 160, 10));
+        jPanel2.add(JbtBan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 150, 56));
+
+        JbtOut3.setBackground(new java.awt.Color(105, 82, 73));
+        JbtOut3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JbtOut3.setForeground(new java.awt.Color(255, 255, 255));
+        JbtOut3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/invoicePNG.png"))); // NOI18N
+        JbtOut3.setText("    Hoá Đơn");
+        JbtOut3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
+        JbtOut3.setBorderPainted(false);
+        JbtOut3.setContentAreaFilled(false);
+        JbtOut3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JbtOut3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(JbtOut3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 136, 50));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 568));
 
@@ -275,16 +282,12 @@ public class Main extends javax.swing.JFrame {
         new InfoAccount(logg).setVisible(true);
     }//GEN-LAST:event_jbtProfileActionPerformed
 
-    private void JbtBan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBan1ActionPerformed
-        new BanHangJDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_JbtBan1ActionPerformed
-
     private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
         new ViewThongKe().setVisible(true);
     }//GEN-LAST:event_Jbtqlynv1ActionPerformed
 
     private void JbtOut1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut1ActionPerformed
-
+        new FrmQLSanPham().setVisible(true);
     }//GEN-LAST:event_JbtOut1ActionPerformed
 
     private void JbtBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBanActionPerformed
@@ -293,8 +296,7 @@ public class Main extends javax.swing.JFrame {
 
     private void JbtOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOutActionPerformed
 
-        new HoaDonView().setVisible(true);
-
+        new KhachHangJDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtOutActionPerformed
 
     private void JbtqlynvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtqlynvActionPerformed
@@ -305,6 +307,14 @@ public class Main extends javax.swing.JFrame {
         new Login().setVisible(true);
         dispose();
     }//GEN-LAST:event_JbtOut2ActionPerformed
+
+    private void JbtBan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBan2ActionPerformed
+        new BanHangJDialog(this, true, logg).setVisible(true);
+    }//GEN-LAST:event_JbtBan2ActionPerformed
+
+    private void JbtOut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut3ActionPerformed
+        new HoaDonView().setVisible(true);
+    }//GEN-LAST:event_JbtOut3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,14 +354,14 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton JbtBan;
-    private javax.swing.JButton JbtBan1;
+    private javax.swing.JButton JbtBan2;
     private javax.swing.JButton JbtOut;
     private javax.swing.JButton JbtOut1;
     private javax.swing.JButton JbtOut2;
+    private javax.swing.JButton JbtOut3;
     private javax.swing.JButton Jbtqlynv;
     private javax.swing.JButton Jbtqlynv1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -360,9 +370,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;

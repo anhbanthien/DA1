@@ -343,7 +343,7 @@ public class ViewBan extends javax.swing.JFrame {
 
         //int Cus = Integer.parseInt(txtLastCus.getText());
         Ban b = new QuanLyBanServiceImpl().getOne(listTables.get(tblTable.getSelectedRow()).getIDB());
-        
+
         System.out.println(b);
 
     }//GEN-LAST:event_jButton2ActionPerformed
