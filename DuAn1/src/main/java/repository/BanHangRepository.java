@@ -18,6 +18,7 @@ import org.hibernate.Transaction;
 public class BanHangRepository {
 
     Session session = HibernatUtil.getFACTORY().openSession();
+
     private String fromTableHDCT = "FROM HDCT h";
 
     public boolean Update(HDCT hdct, UUID id) {
@@ -49,10 +50,17 @@ public class BanHangRepository {
         return hdct;
        } catch (Exception e) {
            return null;
+
        }}
 
-    public boolean Delete(UUID hdct) {
+  
+        
+        
+    
+   public boolean Delete(UUID hdct) {
+
         try {
+            Session session = HibernatUtil.getFACTORY().openSession();
             session.getTransaction().begin();
             session.delete(session.get(HDCT.class, hdct));
             session.getTransaction().commit();
@@ -64,12 +72,7 @@ public class BanHangRepository {
     }
 
     public static void main(String[] args) {
-        BanHangRepository bh = new BanHangRepository();
-//        
-        new HDCTRepository().getAll().forEach(sv -> System.out.println(sv.toString()));
-        HDCT hd = new HDCTRepository().getAll().get(0);
-        UUID idHD = hd.getIDHD().getIDHD();
-        UUID idSP = hd.getIDSP().getIDSP();
-        System.out.println(bh.getOne(idHD, idSP).toString());
+
+
     }
 }

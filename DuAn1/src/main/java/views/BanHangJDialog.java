@@ -959,11 +959,15 @@ public class BanHangJDialog extends javax.swing.JDialog {
         hd.setTrangThai("Đã TT");
         if (hoaDonRepository.Update(hd)) {
             JOptionPane.showMessageDialog(this, "Succes");
+
             if (_ban != 0) {
                 Ban banv = banService.getOne(_ban);
                 banv.setTrangThaiBan("Đang Hoạt Động");
                 JOptionPane.showMessageDialog(this, banService.update(banv));
             }
+
+
+            
 
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
@@ -1339,6 +1343,37 @@ public class BanHangJDialog extends javax.swing.JDialog {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+ 
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {

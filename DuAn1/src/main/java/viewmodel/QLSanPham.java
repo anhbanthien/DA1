@@ -24,7 +24,7 @@ public class QLSanPham {
     }
 
     public QLSanPham(SanPham sp) {
-        this.IDSP = sp.getIdSP();
+        this.IDSP = sp.getIDSP();
         this.tenSP = sp.getTenSP();
         this.moTa = sp.getMoTa();
         this.image = sp.getImage();
