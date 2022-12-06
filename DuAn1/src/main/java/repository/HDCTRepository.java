@@ -90,13 +90,7 @@ public class HDCTRepository {
     }
 
     public static void main(String[] args) {
-        HoaDon hd = new HoaDonRepository().getAll().get(1);
-        SanPham sp = new SanPhamRepository().getAll().get(1);
-        HDCT  ht = new HDCT(null, hd, sp, 4);
-        if(new HDCTRepository().Add(ht)){
-            System.out.println("ko chết bạn ê");
-        }
+       new HoaDonRepository().getAll().forEach(s -> System.out.println(s.toString()));
+        
     }
-
-    
 }

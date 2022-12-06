@@ -20,87 +20,79 @@ public class SanPham {
     @Id
     @Column(columnDefinition = "uniqueidentifier")
     @GeneratedValue
-    private UUID idSP;
+    private UUID IDSP;
 
-    @Column(name = "TenSP")
-    private String tenSP;
+    private String TenSP;
 
-    @Column(name = "Mota")
-    private String moTa;
+    private String MoTa;
 
-    @Column(name = "Image")
-    private String image;
+    private String Image;
 
-    @Column(name = "Gia")
-    private float gia;
+    private float Gia;
 
-    @Column(name = "TrangThai")
-    private int trangThai;
+    private int TrangThai;
 
     public SanPham() {
     }
 
-    public SanPham(UUID idSP, String tenSP, String moTa, String image, float gia, int trangThai) {
-        this.idSP = idSP;
-        this.tenSP = tenSP;
-        this.moTa = moTa;
-        this.image = image;
-        this.gia = gia;
-        this.trangThai = trangThai;
+    public SanPham(UUID IDSP, String TenSP, String MoTa, String Image, float Gia, int TrangThai) {
+        this.IDSP = IDSP;
+        this.TenSP = TenSP;
+        this.MoTa = MoTa;
+        this.Image = Image;
+        this.Gia = Gia;
+        this.TrangThai = TrangThai;
     }
 
-    public UUID getIdSP() {
-        return idSP;
+    public UUID getIDSP() {
+        return IDSP;
     }
 
-    public void setIdSP(UUID idSP) {
-        this.idSP = idSP;
+    public void setIDSP(UUID IDSP) {
+        this.IDSP = IDSP;
     }
 
     public String getTenSP() {
-        return tenSP;
+        return TenSP;
     }
 
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
+    public void setTenSP(String TenSP) {
+        this.TenSP = TenSP;
     }
 
     public String getMoTa() {
-        return moTa;
+        return MoTa;
     }
 
-    public void setMoTa(String moTa) {
-        this.moTa = moTa;
+    public void setMoTa(String MoTa) {
+        this.MoTa = MoTa;
     }
 
     public String getImage() {
-        return image;
+        return Image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setImage(String Image) {
+        this.Image = Image;
     }
 
     public float getGia() {
-        return gia;
+        return Gia;
     }
 
-    public void setGia(float gia) {
-        this.gia = gia;
+    public void setGia(float Gia) {
+        this.Gia = Gia;
     }
 
     public int getTrangThai() {
-        return trangThai;
+        return TrangThai;
     }
 
-    public void setTrangThai(int trangThai) {
-        this.trangThai = trangThai;
+    public void setTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
     }
 
-    @Override
-    public String toString() {
-        return "SanPham{" + "idSP=" + idSP + ", tenSP=" + tenSP + ", moTa=" + moTa + ", image=" + image + ", gia=" + gia + ", trangThai=" + trangThai + '}';
-    }
+ 
 
    
 }
