@@ -202,6 +202,11 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         });
 
         cboTenSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboTenSP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTenSPItemStateChanged(evt);
+            }
+        });
 
         jLabel7.setText("Tên Sản Phẩm");
 
@@ -389,6 +394,10 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void cboTenSPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTenSPItemStateChanged
+        
+    }//GEN-LAST:event_cboTenSPItemStateChanged
 
     /**
      * @param args the command line arguments

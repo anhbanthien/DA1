@@ -77,10 +77,10 @@ public class HoaDonView extends javax.swing.JFrame {
     private void fillData(int i) {
         HoaDonModel fhd = listmd1.get(i);
         txtMaHD.setText(String.valueOf(fhd.getIDHD()));
-        txtKH.setText(fhd.getTen());
-        txtSDT.setText(fhd.getSoDienThoai());
-        txtTGTao.setText(fhd.getNgayTao());
-        txtTGTT.setText(fhd.getNgayTT());
+        txtKH.setText(fhd.getTen() + "");
+        txtSDT.setText(fhd.getSoDienThoai() + "");
+        txtTGTao.setText(fhd.getNgayTao() + "");
+        txtTGTT.setText(fhd.getNgayTT() + "");
         txtTrangThai.setText(fhd.getTrangThai());
         txtTongTienHD.setText(String.valueOf(fhd.getTongTien()));
         txtKM.setText(String.valueOf(fhd.getPhanTramKM()));
@@ -303,16 +303,14 @@ public class HoaDonView extends javax.swing.JFrame {
         try {
             PdfWriter.getInstance(document, new FileOutputStream(path + "HoaDon.pdf"));
             document.open();
-            document.add(new Paragraph("          Hoa Don Thanh Toan"));
-            PdfPTable table = new PdfPTable(7);
+            document.add(new Paragraph("                 ------------------Hoa Don Thanh Toan-----------------"));
+            PdfPTable table = new PdfPTable(4);
             table.setSpacingBefore(25);
             table.setSpacingAfter(25);
             table.addCell("IDHD");
             table.addCell("Nguoi Tao");
             table.addCell("Ngay Tao");
-            table.addCell("Khach Hang");
-            table.addCell("San Pham");
-            table.addCell("So Luong");
+
             table.addCell("Tong Tien");
 //            int i = tblHoaDon.getSelectedRow();
             for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
@@ -320,15 +318,11 @@ public class HoaDonView extends javax.swing.JFrame {
                 String nguoiTao = tblHoaDon.getValueAt(i, 1).toString();
                 String ngayTao = tblHoaDon.getValueAt(i, 2).toString();
                 String tongTien = tblHoaDon.getValueAt(i, 3).toString();
-                String sanPham = tblSanPham.getValueAt(i, 0).toString();
-                String soLuong = tblSanPham.getValueAt(i, 2).toString();
-                String khachHang = txtKH.getText();
+
                 table.addCell(idhd);
                 table.addCell(nguoiTao);
                 table.addCell(ngayTao);
-                table.addCell(khachHang);
-                table.addCell(sanPham);
-                table.addCell(soLuong);
+
                 table.addCell(tongTien);
             }
             document.add(table);

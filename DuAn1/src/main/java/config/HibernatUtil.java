@@ -45,7 +45,6 @@ public class HibernatUtil {
         conf.addAnnotatedClass(NguyenLieu.class);
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(SanPham.class);
-
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
                 .applySettings(conf.getProperties()).build();
         FACTORY = conf.buildSessionFactory(registry);

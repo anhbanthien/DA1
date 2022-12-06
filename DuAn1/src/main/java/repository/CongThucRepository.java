@@ -28,6 +28,8 @@ public class CongThucRepository {
         List<CongThuc> lists = query.getResultList();
         return lists;
     }
+    
+    
 
     public CongThuc getOne(UUID idCT) {
         String sql = fromTable + " WHERE IDCT = :idCT ";
