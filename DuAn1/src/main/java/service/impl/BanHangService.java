@@ -34,6 +34,9 @@ public class BanHangService implements IBanHangService{
     @Override
     public QLHDCT getOne(UUID idHD, UUID idSP) {
         HDCT hdct = new BanHangRepository().getOne(idHD,idSP);
+        if(hdct == null){
+        return null;
+        }
         QLHDCT qlhdct = new QLHDCT();
         qlhdct.setIdHDCT(hdct.getIDHDCT());
         qlhdct.setIdHD(hdct.getIDHD().getIDHD());
