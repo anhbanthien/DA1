@@ -4,6 +4,7 @@
  */
 package service.impl;
 
+import java.util.Date;
 import java.util.List;
 import repository.ThongKeRepository;
 import service.QuanLyThongKeService;
@@ -23,7 +24,7 @@ public class QuanLyThongKeServiceImpl implements QuanLyThongKeService {
     }
 
     @Override
-    public List<Object> soLuong(String date) {
+    public List<Object> soLuong(Date date) {
         return repository.soLuong(date);
     }
 
@@ -32,8 +33,43 @@ public class QuanLyThongKeServiceImpl implements QuanLyThongKeService {
         return repository.listThongKeKH();
     }
 
-//    @Override
-//    public List<Object[]> getListSP() {
-//        return repository.listThongKeSP();
-//    }
+    @Override
+    public List<Object[]> getListSP() {
+        return repository.listThongKeSP();
+    }
+
+    @Override
+    public List<Object> soLuongNgay(Date ngayBD, Date ngayKT) {
+        return repository.soLuongNgay(ngayBD, ngayKT);
+    }
+
+    @Override
+    public List<Object[]> getListTKKH(Date ngayBD, Date ngayKT) {
+        return repository.listThongKeKHSearch(ngayBD, ngayKT);
+    }
+
+    @Override
+    public List<Object[]> getListDT(Date ngayBD, Date ngayKT) {
+        return repository.listThongKeDT(ngayBD, ngayKT);
+    }
+
+    @Override
+    public List<Object[]> getListTKMD() {
+        return repository.listThongKeKHMacDinh();
+    }
+
+    @Override
+    public List<Object[]> listThongKeCT(Date ngayTT) {
+        return repository.listThongKeCT(ngayTT);
+    }
+
+    @Override
+    public List<Object[]> tkSPMD() {
+        return repository.listThongKeSPMD();
+    }
+
+    @Override
+    public List<Object[]> thongKeSPNgay(Date ngayBD, Date ngayKT) {
+        return repository.listThongKeSPNgay(ngayBD, ngayKT);
+    }
 }

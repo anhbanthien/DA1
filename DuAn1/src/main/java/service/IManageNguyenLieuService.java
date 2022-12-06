@@ -15,12 +15,15 @@ import viewmodel.QLSanPham;
  * @author trong
  */
 public interface IManageNguyenLieuService {
+
     List<QLNguyenLieu> getAll();
+
+    List<QLNguyenLieu> getByCT(UUID idCT);
 
     QLNguyenLieu getOne(UUID idNL);
 
     QLNguyenLieu getOneByTen(String tenNL);
-    
+
     String add(QLNguyenLieu qlnl);
 
     String update(UUID idNL, QLNguyenLieu qlnl);

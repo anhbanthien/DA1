@@ -47,7 +47,7 @@ public class ManageCongThucService implements IManageCongThucService {
         for (CongThuc x : lstCT) {
             QLCongThuc qlct = new QLCongThuc();
             qlct.setIdCT(x.getIdCT());
-            qlct.setIdSP(x.getSanPham().getIdSP());
+            qlct.setIdSP(x.getSanPham().getIDSP());
             qlct.setTen(x.getTen());
             qlct.setMoTa(x.getMoTa());
             qlct.setImage(x.getImage());
@@ -63,7 +63,7 @@ public class ManageCongThucService implements IManageCongThucService {
         QLCongThuc qlct = new QLCongThuc();
 
         qlct.setIdCT(x.getIdCT());
-        qlct.setIdSP(x.getSanPham().getIdSP());
+        qlct.setIdSP(x.getSanPham().getIDSP());
         qlct.setTen(x.getTen());
         qlct.setMoTa(x.getMoTa());
         qlct.setImage(x.getImage());
@@ -123,7 +123,7 @@ public class ManageCongThucService implements IManageCongThucService {
         QLCongThuc qlct = new QLCongThuc();
 
         qlct.setIdCT(x.getIdCT());
-        qlct.setIdSP(x.getSanPham().getIdSP());
+        qlct.setIdSP(x.getSanPham().getIDSP());
         qlct.setTen(x.getTen());
         qlct.setMoTa(x.getMoTa());
         qlct.setImage(x.getImage());
