@@ -40,7 +40,7 @@ public class BanHangService implements IBanHangService{
         QLHDCT qlhdct = new QLHDCT();
         qlhdct.setIdHDCT(hdct.getIDHDCT());
         qlhdct.setIdHD(hdct.getIDHD().getIDHD());
-        qlhdct.setIdSP(hdct.getIDSP().getIdSP());
+        qlhdct.setIdSP(hdct.getIDSP().getIDSP());
         qlhdct.setSoLuong(hdct.getSoLuong());
         return qlhdct;
     }
