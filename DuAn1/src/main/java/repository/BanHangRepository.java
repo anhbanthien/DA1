@@ -67,7 +67,7 @@ public class BanHangRepository {
            new HDCTRepository().getAll().forEach(sv -> System.out.println(sv.toString()));
            HDCT hd = new HDCTRepository().getAll().get(0);
            UUID idHD = hd.getIDHD().getIDHD();
-           UUID idSP = hd.getIDSP().getIdSP();
+           UUID idSP = hd.getIDSP().getIDSP();
            System.out.println(bh.getOne(idHD, idSP).toString());
     }
 }
