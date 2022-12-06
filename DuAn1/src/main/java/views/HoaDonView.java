@@ -338,61 +338,58 @@ public class HoaDonView extends javax.swing.JFrame {
             PdfWriter.getInstance(document, new FileOutputStream(path + "HoaDon.pdf"));
             document.open();
             document.add(new Paragraph("          Hoa Don Thanh Toan"));
-            PdfPTable table = new PdfPTable(7);
+            PdfPTable table = new PdfPTable(4);
             table.setSpacingBefore(25);
             table.setSpacingAfter(25);
             table.addCell("IDHD");
             table.addCell("Nguoi Tao");
             table.addCell("Ngay Tao");
-            table.addCell("Khach Hang");
-            table.addCell("San Pham");
-            table.addCell("So Luong");
             table.addCell("Tong Tien");
 //            int i = tblHoaDon.getSelectedRow();
-//            for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
-//                String idhd = tblHoaDon.getValueAt(i, 0).toString();
-//                String nguoiTao = tblHoaDon.getValueAt(i, 1).toString();
-//                String ngayTao = tblHoaDon.getValueAt(i, 2).toString();
-//                String tongTien = tblHoaDon.getValueAt(i, 3).toString();
+            for (int i = 0; i < tblHoaDon.getRowCount(); i++) {
+                String idhd = tblHoaDon.getValueAt(i, 0).toString();
+                String nguoiTao = tblHoaDon.getValueAt(i, 1).toString();
+                String ngayTao = tblHoaDon.getValueAt(i, 2).toString();
+                String tongTien = tblHoaDon.getValueAt(i, 3).toString();
 //                String sanPham = tblSanPham.getValueAt(i, 0).toString();
 //                String soLuong = tblSanPham.getValueAt(i, 2).toString();
 //                String khachHang = txtKH.getText();
-//                table.addCell(idhd);
-//                table.addCell(nguoiTao);
-//                table.addCell(ngayTao);
+                table.addCell(idhd);
+                table.addCell(nguoiTao);
+                table.addCell(ngayTao);
 //                table.addCell(khachHang);
 //                table.addCell(sanPham);
 //                table.addCell(soLuong);
-//                table.addCell(tongTien);
-//            }
-//                    int i = tblHoaDon.getSelectedRow();
-//                    String idhd = tblHoaDon.getValueAt(i, 0).toString();
-//                    String nguoiTao = tblHoaDon.getValueAt(i, 1).toString();
-//                    String ngayTao = tblHoaDon.getValueAt(i, 2).toString();
-//                    String tongTien = tblHoaDon.getValueAt(i, 3).toString();
+                table.addCell(tongTien);
+            }
+////                    int i = tblHoaDon.getSelectedRow();
+////                    String idhd = tblHoaDon.getValueAt(i, 0).toString();
+////                    String nguoiTao = tblHoaDon.getValueAt(i, 1).toString();
+////                    String ngayTao = tblHoaDon.getValueAt(i, 2).toString();
+////                    String tongTien = tblHoaDon.getValueAt(i, 3).toString();
+////            table.addCell(idhd);
+////            table.addCell(nguoiTao);
+////            table.addCell(ngayTao);
+////            table.addCell(tongTien);
+////                    String sanPham = tblSanPham.getValueAt(i, 0).toString();
+////                    String soLuong = tblSanPham.getValueAt(i, 2).toString();
+////                    String data = idhd + "\n" + ngayTao + "\n ========== \n" + nguoiTao + "\n" + sanPham + "\t" + soLuong + "\n" + tongTien;
+////                    table.addCell(data);
+//            int i = tblHoaDon.getSelectedRow();
+//            String idhd = tblHoaDon.getValueAt(i, 0).toString();
+//            String nguoiTao = tblHoaDon.getValueAt(i, 1).toString();
+//            String ngayTao = tblHoaDon.getValueAt(i, 2).toString();
+//            String tongTien = tblHoaDon.getValueAt(i, 3).toString();
 //            table.addCell(idhd);
 //            table.addCell(nguoiTao);
 //            table.addCell(ngayTao);
 //            table.addCell(tongTien);
-//                    String sanPham = tblSanPham.getValueAt(i, 0).toString();
-//                    String soLuong = tblSanPham.getValueAt(i, 2).toString();
-//                    String data = idhd + "\n" + ngayTao + "\n ========== \n" + nguoiTao + "\n" + sanPham + "\t" + soLuong + "\n" + tongTien;
-//                    table.addCell(data);
-            int i = tblHoaDon.getSelectedRow();
-            String idhd = tblHoaDon.getValueAt(i, 0).toString();
-            String nguoiTao = tblHoaDon.getValueAt(i, 1).toString();
-            String ngayTao = tblHoaDon.getValueAt(i, 2).toString();
-            String tongTien = tblHoaDon.getValueAt(i, 3).toString();
-            table.addCell(idhd);
-            table.addCell(nguoiTao);
-            table.addCell(ngayTao);
-            table.addCell(tongTien);
-            for(int j =0; j < tblSanPham.getRowCount(); j++){
-                String sanPham = tblSanPham.getValueAt(j, 0).toString();
-                String soLuong = tblSanPham.getValueAt(j, 2).toString();
-                table.addCell(sanPham);
-                table.addCell(soLuong);
-            }
+//            for(int j =0; j < tblSanPham.getRowCount(); j++){
+//                String sanPham = tblSanPham.getValueAt(j, 0).toString();
+//                String soLuong = tblSanPham.getValueAt(j, 2).toString();
+//                table.addCell(sanPham);
+//                table.addCell(soLuong);
+//            }
             document.add(table);
             JOptionPane.showMessageDialog(this, "In thành công");
         } catch (FileNotFoundException ex) {
