@@ -30,6 +30,14 @@ public class NguyenLieuRepository {
         return lists;
     }
 
+    public List<NguyenLieu> getByCT(UUID idCT) {
+        String sql = fromTable + " WHERE IDCT = :idCT ";
+        Query query = session.createQuery(sql, NguyenLieu.class);
+        query.setParameter("idCT", idCT);
+        List<NguyenLieu> lists = query.getResultList();
+        return lists;
+    }
+
     public NguyenLieu getOne(UUID idNL) {
         String sql = fromTable + " WHERE IDNL = :idNL ";
         Query query = session.createQuery(sql, NguyenLieu.class);
@@ -37,6 +45,7 @@ public class NguyenLieuRepository {
         NguyenLieu nguyenLieu = (NguyenLieu) query.getSingleResult();
         return nguyenLieu;
     }
+
     public NguyenLieu getOneByTen(String tenNL) {
         String sql = fromTable + " WHERE TenNL = :tenNL ";
         Query query = session.createQuery(sql, NguyenLieu.class);
@@ -87,10 +96,10 @@ public class NguyenLieuRepository {
     public static void main(String[] args) {
         CongThucRepository congThucRepository = new CongThucRepository();
         NguyenLieuRepository nl = new NguyenLieuRepository();
-        List<NguyenLieu> lst = nl.getAll();
+        List<NguyenLieu> lst = nl.getByCT(congThucRepository.getAll().get(0).getIdCT());
         for (NguyenLieu x : lst) {
             System.out.println(x.toString());
         }
-      //  nl.Delete(lst.get(4));
+        //  nl.Delete(lst.get(4));
     }
 }

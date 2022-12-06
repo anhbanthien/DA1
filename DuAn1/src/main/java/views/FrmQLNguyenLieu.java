@@ -36,7 +36,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
      * Creates new form FrmQLCongThuc
      */
     public FrmQLNguyenLieu() {
-        initComponents();
+        initComponents();     
         dcb = (DefaultComboBoxModel) cboCongThuc.getModel();
         dcb.removeAllElements();
         for (QLCongThuc x : lstQLCT) {
@@ -206,6 +206,16 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
         });
 
         cboCongThuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboCongThuc.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboCongThucItemStateChanged(evt);
+            }
+        });
+        cboCongThuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboCongThucActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -419,6 +429,19 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    private void cboCongThucItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCongThucItemStateChanged
+        if(cboCongThuc.getItemCount() > 0){
+            String tenCT = cboCongThuc.getSelectedItem().toString();
+            QLCongThuc qlct = _iManageCongThucService.getOneByTen(tenCT);
+            List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
+            loadData(lstNLCT);
+        }
+    }//GEN-LAST:event_cboCongThucItemStateChanged
+
+    private void cboCongThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCongThucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboCongThucActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -457,6 +480,10 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
                 new FrmQLNguyenLieu().setVisible(true);
             }
         });
+        IManageCongThucService _iManageCongThucService = new ManageCongThucService();
+        QLCongThuc qlct = _iManageCongThucService.getOneByTen("CT01");
+        System.out.println(qlct.toString());
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
