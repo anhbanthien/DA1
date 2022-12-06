@@ -16,7 +16,6 @@ import org.hibernate.Transaction;
  * @author vanlo
  */
 public class BanHangRepository {
-    Session session = HibernatUtil.getFACTORY().openSession();
     private String fromTableHDCT = "FROM HDCT h";
    public boolean Update(HDCT hdct,UUID id) {
         Transaction transaction = null;
@@ -37,14 +36,22 @@ public class BanHangRepository {
     } 
    public HDCT getOne(UUID idHD, UUID idSP) {
         String sql = fromTableHDCT + " WHERE h.IDHD = :hd AND h.IDSP = :sp ";
+        try {
+           Session session = HibernatUtil.getFACTORY().openSession();
         Query query = session.createQuery(sql, HDCT.class);
         query.setParameter("hd", new HoaDonRepository().getOne(idHD));
         query.setParameter("sp", new SanPhamRepository().getOne(idSP));
-        HDCT hdct = (HDCT) query.getResultList().get(0);
+        HDCT hdct = (HDCT) query.getSingleResult();
         return hdct;
+       } catch (Exception e) {
+           return null;
+       }
+        
+        
     }
    public boolean Delete(UUID hdct) {
         try {
+            Session session = HibernatUtil.getFACTORY().openSession();
             session.getTransaction().begin();
             session.delete(session.get(HDCT.class, hdct));
             session.getTransaction().commit();
