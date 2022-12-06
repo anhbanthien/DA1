@@ -671,7 +671,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             Collections.sort(lstSP, new GiaComparator());
             Collections.reverse(lstSP);
             loadData(lstSP);
-        } 
+        }
 
     }//GEN-LAST:event_cboSapXepItemStateChanged
 

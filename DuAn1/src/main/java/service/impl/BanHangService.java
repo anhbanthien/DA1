@@ -31,13 +31,16 @@ public class BanHangService implements IBanHangService{
         return new BanHangRepository().Update( hdct,id) ? "Sửa thành công" : "Sửa thất bại";
     }
 
-    @Override
+@Override
     public QLHDCT getOne(UUID idHD, UUID idSP) {
         HDCT hdct = new BanHangRepository().getOne(idHD,idSP);
+        if(hdct == null){
+        return null;
+        }
         QLHDCT qlhdct = new QLHDCT();
         qlhdct.setIdHDCT(hdct.getIDHDCT());
         qlhdct.setIdHD(hdct.getIDHD().getIDHD());
-        qlhdct.setIdSP(hdct.getIDSP().getIdSP());
+        qlhdct.setIdSP(hdct.getIDSP().getIDSP());
         qlhdct.setSoLuong(hdct.getSoLuong());
         return qlhdct;
     }
@@ -45,7 +48,6 @@ public class BanHangService implements IBanHangService{
     @Override
     public String delete(UUID qlhdct) {  
       
-
         return new BanHangRepository().Delete(qlhdct) ? "xóa thành công" : "xóa thất bại";
     }
     
