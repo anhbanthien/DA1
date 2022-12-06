@@ -15,9 +15,9 @@ public interface KhuyenMaiService {
 
     List<KhuyenMaiModel> getAll();
 
-    String Save(KhuyenMaiModel khuyenMai);
+    boolean Save(KhuyenMaiModel khuyenMai);
 
-    String Update(KhuyenMaiModel khuyenMai, String MaKM);
+    boolean Update(KhuyenMaiModel km, String MaKM);
 
-    String Delete(KhuyenMaiModel khuyenMai);
+    boolean Delete(KhuyenMaiModel khuyenMai);
 }

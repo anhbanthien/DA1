@@ -24,7 +24,7 @@ import viewmodel.KhuyenMaiModel;
  * @author hungn
  */
 public class FrmKhuyenMai extends javax.swing.JFrame {
-
+    
     private DefaultTableModel dtm = new DefaultTableModel();
     private DefaultTableModel dtm2 = new DefaultTableModel();
     private KhuyenMaiServiceImpl kmimpl = new KhuyenMaiServiceImpl();
@@ -48,7 +48,7 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
         showData(listkm);
         showData1(listhd);
     }
-
+    
     private void showData(List<KhuyenMaiModel> list) {
         dtm.setRowCount(0);
         for (KhuyenMaiModel km : list) {
@@ -62,7 +62,7 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
             dtm2.addRow(hm.toDataRow());
         }
     }
-
+    
     private void fillData(int i) {
         KhuyenMaiModel km = listkm.get(i);
         String ngayBD = km.getNgayBatDau();
@@ -74,12 +74,16 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
             txtBatDau1.setDate(date1);
             txtKetThuc.setDate(date2);
             txtPhanTramKm.setText(String.valueOf(km.getPhanTramKM()));
-            cbbTrangThai.setSelectedItem(km.getTrangThai());
+            if (km.getTrangThai() == 1) {
+                rdoOn.setSelected(true);
+            } else {
+                rdoOff.setSelected(true);
+            }
         } catch (ParseException ex) {
             Logger.getLogger(FrmKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
     private KhuyenMaiModel getKm() {
         KhuyenMaiModel km = new KhuyenMaiModel();
         try {
@@ -92,7 +96,7 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
             km.setNgayKetThuc(String.valueOf(txtKetThuc.getDate()));
             float tilekm = Float.parseFloat(txtPhanTramKm.getText());
             km.setPhanTramKM(tilekm);
-            km.setTrangThai((int) cbbTrangThai.getSelectedItem());
+            km.setTrangThai(buttonGroup1.getButtonCount());
             return km;
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Lỗi");
@@ -109,6 +113,7 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblKhuyenMai = new javax.swing.JTable();
@@ -124,11 +129,12 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtMaKM = new javax.swing.JTextField();
         txtPhanTramKm = new javax.swing.JTextField();
-        cbbTrangThai = new javax.swing.JComboBox<>();
         btnThem = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        rdoOn = new javax.swing.JRadioButton();
+        rdoOff = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,9 +204,6 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
         jPanel1.add(txtMaKM, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 90, -1));
         jPanel1.add(txtPhanTramKm, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 370, 50, -1));
 
-        cbbTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "On", "Off", " " }));
-        jPanel1.add(cbbTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 110, -1));
-
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -230,6 +233,14 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 0, -1, -1));
 
+        buttonGroup1.add(rdoOn);
+        rdoOn.setText("On");
+        jPanel1.add(rdoOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 40, -1));
+
+        buttonGroup1.add(rdoOff);
+        rdoOff.setText("Off");
+        jPanel1.add(rdoOff, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 420, 40, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -250,22 +261,39 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
     }//GEN-LAST:event_tblKhuyenMaiMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm không?");
-            if (hoi == JOptionPane.YES_OPTION) {
-                for (int i = 0; i < kmimpl.getAll().size(); i++) {
-                    if (kmimpl.getAll().get(i).getMaKM().equalsIgnoreCase(txtMaKM.getText().trim())) {
-                        JOptionPane.showMessageDialog(this, "Tên sản phẩm bị trùng!");
-                        return;
-                    }
-                }
-
-                JOptionPane.showMessageDialog(this, kmimpl.Save(getKm()));
-                showData(kmimpl.getAll());
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Mời nhập lại!");
+//        KhuyenMaiModel km = new KhuyenMaiModel();
+//        km.setMaKM(txtMaKM.getText());
+//        km.setNgayBatDau(String.valueOf(txtBatDau1.getDate()));
+//        km.setNgayKetThuc(String.valueOf(txtKetThuc.getDate()));
+//        km.setPhanTramKM(Float.parseFloat(txtPhanTramKm.getText()));
+//        int i = cbbTrangThai.getSelectedIndex();
+//        km.setTrangThai(i);
+//        if(new KhuyenMaiServiceImpl().Save(km)){
+//            
+//        } else {
+//            
+//        }
+        KhuyenMaiModel km = new KhuyenMaiModel();
+        String maKm = txtMaKM.getText();
+        Date ngaybd = txtBatDau1.getDate();
+        Date ngaykt = txtKetThuc.getDate();
+        String phanTram = txtPhanTramKm.getText();
+        if (rdoOn.isSelected()) {
+            km.setTrangThai(1);
+        } else {
+            km.setTrangThai(0);
+        }
+        km.setMaKM(maKm);
+        km.setNgayBatDau(String.valueOf(ngaybd));
+        km.setNgayKetThuc(String.valueOf(ngaykt));
+        km.setPhanTramKM(Float.parseFloat(phanTram));
+        if (new KhuyenMaiServiceImpl().Save(km)) {
+            JOptionPane.showMessageDialog(this, "THành công");
+            listkm.add(km);
+            listkm = kmimpl.getAll();
+            showData(listkm);
+        } else {
+            JOptionPane.showMessageDialog(this, "Thất Bại");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -274,7 +302,27 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
-        // TODO add your handling code here:
+        KhuyenMaiModel km = new KhuyenMaiModel();
+        String maKm = txtMaKM.getText();
+        Date ngaybd = txtBatDau1.getDate();
+        Date ngaykt = txtKetThuc.getDate();
+        String phanTram = txtPhanTramKm.getText();
+        if (rdoOn.isSelected()) {
+            km.setTrangThai(1);
+        } else {
+            km.setTrangThai(0);
+        }
+        km.setMaKM(maKm);
+        km.setNgayBatDau(String.valueOf(ngaybd));
+        km.setNgayKetThuc(String.valueOf(ngaykt));
+        km.setPhanTramKM(Float.parseFloat(phanTram));
+        if(new KhuyenMaiServiceImpl().Update(km, maKm)){
+            JOptionPane.showMessageDialog(this, "THành công");
+            listkm = kmimpl.getAll();
+            showData(listkm);
+        } else {
+            JOptionPane.showMessageDialog(this, "THất bại");
+        }
     }//GEN-LAST:event_btnCapNhatActionPerformed
 
     /**
@@ -316,7 +364,7 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapNhat;
     private javax.swing.JButton btnThem;
-    private javax.swing.JComboBox<String> cbbTrangThai;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -328,6 +376,8 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton rdoOff;
+    private javax.swing.JRadioButton rdoOn;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblKhuyenMai;
     private com.toedter.calendar.JDateChooser txtBatDau1;

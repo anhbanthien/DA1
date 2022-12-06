@@ -13,6 +13,7 @@ import domainmodel.SanPham;
 import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import viewmodel.KhuyenMaiModel;
 
 public class KhuyenMaiRepository {
 
@@ -39,11 +40,16 @@ public class KhuyenMaiRepository {
     }
 
     public boolean update(KhuyenMai khuyenmai, String MaKM) {
-        Transaction transaction = null;
-        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.update(khuyenmai);
-            transaction.commit();
+        try {
+            KhuyenMai km = session.get(KhuyenMai.class, MaKM);
+            km.setMaKM(khuyenmai.getMaKM());
+            km.setNgayBatDau(khuyenmai.getNgayBatDau());
+            km.setNgayKetThuc(khuyenmai.getNgayKetThuc());
+            km.setPhanTramKM(khuyenmai.getPhanTramKM());
+            km.setTrangThai(khuyenmai.getTrangThai());
+            session.getTransaction().begin();
+            session.save(km);
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;

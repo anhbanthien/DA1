@@ -31,7 +31,7 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
     }
 
     @Override
-    public String Save(KhuyenMaiModel khuyenMai) {
+    public boolean Save(KhuyenMaiModel khuyenMai) {
         KhuyenMai km = new KhuyenMai();
         km.setMaKM(khuyenMai.getMaKM());
         km.setPhanTramKM(khuyenMai.getPhanTramKM());
@@ -39,23 +39,23 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
         km.setNgayKetThuc(khuyenMai.getNgayKetThuc());
         km.setTrangThai(khuyenMai.getTrangThai());
 
-        return kmrp.add(km) ? "Thêm thành công" : "Thêm Thất Bại";
+        return kmrp.add(km);
     }
 
     @Override
-    public String Delete(KhuyenMaiModel khuyenMai) {
+    public boolean Delete(KhuyenMaiModel khuyenMai) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public String Update(KhuyenMaiModel khuyenMai, String MaKM) {
+    public boolean Update(KhuyenMaiModel khuyenMai, String MaKM) {
         KhuyenMai km = new KhuyenMai();
         km.setMaKM(khuyenMai.getMaKM());
         km.setPhanTramKM(khuyenMai.getPhanTramKM());
         km.setNgayBatDau(khuyenMai.getNgayBatDau());
         km.setNgayKetThuc(khuyenMai.getNgayKetThuc());
         km.setTrangThai(khuyenMai.getTrangThai());
-        return kmrp.add(km) ? "Sửa thành công" : "Sửa thất bại";
+        return kmrp.update(km, MaKM);
     }
 
 }
