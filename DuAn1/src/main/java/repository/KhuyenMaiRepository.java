@@ -38,7 +38,7 @@ public class KhuyenMaiRepository {
         }
     }
 
-    public boolean update(KhuyenMai khuyenmai) {
+    public boolean update(KhuyenMai khuyenmai, String MaKM) {
         Transaction transaction = null;
         try ( Session session = HibernatUtil.getFACTORY().openSession()) {
             transaction = session.beginTransaction();

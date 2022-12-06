@@ -23,6 +23,7 @@ public class KhuyenMai {
     @Column(columnDefinition = "uniqueidentifier")
     @GeneratedValue
     private UUID IDKM;
+    private String MaKM;
     private String NgayBatDau;
     private String NgayKetThuc;
     private float PhanTramKM;
@@ -31,8 +32,9 @@ public class KhuyenMai {
     public KhuyenMai() {
     }
 
-    public KhuyenMai(UUID IDKM, String NgayBatDau, String NgayKetThuc, float PhanTramKM, int TrangThai) {
+    public KhuyenMai(UUID IDKM, String MaKM, String NgayBatDau, String NgayKetThuc, float PhanTramKM, int TrangThai) {
         this.IDKM = IDKM;
+        this.MaKM = MaKM;
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
         this.PhanTramKM = PhanTramKM;
@@ -45,6 +47,14 @@ public class KhuyenMai {
 
     public void setIDKM(UUID IDKM) {
         this.IDKM = IDKM;
+    }
+
+    public String getMaKM() {
+        return MaKM;
+    }
+
+    public void setMaKM(String MaKM) {
+        this.MaKM = MaKM;
     }
 
     public String getNgayBatDau() {
@@ -81,7 +91,7 @@ public class KhuyenMai {
 
     @Override
     public String toString() {
-        return "KhuyenMai{" + "IDKM=" + IDKM + ", NgayBatDau=" + NgayBatDau + ", NgayKetThuc=" + NgayKetThuc + ", PhanTramKM=" + PhanTramKM + ", TrangThai=" + TrangThai + '}';
+        return "KhuyenMai{" + "IDKM=" + IDKM + ", MaKM=" + MaKM + ", NgayBatDau=" + NgayBatDau + ", NgayKetThuc=" + NgayKetThuc + ", PhanTramKM=" + PhanTramKM + ", TrangThai=" + TrangThai + '}';
     }
 
 }
