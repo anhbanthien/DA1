@@ -18,7 +18,7 @@ public class QLSanPham {
     private String moTa;
     private String image;
     private float gia;
-    private String trangThai;
+    private int trangThai;
 
     public QLSanPham() {
     }
@@ -30,6 +30,23 @@ public class QLSanPham {
         this.image = sp.getImage();
         this.gia = sp.getGia();
         this.trangThai = sp.getTrangThai();
+    }
+
+    public QLSanPham(String tenSP, String moTa, String image, float gia, int trangThai) {
+        this.tenSP = tenSP;
+        this.moTa = moTa;
+        this.image = image;
+        this.gia = gia;
+        this.trangThai = trangThai;
+    }
+
+    public QLSanPham(UUID IDSP, String tenSP, String moTa, String image, float gia, int trangThai) {
+        this.IDSP = IDSP;
+        this.tenSP = tenSP;
+        this.moTa = moTa;
+        this.image = image;
+        this.gia = gia;
+        this.trangThai = trangThai;
     }
 
     public UUID getIDSP() {
@@ -72,18 +89,19 @@ public class QLSanPham {
         this.gia = gia;
     }
 
-    public String getTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
     @Override
     public String toString() {
-        return "SanPhamModel{" + "IDSP=" + IDSP + ", tenSP=" + tenSP + ", moTa=" + moTa + ", image=" + image + ", gia=" + gia + ", trangThai=" + trangThai + '}';
+        return "QLSanPham{" + "IDSP=" + IDSP + ", tenSP=" + tenSP + ", moTa=" + moTa + ", image=" + image + ", gia=" + gia + ", trangThai=" + trangThai + '}';
     }
 
+   
     
 }

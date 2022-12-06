@@ -10,13 +10,16 @@ import viewmodel.QLSanPham;
  *
  * @author vanlo
  */
-public class BSanPham extends javax.swing.JPanel{
-     private QLSanPham sp;
+public class BSanPham extends javax.swing.JPanel {
+
+    private QLSanPham sp;
     private int u;
+
     public BSanPham() {
         initComponents();
     }
-    public BSanPham(QLSanPham sp,int u) {
+
+    public BSanPham(QLSanPham sp, int u) {
         this.sp = sp;
         this.u = u;
         initComponents();
@@ -37,7 +40,7 @@ public class BSanPham extends javax.swing.JPanel{
     public void setU(int u) {
         this.u = u;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,39 +56,38 @@ public class BSanPham extends javax.swing.JPanel{
 
         setPreferredSize(new java.awt.Dimension(120, 150));
 
-        lblAnhSP.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/"+sp.getImage())).getImage().getScaledInstance(90, 90, java.awt.Image.SCALE_DEFAULT)));
+        lblAnhSP.setIcon(new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/" + sp.getImage())).getImage().getScaledInstance(90, 90, java.awt.Image.SCALE_DEFAULT)));
         lblAnhSP.setText("");
 
         lblTensp.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         lblTensp.setText(sp.getTenSP());
 
         lblGiaSP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblGiaSP.setText(Integer.toString((int)sp.getGia())+ ".VND");
+        lblGiaSP.setText(Integer.toString((int) sp.getGia()) + ".VND");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblGiaSP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblAnhSP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
-            .addComponent(lblTensp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblGiaSP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblAnhSP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 90, Short.MAX_VALUE))
+                                .addGap(20, 20, 20))
+                        .addComponent(lblTensp, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(lblAnhSP, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTensp, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblAnhSP, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblTensp, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(lblGiaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18))
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel lblAnhSP;

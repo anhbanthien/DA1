@@ -4,6 +4,7 @@
  */
 package domainmodel;
 
+import java.sql.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,15 +24,15 @@ public class KhuyenMai {
     @Column(columnDefinition = "uniqueidentifier")
     @GeneratedValue
     private UUID IDKM;
-    private String NgayBatDau;
-    private String NgayKetThuc;
+    private Date NgayBatDau;
+    private Date NgayKetThuc;
     private float PhanTramKM;
     private int TrangThai;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(UUID IDKM, String NgayBatDau, String NgayKetThuc, float PhanTramKM, int TrangThai) {
+    public KhuyenMai(UUID IDKM, Date NgayBatDau, Date NgayKetThuc, float PhanTramKM, int TrangThai) {
         this.IDKM = IDKM;
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
@@ -47,19 +48,19 @@ public class KhuyenMai {
         this.IDKM = IDKM;
     }
 
-    public String getNgayBatDau() {
+    public Date getNgayBatDau() {
         return NgayBatDau;
     }
 
-    public void setNgayBatDau(String NgayBatDau) {
+    public void setNgayBatDau(Date NgayBatDau) {
         this.NgayBatDau = NgayBatDau;
     }
 
-    public String getNgayKetThuc() {
+    public Date getNgayKetThuc() {
         return NgayKetThuc;
     }
 
-    public void setNgayKetThuc(String NgayKetThuc) {
+    public void setNgayKetThuc(Date NgayKetThuc) {
         this.NgayKetThuc = NgayKetThuc;
     }
 

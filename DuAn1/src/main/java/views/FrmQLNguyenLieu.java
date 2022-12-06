@@ -385,7 +385,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
                     }
                 }
                 JOptionPane.showMessageDialog(this, _iManageNguyenLieuService.update(getID(), getData()));
-                loadData(_iManageNguyenLieuService.getAll());
+                loadData(new ManageNguyenLieuService().getAll());
 
             }
         } catch (Exception e) {
@@ -397,7 +397,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         List<QLNguyenLieu> lstQLNLTimTheoTen = new ArrayList<>();
         for (QLNguyenLieu x : _iManageNguyenLieuService.getAll()) {
-            if (x.getTenNL().startsWith(txtSearch.getText())) {
+            if (x.getTenNL().toLowerCase().startsWith(txtSearch.getText().toLowerCase())) {
                 lstQLNLTimTheoTen.add(x);
             }
         }

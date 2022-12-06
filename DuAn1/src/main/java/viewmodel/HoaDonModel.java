@@ -10,6 +10,7 @@ import domainmodel.HoaDon;
 import domainmodel.KhachHang;
 import domainmodel.KhuyenMai;
 import domainmodel.NhanVien;
+import java.sql.Date;
 
 /**
  *
@@ -22,8 +23,8 @@ public class HoaDonModel {
     private KhachHang IDKH;
     private KhuyenMai IDKM;
     private Ban IDB;
-    private String NgayTao;
-    private String NgayTT;
+    private Date NgayTao;
+    private Date NgayTT;
     private float TienTra;
     private float TongTien;
     private String TrangThai;
@@ -46,9 +47,9 @@ public class HoaDonModel {
         this.TienTra = hoadon.getTienTra();
         this.TongTien = hoadon.getTongTien();
         this.TrangThai = hoadon.getTrangThai();
-        this.Ten = hoadon.getIDKH().getTen();
-        this.SoDienThoai = hoadon.getIDKH().getSoDienThoai();
-        this.PhanTramKM = hoadon.getIDKM().getPhanTramKM();
+//        this.Ten = hoadon.getIDKH().getTen();
+//        this.SoDienThoai = hoadon.getIDKH().getSoDienThoai();
+        
         this.HoTen = hoadon.getIDNV().getHoTen();
     }
 
@@ -124,21 +125,23 @@ public class HoaDonModel {
         this.IDB = IDB;
     }
 
-    public String getNgayTao() {
+    public Date getNgayTao() {
         return NgayTao;
     }
 
-    public void setNgayTao(String NgayTao) {
+    public void setNgayTao(Date NgayTao) {
         this.NgayTao = NgayTao;
     }
 
-    public String getNgayTT() {
+    public Date getNgayTT() {
         return NgayTT;
     }
 
-    public void setNgayTT(String NgayTT) {
+    public void setNgayTT(Date NgayTT) {
         this.NgayTT = NgayTT;
     }
+
+
 
     public float getTienTra() {
         return TienTra;
