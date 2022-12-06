@@ -41,14 +41,25 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
         String[] header = {"Mã KM", "Tỉ Lệ KM", "Ngày BD", "Ngày KT", "Trạng Thái"};
         dtm.setColumnIdentifiers(header);
         tblHoaDon.setModel(dtm2);
+        String[] header1 = {"Mã HD", "Người Tạo", "Ngày Tạo", "Tổng Tiền", "Trạng Thái"};
+        dtm2.setColumnIdentifiers(header1);
         listkm = kmimpl.getAll();
+        listhd = hdimpl.getHoaDonByTT("CTT");
         showData(listkm);
+        showData1(listhd);
     }
 
     private void showData(List<KhuyenMaiModel> list) {
         dtm.setRowCount(0);
         for (KhuyenMaiModel km : list) {
             dtm.addRow(km.toDataRow());
+        }
+    }
+    
+    private void showData1(List<HoaDonModel> list) {
+        dtm2.setRowCount(0);
+        for (HoaDonModel hm : list) {
+            dtm2.addRow(hm.toDataRow());
         }
     }
 
