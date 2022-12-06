@@ -4,6 +4,7 @@
  */
 package service;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,9 +15,23 @@ public interface QuanLyThongKeService {
 
     List<Object[]> getList();
 
-    List<Object> soLuong(String date);
+    List<Object> soLuong(Date date);
 
     List<Object[]> getListTK();
 
-//    List<Object[]> getListSP();
+    List<Object[]> getListTKMD();
+
+    List<Object[]> listThongKeCT(Date ngayTT);
+
+    List<Object[]> getListDT(Date ngayBD, Date ngayKT);
+
+    List<Object[]> getListTKKH(Date ngayBD, Date ngayKT);
+
+    List<Object> soLuongNgay(Date ngayBD, Date ngayKT);
+
+    List<Object[]> tkSPMD();
+
+    List<Object[]> thongKeSPNgay(Date ngayBD, Date ngayKT);
+
+    List<Object[]> getListSP();
 }

@@ -79,8 +79,8 @@ public class HoaDonView extends javax.swing.JFrame {
         txtMaHD.setText(String.valueOf(fhd.getIDHD()));
         txtKH.setText(fhd.getTen());
         txtSDT.setText(fhd.getSoDienThoai());
-        txtTGTao.setText(fhd.getNgayTao());
-        txtTGTT.setText(fhd.getNgayTT());
+//        txtTGTao.setText(fhd.getNgayTao());
+//        txtTGTT.setText(fhd.getNgayTT());
         txtTrangThai.setText(fhd.getTrangThai());
         txtTongTienHD.setText(String.valueOf(fhd.getTongTien()));
         txtKM.setText(String.valueOf(fhd.getPhanTramKM()));

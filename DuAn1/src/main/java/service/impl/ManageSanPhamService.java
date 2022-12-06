@@ -41,7 +41,7 @@ public class ManageSanPhamService implements IManageSanPhamService {
     @Override
     public String add(QLSanPham qlsp) {
         SanPham sp = new SanPham();
-        sp.setIdSP(qlsp.getIDSP());
+        sp.setIDSP(qlsp.getIDSP());
         sp.setTenSP(qlsp.getTenSP());
         sp.setMoTa(qlsp.getMoTa());
         sp.setImage(qlsp.getImage());
@@ -54,7 +54,7 @@ public class ManageSanPhamService implements IManageSanPhamService {
     @Override
     public String update(UUID id, QLSanPham qlsp) {
         SanPham sp = new SanPham();
-        sp.setIdSP(id);
+        sp.setIDSP(id);
         sp.setTenSP(qlsp.getTenSP());
         sp.setMoTa(qlsp.getMoTa());
         sp.setImage(qlsp.getImage());
@@ -67,7 +67,7 @@ public class ManageSanPhamService implements IManageSanPhamService {
     @Override
     public String delete(QLSanPham qlsp) {
         SanPham sp = new SanPham();
-        sp.setIdSP(qlsp.getIDSP());
+        sp.setIDSP(qlsp.getIDSP());
         sp.setTenSP(qlsp.getTenSP());
         sp.setMoTa(qlsp.getMoTa());
         sp.setImage(qlsp.getImage());
