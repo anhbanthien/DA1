@@ -24,7 +24,7 @@ import viewmodel.KhuyenMaiModel;
  * @author hungn
  */
 public class FrmKhuyenMai extends javax.swing.JFrame {
-    
+
     private DefaultTableModel dtm = new DefaultTableModel();
     private DefaultTableModel dtm2 = new DefaultTableModel();
     private KhuyenMaiServiceImpl kmimpl = new KhuyenMaiServiceImpl();
@@ -48,21 +48,21 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
         showData(listkm);
         showData1(listhd);
     }
-    
+
     private void showData(List<KhuyenMaiModel> list) {
         dtm.setRowCount(0);
         for (KhuyenMaiModel km : list) {
             dtm.addRow(km.toDataRow());
         }
     }
-    
+
     private void showData1(List<HoaDonModel> list) {
         dtm2.setRowCount(0);
         for (HoaDonModel hm : list) {
             dtm2.addRow(hm.toDataRow());
         }
     }
-    
+
     private void fillData(int i) {
         KhuyenMaiModel km = listkm.get(i);
         String ngayBD = km.getNgayBatDau();
@@ -83,7 +83,7 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
             Logger.getLogger(FrmKhuyenMai.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     private KhuyenMaiModel getKm() {
         KhuyenMaiModel km = new KhuyenMaiModel();
         try {
@@ -274,9 +274,12 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
 //            
 //        }
         KhuyenMaiModel km = new KhuyenMaiModel();
+        SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
         String maKm = txtMaKM.getText();
         Date ngaybd = txtBatDau1.getDate();
         Date ngaykt = txtKetThuc.getDate();
+        String ngay = df.format(ngaybd);
+        String ngay2 = df.format(ngaykt);
         String phanTram = txtPhanTramKm.getText();
         if (rdoOn.isSelected()) {
             km.setTrangThai(1);
@@ -284,8 +287,8 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
             km.setTrangThai(0);
         }
         km.setMaKM(maKm);
-        km.setNgayBatDau(String.valueOf(ngaybd));
-        km.setNgayKetThuc(String.valueOf(ngaykt));
+        km.setNgayBatDau(String.valueOf(ngay));
+        km.setNgayKetThuc(String.valueOf(ngay2));
         km.setPhanTramKM(Float.parseFloat(phanTram));
         if (new KhuyenMaiServiceImpl().Save(km)) {
             JOptionPane.showMessageDialog(this, "THành công");
@@ -303,9 +306,12 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
 
     private void btnCapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapNhatActionPerformed
         KhuyenMaiModel km = new KhuyenMaiModel();
+        SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
         String maKm = txtMaKM.getText();
         Date ngaybd = txtBatDau1.getDate();
         Date ngaykt = txtKetThuc.getDate();
+        String ngay = df.format(ngaybd);
+        String ngay2 = df.format(ngaykt);
         String phanTram = txtPhanTramKm.getText();
         if (rdoOn.isSelected()) {
             km.setTrangThai(1);
@@ -313,10 +319,10 @@ public class FrmKhuyenMai extends javax.swing.JFrame {
             km.setTrangThai(0);
         }
         km.setMaKM(maKm);
-        km.setNgayBatDau(String.valueOf(ngaybd));
-        km.setNgayKetThuc(String.valueOf(ngaykt));
+        km.setNgayBatDau(String.valueOf(ngay));
+        km.setNgayKetThuc(String.valueOf(ngay2));
         km.setPhanTramKM(Float.parseFloat(phanTram));
-        if(new KhuyenMaiServiceImpl().Update(km, maKm)){
+        if (new KhuyenMaiServiceImpl().Update(km, maKm)) {
             JOptionPane.showMessageDialog(this, "THành công");
             listkm = kmimpl.getAll();
             showData(listkm);
