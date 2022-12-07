@@ -495,7 +495,12 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 }
 
                 JOptionPane.showMessageDialog(this, _iManageSanPhamService.add(getDataThem()));
-                loadData(_iManageSanPhamService.getAll());
+
+                dtm.setRowCount(0);
+                lstSP = _iManageSanPhamService.getAll();
+                for (int i = lstSP.size() -1;i>=0;i--) {
+                    dtm.addRow(new Object[]{i+1, lstSP.get(i).getTenSP(), lstSP.get(i).getMoTa(), lstSP.get(i).getImage(), lstSP.get(i).getGia(), lstSP.get(i).getTrangThai() == 1 ? "Đang kinh doanh" : "Ngừng kinh doanh"});
+                }
             }
 
         } catch (Exception e) {
@@ -644,7 +649,14 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 cell.setCellValue(_iManageSanPhamService.getAll().get(i).getTrangThai() == 1 ? "Đang kinh doanh" : "Ngừng kinh doanh");
 
             }
-            File f = new File("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\Danhsach.xlsx");
+            String path = "";
+            JFileChooser jfc = new JFileChooser();
+            jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int x = jfc.showSaveDialog(null);
+            if (x == JFileChooser.APPROVE_OPTION) {
+                path = jfc.getSelectedFile().getPath();
+            }
+            File f = new File(path + "//Danhsach.xlsx");
             try {
                 FileOutputStream fos = new FileOutputStream(f);
                 workbook.write(fos);
