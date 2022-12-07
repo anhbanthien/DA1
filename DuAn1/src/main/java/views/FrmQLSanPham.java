@@ -494,13 +494,10 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                     }
                 }
 
-                JOptionPane.showMessageDialog(this, _iManageSanPhamService.add(getDataThem()));
-
-                dtm.setRowCount(0);
-                lstSP = _iManageSanPhamService.getAll();
-                for (int i = lstSP.size() -1;i>=0;i--) {
-                    dtm.addRow(new Object[]{i+1, lstSP.get(i).getTenSP(), lstSP.get(i).getMoTa(), lstSP.get(i).getImage(), lstSP.get(i).getGia(), lstSP.get(i).getTrangThai() == 1 ? "Đang kinh doanh" : "Ngừng kinh doanh"});
-                }
+                
+                
+                JOptionPane.showMessageDialog(this, _iManageSanPhamService.add(getDataThem()));            
+                loadData(_iManageSanPhamService.getAll());
             }
 
         } catch (Exception e) {
@@ -771,6 +768,14 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             dtm.addRow(new Object[]{all.indexOf(x) + 1, x.getTenSP(), x.getMoTa(), x.getImage(), x.getGia(), x.getTrangThai() == 1 ? "Đang kinh doanh" : "Ngừng kinh doanh"});
         }
     }
+    
+//    private void loadData(List<QLSanPham> all) {
+//        dtm = (DefaultTableModel) tblSP.getModel();
+//        dtm.setRowCount(0);
+//        for (int i = all.size()-1;i>-0;i--) {
+//            dtm.addRow(new Object[]{i, all.get(i).getTenSP(), all.get(i).getMoTa(), all.get(i).getImage(), all.get(i).getGia(), all.get(i).getTrangThai() == 1 ? "Đang kinh doanh" : "Ngừng kinh doanh"});
+//        }
+//    }
 
     private QLSanPham getDataThem() {
         QLSanPham qlsp = new QLSanPham();
