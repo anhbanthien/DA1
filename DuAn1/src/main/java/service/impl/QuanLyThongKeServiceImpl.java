@@ -6,6 +6,7 @@ package service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import repository.ThongKeRepository;
 import service.QuanLyThongKeService;
 
@@ -71,5 +72,25 @@ public class QuanLyThongKeServiceImpl implements QuanLyThongKeService {
     @Override
     public List<Object[]> thongKeSPNgay(Date ngayBD, Date ngayKT) {
         return repository.listThongKeSPNgay(ngayBD, ngayKT);
+    }
+
+    @Override
+    public List<Object> listHDNgay(Date ngayBD, Date ngayKT) {
+        return repository.listHDNgay(ngayBD, ngayKT);
+    }
+
+    @Override
+    public List<Object> listTongTienNgay(Date ngayBD, Date ngayKT) {
+        return repository.listTongTienNgay(ngayBD, ngayKT);
+    }
+
+    @Override
+    public List<Object[]> listMouse(UUID id) {
+        return repository.listMouseClickCT(id);
+    }
+
+    @Override
+    public List<Object[]> listBieuDo() {
+        return repository.listBieuDo();
     }
 }
