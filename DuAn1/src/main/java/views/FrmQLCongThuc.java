@@ -57,10 +57,10 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnXoa = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtTrangThai = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblQLyCongThuc = new javax.swing.JTable();
         btnThem = new javax.swing.JButton();
@@ -79,6 +79,8 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         btnClose = new javax.swing.JButton();
         cboTenSP = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
+        rdoDSD = new javax.swing.JRadioButton();
+        rdoNSD = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -210,6 +212,13 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
 
         jLabel7.setText("Tên Sản Phẩm");
 
+        buttonGroup1.add(rdoDSD);
+        rdoDSD.setSelected(true);
+        rdoDSD.setText("Đang sử dụng");
+
+        buttonGroup1.add(rdoNSD);
+        rdoNSD.setText("Ngừng sử dụng");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,9 +243,12 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtTenCT, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cboTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(cboTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(rdoDSD)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(rdoNSD)))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSua)
@@ -272,10 +284,11 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))))
+                            .addComponent(jLabel5)
+                            .addComponent(rdoDSD)
+                            .addComponent(rdoNSD))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnXoa)
@@ -320,7 +333,11 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         txtTenCT.setText(_iManageCongThucService.getAll().get(row).getTen());
         txtMoTa.setText(_iManageCongThucService.getAll().get(row).getMoTa());
         txtImage.setText(_iManageCongThucService.getAll().get(row).getImage());
-        txtTrangThai.setText(_iManageCongThucService.getAll().get(row).getTrangThai());
+        if (_iManageCongThucService.getAll().get(row).getTrangThai().equalsIgnoreCase("Đang sử dụng")) {
+            rdoDSD.setSelected(true);
+        } else {
+            rdoNSD.setSelected(true);
+        }
         cboTenSP.setSelectedItem(_iManageSanPhamService.getOne(_iManageCongThucService.getAll().get(row).getIdSP()).getTenSP());
 
     }//GEN-LAST:event_tblQLyCongThucMouseClicked
@@ -396,7 +413,7 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void cboTenSPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTenSPItemStateChanged
-        
+
     }//GEN-LAST:event_cboTenSPItemStateChanged
 
     /**
@@ -443,6 +460,7 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboTenSP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -454,12 +472,13 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton rdoDSD;
+    private javax.swing.JRadioButton rdoNSD;
     private javax.swing.JTable tblQLyCongThuc;
     private javax.swing.JTextField txtImage;
     private javax.swing.JTextArea txtMoTa;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTenCT;
-    private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
 
     private void loadData(List<QLCongThuc> lstCT) {
@@ -479,7 +498,7 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         qlct.setTen(txtTenCT.getText());
         qlct.setMoTa(txtMoTa.getText());
         qlct.setImage(txtImage.getText());
-        qlct.setTrangThai(txtTrangThai.getText());
+        qlct.setTrangThai(rdoDSD.isSelected() ? "Đang sử dụng" : "Ngừng sử dụng");
         qlct.setIdSP(_iManageSanPhamService.getOneByTen(cboTenSP.getSelectedItem().toString()).getIDSP());
         return qlct;
 
@@ -492,8 +511,7 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         qlct.setTen(txtTenCT.getText());
         qlct.setMoTa(txtMoTa.getText());
         qlct.setImage(txtImage.getText());
-        qlct.setTrangThai(txtTrangThai.getText());
-
+        qlct.setTrangThai(rdoDSD.isSelected() ? "Đang sử dụng" : "Ngừng sử dụng");
         return qlct;
     }
 
