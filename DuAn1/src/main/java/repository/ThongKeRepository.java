@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -37,7 +38,7 @@ public class ThongKeRepository {
 
     public List<Object[]> listThongKeCT(Date ngayTT) {
         try ( Session session = HibernatUtil.getFACTORY().openSession();) {
-            String HQL = "	 select  H.NgayTT, H.IDHD, SP.TenSP AS TEN, HD.SoLuong,SP.Gia from HDCT HD join SanPham SP on HD.IDSP  = SP.IDSP JOIN HoaDon H ON H.IDHD = HD.IDHD WHERE H.TrangThai = 'DTT' AND H.NgayTT = :ngay";
+            String HQL = "	 select  H.IDHD, H.NgayTT, SP.TenSP AS TEN, HD.SoLuong,SP.Gia from HDCT HD join SanPham SP on HD.IDSP  = SP.IDSP JOIN HoaDon H ON H.IDHD = HD.IDHD WHERE H.TrangThai = 'DTT' AND H.NgayTT = :ngay";
             Query query = session.createQuery(HQL);
             query.setParameter("ngay", ngayTT);
             List<Object[]> lists = query.getResultList();
@@ -63,7 +64,19 @@ public class ThongKeRepository {
         }
 
     }
+     public List<Object[]> listMouseClickCT(UUID id) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+            String HQL = "select KH.Ten, KH.SoDienThoai,SUM(HD.SoLuong) AS SL, COUNT(H.IDKH) AS TONGHD, KH.DiemTichLuy from HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD JOIN KhachHang KH ON H.IDKH = KH.IdKhachHang WHERE H.TrangThai = 'DTT' AND H.IDHD = :id GROUP BY KH.Ten, KH.DiemTichLuy, KH.SoDienThoai";
+            Query query = session.createQuery(HQL);
+            query.setParameter("id", id);
+            List<Object[]> lists = query.getResultList();
+            return lists;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
 
+    }
     public List<Object[]> listThongKeKH() {
         try ( Session session = HibernatUtil.getFACTORY().openSession();) {
             String HQL = "   select KH.Ten, KH.SoDienThoai,SUM(HD.SoLuong) AS SL, COUNT(H.IDKH) AS TONGHD, KH.DiemTichLuy from HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD JOIN KhachHang KH ON H.IDKH = KH.IdKhachHang WHERE H.TrangThai = 'DTT' GROUP BY KH.Ten, KH.DiemTichLuy, KH.SoDienThoai ORDER BY SUM(HD.SoLuong) DESC";
@@ -129,6 +142,33 @@ public class ThongKeRepository {
         }
     }
 
+    public List<Object> listHDNgay(Date ngayBD, Date ngayKT) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+            String HQL = "SELECT COUNT(H.IDHD) FROM HoaDon H WHERE H.NgayTT BETWEEN :ngayBD AND  :ngayKT AND H.TrangThai = 'DTT'";
+            Query query = session.createQuery(HQL);
+            query.setParameter("ngayBD", ngayBD);
+            query.setParameter("ngayKT", ngayKT);
+            List<Object> lists = query.getResultList();
+            return lists;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+    public List<Object> listTongTienNgay(Date ngayBD, Date ngayKT) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+            String HQL = "SELECT SUM(H.TongTien) FROM HoaDon H WHERE H.NgayTT BETWEEN :ngayBD AND  :ngayKT AND H.TrangThai = 'DTT'";
+            Query query = session.createQuery(HQL);
+            query.setParameter("ngayBD", ngayBD);
+            query.setParameter("ngayKT", ngayKT);
+            List<Object> lists = query.getResultList();
+            return lists;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
+
     public List<Object[]> listThongKeSPNgay(Date ngayBD, Date ngayKT) {
         try ( Session session = HibernatUtil.getFACTORY().openSession();) {
             String HQL = "	 select SP.TenSP, SUM(HD.SoLuong) from HDCT HD join SanPham SP on HD.IDSP  = SP.IDSP JOIN HoaDon H ON H.IDHD = HD.IDHD WHERE H.TrangThai = 'DTT' AND SP.TrangThai = 1 AND H.NgayTT BETWEEN :ngayBD AND :ngayKT GROUP BY SP.TenSP ";
@@ -171,7 +211,18 @@ public class ThongKeRepository {
             return list;
         }
     }
-
+ 
+    public List<Object[]> listBieuDo(){
+            try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+            String HQL = "SELECT YEAR(H.NgayTT), SUM(H.TongTien) FROM HoaDon H WHERE H.TrangThai = 'DTT' GROUP BY H.NgayTT";
+            Query query = session.createQuery(HQL);
+            List<Object[]> lists = query.getResultList();
+            return lists;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
     public static void main(String[] args) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date d = null;
@@ -182,6 +233,9 @@ public class ThongKeRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        new ThongKeRepository().listThongKeSPNgay(d, date).forEach(s -> System.out.println(s.toString()));
+        String ids =  "A49CB35F-FD3C-4130-9D97-075299299F00";
+        UUID id = UUID.fromString(ids);
+       
+        new ThongKeRepository().listMouseClickCT(id).forEach(s -> System.out.println(s[2]));
     }
 }
