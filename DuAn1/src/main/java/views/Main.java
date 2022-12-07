@@ -87,13 +87,13 @@ public class Main extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lmain.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 110));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 150, 110));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 160, 20));
 
         Jbtqlynv.setBackground(new java.awt.Color(105, 82, 73));
         Jbtqlynv.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Jbtqlynv.setForeground(new java.awt.Color(255, 255, 255));
-        Jbtqlynv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/NV.png"))); // NOI18N
+        Jbtqlynv.setIcon(new javax.swing.ImageIcon(getClass().getResource("/StaffPng.png"))); // NOI18N
         Jbtqlynv.setText("   Nhân Viên");
         Jbtqlynv.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         Jbtqlynv.setBorderPainted(false);
@@ -207,6 +207,7 @@ public class Main extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(139, 110, 96));
         jPanel4.setForeground(new java.awt.Color(139, 110, 96));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jbtProfile.setBackground(new java.awt.Color(139, 110, 96));
         jbtProfile.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -219,11 +220,11 @@ public class Main extends javax.swing.JFrame {
                 jbtProfileActionPerformed(evt);
             }
         });
+        jPanel4.add(jbtProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(859, 0, 149, 64));
 
         JbtOut2.setBackground(new java.awt.Color(105, 82, 73));
-        JbtOut2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        JbtOut2.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
         JbtOut2.setForeground(new java.awt.Color(255, 255, 255));
-        JbtOut2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/10955895351582988856-48.png"))); // NOI18N
         JbtOut2.setText("Chuyển TK");
         JbtOut2.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 255, 255)));
         JbtOut2.setBorderPainted(false);
@@ -233,22 +234,7 @@ public class Main extends javax.swing.JFrame {
                 JbtOut2ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(JbtOut2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jbtProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-            .addComponent(JbtOut2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        jPanel4.add(JbtOut2, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 150, 64));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/news.png"))); // NOI18N
 
@@ -260,9 +246,9 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(289, 289, 289)
+                .addGap(303, 303, 303)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 411, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,10 +263,6 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbtProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtProfileActionPerformed
-        new InfoAccount(logg).setVisible(true);
-    }//GEN-LAST:event_jbtProfileActionPerformed
 
     private void Jbtqlynv1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Jbtqlynv1ActionPerformed
         new ViewThongKe().setVisible(true);
@@ -303,11 +285,6 @@ public class Main extends javax.swing.JFrame {
         new QlyNhanVienDialog(this, true).setVisible(true);
     }//GEN-LAST:event_JbtqlynvActionPerformed
 
-    private void JbtOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut2ActionPerformed
-        new Login().setVisible(true);
-        dispose();
-    }//GEN-LAST:event_JbtOut2ActionPerformed
-
     private void JbtBan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtBan2ActionPerformed
         new BanHangJDialog(this, true, logg).setVisible(true);
     }//GEN-LAST:event_JbtBan2ActionPerformed
@@ -315,6 +292,15 @@ public class Main extends javax.swing.JFrame {
     private void JbtOut3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut3ActionPerformed
         new HoaDonView().setVisible(true);
     }//GEN-LAST:event_JbtOut3ActionPerformed
+
+    private void jbtProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtProfileActionPerformed
+        new InfoAccount(logg).setVisible(true);
+    }//GEN-LAST:event_jbtProfileActionPerformed
+
+    private void JbtOut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JbtOut2ActionPerformed
+        new Login().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_JbtOut2ActionPerformed
 
     /**
      * @param args the command line arguments

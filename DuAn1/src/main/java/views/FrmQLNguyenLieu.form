@@ -52,29 +52,21 @@
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtSL" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="txtTenNL" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="txtDVT" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="txtNgayNhap" min="-2" pref="270" max="-2" attributes="0"/>
-                                  <Component id="txtHSD" min="-2" pref="270" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btnSua" max="32767" attributes="0"/>
-                                  <Component id="btnXoa" max="32767" attributes="0"/>
-                                  <Component id="btnThem" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="btnBack" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="cboCongThuc" min="-2" pref="132" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnClose" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtSL" min="-2" pref="270" max="-2" attributes="0"/>
+                          <Component id="txtTenNL" min="-2" pref="270" max="-2" attributes="0"/>
+                          <Component id="txtDVT" min="-2" pref="270" max="-2" attributes="0"/>
+                          <Component id="txtNgayNhap" min="-2" pref="270" max="-2" attributes="0"/>
+                          <Component id="txtHSD" min="-2" pref="270" max="-2" attributes="0"/>
+                          <Component id="cboCongThuc" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnThem" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="btnSua" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnXoa" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="btnBack" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
+                          <Component id="btnClose" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -87,14 +79,16 @@
           <Group type="102" alignment="1" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnClose" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="cboCongThuc" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cboCongThuc" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnClose" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtTenNL" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -113,19 +107,18 @@
                           </Group>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="1" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnThem" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="btnSua" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="btnXoa" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -137,8 +130,9 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtHSD" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Component id="jScrollPane1" min="-2" pref="104" max="-2" attributes="0"/>
