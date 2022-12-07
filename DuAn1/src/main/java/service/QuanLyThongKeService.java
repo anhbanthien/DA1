@@ -6,6 +6,7 @@ package service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  *
@@ -34,4 +35,12 @@ public interface QuanLyThongKeService {
     List<Object[]> thongKeSPNgay(Date ngayBD, Date ngayKT);
 
     List<Object[]> getListSP();
+    
+    List<Object> listHDNgay(Date ngayBD, Date ngayKT);
+    
+    List<Object> listTongTienNgay(Date ngayBD, Date ngayKT);
+    
+    List<Object[]> listMouse(UUID id);
+    
+    List<Object[]> listBieuDo();
 }
