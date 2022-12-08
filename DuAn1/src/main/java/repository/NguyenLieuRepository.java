@@ -6,6 +6,7 @@
 package repository;
 
 import config.HibernatUtil;
+import domainmodel.CongThuc;
 import domainmodel.NguyenLieu;
 import domainmodel.SanPham;
 import java.util.List;
@@ -39,11 +40,7 @@ public class NguyenLieuRepository {
     }
 
     public NguyenLieu getOne(UUID idNL) {
-        String sql = fromTable + " WHERE IDNL = :idNL ";
-        Query query = session.createQuery(sql, NguyenLieu.class);
-        query.setParameter("idNL", idNL);
-        NguyenLieu nguyenLieu = (NguyenLieu) query.getSingleResult();
-        return nguyenLieu;
+        return session.get(NguyenLieu.class, idNL);
     }
 
     public NguyenLieu getOneByTen(String tenNL) {
@@ -55,37 +52,67 @@ public class NguyenLieuRepository {
     }
 
     public boolean Add(NguyenLieu nl) {
-        Transaction transaction = null;
-        try (Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
+//        Transaction transaction = null;
+//        try (Session session = HibernatUtil.getFACTORY().openSession()) {
+//            transaction = session.beginTransaction();
+//            session.save(nl);
+//            transaction.commit();
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+
+        try {
+            session.getTransaction().begin();
             session.save(nl);
-            transaction.commit();
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;
         }
-
     }
 
     public boolean Update(UUID idNL, NguyenLieu nl) {
-        Transaction transaction = null;
-        try (Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(nl);
-            transaction.commit();
+//        Transaction transaction = null;
+//        try (Session session = HibernatUtil.getFACTORY().openSession()) {
+//            transaction = session.beginTransaction();
+//            session.saveOrUpdate(nl);
+//            transaction.commit();
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+        try {
+            NguyenLieu st = session.get(NguyenLieu.class, idNL);
+            st.setCongthuc(nl.getCongthuc());
+            st.setDvt(nl.getDvt());
+            st.setHsd(nl.getHsd());
+            st.setNgayNhap(nl.getNgayNhap());
+            st.setSoLuong(nl.getSoLuong());
+            st.setTenNL(nl.getTenNL());
+            session.getTransaction().begin();
+            session.save(st);
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;
         }
-
     }
 
-    public boolean Delete(NguyenLieu nl) {
-        Transaction transaction = null;
-        try (Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.delete(nl);
-            transaction.commit();
+    public boolean Delete(UUID id) {
+//        Transaction transaction = null;
+//        try (Session session = HibernatUtil.getFACTORY().openSession()) {
+//            transaction = session.beginTransaction();
+//            session.delete(nl);
+//            transaction.commit();
+//            return true;
+//        } catch (Exception e) {
+//            return false;
+//        }
+        try {
+            session.getTransaction().begin();
+            session.delete(session.get(NguyenLieu.class, id));
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;

@@ -24,9 +24,9 @@ public interface IManageNguyenLieuService {
 
     QLNguyenLieu getOneByTen(String tenNL);
 
-    String add(QLNguyenLieu qlnl);
+    boolean add(QLNguyenLieu qlnl);
 
-    String update(UUID idNL, QLNguyenLieu qlnl);
+    boolean update(UUID idNL, QLNguyenLieu qlnl);
 
-    String delete(QLNguyenLieu qlnl);
+    boolean delete(UUID idNL);
 }

@@ -22,11 +22,11 @@ public interface IManageSanPhamService {
 
     QLSanPham getOneByTen(String ten);
     
-    String add(QLSanPham qlsp);
+    boolean add(QLSanPham qlsp);
 
-    String update(UUID id, QLSanPham qlsp);
+    boolean update(UUID id, QLSanPham sp);
 
-    String delete(QLSanPham qlsp);
+    boolean delete(UUID id);
 
     
 

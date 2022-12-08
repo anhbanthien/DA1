@@ -33,13 +33,7 @@ public class QLNguyenLieu {
         this.idCT = idCT;
     }
 
-    public QLNguyenLieu(String tenNL, int soLuong, String dvt, String ngayNhap, int hsd) {
-        this.tenNL = tenNL;
-        this.soLuong = soLuong;
-        this.dvt = dvt;
-        this.ngayNhap = ngayNhap;
-        this.hsd = hsd;
-    }
+
 
     public UUID getIdNL() {
         return idNL;

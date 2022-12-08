@@ -50,7 +50,6 @@ public class ManageCongThucService implements IManageCongThucService {
             qlct.setIdSP(x.getSanPham().getIDSP());
             qlct.setTen(x.getTen());
             qlct.setMoTa(x.getMoTa());
-            qlct.setImage(x.getImage());
             qlct.setTrangThai(x.getTrangThai());
             lstQLCT.add(qlct);
         }
@@ -61,52 +60,34 @@ public class ManageCongThucService implements IManageCongThucService {
     public QLCongThuc getOne(UUID idCT) {
         CongThuc x = congThucRepository.getOne(idCT);
         QLCongThuc qlct = new QLCongThuc();
-
         qlct.setIdCT(x.getIdCT());
         qlct.setIdSP(x.getSanPham().getIDSP());
         qlct.setTen(x.getTen());
         qlct.setMoTa(x.getMoTa());
-        qlct.setImage(x.getImage());
         qlct.setTrangThai(x.getTrangThai());
         return qlct;
 
     }
 
     @Override
-    public String add(QLCongThuc qlct) {
+    public boolean add(QLCongThuc qlct) {
         CongThuc ct = new CongThuc();
         ct.setIdCT(qlct.getIdCT());
         ct.setSanPham(sanPhamRepository.getOne(qlct.getIdSP()));
         ct.setTen(qlct.getTen());
         ct.setMoTa(qlct.getMoTa());
-        ct.setImage(qlct.getImage());
         ct.setTrangThai(qlct.getTrangThai());
-        return congThucRepository.Add(ct) ? "Thêm thành công" : "Thêm thất bại";
+        return congThucRepository.Add(ct);
     }
 
     @Override
-    public String update(UUID idCT, QLCongThuc qlct) {
+    public boolean update(UUID idCT, QLCongThuc qlct) {
         CongThuc ct = new CongThuc();
-        ct.setIdCT(qlct.getIdCT());
         ct.setSanPham(sanPhamRepository.getOne(qlct.getIdSP()));
         ct.setTen(qlct.getTen());
         ct.setMoTa(qlct.getMoTa());
-        ct.setImage(qlct.getImage());
         ct.setTrangThai(qlct.getTrangThai());
-
-        return congThucRepository.Update(idCT, ct) ? "Sửa thành công" : "Sửa thất bại";
-    }
-
-    @Override
-    public String delete(QLCongThuc qlct) {
-        CongThuc ct = new CongThuc();
-        ct.setIdCT(qlct.getIdCT());
-        ct.setSanPham(sanPhamRepository.getOne(qlct.getIdSP()));
-        ct.setTen(qlct.getTen());
-        ct.setMoTa(qlct.getMoTa());
-        ct.setImage(qlct.getImage());
-        ct.setTrangThai(qlct.getTrangThai());
-        return congThucRepository.Delete(ct) ? "Xóa thành công" : "Xóa thất bại";
+        return congThucRepository.Update(idCT, ct);
     }
 
     public static void main(String[] args) {
@@ -117,16 +98,46 @@ public class ManageCongThucService implements IManageCongThucService {
         }
     }
 
+//    @Override
+//    public QLCongThuc getOneByTen(String ten) {
+//        CongThuc x = congThucRepository.getOneByTen(ten);
+//        QLCongThuc qlct = new QLCongThuc();
+//        qlct.setIdCT(x.getIdCT());
+//        qlct.setIdSP(x.getSanPham().getIDSP());
+//        qlct.setTen(x.getTen());
+//        qlct.setMoTa(x.getMoTa());
+//        qlct.setTrangThai(x.getTrangThai());
+//        return qlct;
+//    }
+    @Override
+    public boolean delete(UUID idCT) {
+        return congThucRepository.Delete(idCT);
+    }
+
+    @Override
+    public List<QLCongThuc> getAllBySP(UUID idSP) {
+        List<CongThuc> lstCT = congThucRepository.getAllBySP(idSP);
+        List<QLCongThuc> lstQLCT = new ArrayList<>();
+        for (CongThuc x : lstCT) {
+            QLCongThuc qlct = new QLCongThuc();
+            qlct.setIdCT(x.getIdCT());
+            qlct.setIdSP(x.getSanPham().getIDSP());
+            qlct.setTen(x.getTen());
+            qlct.setMoTa(x.getMoTa());
+            qlct.setTrangThai(x.getTrangThai());
+            lstQLCT.add(qlct);
+        }
+        return lstQLCT;
+    }
+
     @Override
     public QLCongThuc getOneByTen(String ten) {
         CongThuc x = congThucRepository.getOneByTen(ten);
         QLCongThuc qlct = new QLCongThuc();
-
         qlct.setIdCT(x.getIdCT());
         qlct.setIdSP(x.getSanPham().getIDSP());
         qlct.setTen(x.getTen());
         qlct.setMoTa(x.getMoTa());
-        qlct.setImage(x.getImage());
         qlct.setTrangThai(x.getTrangThai());
         return qlct;
     }
