@@ -54,6 +54,14 @@ public class CongThuc {
         this.trangThai = trangThai;
     }
 
+    public CongThuc(UUID idCT, SanPham sanPham, String ten, String moTa, String trangThai) {
+        this.idCT = idCT;
+        this.sanPham = sanPham;
+        this.ten = ten;
+        this.moTa = moTa;
+        this.trangThai = trangThai;
+    }
+
     public UUID getIdCT() {
         return idCT;
     }

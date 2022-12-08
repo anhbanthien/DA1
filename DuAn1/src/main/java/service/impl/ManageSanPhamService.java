@@ -39,7 +39,7 @@ public class ManageSanPhamService implements IManageSanPhamService {
     }
 
     @Override
-    public String add(QLSanPham qlsp) {
+    public boolean add(QLSanPham qlsp) {
         SanPham sp = new SanPham();
         sp.setIDSP(qlsp.getIDSP());
         sp.setTenSP(qlsp.getTenSP());
@@ -48,24 +48,11 @@ public class ManageSanPhamService implements IManageSanPhamService {
         sp.setGia(qlsp.getGia());
         sp.setTrangThai(qlsp.getTrangThai());
 
-        return sanPhamRepository.Add(sp) ? "Thêm thành công" : "Thêm thất bại";
+        return sanPhamRepository.Add(sp);
     }
 
     @Override
-    public String update(UUID id, QLSanPham qlsp) {
-        SanPham sp = new SanPham();
-        sp.setIDSP(id);
-        sp.setTenSP(qlsp.getTenSP());
-        sp.setMoTa(qlsp.getMoTa());
-        sp.setImage(qlsp.getImage());
-        sp.setGia(qlsp.getGia());
-        sp.setTrangThai(qlsp.getTrangThai());
-
-        return sanPhamRepository.Update(id, sp) ? "Sửa thành công" : "Sửa thất bại";
-    }
-
-    @Override
-    public String delete(QLSanPham qlsp) {
+    public boolean update(UUID id, QLSanPham qlsp) {
         SanPham sp = new SanPham();
         sp.setIDSP(qlsp.getIDSP());
         sp.setTenSP(qlsp.getTenSP());
@@ -73,7 +60,13 @@ public class ManageSanPhamService implements IManageSanPhamService {
         sp.setImage(qlsp.getImage());
         sp.setGia(qlsp.getGia());
         sp.setTrangThai(qlsp.getTrangThai());
-        return sanPhamRepository.Delete(sp) ? "Xóa thành công" : "Xóa thất bại";
+        return sanPhamRepository.Update(id, sp);
+
+    }
+
+    @Override
+    public boolean delete(UUID id) {
+      return sanPhamRepository.Delete(id);
     }
 
     @Override
@@ -84,16 +77,15 @@ public class ManageSanPhamService implements IManageSanPhamService {
 
     public static void main(String[] args) {
         SanPhamRepository spre = new SanPhamRepository();
-       // new ManageSanPhamService().getAll().forEach(a -> System.out.print(""));
+        // new ManageSanPhamService().getAll().forEach(a -> System.out.print(""));
 
         ManageSanPhamService mana = new ManageSanPhamService();
         List<QLSanPham> lst = mana.getAll();
         for (QLSanPham x : mana.getAll()) {
             System.out.println(x.toString());
         }
-        
-        //mana.getOneByTen("")
 
+        //mana.getOneByTen("")
     }
 
 }
