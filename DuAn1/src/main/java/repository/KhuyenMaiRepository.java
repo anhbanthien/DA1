@@ -38,12 +38,17 @@ public class KhuyenMaiRepository {
         }
     }
 
-    public boolean update(KhuyenMai khuyenmai) {
-        Transaction transaction = null;
-        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.update(khuyenmai);
-            transaction.commit();
+    public boolean update(KhuyenMai khuyenmai, UUID Id) {
+        try {
+            KhuyenMai st = session.get(KhuyenMai.class, Id);
+            st.setNgayBatDau(khuyenmai.getNgayBatDau());
+            st.setNgayKetThuc(khuyenmai.getNgayKetThuc());
+            st.setPhanTramKM(st.getPhanTramKM());
+            st.setTrangThai(st.getTrangThai());
+            st.setMaKM(st.getMaKM());
+            session.getTransaction().begin();
+            session.save(st);
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;

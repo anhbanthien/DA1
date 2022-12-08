@@ -28,16 +28,26 @@ public class KhuyenMai {
     private Date NgayKetThuc;
     private float PhanTramKM;
     private int TrangThai;
+    private String MaKM;
 
     public KhuyenMai() {
     }
 
-    public KhuyenMai(UUID IDKM, Date NgayBatDau, Date NgayKetThuc, float PhanTramKM, int TrangThai) {
+    public KhuyenMai(UUID IDKM, Date NgayBatDau, Date NgayKetThuc, float PhanTramKM, int TrangThai, String MaKM) {
         this.IDKM = IDKM;
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
         this.PhanTramKM = PhanTramKM;
         this.TrangThai = TrangThai;
+        this.MaKM = MaKM;
+    }
+
+    public String getMaKM() {
+        return MaKM;
+    }
+
+    public void setMaKM(String MaKM) {
+        this.MaKM = MaKM;
     }
 
     public UUID getIDKM() {
