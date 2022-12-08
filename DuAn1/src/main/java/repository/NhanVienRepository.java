@@ -55,6 +55,7 @@ public class NhanVienRepository {
             st.setSDT(Staff.getSDT());
             st.setTrangThai(Staff.getTrangThai());
             st.setImage(Staff.getImage());
+            st.setMaNhanVien(Staff.getMaNhanVien());
             session.getTransaction().begin();
             session.save(st);
             session.getTransaction().commit();

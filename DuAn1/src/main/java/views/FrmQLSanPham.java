@@ -477,7 +477,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             lblHinhAnhSP.setIcon(null);
         } else {
             lblHinhAnhSP.setText("");
-            ImageIcon imgIcon = new ImageIcon("C:\\Users\\trong\\OneDrive\\Máy tính\\DA1_FINAL_01\\DuAn1\\src\\main\\resources\\" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage());
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage());
             Image img = imgIcon.getImage();
             img.getScaledInstance(lblHinhAnhSP.getWidth(), lblHinhAnhSP.getHeight(), 0);
             lblHinhAnhSP.setIcon(imgIcon);

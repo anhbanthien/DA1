@@ -31,13 +31,13 @@ public class Main extends javax.swing.JFrame {
 
                 for (KhuyenMai o : getAllKm) {
                     textKM += " Áp dụng với tất cả hoá đơn mã Khuyến mãi " + o.getMaKM() + " , Ưu đãi "
-                            + o.getPhanTramKM() + " % , Từ ngày " + o.getNgayBatDau() + " đến ngày " + o.getNgayKetThuc() + ".";
+                            + o.getPhanTramKM() + " % , Từ ngày " + o.getNgayBatDau() + " đến ngày " + o.getNgayKetThuc() + ".                    ";
                 }
                 String txt = textKM;
                 while (true) {
                     txt = txt.substring(1, txt.length()) + txt.charAt(0);
                     try {
-                        sleep(120);
+                        sleep(110);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                     }
