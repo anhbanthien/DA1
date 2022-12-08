@@ -100,9 +100,6 @@ public class ViewBan extends javax.swing.JFrame {
         rdbOFF = new javax.swing.JRadioButton();
         rdbOn = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        txtLastCus = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -174,6 +171,8 @@ public class ViewBan extends javax.swing.JFrame {
         jLabel2.setText("SỐ BÀN");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 71, -1, -1));
 
+        tblTable.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 51, 0)));
+        tblTable.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tblTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -196,7 +195,7 @@ public class ViewBan extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblTable);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 175, 360, 163));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(488, 175, 380, 170));
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -257,18 +256,6 @@ public class ViewBan extends javax.swing.JFrame {
         jLabel3.setText("Trạng Thái Bàn");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 330, -1, -1));
 
-        jLabel4.setText("Thêm khách hàng");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
-        getContentPane().add(txtLastCus, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 100, 20));
-
-        jButton2.setText("+");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 330, 80, 20));
-
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/update.png"))); // NOI18N
         jButton4.setText("Update Table");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -276,7 +263,7 @@ public class ViewBan extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, 140, -1));
+        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, 140, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -339,15 +326,6 @@ public class ViewBan extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnAdd1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        //int Cus = Integer.parseInt(txtLastCus.getText());
-        Ban b = new QuanLyBanServiceImpl().getOne(listTables.get(tblTable.getSelectedRow()).getIDB());
-
-        System.out.println(b);
-
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         int IDB = listTables.get(tblTable.getSelectedRow()).getIDB();
@@ -385,13 +363,11 @@ public class ViewBan extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cbbIDB;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -401,6 +377,5 @@ public class ViewBan extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdbOn;
     private javax.swing.JTable tblHoaDon;
     private javax.swing.JTable tblTable;
-    private javax.swing.JTextField txtLastCus;
     // End of variables declaration//GEN-END:variables
 }

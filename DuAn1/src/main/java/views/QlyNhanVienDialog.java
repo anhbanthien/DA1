@@ -353,7 +353,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
 
     private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
         try {
-            JFileChooser jfc = new JFileChooser("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources");
+            JFileChooser jfc = new JFileChooser("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\");
             jfc.showOpenDialog(null);
             File file = jfc.getSelectedFile();
             Image img = ImageIO.read(file);
@@ -412,7 +412,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             lblAnh.setIcon(null);
         } else {
             lblAnh.setText("");
-            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(1).getImage());
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getImage());
             Image img = imgIcon.getImage();
             img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), 0);
             lblAnh.setIcon(imgIcon);
