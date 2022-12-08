@@ -17,25 +17,24 @@ import viewmodel.QLHDCT;
  *
  * @author vanlo
  */
-public class BanHangService implements IBanHangService{
+public class BanHangService implements IBanHangService {
 
     @Override
-    public String update(QLHDCT qlhdct,UUID id) {
+    public String update(QLHDCT qlhdct, UUID id) {
         HDCT hdct = new HDCT();
         hdct.setIDHDCT(qlhdct.getIdHD());
         hdct.setIDHD(new HoaDonRepository().getOne(qlhdct.getIdHD()));
         hdct.setIDSP(new SanPhamRepository().getOne(qlhdct.getIdSP()));
         hdct.setSoLuong(qlhdct.getSoLuong());
-      
 
-        return new BanHangRepository().Update( hdct,id) ? "Sửa thành công" : "Sửa thất bại";
+        return new BanHangRepository().Update(hdct, id) ? "Sửa thành công" : "Sửa thất bại";
     }
 
-@Override
+    @Override
     public QLHDCT getOne(UUID idHD, UUID idSP) {
-        HDCT hdct = new BanHangRepository().getOne(idHD,idSP);
-        if(hdct == null){
-        return null;
+        HDCT hdct = new BanHangRepository().getOne(idHD, idSP);
+        if (hdct == null) {
+            return null;
         }
         QLHDCT qlhdct = new QLHDCT();
         qlhdct.setIdHDCT(hdct.getIDHDCT());
@@ -46,9 +45,9 @@ public class BanHangService implements IBanHangService{
     }
 
     @Override
-    public String delete(UUID qlhdct) {  
-      
+    public String delete(UUID qlhdct) {
+
         return new BanHangRepository().Delete(qlhdct) ? "xóa thành công" : "xóa thất bại";
     }
-    
+
 }
