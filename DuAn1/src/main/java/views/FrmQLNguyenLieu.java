@@ -15,6 +15,7 @@ import service.IManageCongThucService;
 import service.IManageNguyenLieuService;
 import service.impl.ManageCongThucService;
 import service.impl.ManageNguyenLieuService;
+import service.impl.ManageSanPhamService;
 import viewmodel.QLCongThuc;
 import viewmodel.QLNguyenLieu;
 
@@ -26,24 +27,30 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
 
     IManageNguyenLieuService _iManageNguyenLieuService = new ManageNguyenLieuService();
     IManageCongThucService _iManageCongThucService = new ManageCongThucService();
-    List<QLNguyenLieu> lstQLNL;
-    DefaultTableModel dtm;
-    int row = -1;
+    List<QLNguyenLieu> lstQLNL = _iManageNguyenLieuService.getAll();
+    DefaultTableModel dtm = new DefaultTableModel();
     List<QLCongThuc> lstQLCT = _iManageCongThucService.getAll();
-    DefaultComboBoxModel dcb;
+    DefaultComboBoxModel dcb = new DefaultComboBoxModel();
+    XHelper xh = new XHelper();
 
     /**
      * Creates new form FrmQLCongThuc
      */
     public FrmQLNguyenLieu() {
-        initComponents();     
+        initComponents();
         dcb = (DefaultComboBoxModel) cboCongThuc.getModel();
         dcb.removeAllElements();
         for (QLCongThuc x : lstQLCT) {
             dcb.addElement(x.getTen());
         }
-        loadData();
+        if (cboCongThuc.getItemCount() > 0) {
+            int index = cboCongThuc.getSelectedIndex();
+            QLCongThuc qlct = lstQLCT.get(index);
+            List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
+            loadData(lstNLCT);
+        }
 
+        // loadData(lstQLNL);
     }
 
     /**
@@ -318,32 +325,27 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        try {
-            if (row == -1) {
-                JOptionPane.showMessageDialog(this, "Mời chọn dòng muốn xóa!");
-                return;
-            }
-            if (_iManageNguyenLieuService.getAll().size() == 0) {
-                JOptionPane.showMessageDialog(this, "Hêt dữ liệu");
-                return;
-            }
-            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa?", "Xóa", JOptionPane.YES_NO_OPTION);
-            if (hoi == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(this, _iManageNguyenLieuService.delete(getData()));
-                loadData(_iManageNguyenLieuService.getAll());
 
+        try {
+            if (_iManageNguyenLieuService.getAll().size() == 0) {
+                JOptionPane.showMessageDialog(this, "Hết sản phẩm!");
+                return;
+            }
+            if (_iManageNguyenLieuService.delete(getID())) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                int index = cboCongThuc.getSelectedIndex();
+                QLCongThuc qlct = lstQLCT.get(index);
+                List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
+                loadData(lstNLCT);
+                // loadData(new ManageNguyenLieuService().getAll());
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Chọn dòng muốn xóa!");
+            JOptionPane.showMessageDialog(this, "Xóa thất bại!");
         }
-
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblQLyNguyenLieuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLyNguyenLieuMouseClicked
-        row = tblQLyNguyenLieu.getSelectedRow();
-        if (row == -1) {
-            return;
-        }
+        int row = tblQLyNguyenLieu.getSelectedRow();
         txtTenNL.setText((String) tblQLyNguyenLieu.getValueAt(row, 1));
         txtSL.setText(tblQLyNguyenLieu.getValueAt(row, 2).toString());
         txtDVT.setText((String) tblQLyNguyenLieu.getValueAt(row, 3));
@@ -354,54 +356,49 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     }//GEN-LAST:event_tblQLyNguyenLieuMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-
-        int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm ko?", "Thêm", JOptionPane.YES_NO_OPTION);
-        if (hoi == JOptionPane.YES_OPTION) {
-            if (_iManageNguyenLieuService.getAll().size() == 0) {
-                JOptionPane.showMessageDialog(this, _iManageNguyenLieuService.add(getDataThem()));
-                loadData(_iManageNguyenLieuService.getAll());
-                return;
-            } else {
-                for (int i = 0; i < _iManageNguyenLieuService.getAll().size(); i++) {
-                    if (_iManageNguyenLieuService.getAll().get(i).getTenNL().equalsIgnoreCase(txtTenNL.getText().trim())) {
-                        JOptionPane.showMessageDialog(this, "Tên nguyên liệu bị trùng");
-                        return;
-                    }
-                }
-            }
-            JOptionPane.showMessageDialog(this, _iManageNguyenLieuService.add(getDataThem()));
-            loadData(_iManageNguyenLieuService.getAll());
+        if (xh.checkRong(txtTenNL) || xh.checkRong(txtSL) || xh.checkRong(txtNgayNhap) || xh.checkRong(txtHSD) || xh.checkRong(txtDVT)) {
+            JOptionPane.showMessageDialog(this, "Điền đủ thông tin!");
+            return;
         }
+//        try {
+            if (_iManageNguyenLieuService.add(getData())) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                // loadData(_iManageNguyenLieuService.getAll());
+                int index = cboCongThuc.getSelectedIndex();
+                QLCongThuc qlct = lstQLCT.get(index);
+                List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
+                loadData(lstNLCT);
 
-
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+            }
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+//        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        if (xh.checkRong(txtTenNL) || xh.checkRong(txtSL) || xh.checkRong(txtNgayNhap) || xh.checkRong(txtHSD) || xh.checkRong(txtDVT)) {
+            JOptionPane.showMessageDialog(this, "Điền đủ thông tin!");
+            return;
+        }
         try {
-            if (row == -1) {
-                JOptionPane.showMessageDialog(this, "Mời chọn dòng muốn sửa!");
-                return;
-            }
             if (_iManageNguyenLieuService.getAll().size() == 0) {
                 JOptionPane.showMessageDialog(this, "Hêt dữ liệu");
                 return;
             }
-            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa?", "Sửa", JOptionPane.YES_NO_OPTION);
-            if (hoi == JOptionPane.YES_OPTION) {
-                for (int i = 0; i < _iManageNguyenLieuService.getAll().size(); i++) {
-                    if (row != i && _iManageNguyenLieuService.getAll().get(i).getTenNL().equalsIgnoreCase(txtTenNL.getText().trim())) {
-                        JOptionPane.showMessageDialog(this, "Tên nguyên liệu đã tồn tại");
-                        return;
-                    }
-                }
-                JOptionPane.showMessageDialog(this, _iManageNguyenLieuService.update(getID(), getData()));
-                loadData(new ManageNguyenLieuService().getAll());
 
+            if (_iManageNguyenLieuService.update(getID(), getData())) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công!");
+                int index = cboCongThuc.getSelectedIndex();
+                QLCongThuc qlct = lstQLCT.get(index);
+                List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
+                loadData(lstNLCT);
+                // loadData(new ManageNguyenLieuService().getAll());
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Chọn dòng muốn sửa!");
+            JOptionPane.showMessageDialog(this, "Sửa thất bại");
         }
-
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -422,7 +419,7 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        loadData();
+        loadData(_iManageNguyenLieuService.getAll());
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -430,9 +427,10 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void cboCongThucItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboCongThucItemStateChanged
-        if(cboCongThuc.getItemCount() > 0){
+        if (cboCongThuc.getItemCount() > 0) {
             String tenCT = cboCongThuc.getSelectedItem().toString();
-            QLCongThuc qlct = _iManageCongThucService.getOneByTen(tenCT);
+            int index = cboCongThuc.getSelectedIndex();
+            QLCongThuc qlct = lstQLCT.get(index);
             List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
             loadData(lstNLCT);
         }
@@ -480,10 +478,10 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
                 new FrmQLNguyenLieu().setVisible(true);
             }
         });
-        IManageCongThucService _iManageCongThucService = new ManageCongThucService();
-        QLCongThuc qlct = _iManageCongThucService.getOneByTen("CT01");
-        System.out.println(qlct.toString());
-        
+//        IManageCongThucService _iManageCongThucService = new ManageCongThucService();
+//        QLCongThuc qlct = _iManageCongThucService.getOneByTen("CT01");
+//        System.out.println(qlct.toString());
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -513,16 +511,6 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
     private javax.swing.JTextField txtTenNL;
     // End of variables declaration//GEN-END:variables
 
-    private void loadData() {
-        dtm = (DefaultTableModel) tblQLyNguyenLieu.getModel();
-        dtm.setRowCount(0);
-        lstQLNL = _iManageNguyenLieuService.getAll();
-
-        for (QLNguyenLieu x : lstQLNL) {
-            dtm.addRow(new Object[]{lstQLNL.indexOf(x) + 1, x.getTenNL(), x.getSoLuong(), x.getDvt(), x.getNgayNhap(), x.getHsd(), _iManageCongThucService.getOne(x.getIdCT()).getTen()});
-        }
-    }
-
     private void loadData(List<QLNguyenLieu> lstqlnl) {
         dtm = (DefaultTableModel) tblQLyNguyenLieu.getModel();
         dtm.setRowCount(0);
@@ -533,30 +521,19 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
 
     private QLNguyenLieu getData() {
         QLNguyenLieu qlnl = new QLNguyenLieu();
-        qlnl.setIdNL(_iManageNguyenLieuService.getOneByTen(txtTenNL.getText()).getIdNL());
-        qlnl.setTenNL(txtTenNL.getText());
-        qlnl.setSoLuong(Integer.parseInt(txtSL.getText()));
-        qlnl.setDvt(txtDVT.getText());
-        qlnl.setNgayNhap(txtNgayNhap.getText());
-        qlnl.setHsd(Integer.parseInt(txtHSD.getText()));
-        int index = cboCongThuc.getSelectedIndex();
-        qlnl.setIdCT(lstQLCT.get(index).getIdCT());
-        return qlnl;
-    }
+            qlnl.setTenNL(txtTenNL.getText());
+            qlnl.setSoLuong(Integer.parseInt(txtSL.getText()));
+            qlnl.setDvt(txtDVT.getText());
+            qlnl.setNgayNhap(txtNgayNhap.getText());
+            qlnl.setHsd(Integer.parseInt(txtHSD.getText()));
+            int index = cboCongThuc.getSelectedIndex();
+            qlnl.setIdCT(lstQLCT.get(index).getIdCT());
+            return qlnl;
+       
 
-    private QLNguyenLieu getDataThem() {
-        QLNguyenLieu qlnl = new QLNguyenLieu();
-        qlnl.setTenNL(txtTenNL.getText());
-        qlnl.setSoLuong(Integer.parseInt(txtSL.getText()));
-        qlnl.setDvt(txtDVT.getText());
-        qlnl.setNgayNhap(txtNgayNhap.getText());
-        qlnl.setHsd(Integer.parseInt(txtHSD.getText()));
-        int index = cboCongThuc.getSelectedIndex();
-        qlnl.setIdCT(lstQLCT.get(index).getIdCT());
-        return qlnl;
     }
 
     private UUID getID() {
-        return _iManageNguyenLieuService.getOneByTen(txtTenNL.getText()).getIdNL();
+        return _iManageNguyenLieuService.getAll().get(tblQLyNguyenLieu.getSelectedRow()).getIdNL();
     }
 }

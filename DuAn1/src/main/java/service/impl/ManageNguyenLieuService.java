@@ -58,7 +58,7 @@ public class ManageNguyenLieuService implements IManageNguyenLieuService {
     }
 
     @Override
-    public String add(QLNguyenLieu qlnl) {
+    public boolean add(QLNguyenLieu qlnl) {
         NguyenLieu nl = new NguyenLieu();
         nl.setIDNL(qlnl.getIdNL());
         nl.setTenNL(qlnl.getTenNL());
@@ -67,11 +67,11 @@ public class ManageNguyenLieuService implements IManageNguyenLieuService {
         nl.setNgayNhap(qlnl.getNgayNhap());
         nl.setHsd(qlnl.getHsd());
         nl.setCongthuc(congThucRepository.getOne(qlnl.getIdCT()));
-        return nguyenLieuRepository.Add(nl) ? "Thêm thành công" : "Thêm thất bại";
+        return nguyenLieuRepository.Add(nl);
     }
 
     @Override
-    public String update(UUID idNL, QLNguyenLieu qlnl) {
+    public boolean update(UUID idNL, QLNguyenLieu qlnl) {
         NguyenLieu nl = new NguyenLieu();
         nl.setIDNL(qlnl.getIdNL());
         nl.setTenNL(qlnl.getTenNL());
@@ -81,22 +81,12 @@ public class ManageNguyenLieuService implements IManageNguyenLieuService {
         nl.setHsd(qlnl.getHsd());
         nl.setCongthuc(congThucRepository.getOne(qlnl.getIdCT()));
 
-        return nguyenLieuRepository.Update(idNL, nl) ? "Sửa thành công" : "Sửa thất bại";
+        return nguyenLieuRepository.Update(idNL, nl);
     }
 
     @Override
-    public String delete(QLNguyenLieu qlnl) {
-
-        NguyenLieu nl = new NguyenLieu();
-        nl.setIDNL(qlnl.getIdNL());
-        nl.setTenNL(qlnl.getTenNL());
-        nl.setSoLuong(qlnl.getSoLuong());
-        nl.setDvt(qlnl.getDvt());
-        nl.setNgayNhap(qlnl.getNgayNhap());
-        nl.setHsd(qlnl.getHsd());
-        nl.setCongthuc(congThucRepository.getOne(qlnl.getIdCT()));
-
-        return nguyenLieuRepository.Delete(nl) ? "Xóa thành công" : "Xóa thất bại";
+    public boolean delete(UUID idNL) {
+        return nguyenLieuRepository.Delete(idNL);
     }
 
     public static void main(String[] args) {

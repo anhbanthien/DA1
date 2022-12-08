@@ -28,11 +28,13 @@ import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import repository.SanPhamRepository;
 import service.IManageSanPhamService;
 import service.impl.ManageSanPhamService;
 import service.impl.QlyNhanVienImpl;
 import viewmodel.QLNguyenLieu;
 import viewmodel.QLSanPham;
+import viewmodel.SanPhamModel;
 
 /**
  *
@@ -41,18 +43,18 @@ import viewmodel.QLSanPham;
 public class FrmQLSanPham extends javax.swing.JFrame {
 
     IManageSanPhamService _iManageSanPhamService = new ManageSanPhamService();
-    List<QLSanPham> lstSP = new ArrayList<>();
-    DefaultTableModel dtm;
+    List<QLSanPham> lstSP = new ManageSanPhamService().getAll();
+    DefaultTableModel dtm = new DefaultTableModel();
     int row = -1;
     float gia;
+    XHelper xh = new XHelper();
 
     /**
      * Creates new form FrmQLSanPham
      */
     public FrmQLSanPham() {
         initComponents();
-        lstSP = _iManageSanPhamService.getAll();
-        loadData(_iManageSanPhamService.getAll());
+        loadData(lstSP);
     }
 
     /**
@@ -460,11 +462,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
     private void tblSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSPMouseClicked
         row = tblSP.getSelectedRow();
-        txtTenSP.setText(_iManageSanPhamService.getAll().get(row).getTenSP());
-        txtMoTa.setText(_iManageSanPhamService.getAll().get(row).getMoTa());
-        txtImage.setText(_iManageSanPhamService.getAll().get(row).getImage());
-        txtGia.setText(_iManageSanPhamService.getAll().get(row).getGia() + "");
-        if (_iManageSanPhamService.getAll().get(row).getTrangThai() == 1) {
+        txtTenSP.setText((String) tblSP.getValueAt(row, 1));
+        txtMoTa.setText((String) tblSP.getValueAt(row, 2));
+        txtImage.setText((String) tblSP.getValueAt(row, 3));
+        txtGia.setText(tblSP.getValueAt(row, 4).toString());
+        if (tblSP.getValueAt(row, 5).toString().equals("Đang kinh doanh")) {
             rdoDangKD.setSelected(true);
         } else {
             rdoNgungKD.setSelected(true);
@@ -475,32 +477,38 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             lblHinhAnhSP.setIcon(null);
         } else {
             lblHinhAnhSP.setText("");
-            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage());
+            ImageIcon imgIcon = new ImageIcon("C:\\Users\\trong\\OneDrive\\Máy tính\\DA1_FINAL_01\\DuAn1\\src\\main\\resources\\" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage());
             Image img = imgIcon.getImage();
             img.getScaledInstance(lblHinhAnhSP.getWidth(), lblHinhAnhSP.getHeight(), 0);
             lblHinhAnhSP.setIcon(imgIcon);
         }
 
+
     }//GEN-LAST:event_tblSPMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn thêm không?");
-            if (hoi == JOptionPane.YES_OPTION) {
-                for (int i = 0; i < _iManageSanPhamService.getAll().size(); i++) {
-                    if (_iManageSanPhamService.getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText().trim())) {
-                        JOptionPane.showMessageDialog(this, "Tên sản phẩm bị trùng!");
-                        return;
-                    }
-                }
-
-                JOptionPane.showMessageDialog(this, _iManageSanPhamService.add(getDataThem()));
-                loadData(_iManageSanPhamService.getAll());
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Mời nhập lại!");
+        if (xh.checkRong(txtTenSP) || xh.checkRong(txtGia) || xh.checkRong(txtMoTa) || xh.checkRong(txtImage)) {
+            JOptionPane.showMessageDialog(this, "Điền đủ thông tin!");
+            return;
         }
+
+        try {
+            for (int i = 0; i < _iManageSanPhamService.getAll().size(); i++) {
+                if (_iManageSanPhamService.getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText().trim())) {
+                    JOptionPane.showMessageDialog(this, "Tên sản phẩm bị trùng!");
+                    return;
+                }
+            }
+            if (_iManageSanPhamService.add(getData())) {
+                JOptionPane.showMessageDialog(this, "Thêm thành công!");
+                loadData(_iManageSanPhamService.getAll());
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+        }
+
 
     }//GEN-LAST:event_btnThemActionPerformed
     private String strHinhAnh = "";
@@ -530,26 +538,19 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+
         try {
             if (_iManageSanPhamService.getAll().size() == 0) {
                 JOptionPane.showMessageDialog(this, "Hết sản phẩm!");
                 return;
             }
-            if (row == -1) {
-                JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm muốn xóa");
-                return;
-            }
-
-            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn xóa không?");
-            if (hoi == JOptionPane.YES_OPTION) {
-                JOptionPane.showMessageDialog(this, _iManageSanPhamService.delete(getData()));
-                loadData(_iManageSanPhamService.getAll());
+            if (_iManageSanPhamService.delete(getID())) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                loadData(new ManageSanPhamService().getAll());
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Mời chọn sản phẩm muốn xóa");
+            JOptionPane.showMessageDialog(this, "Xóa thất bại!");
         }
-
-
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -557,31 +558,27 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-
+        if (xh.checkRong(txtTenSP) || xh.checkRong(txtGia) || xh.checkRong(txtMoTa) || xh.checkRong(txtImage)) {
+            JOptionPane.showMessageDialog(this, "Điền đủ thông tin!");
+            return;
+        }
         try {
             if (_iManageSanPhamService.getAll().size() == 0) {
                 JOptionPane.showMessageDialog(this, "Hêt dữ liệu");
                 return;
             }
-            if (row == -1) {
-                JOptionPane.showMessageDialog(this, "Mời chọn dòng muốn sửa!");
-                return;
-            }
-
-            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có muốn sửa?", "Sửa", JOptionPane.YES_NO_OPTION);
-            if (hoi == JOptionPane.YES_OPTION) {
-                for (int i = 0; i < _iManageSanPhamService.getAll().size(); i++) {
-                    if (row != i && _iManageSanPhamService.getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText().trim())) {
-                        JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại");
-                        return;
-                    }
+            for (int i = 0; i < _iManageSanPhamService.getAll().size(); i++) {
+                if (row != i && _iManageSanPhamService.getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText())) {
+                    JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại");
+                    return;
                 }
-                JOptionPane.showMessageDialog(this, _iManageSanPhamService.update(getID(), getData()));
+            }
+            if (_iManageSanPhamService.update(getID(), getData())) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công!");
                 loadData(new ManageSanPhamService().getAll());
-
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Chọn dòng muốn sửa!");
+            JOptionPane.showMessageDialog(this, "Sửa thất bại!");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -644,18 +641,26 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 cell.setCellValue(_iManageSanPhamService.getAll().get(i).getTrangThai() == 1 ? "Đang kinh doanh" : "Ngừng kinh doanh");
 
             }
-            File f = new File("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\Danhsach.xlsx");
+
+            String path = "";
+            JFileChooser jfc = new JFileChooser();
+            jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+            int x = jfc.showSaveDialog(null);
+            if (x == JFileChooser.APPROVE_OPTION) {
+                path = jfc.getSelectedFile().getPath();
+            }
+            File f = new File(path + "//Danhsach.xlsx");
             try {
                 FileOutputStream fos = new FileOutputStream(f);
                 workbook.write(fos);
                 fos.close();
+                JOptionPane.showMessageDialog(this, "In thành công");
+
             } catch (FileNotFoundException e) {
-                e.printStackTrace(System.out);
-                JOptionPane.showMessageDialog(null, e.getMessage());
+                JOptionPane.showMessageDialog(this, "In thất bại");
             } catch (IOException ex) {
-                ex.printStackTrace(System.out);
+                JOptionPane.showMessageDialog(this, "In thất bại");
             }
-            JOptionPane.showMessageDialog(this, "In thành công");
         } catch (Exception ex) {
             ex.printStackTrace(System.out);
             JOptionPane.showMessageDialog(this, "Lỗi mở file");
@@ -664,6 +669,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
     private void cboSapXepItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboSapXepItemStateChanged
         String name = cboSapXep.getSelectedItem().toString();
+        lstSP = new ManageSanPhamService().getAll();
         if (name.equals("tăng")) {
             Collections.sort(lstSP, new GiaComparator());
             loadData(lstSP);
@@ -760,7 +766,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         }
     }
 
-    private QLSanPham getDataThem() {
+    private QLSanPham getData() {
         QLSanPham qlsp = new QLSanPham();
         try {
             qlsp.setTenSP(txtTenSP.getText());
@@ -775,34 +781,12 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             }
             return qlsp;
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Nhập giá là số!");
+            JOptionPane.showMessageDialog(this, "Nhập đúng trường giá trị!");
         }
         return null;
     }
 
     private UUID getID() {
-        return _iManageSanPhamService.getOneByTen(txtTenSP.getText()).getIDSP();
+        return new ManageSanPhamService().getAll().get(tblSP.getSelectedRow()).getIDSP();
     }
-
-    private QLSanPham getData() {
-        QLSanPham qlsp = new QLSanPham();
-        qlsp.setIDSP(_iManageSanPhamService.getOneByTen(txtTenSP.getText()).getIDSP());
-        try {
-            qlsp.setTenSP(txtTenSP.getText());
-            qlsp.setMoTa(txtMoTa.getText());
-            qlsp.setImage(txtImage.getText());
-            float gia = Float.parseFloat(txtGia.getText());
-            qlsp.setGia(gia);
-            if (rdoDangKD.isSelected()) {
-                qlsp.setTrangThai(1);
-            } else {
-                qlsp.setTrangThai(0);
-            }
-            return qlsp;
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Nhập giá là số!");
-        }
-        return null;
-    }
-
 }

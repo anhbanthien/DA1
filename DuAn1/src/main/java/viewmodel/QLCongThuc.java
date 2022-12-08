@@ -16,18 +16,16 @@ public class QLCongThuc {
     private UUID idSP;
     private String ten;
     private String moTa;
-    private String image;
     private String trangThai;
 
     public QLCongThuc() {
     }
 
-    public QLCongThuc(UUID idCT, UUID idSP, String ten, String moTa, String image, String trangThai) {
+    public QLCongThuc(UUID idCT, UUID idSP, String ten, String moTa, String trangThai) {
         this.idCT = idCT;
         this.idSP = idSP;
         this.ten = ten;
         this.moTa = moTa;
-        this.image = image;
         this.trangThai = trangThai;
     }
 
@@ -35,7 +33,6 @@ public class QLCongThuc {
         this.idSP = idSP;
         this.ten = ten;
         this.moTa = moTa;
-        this.image = image;
         this.trangThai = trangThai;
     }
     
@@ -72,13 +69,7 @@ public class QLCongThuc {
         this.moTa = moTa;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
+  
 
     public String getTrangThai() {
         return trangThai;
@@ -90,7 +81,7 @@ public class QLCongThuc {
 
     @Override
     public String toString() {
-        return "QLCongThuc{" + "idCT=" + idCT + ", idSP=" + idSP + ", ten=" + ten + ", moTa=" + moTa + ", image=" + image + ", trangThai=" + trangThai + '}';
+        return "QLCongThuc{" + "idCT=" + idCT + ", idSP=" + idSP + ", ten=" + ten + ", moTa=" + moTa + ", trangThai=" + trangThai + '}';
     }
 
     
