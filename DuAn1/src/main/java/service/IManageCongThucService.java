@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.UUID;
 import viewmodel.QLCongThuc;
 import viewmodel.QLNguyenLieu;
+import viewmodel.QLSanPham;
 
 /**
  *
@@ -19,13 +20,16 @@ public interface IManageCongThucService {
 
     List<QLCongThuc> getAll();
 
+    List<QLCongThuc> getAllBySP(UUID idSP);
+
     QLCongThuc getOne(UUID idCT);
 
     QLCongThuc getOneByTen(String ten);
-    
-    String add(QLCongThuc qlct);
 
-    String update(UUID idCT, QLCongThuc qlct);
+//    QLCongThuc getOneByTen(String ten);
+    boolean add(QLCongThuc qlct);
 
-    String delete(QLCongThuc qlct);
+    boolean update(UUID idCT, QLCongThuc qlct);
+
+    boolean delete(UUID idCT);
 }

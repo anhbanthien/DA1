@@ -17,7 +17,8 @@ import org.jfree.data.category.DefaultCategoryDataset;
  * @author vutuo
  */
 public class NewClass {
-     public static JFreeChart createChart() {
+
+    public static JFreeChart createChart() {
         JFreeChart barChart = ChartFactory.createBarChart(
                 "BIỂU ĐỒ DÂN SỐ VIỆT NAM",
                 "Năm", "Số người",
