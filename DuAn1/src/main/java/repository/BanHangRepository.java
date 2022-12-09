@@ -6,6 +6,7 @@ package repository;
 
 import config.HibernatUtil;
 import domainmodel.HDCT;
+import domainmodel.KhuyenMai;
 import java.util.UUID;
 import javax.persistence.Query;
 import org.hibernate.Session;
@@ -20,6 +21,7 @@ public class BanHangRepository {
     Session session = HibernatUtil.getFACTORY().openSession();
 
     private String fromTableHDCT = "FROM HDCT h";
+    private String fromTableKM = "From KhuyenMai";
 
     public boolean Update(HDCT hdct, UUID id) {
         Transaction transaction = null;
@@ -69,6 +71,13 @@ public class BanHangRepository {
             e.printStackTrace(System.out);
         }
         return false;
+    }
+   public KhuyenMai getByMaKM(String MaKM) {
+        String sql = fromTableKM + " WHERE MaKM = : id";
+        Query query = session.createQuery(sql, KhuyenMai.class);
+        query.setParameter("id", MaKM);
+        KhuyenMai khachHang = (KhuyenMai) query.getSingleResult();
+        return khachHang;
     }
 
     public static void main(String[] args) {
