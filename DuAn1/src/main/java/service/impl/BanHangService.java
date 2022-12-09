@@ -5,6 +5,7 @@
 package service.impl;
 
 import domainmodel.HDCT;
+import domainmodel.KhuyenMai;
 import java.util.UUID;
 import repository.BanHangRepository;
 import service.IBanHangService;
@@ -48,6 +49,11 @@ public class BanHangService implements IBanHangService {
     public String delete(UUID qlhdct) {
 
         return new BanHangRepository().Delete(qlhdct) ? "xóa thành công" : "xóa thất bại";
+    }
+
+    @Override
+    public KhuyenMai getByMaKM(String MaKM) {
+        return new BanHangRepository().getByMaKM(MaKM);
     }
 
 }
