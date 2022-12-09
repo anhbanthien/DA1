@@ -4,6 +4,7 @@
  */
 package service;
 
+import domainmodel.KhuyenMai;
 import java.util.UUID;
 import viewmodel.QLHDCT;
 
@@ -15,5 +16,6 @@ public interface IBanHangService {
     String update( QLHDCT qlhdct,UUID id);
     QLHDCT getOne(UUID idHD,UUID idSP);
     String delete(UUID qlhdct);
+    KhuyenMai getByMaKM(String MaKM);
     
 }

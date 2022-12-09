@@ -33,7 +33,6 @@ public class HibernatUtil {
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DuAn1");
         properties.put(Environment.USER, "sa");
 
-
         properties.put(Environment.PASS, "16102003");
 
         properties.put(Environment.SHOW_SQL, "true");
