@@ -5,17 +5,56 @@
  */
 package views;
 
+import domainmodel.SanPham;
+import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import service.IManageCongThucService;
+import service.IManageSanPhamService;
+import service.impl.ManageCongThucService;
+import service.impl.ManageSanPhamService;
+import viewmodel.QLCongThuc;
+import viewmodel.QLNguyenLieu;
+import viewmodel.QLSanPham;
+
 /**
  *
  * @author trong
  */
 public class FrmQLCongThuc extends javax.swing.JFrame {
 
+    IManageCongThucService _iManageCongThucService = new ManageCongThucService();
+    IManageSanPhamService _iManageSanPhamService = new ManageSanPhamService();
+    List<QLCongThuc> lstCT = _iManageCongThucService.getAll();
+    DefaultTableModel dtm = new DefaultTableModel();
+    DefaultComboBoxModel dcb = new DefaultComboBoxModel();
+    List<QLSanPham> lstSP = _iManageSanPhamService.getAll();
+    XHelper xh = new XHelper();
+
     /**
      * Creates new form FrmQLCongThuc
      */
     public FrmQLCongThuc() {
         initComponents();
+        dcb = (DefaultComboBoxModel) cboTenSP.getModel();
+        dcb.removeAllElements();
+        for (QLSanPham x : lstSP) {
+            dcb.addElement(x.getTenSP());
+        }
+        if(cboTenSP.getItemCount()>0){
+        int index = cboTenSP.getSelectedIndex();
+        QLSanPham qlsp = lstSP.get(index);
+        List<QLCongThuc> lstSPCT = _iManageCongThucService.getAllBySP(qlsp.getIDSP());
+        loadData(lstSPCT);
+        }
+        
+
+        //loadData(lstCT);
     }
 
     /**
@@ -27,10 +66,9 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         btnXoa = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtTrangThai = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblQLyCongThuc = new javax.swing.JTable();
         btnThem = new javax.swing.JButton();
@@ -41,11 +79,15 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtSearch = new javax.swing.JTextField();
-        jButton3 = new javax.swing.JButton();
-        txtImage = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtMoTa = new javax.swing.JTextArea();
+        btnClose = new javax.swing.JButton();
+        cboTenSP = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        rdoDSD = new javax.swing.JRadioButton();
+        rdoNSD = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,23 +100,21 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Image");
-
         jLabel5.setText("Trạng Thái");
 
         tblQLyCongThuc.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         tblQLyCongThuc.setForeground(new java.awt.Color(102, 102, 102));
         tblQLyCongThuc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Tên Công Thức", "Mô Tả", "Image", "Trạng Thái"
+                "STT", "Tên Sản Phẩm", "Tên Công Thức", "Mô Tả", "Trạng Thái"
             }
         ));
         tblQLyCongThuc.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -114,12 +154,12 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Quản Lý CÔNG THỨC");
 
-        jButton3.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/timkiem.png"))); // NOI18N
-        jButton3.setText("Search");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setFont(new java.awt.Font("Sitka Text", 1, 12)); // NOI18N
+        btnSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/timkiem.png"))); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
             }
         });
 
@@ -135,7 +175,7 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(btnSearch)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -149,7 +189,7 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -160,10 +200,35 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
         txtMoTa.setRows(5);
         jScrollPane2.setViewportView(txtMoTa);
 
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close-icon_1.png"))); // NOI18N
+        btnClose.setText("Close");
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
+
+        cboTenSP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboTenSP.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTenSPItemStateChanged(evt);
+            }
+        });
+
+        jLabel7.setText("Tên Sản Phẩm");
+
+        buttonGroup1.add(rdoDSD);
+        rdoDSD.setSelected(true);
+        rdoDSD.setText("Đang sử dụng");
+
+        buttonGroup1.add(rdoNSD);
+        rdoNSD.setText("Ngừng sửa dụng");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -172,50 +237,54 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel7))
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtTenCT, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel1))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTenCT, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(rdoDSD)
+                                .addGap(36, 36, 36)
+                                .addComponent(rdoNSD)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnSua)
                             .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(60, 60, 60)))
+                        .addGap(60, 60, 60))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnClose)))
                 .addContainerGap())
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(txtImage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(17, 17, 17)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                    .addComponent(btnClose, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboTenSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(txtTenCT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
                         .addGap(31, 31, 31)
                         .addComponent(btnSua)
-                        .addGap(17, 17, 17)))
+                        .addGap(17, 17, 17))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(rdoDSD)
+                        .addComponent(rdoNSD)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnXoa)
@@ -235,27 +304,126 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 
-        
-
+        try {
+            if (_iManageCongThucService.getAll().size() == 0) {
+                JOptionPane.showMessageDialog(this, "Hết sản phẩm!");
+                return;
+            }
+            if (_iManageCongThucService.delete(getID())) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công!");
+                int index = cboTenSP.getSelectedIndex();
+                QLSanPham qlsp = lstSP.get(index);
+                List<QLCongThuc> lstSPCT = new ManageCongThucService().getAllBySP(qlsp.getIDSP());
+                loadData(lstSPCT);
+                // loadData(_iManageCongThucService.getAll());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Xóa thất bại!");
+        }
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void tblQLyCongThucMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQLyCongThucMouseClicked
-      
+        int row = tblQLyCongThuc.getSelectedRow();
+        cboTenSP.setSelectedItem(tblQLyCongThuc.getValueAt(row, 1));
+        txtTenCT.setText(tblQLyCongThuc.getValueAt(row, 2).toString());
+        txtMoTa.setText(tblQLyCongThuc.getValueAt(row, 3).toString());
+        if (_iManageCongThucService.getAll().get(row).getTrangThai().equalsIgnoreCase("Đang sử dụng")) {
+            rdoDSD.setSelected(true);
+        } else {
+            rdoNSD.setSelected(true);
+        }
     }//GEN-LAST:event_tblQLyCongThucMouseClicked
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-       
+
+        if (xh.checkRong(txtTenCT)) {
+            JOptionPane.showMessageDialog(this, "Điền đủ thông tin!");
+            return;
+        }
+
+        for (int i = 0; i < _iManageCongThucService.getAll().size(); i++) {
+            if (_iManageCongThucService.getAll().get(i).getTen().equalsIgnoreCase(txtTenCT.getText())) {
+                JOptionPane.showMessageDialog(this, "Tên công thức bị trùng!");
+                return;
+            }
+        }
+        if (_iManageCongThucService.add(getData())) {
+            JOptionPane.showMessageDialog(this, "Thêm thành công!");
+            int index = cboTenSP.getSelectedIndex();
+            QLSanPham qlsp = lstSP.get(index);
+            List<QLCongThuc> lstSPCT = _iManageCongThucService.getAllBySP(qlsp.getIDSP());
+            loadData(lstSPCT);
+            //     loadData(_iManageCongThucService.getAll());
+        } else {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+        }
+
 
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-       
+        if (xh.checkRong(txtTenCT)) {
+            JOptionPane.showMessageDialog(this, "Điền đủ thông tin!");
+            return;
+        }
+        int row = tblQLyCongThuc.getSelectedRow();
+        try {
+            if (_iManageCongThucService.getAll().size() == 0) {
+                JOptionPane.showMessageDialog(this, "Hêt dữ liệu");
+                return;
+            }
+            for (int i = 0; i < _iManageCongThucService.getAll().size(); i++) {
+                if (row != i && _iManageCongThucService.getAll().get(i).getTen().equalsIgnoreCase(txtTenCT.getText())) {
+                    JOptionPane.showMessageDialog(this, "Tên công thức đã tồn tại");
+                    return;
+                }
+            }
+            if (_iManageCongThucService.update(getID(), getData())) {
+
+                JOptionPane.showMessageDialog(this, "Sửa thành công!");
+
+                int index = cboTenSP.getSelectedIndex();
+                QLSanPham qlsp = lstSP.get(index);
+                List<QLCongThuc> lstSPCT = _iManageCongThucService.getAllBySP(qlsp.getIDSP());
+                loadData(lstSPCT);
+                //loadData(_iManageCongThucService.getAll());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Sửa thất bại!");
+        }
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        List<QLCongThuc> lstQLCTTimTheoTen = new ArrayList<>();
+        for (QLCongThuc x : _iManageCongThucService.getAll()) {
+            if (x.getTen().toLowerCase().startsWith(txtSearch.getText().toLowerCase())) {
+                lstQLCTTimTheoTen.add(x);
+            }
+        }
+        if (lstQLCTTimTheoTen.size() != 0) {
+            JOptionPane.showMessageDialog(this, "Đã tìm thấy");
+            loadData(lstQLCTTimTheoTen);
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy!");
+        }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCloseActionPerformed
+
+    private void cboTenSPItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTenSPItemStateChanged
+        if (cboTenSP.getItemCount() > 0) {
+            int index = cboTenSP.getSelectedIndex();
+            QLSanPham qlsp = lstSP.get(index);
+            List<QLCongThuc> lstSPCT = _iManageCongThucService.getAllBySP(qlsp.getIDSP());
+            loadData(lstSPCT);
+        }
+
+    }//GEN-LAST:event_cboTenSPItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -283,6 +451,9 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FrmQLCongThuc.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -290,27 +461,57 @@ public class FrmQLCongThuc extends javax.swing.JFrame {
                 new FrmQLCongThuc().setVisible(true);
             }
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JButton jButton3;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cboTenSP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JRadioButton rdoDSD;
+    private javax.swing.JRadioButton rdoNSD;
     private javax.swing.JTable tblQLyCongThuc;
-    private javax.swing.JTextField txtImage;
     private javax.swing.JTextArea txtMoTa;
     private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTenCT;
-    private javax.swing.JTextField txtTrangThai;
     // End of variables declaration//GEN-END:variables
+
+    private void loadData(List<QLCongThuc> lstCT) {
+        dtm = (DefaultTableModel) tblQLyCongThuc.getModel();
+        dtm.setRowCount(0);
+        for (QLCongThuc x : lstCT) {
+            dtm.addRow(new Object[]{lstCT.indexOf(x) + 1, _iManageSanPhamService.getOne(x.getIdSP()).getTenSP(), x.getTen(), x.getMoTa(), x.getTrangThai()});
+        }
+    }
+
+    private UUID getID() {
+        return _iManageCongThucService.getAll().get(tblQLyCongThuc.getSelectedRow()).getIdCT();
+    }
+
+    private QLCongThuc getData() {
+        QLCongThuc qlct = new QLCongThuc();
+        qlct.setIdSP(_iManageSanPhamService.getAll().get(cboTenSP.getSelectedIndex()).getIDSP());
+        qlct.setTen(txtTenCT.getText());
+        qlct.setMoTa(txtMoTa.getText());
+        if (rdoDSD.isSelected()) {
+            qlct.setTrangThai("Đang sử dụng");
+        } else {
+            qlct.setTrangThai("Ngừng sử dụng");
+        }
+        return qlct;
+    }
+
 }

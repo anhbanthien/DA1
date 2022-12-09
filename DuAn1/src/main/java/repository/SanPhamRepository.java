@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.util.UUID;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import viewmodel.QLSanPham;
 
 public class SanPhamRepository {
 
@@ -25,6 +26,13 @@ public class SanPhamRepository {
         return lists;
     }
 
+    public List<Object[]> getTen() {
+        String HQL = "select HD.IDSP, SP.TenSP from HDCT HD join SanPham SP on HD.IDSP  = SP.IDSP";
+        Query query = session.createQuery(HQL);
+        List<Object[]> lists = query.getResultList();
+        return lists;
+    }
+
     public SanPham getOne(UUID id) {
         String sql = fromTable + " WHERE IDSP = :id ";
         Query query = session.createQuery(sql, SanPham.class);
@@ -33,12 +41,19 @@ public class SanPhamRepository {
         return sanPham;
     }
 
+    public SanPham getOneByTen(String ten) {
+        String sql = fromTable + " WHERE TenSP = :ten ";
+        Query query = session.createQuery(sql, SanPham.class);
+        query.setParameter("ten", ten);
+        SanPham sanPham = (SanPham) query.getSingleResult();
+        return sanPham;
+    }
+
     public boolean Add(SanPham sp) {
-        Transaction transaction = null;
-        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
+        try {
+            session.getTransaction().begin();
             session.save(sp);
-            transaction.commit();
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;
@@ -47,11 +62,16 @@ public class SanPhamRepository {
     }
 
     public boolean Update(UUID id, SanPham sp) {
-        Transaction transaction = null;
-        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.saveOrUpdate(sp);
-            transaction.commit();
+        try {
+            SanPham st = session.get(SanPham.class, id);
+            st.setGia(sp.getGia());
+            st.setImage(sp.getImage());
+            st.setMoTa(sp.getMoTa());
+            st.setTenSP(sp.getTenSP());
+            st.setTrangThai(sp.getTrangThai());
+            session.getTransaction().begin();
+            session.save(st);
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;
@@ -60,24 +80,13 @@ public class SanPhamRepository {
     }
 
     public boolean Delete(UUID id) {
-        Transaction transaction = null;
-        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
-            transaction = session.beginTransaction();
-            session.delete(id);
-            transaction.commit();
+        try {
+            session.getTransaction().begin();
+            session.delete(session.get(SanPham.class, id));
+            session.getTransaction().commit();
             return true;
         } catch (Exception e) {
             return false;
-        }
-
-    }
-
-    public static void main(String[] args) {
-
-        List<SanPham> lists = new SanPhamRepository().getAll();
-
-        for (SanPham list : lists) {
-            System.out.println(list.getGia());
         }
     }
 

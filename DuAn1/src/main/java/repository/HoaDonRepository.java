@@ -6,6 +6,7 @@ package repository;
 
 import config.HibernatUtil;
 import domainmodel.HoaDon;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
@@ -46,7 +47,7 @@ public class HoaDonRepository {
 
     public static void main(String[] args) {
 
-        new HoaDonRepository().getHoaDonByTT().forEach(a -> System.out.println(a.toString()));
+        new HoaDonRepository().getAll().forEach(a -> System.out.println(a.toString()));
 
     }
 
@@ -113,6 +114,19 @@ public class HoaDonRepository {
 
     public List<HoaDon> search(String TrangThai) {
         return (List<HoaDon>) session.get(HoaDon.class, TrangThai);
+    }
+
+    public Boolean Update(HoaDon hoaDon) {
+        Transaction transaction = null;
+        try ( Session session = HibernatUtil.getFACTORY().openSession()) {
+            transaction = session.beginTransaction();
+            session.update(hoaDon);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
     }
 
 }

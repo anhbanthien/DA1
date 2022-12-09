@@ -42,7 +42,14 @@ public class QLHDCT {
     }
     public float getTien() {
         
+
+        float giaf;
+        giaf= gia;
+        float tien= giaf*soLuong;
+       
+
         return gia*soLuong;
+
     }
 
     public void setGia(float gia) {
@@ -133,5 +140,8 @@ public class QLHDCT {
         return "QLHDCT{" + "idHDCT=" + idHDCT + ", idHD=" + idHD + ", idSP=" + idSP + ", soLuong=" + soLuong + ", soBanCT=" + soBanCT + '}';
     }
     
+    public Object[] toDataRow(){
+        return new Object[]{tenSP, gia, soLuong, getTien()};
+    }
     
 }

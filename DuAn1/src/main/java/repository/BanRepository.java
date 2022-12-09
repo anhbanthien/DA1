@@ -17,7 +17,7 @@ import org.hibernate.Session;
  */
 public class BanRepository {
 
-    private Session session = HibernatUtil.getFACTORY().openSession();
+    private static Session session = HibernatUtil.getFACTORY().openSession();
     private String fromTable = "FROM Ban";
 
     public List<Ban> getAll() {
@@ -33,9 +33,18 @@ public class BanRepository {
             return null;
         }
     }
+    
+    public static void main(String[] args) {
+        System.out.println(new BanRepository().getOne(1).toString());
+    }
+    public List<Object[]> getTotolCustomer(int idTable) {
+        Query q = session.createQuery("SELECT COUNT(DISTINCT H.IDKH) FROM HoaDon H JOIN Ban B ON H.IDB = B.IDB WHERE H.IDB = " + idTable);
+        List<Object[]> countCus = q.getResultList();
+        return countCus;
 
-  
- 
+    }
+
+
 
     public Ban getOne(int IDB) {
         return session.get(Ban.class, IDB);
@@ -63,6 +72,20 @@ public class BanRepository {
             e.printStackTrace(System.out);
             return false;
         }
+    }
+
+    public Boolean updateTable(Ban ban, int IDB) {
+
+        try {
+            Ban newsUpdate = session.get(Ban.class, IDB);
+            newsUpdate.setTrangThaiBan(ban.getTrangThaiBan());
+            session.getTransaction().begin();
+            session.save(newsUpdate);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+        }
+        return null;
     }
 
     public Boolean delete(Ban ban) {
@@ -158,6 +181,4 @@ public class BanRepository {
 ////        System.out.println(new CategoryRepository().getOne(1L).toString());
 ////    }
 //}
-
-    
 }

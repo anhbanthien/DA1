@@ -5,6 +5,7 @@
  */
 package service;
 
+import domainmodel.SanPham;
 import java.util.List;
 import java.util.UUID;
 import viewmodel.QLSanPham;
@@ -19,11 +20,13 @@ public interface IManageSanPhamService {
 
     QLSanPham getOne(UUID id);
 
-    String add(QLSanPham qlsp);
+    QLSanPham getOneByTen(String ten);
+    
+    boolean add(QLSanPham qlsp);
 
-    String update(UUID id, QLSanPham qlsp);
+    boolean update(UUID id, QLSanPham sp);
 
-    String delete(UUID id);
+    boolean delete(UUID id);
 
     
 

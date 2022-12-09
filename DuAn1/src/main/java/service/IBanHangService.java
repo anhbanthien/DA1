@@ -4,12 +4,16 @@
  */
 package service;
 
-import java.util.List;
+import java.util.UUID;
+import viewmodel.QLHDCT;
 
 /**
  *
- * @author vutuo
+ * @author vanlo
  */
-public interface ThongKeService {
-    List<Object[]> getList();
+public interface IBanHangService {
+    String update( QLHDCT qlhdct,UUID id);
+    QLHDCT getOne(UUID idHD,UUID idSP);
+    String delete(UUID qlhdct);
+    
 }

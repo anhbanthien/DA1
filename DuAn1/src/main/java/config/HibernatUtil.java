@@ -5,15 +5,16 @@
 package config;
 
 import domainmodel.Ban;
-
+import domainmodel.CongThuc;
 import java.util.Properties;
 import domainmodel.DangNhap;
 import domainmodel.NhanVien;
-import domainmodel.DangNhap;
 import domainmodel.HoaDon;
 import domainmodel.HDCT;
 import domainmodel.KhachHang;
 import domainmodel.KhuyenMai;
+import domainmodel.NguyenLieu;
+
 import domainmodel.SanPham;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -31,9 +32,11 @@ public class HibernatUtil {
         Properties properties = new Properties();
         properties.put(Environment.URL, "jdbc:sqlserver://localhost:1433;databaseName=DuAn1");
         properties.put(Environment.USER, "sa");
-        properties.put(Environment.PASS, "16102003");
-        properties.put(Environment.SHOW_SQL, "true");
 
+
+        properties.put(Environment.PASS, "16102003");
+
+        properties.put(Environment.SHOW_SQL, "true");
         conf.setProperties(properties);
         conf.addAnnotatedClass(NhanVien.class);
         conf.addAnnotatedClass(KhachHang.class);
@@ -41,7 +44,8 @@ public class HibernatUtil {
         conf.addAnnotatedClass(HoaDon.class);
         conf.addAnnotatedClass(HDCT.class);
         conf.addAnnotatedClass(KhuyenMai.class);
-
+        conf.addAnnotatedClass(CongThuc.class);
+        conf.addAnnotatedClass(NguyenLieu.class);
         conf.addAnnotatedClass(Ban.class);
         conf.addAnnotatedClass(SanPham.class);
         ServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -55,6 +59,7 @@ public class HibernatUtil {
 
     public static void main(String[] args) {
         System.out.println(getFACTORY());
+        System.out.println("");
     }
 
 }

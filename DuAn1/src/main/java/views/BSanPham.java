@@ -1,29 +1,25 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package views;
 
 import viewmodel.QLSanPham;
-import viewmodel.SanPhamModel;
 
 /**
  *
  * @author vanlo
  */
-public class thu1 extends javax.swing.JPanel {
+public class BSanPham extends javax.swing.JPanel {
 
-    /**
-     * Creates new form thu1
-     */
     private QLSanPham sp;
     private int u;
 
-    public thu1() {
+    public BSanPham() {
         initComponents();
     }
 
-    public thu1(QLSanPham sp, int u) {
+    public BSanPham(QLSanPham sp, int u) {
         this.sp = sp;
         this.u = u;
         initComponents();
@@ -67,6 +63,7 @@ public class thu1 extends javax.swing.JPanel {
         lblTensp.setText(sp.getTenSP());
 
         lblGiaSP.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblGiaSP.setText(Integer.toString((int) sp.getGia()) + ".VND");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

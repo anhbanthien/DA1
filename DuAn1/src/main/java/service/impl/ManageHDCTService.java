@@ -35,7 +35,7 @@ public class ManageHDCTService implements IManageHDCTService {
             QLHDCT qlhdct = new QLHDCT();
             qlhdct.setIdHDCT(x.getIDHDCT());
             qlhdct.setIdHD(x.getIDHD().getIDHD());
-            qlhdct.setIdSP(x.getIDSP().getIdSP());
+            qlhdct.setIdSP(x.getIDSP().getIDSP());
             qlhdct.setSoLuong(x.getSoLuong());
             
             lstQLHDCT.add(qlhdct);
@@ -49,7 +49,7 @@ public class ManageHDCTService implements IManageHDCTService {
         QLHDCT qlhdct = new QLHDCT();
         qlhdct.setIdHDCT(hdct.getIDHDCT());
         qlhdct.setIdHD(hdct.getIDHD().getIDHD());
-        qlhdct.setIdSP(hdct.getIDSP().getIdSP());
+        qlhdct.setIdSP(hdct.getIDSP().getIDSP());
         qlhdct.setSoLuong(hdct.getSoLuong());
        
         return qlhdct;
@@ -60,7 +60,7 @@ public class ManageHDCTService implements IManageHDCTService {
         QLHDCT qlhdct = new QLHDCT();
         qlhdct.setIdHDCT(hdct.getIDHDCT());
         qlhdct.setIdHD(hdct.getIDHD().getIDHD());
-        qlhdct.setIdSP(hdct.getIDSP().getIdSP());
+        qlhdct.setIdSP(hdct.getIDSP().getIDSP());
         qlhdct.setSoLuong(hdct.getSoLuong());
         return qlhdct;
     }
@@ -68,12 +68,13 @@ public class ManageHDCTService implements IManageHDCTService {
     public List<QLHDCT> getListbyHD(UUID hoaDon) {
         List<HDCT> lstHDCT = hDCTRepository.getAll();
         List<QLHDCT> lstQLHDCT = new ArrayList<>();
+        
         for (HDCT x : lstHDCT) {
             if(x.getIDHD().getIDHD().equals(hoaDon)){
             QLHDCT qlhdct = new QLHDCT();
             qlhdct.setIdHDCT(x.getIDHDCT());
             qlhdct.setIdHD(x.getIDHD().getIDHD());
-            qlhdct.setIdSP(x.getIDSP().getIdSP());
+            qlhdct.setIdSP(x.getIDSP().getIDSP());
             qlhdct.setTenSP(x.getIDSP().getTenSP());
             qlhdct.setGia(x.getIDSP().getGia());
             qlhdct.setSoLuong(x.getSoLuong());

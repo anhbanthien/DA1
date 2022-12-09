@@ -70,7 +70,6 @@ public class InfoAccount extends javax.swing.JFrame {
         jToolBar1 = new javax.swing.JToolBar();
         jPanel1 = new javax.swing.JPanel();
         txtaccount = new javax.swing.JLabel();
-        txtAccount = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtFullName = new javax.swing.JTextField();
         txtaccount1 = new javax.swing.JLabel();
@@ -80,7 +79,6 @@ public class InfoAccount extends javax.swing.JFrame {
         jbtNu = new javax.swing.JRadioButton();
         jbtNam = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        txtTrangThai = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -89,7 +87,9 @@ public class InfoAccount extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         lblAnh = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        txtTrangThai = new javax.swing.JTextField();
+        txtAccount = new javax.swing.JTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -116,14 +116,6 @@ public class InfoAccount extends javax.swing.JFrame {
         txtaccount.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         txtaccount.setText("Tài Khoản");
         getContentPane().add(txtaccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 96, -1, -1));
-
-        txtAccount.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        txtAccount.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAccountActionPerformed(evt);
-            }
-        });
-        getContentPane().add(txtAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 89, 187, 33));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLabel2.setText("Họ Tên");
@@ -162,15 +154,12 @@ public class InfoAccount extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jLabel5.setText("Giới Tính");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 296, -1, -1));
-
-        txtTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
-        getContentPane().add(txtTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 320, 190, 20));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 480, 10));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 102));
         jPanel2.setForeground(new java.awt.Color(255, 204, 51));
 
-        jLabel3.setFont(new java.awt.Font("Rockwell Condensed", 1, 36)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Raleway ExtraBold", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 255));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/profile.png"))); // NOI18N
         jLabel3.setText("PROFILE");
@@ -181,8 +170,8 @@ public class InfoAccount extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(138, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,28 +183,36 @@ public class InfoAccount extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 70));
 
-        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/edit.png"))); // NOI18N
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/update.png"))); // NOI18N
+        jButton1.setText("Cập nhật");
+        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 53, 110, 33));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semilight", 1, 12)); // NOI18N
         jLabel6.setText("Trạng Thái");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 267, -1, -1));
 
+        jButton2.setBackground(new java.awt.Color(255, 255, 255));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/baomat.png"))); // NOI18N
-        jButton2.setText("Bảo Mật");
+        jButton2.setText("Bảo mật");
+        jButton2.setBorder(null);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 244, 110, 35));
 
         lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -223,47 +220,30 @@ public class InfoAccount extends javax.swing.JFrame {
                 lblAnhMouseClicked(evt);
             }
         });
+        jPanel3.add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 99, 110, 132));
 
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/backPng.png"))); // NOI18N
-        jButton3.setText("Back");
-        jButton3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jButton4.setBackground(new java.awt.Color(255, 255, 255));
+        jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close-icon_1.png"))); // NOI18N
+        jButton4.setText("Đóng");
+        jButton4.setBorder(null);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 13, 110, 33));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(312, 312, 312)
-                        .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel6)
-                        .addGap(243, 243, 243)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(312, 312, 312)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblAnh, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jButton2))
-                .addContainerGap(39, Short.MAX_VALUE))
-        );
+        txtTrangThai.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        jPanel3.add(txtTrangThai, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 266, 190, -1));
+
+        txtAccount.setFont(new java.awt.Font("Segoe UI", 1, 10)); // NOI18N
+        txtAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAccountActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtAccount, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 22, 187, 24));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 460, 310));
 
@@ -324,6 +304,10 @@ public class InfoAccount extends javax.swing.JFrame {
         new SerPass(this.log).setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -363,7 +347,7 @@ public class InfoAccount extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
