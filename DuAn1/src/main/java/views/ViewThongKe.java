@@ -6,6 +6,7 @@ package views;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Font;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfTable;
@@ -101,7 +102,7 @@ public class ViewThongKe extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         jTable2.setModel(dtm);
         String headers[] = {"Ngày", "Số đơn thanh toán", "Số lượng sản phẩm", "Tổng tiền"};
-        String headers1[] = {"Ngày", "Tên sản phẩm", "Số lượng sản phẩm đã mua", "Tổng hóa đơn", "Điểm tích lũy"};
+        String headers1[] = {"Ngày", "Tên sản phẩm", "Số lượng sản phẩm đã mua", "Tổng hóa đơn", "Điểm tích lũy", "Rank"};
         String headers2[] = {"Tên sản phẩm", "Số lượng sản phẩm đã bán"};
         String headers3[] = {"IDHD", "Ngày", "Tên sản phẩm", "Số lượng", "Giá"};
         dtm.setColumnIdentifiers(headers);
@@ -140,15 +141,15 @@ public class ViewThongKe extends javax.swing.JFrame {
         showDataKH(listTKKHMD);
         showDataSP(listSPMD);
 
-             List<Object[]> listBieuDo = serviceImpl.listBieuDo();
+        List<Object[]> listBieuDo = serviceImpl.listBieuDo();
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         if (listBieuDo != null) {
             for (Object[] objects : listBieuDo) {
-                float f = Float.parseFloat(objects[1]+"");
+                float f = Float.parseFloat(objects[1] + "");
                 long l = (long) f;
-                String ngay = objects[0]+"";
+                String ngay = objects[0] + "";
                 System.out.println(l);
-                dataset.setValue(l, "Tổng doanh thu",ngay);
+                dataset.setValue(l, "Tổng doanh thu", ngay);
             }
         }
         JFreeChart linechart = ChartFactory.createLineChart("Thống kê doanh thu", "Năm", "Tổng Doanh Thu",
@@ -195,8 +196,17 @@ public class ViewThongKe extends javax.swing.JFrame {
 
     private void showDataKH(List<Object[]> list) {
         dtm1.setRowCount(0);
-        for (Object[] objects : list) {
-            dtm1.addRow(objects);
+        for (int i = 0; i < list.size(); i++) {
+            String rank;
+            int ep = Integer.parseInt(list.get(i)[4] + "");
+            if (ep >= 0 && ep <= 50) {
+                rank = "Đồng";
+            } else if (ep <= 100) {
+                rank = "Vàng";
+            } else {
+                rank = "Kim cương";
+            }
+            dtm1.addRow(new Object[]{list.get(i)[0],list.get(i)[1],list.get(i)[2],list.get(i)[3],list.get(i)[4],rank});
         }
     }
 
@@ -740,9 +750,9 @@ public class ViewThongKe extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -774,12 +784,13 @@ public class ViewThongKe extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jButton9)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(15, 15, 15)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -885,8 +896,12 @@ public class ViewThongKe extends javax.swing.JFrame {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            String jtext = "Tổng doanh thu hôm nay là : " + tongDoanhThu(listHD, date) + " VNĐ. \nSố đơn đã bán là: " + soDonDaBan(listHD, date) + ""
-                    + "\n Tổng số sản phẩm đã bán là: " + serviceImpl.soLuong(date1).get(0).toString();
+            String jtext = "\n NGAY: \n " + date + "\n\n DOANH THU: \n"
+                    + " Tong doanh thu hom nay la: " + tongDoanhThu(listHD, date) + " VNĐ. "
+                    + "\n\n DON BAN:"
+                    + "\n So don da ban la: " + soDonDaBan(listHD, date) + " don"
+                    + "\n\n SAN PHAM BAN:"
+                    + "\n Tong so san pham ban la: " + serviceImpl.soLuong(date1).get(0) + " san pham";
 
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
@@ -917,8 +932,16 @@ public class ViewThongKe extends javax.swing.JFrame {
             PdfWriter.getInstance(document, new FileOutputStream(path + "ThongKe.pdf"));
 
             document.open();
-
-            //            document.add(new Paragraph("THỐNG KÊ DOANH THU"));
+//            Font f = new Font();
+//            f.setStyle(Font.BOLD);
+//            f.setSize(20);
+//            f.setColor(Color.RED);
+//            document.add(new Paragraph("                            THONG KE DOANH THU", f));
+//            PdfPageBase page = document.getPages().add();
+//
+//            PdfStringFormat centerAlignment = new PdfStringFormat(PdfTextAlignment.Center);
+//
+//            page.getCanvas().drawString("Center", font, brush, page.getCanvas().getClientSize().getWidth() / 2, 20, centerAlignment);
             PdfPTable table = new PdfPTable(4);
             table.addCell("Ngay");
             table.addCell("Tong so don");
