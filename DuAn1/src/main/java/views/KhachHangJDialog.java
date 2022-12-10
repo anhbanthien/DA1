@@ -28,12 +28,16 @@ public class KhachHangJDialog extends javax.swing.JDialog {
     private List<KhachHangModel> getAll;
     private DefaultTableModel tbl = new DefaultTableModel();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
+
     public KhachHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+
         fillToTable(new KhachHangServiceImpl().getAll());
         rdoON.setSelected(true);
     }
+
     public void fillToTable(List<KhachHangModel> listsStaff) {
 
         tbl = (DefaultTableModel) tblQlyNhanVien.getModel();
@@ -293,13 +297,11 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         kh.setTen(txtTen.getText());
         kh.setSoDienThoai(txtSDT.getText());
         kh.setId(_id);
-        if(rdoON.isSelected()){
-        kh.setTrangThai("ON");
-        }else{
-        kh.setTrangThai("OFF");
+        if (rdoON.isSelected()) {
+            kh.setTrangThai("ON");
+        } else {
+            kh.setTrangThai("OFF");
         }
-        
-        
 
         if (new KhachHangServiceImpl().Update(kh)) {
             JOptionPane.showMessageDialog(this, "Succes");
@@ -317,18 +319,18 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         }
         try {
             staff = new KhachHangServiceImpl().getOne(txtSDTTK.getText());
-        }catch(Exception e){
-        return;
+        } catch (Exception e) {
+            return;
         }
-        _id= staff.getId();
+        _id = staff.getId();
         txtTen.setText(staff.getTen());
         txtSDT.setText(staff.getSoDienThoai());
-        if(staff.getTrangThai().contains("ON")){
-        rdoON.setSelected(true);
-        }else{
-        rdoON.setSelected(true);
+        if (staff.getTrangThai().contains("ON")) {
+            rdoON.setSelected(true);
+        } else {
+            rdoON.setSelected(true);
         }
-        
+
     }//GEN-LAST:event_btnTKActionPerformed
 
     private void tblQlyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQlyNhanVienMouseClicked
@@ -341,12 +343,12 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         txtTen.setText(kh.getTen());
         txtSDT.setText(kh.getSoDienThoai());
         _id = kh.getId();
-        if(kh.getTrangThai().contains("ON")){
-        rdoON.setSelected(true);
-        }else{
-        rdoON.setSelected(true);
+        if (kh.getTrangThai().contains("ON")) {
+            rdoON.setSelected(true);
+        } else {
+            rdoON.setSelected(true);
         }
-            
+
     }//GEN-LAST:event_tblQlyNhanVienMouseClicked
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -377,12 +379,11 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         kh.setSoDienThoai(txtSDT.getText());
 //        kh.setId(_id);
         kh.setTrangThai("ON");
-        if(rdoON.isSelected()){
-        kh.setTrangThai("ON");
-        }else{
-        kh.setTrangThai("OFF");
+        if (rdoON.isSelected()) {
+            kh.setTrangThai("ON");
+        } else {
+            kh.setTrangThai("OFF");
         }
-        
 
         if (new KhachHangServiceImpl().Save(kh)) {
             JOptionPane.showMessageDialog(this, "Succes");
@@ -390,7 +391,7 @@ public class KhachHangJDialog extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
         }
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed

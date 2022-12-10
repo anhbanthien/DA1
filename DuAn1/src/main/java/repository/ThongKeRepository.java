@@ -236,6 +236,6 @@ public class ThongKeRepository {
         String ids =  "A49CB35F-FD3C-4130-9D97-075299299F00";
         UUID id = UUID.fromString(ids);
        
-        new ThongKeRepository().listMouseClickCT(id).forEach(s -> System.out.println(s[2]));
+        new ThongKeRepository().listBieuDo().forEach(s -> System.out.println(s[0]));
     }
 }

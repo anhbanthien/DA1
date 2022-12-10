@@ -26,12 +26,15 @@ public class InfoAccount extends javax.swing.JFrame {
 
     public InfoAccount() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     public InfoAccount(DangNhap log) {
         initComponents();
         txtAccount.setEnabled(false);
         txtTrangThai.setEnabled(false);
+
         this.log = log;
         txtAccount.setText(log.getTenTaiKhoan());
         txtEmail.setText(log.getIdNhanVien().getEmail());
@@ -83,7 +86,6 @@ public class InfoAccount extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         lblAnh = new javax.swing.JLabel();
@@ -186,18 +188,6 @@ public class InfoAccount extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/update.png"))); // NOI18N
-        jButton1.setText("Cập nhật");
-        jButton1.setBorder(null);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 53, 110, 33));
-
         jLabel6.setFont(new java.awt.Font("Segoe UI Semilight", 1, 12)); // NOI18N
         jLabel6.setText("Trạng Thái");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 267, -1, -1));
@@ -212,7 +202,7 @@ public class InfoAccount extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 244, 110, 35));
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 240, 110, 35));
 
         lblAnh.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         lblAnh.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -220,7 +210,7 @@ public class InfoAccount extends javax.swing.JFrame {
                 lblAnhMouseClicked(evt);
             }
         });
-        jPanel3.add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 99, 110, 132));
+        jPanel3.add(lblAnh, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 110, 132));
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -254,30 +244,6 @@ public class InfoAccount extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFullNameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NhanVien Staff = new NhanVien();
-        Staff.setHoTen(txtFullName.getText());
-        Staff.setEmail(txtEmail.getText());
-        Staff.setSDT(txtSDT.getText());
-        Staff.setTrangThai(txtTrangThai.getText());
-        if (jbtNam.isSelected()) {
-            Staff.setGioiTinh("Nam");
-        } else {
-            Staff.setGioiTinh("Nữ");
-        }
-        String hinh;
-        if (strHinhAnh1 == null) {
-            hinh = "null";
-        } else {
-            hinh = strHinhAnh1;
-            Staff.setImage(strHinhAnh1);
-        }
-        if (new QlyNhanVienImpl().Update(log.getIdNhanVien().getIdNhanVien(), Staff)) {
-            JOptionPane.showMessageDialog(this, "Edit success");
-        };
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private String strHinhAnh1 = "";
 
     private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
@@ -305,7 +271,7 @@ public class InfoAccount extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -345,7 +311,6 @@ public class InfoAccount extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

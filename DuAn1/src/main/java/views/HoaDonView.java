@@ -58,6 +58,8 @@ public class HoaDonView extends javax.swing.JFrame {
         dtm1.setColumnIdentifiers(header1);
         listmd1 = hdimpl.getAllHoaDon();
         showData(listmd1);
+        setLocationRelativeTo(null);
+
     }
 
     private void showData(List<HoaDonModel> lists) {

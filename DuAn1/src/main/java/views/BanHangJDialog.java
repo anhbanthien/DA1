@@ -82,6 +82,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     public BanHangJDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         loadTableSanPham();
         loadTableBan();
         txtTienTong.setEnabled(false);
@@ -330,6 +331,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         j9 = new javax.swing.JLabel();
         jButton16 = new javax.swing.JButton();
         lblKM = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jButton9 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
@@ -415,7 +417,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 btnThanhToanActionPerformed(evt);
             }
         });
-        jPanel6.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 117, -1));
+        jPanel6.add(btnThanhToan, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 117, -1));
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton4.setText("Lưu HD");
@@ -424,7 +426,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, 117, -1));
+        jPanel6.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 270, 117, -1));
 
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jButton10.setText("Clear");
@@ -433,7 +435,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 jButton10ActionPerformed(evt);
             }
         });
-        jPanel6.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 130, 114, -1));
+        jPanel6.add(jButton10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 114, -1));
 
         txtTenKH.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel6.add(txtTenKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 80, 170, -1));
@@ -501,6 +503,9 @@ public class BanHangJDialog extends javax.swing.JDialog {
 
         lblKM.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel6.add(lblKM, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 163, 108, 26));
+
+        jButton1.setText("In HD");
+        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 110, 30));
 
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 460, 360));
 
@@ -670,7 +675,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -681,7 +686,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 40, 304, 170));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 40, 440, 170));
 
         lblanhSP.setBackground(new java.awt.Color(0, 0, 0));
         lblanhSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -1332,6 +1337,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     private javax.swing.JLabel j7;
     private javax.swing.JLabel j8;
     private javax.swing.JLabel j9;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;

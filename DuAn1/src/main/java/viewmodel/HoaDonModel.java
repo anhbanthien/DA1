@@ -47,10 +47,13 @@ public class HoaDonModel {
         this.TienTra = hoadon.getTienTra();
         this.TongTien = hoadon.getTongTien();
         this.TrangThai = hoadon.getTrangThai();
-        this.Ten = hoadon.getIDKH().getTen();
-        this.SoDienThoai = hoadon.getIDKH().getSoDienThoai();
 
-        this.HoTen = hoadon.getIDNV().getHoTen();
+        if (hoadon.getIDKH() != null) {
+            this.Ten = hoadon.getIDKH().getTen();
+            this.SoDienThoai = hoadon.getIDKH().getSoDienThoai();
+            this.HoTen = hoadon.getIDNV().getHoTen();
+        }
+
     }
 
     public UUID getIDHD() {

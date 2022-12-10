@@ -37,7 +37,10 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
      * Creates new form FrmQLCongThuc
      */
     public FrmQLNguyenLieu() {
+        
         initComponents();
+                setLocationRelativeTo(null);
+
         dcb = (DefaultComboBoxModel) cboCongThuc.getModel();
         dcb.removeAllElements();
         for (QLCongThuc x : lstQLCT) {
@@ -361,17 +364,17 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
             return;
         }
 //        try {
-            if (_iManageNguyenLieuService.add(getData())) {
-                JOptionPane.showMessageDialog(this, "Thêm thành công!");
-                // loadData(_iManageNguyenLieuService.getAll());
-                int index = cboCongThuc.getSelectedIndex();
-                QLCongThuc qlct = lstQLCT.get(index);
-                List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
-                loadData(lstNLCT);
+        if (_iManageNguyenLieuService.add(getData())) {
+            JOptionPane.showMessageDialog(this, "Thêm thành công!");
+            // loadData(_iManageNguyenLieuService.getAll());
+            int index = cboCongThuc.getSelectedIndex();
+            QLCongThuc qlct = lstQLCT.get(index);
+            List<QLNguyenLieu> lstNLCT = _iManageNguyenLieuService.getByCT(qlct.getIdCT());
+            loadData(lstNLCT);
 
-            } else {
-                JOptionPane.showMessageDialog(this, "Thêm thất bại!");
-            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Thêm thất bại!");
+        }
 //        } catch (Exception e) {
 //            JOptionPane.showMessageDialog(this, "Thêm thất bại!");
 //        }
@@ -521,15 +524,14 @@ public class FrmQLNguyenLieu extends javax.swing.JFrame {
 
     private QLNguyenLieu getData() {
         QLNguyenLieu qlnl = new QLNguyenLieu();
-            qlnl.setTenNL(txtTenNL.getText());
-            qlnl.setSoLuong(Integer.parseInt(txtSL.getText()));
-            qlnl.setDvt(txtDVT.getText());
-            qlnl.setNgayNhap(txtNgayNhap.getText());
-            qlnl.setHsd(Integer.parseInt(txtHSD.getText()));
-            int index = cboCongThuc.getSelectedIndex();
-            qlnl.setIdCT(lstQLCT.get(index).getIdCT());
-            return qlnl;
-       
+        qlnl.setTenNL(txtTenNL.getText());
+        qlnl.setSoLuong(Integer.parseInt(txtSL.getText()));
+        qlnl.setDvt(txtDVT.getText());
+        qlnl.setNgayNhap(txtNgayNhap.getText());
+        qlnl.setHsd(Integer.parseInt(txtHSD.getText()));
+        int index = cboCongThuc.getSelectedIndex();
+        qlnl.setIdCT(lstQLCT.get(index).getIdCT());
+        return qlnl;
 
     }
 
