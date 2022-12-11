@@ -22,25 +22,25 @@ import service.impl.KhuyenMaiServiceImp;
  * @author vutuo
  */
 public class ViewKhuyenMai extends javax.swing.JFrame {
-    
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
     private DefaultTableModel tbl = new DefaultTableModel();
     private List<KhuyenMai> km = new KhuyenMaiRepository().getAll();
-    
+
     public void fillToTable(List<KhuyenMai> km) {
-        
+
         tbl = (DefaultTableModel) tblKhuyenMai.getModel();
         tbl.setRowCount(0);
         for (KhuyenMai o : km) {
             tbl.addRow(new Object[]{o.getMaKM(), o.getNgayBatDau(), o.getNgayKetThuc(), o.getPhanTramKM(), o.getTrangThai()});
         }
-        
+
     }
-    
+
     public ViewKhuyenMai() {
         initComponents();
         fillToTable(km);
-                setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
 
     }
 
@@ -138,10 +138,10 @@ public class ViewKhuyenMai extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 116, 87, 22));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 116, 100, -1));
 
         jButton2.setText("udapte");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 90, 30));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 100, 30));
         getContentPane().add(txtMaKM, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 253, 338, -1));
 
         jLabel5.setText("Mã KM");
@@ -160,25 +160,25 @@ public class ViewKhuyenMai extends javax.swing.JFrame {
                 btnCloseActionPerformed(evt);
             }
         });
-        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 90, 30));
+        getContentPane().add(btnClose, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 220, 100, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         KhuyenMai km = new KhuyenMai();
-        
+
         km.setNgayBatDau((java.sql.Date) txtBatDau.getDate());
         km.setNgayKetThuc((java.sql.Date) txtKetThuc.getDate());
-        
+
         km.setMaKM(txtMaKM.getText());
         if (jbdOn.isSelected()) {
             km.setTrangThai(1);
         } else {
             km.setTrangThai(0);
         }
-        
+
         if (new KhuyenMaiServiceImp().add(km)) {
             JOptionPane.showMessageDialog(this, "Khởi tạo thành công");
             fillToTable(new KhuyenMaiServiceImp().getAll());
