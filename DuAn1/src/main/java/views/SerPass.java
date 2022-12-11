@@ -18,6 +18,8 @@ public class SerPass extends javax.swing.JFrame {
 
     public SerPass() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     public SerPass(DangNhap Log) {

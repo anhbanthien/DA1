@@ -79,7 +79,7 @@ public class ThongKeRepository {
     }
     public List<Object[]> listThongKeKH() {
         try ( Session session = HibernatUtil.getFACTORY().openSession();) {
-            String HQL = "   select KH.Ten, KH.SoDienThoai,SUM(HD.SoLuong) AS SL, COUNT(H.IDKH) AS TONGHD, KH.DiemTichLuy from HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD JOIN KhachHang KH ON H.IDKH = KH.IdKhachHang WHERE H.TrangThai = 'DTT' GROUP BY KH.Ten, KH.DiemTichLuy, KH.SoDienThoai ORDER BY SUM(HD.SoLuong) DESC";
+            String HQL = "   select KH.Ten, KH.SoDienThoai,SUM(HD.SoLuong) AS SL, COUNT(H.IDKH) AS TONGHD, KH.DiemTichLuy from HoaDon H JOIN HDCT HD ON H.IDHD = HD.IDHD JOIN KhachHang KH ON H.IDKH = KH.IdKhachHang WHERE H.TrangThai = 'DTT' GROUP BY KH.Ten, KH.DiemTichLuy, KH.SoDienThoai ORDER BY KH.DiemTichLuy DESC";
             Query query = session.createQuery(HQL, Object[].class);
             List<Object[]> lists = query.getResultList();
             return lists;
@@ -236,6 +236,6 @@ public class ThongKeRepository {
         String ids =  "A49CB35F-FD3C-4130-9D97-075299299F00";
         UUID id = UUID.fromString(ids);
        
-        new ThongKeRepository().listMouseClickCT(id).forEach(s -> System.out.println(s[2]));
+        new ThongKeRepository().listBieuDo().forEach(s -> System.out.println(s[0]));
     }
 }

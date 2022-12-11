@@ -172,7 +172,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         jLabel6.setText("Trạng Thái:");
 
         lblHinhAnhSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ca-phe-trung1.jpg"))); // NOI18N
-        lblHinhAnhSP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         lblHinhAnhSP.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblHinhAnhSPMouseClicked(evt);
@@ -472,12 +471,12 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             rdoNgungKD.setSelected(true);
         }
 
-        if (_iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage() == null) {
+        if (new ManageSanPhamService().getAll().get(tblSP.getSelectedRow()).getImage() == null) {
             lblHinhAnhSP.setText("null");
             lblHinhAnhSP.setIcon(null);
         } else {
             lblHinhAnhSP.setText("");
-            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage());
+            ImageIcon imgIcon = new javax.swing.ImageIcon(new javax.swing.ImageIcon(getClass().getResource("/" + _iManageSanPhamService.getAll().get(tblSP.getSelectedRow()).getImage())).getImage().getScaledInstance(150, 150, java.awt.Image.SCALE_DEFAULT));
             Image img = imgIcon.getImage();
             img.getScaledInstance(lblHinhAnhSP.getWidth(), lblHinhAnhSP.getHeight(), 0);
             lblHinhAnhSP.setIcon(imgIcon);
@@ -493,15 +492,15 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         }
 
         try {
-            for (int i = 0; i < _iManageSanPhamService.getAll().size(); i++) {
-                if (_iManageSanPhamService.getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText().trim())) {
+            for (int i = 0; i < new ManageSanPhamService().getAll().size(); i++) {
+                if (new ManageSanPhamService().getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText().trim())) {
                     JOptionPane.showMessageDialog(this, "Tên sản phẩm bị trùng!");
                     return;
                 }
             }
-            if (_iManageSanPhamService.add(getData())) {
+            if (new ManageSanPhamService().add(getData())) {
                 JOptionPane.showMessageDialog(this, "Thêm thành công!");
-                loadData(_iManageSanPhamService.getAll());
+                loadData(new ManageSanPhamService().getAll());
             } else {
                 JOptionPane.showMessageDialog(this, "Thêm thất bại!");
             }
@@ -516,7 +515,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private void lblHinhAnhSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHinhAnhSPMouseClicked
 
         try {
-            JFileChooser jfc = new JFileChooser("C:\\Users\\trong\\OneDrive\\Máy tính\\DA1_FINAL_01\\DuAn1\\src\\main\\resources");
+            JFileChooser jfc = new JFileChooser("C:\\Users\\Admin\\Desktop\\DuAn1\\da1\\DuAn1\\src\\main\\resources\\");
             jfc.showOpenDialog(null);
             File file = jfc.getSelectedFile();
             Image img;
@@ -540,11 +539,11 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
 
         try {
-            if (_iManageSanPhamService.getAll().size() == 0) {
+            if (new ManageSanPhamService().getAll().size() == 0) {
                 JOptionPane.showMessageDialog(this, "Hết sản phẩm!");
                 return;
             }
-            if (_iManageSanPhamService.delete(getID())) {
+            if (new ManageSanPhamService().delete(getID())) {
                 JOptionPane.showMessageDialog(this, "Xóa thành công!");
                 loadData(new ManageSanPhamService().getAll());
             }
@@ -554,7 +553,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        loadData(_iManageSanPhamService.getAll());
+        loadData(new ManageSanPhamService().getAll());
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -563,17 +562,17 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             return;
         }
         try {
-            if (_iManageSanPhamService.getAll().size() == 0) {
+            if (new ManageSanPhamService().getAll().size() == 0) {
                 JOptionPane.showMessageDialog(this, "Hêt dữ liệu");
                 return;
             }
-            for (int i = 0; i < _iManageSanPhamService.getAll().size(); i++) {
-                if (row != i && _iManageSanPhamService.getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText())) {
+            for (int i = 0; i < new ManageSanPhamService().getAll().size(); i++) {
+                if (row != i && new ManageSanPhamService().getAll().get(i).getTenSP().equalsIgnoreCase(txtTenSP.getText())) {
                     JOptionPane.showMessageDialog(this, "Tên sản phẩm đã tồn tại");
                     return;
                 }
             }
-            if (_iManageSanPhamService.update(getID(), getData())) {
+            if (new ManageSanPhamService().update(getID(), getData())) {
                 JOptionPane.showMessageDialog(this, "Sửa thành công!");
                 loadData(new ManageSanPhamService().getAll());
             }
@@ -584,7 +583,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         List<QLSanPham> lstQLSPTimTheoTen = new ArrayList<>();
-        for (QLSanPham x : _iManageSanPhamService.getAll()) {
+        for (QLSanPham x : new ManageSanPhamService().getAll()) {
             if (x.getTenSP().toLowerCase().startsWith(txtTimKiem.getText().toLowerCase())) {
                 lstQLSPTimTheoTen.add(x);
             }
@@ -620,7 +619,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             cell = row.createCell(5, CellType.STRING);
             cell.setCellValue("Trạng Thái");
 
-            for (int i = 0; i < lstSP.size(); i++) {
+            for (int i = 0; i < new ManageSanPhamService().getAll().size(); i++) {
                 row = sheet.createRow(1 + i);
                 cell = row.createCell(0, CellType.NUMERIC);
                 cell.setCellValue(i + 1);

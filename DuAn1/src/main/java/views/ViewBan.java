@@ -76,6 +76,8 @@ public class ViewBan extends javax.swing.JFrame {
         initComponents();
         fillToTable(listTables);
         fillIDB();
+        setLocationRelativeTo(null);
+
     }
 
     @SuppressWarnings("unchecked")

@@ -58,6 +58,8 @@ public class HoaDonView extends javax.swing.JFrame {
         dtm1.setColumnIdentifiers(header1);
         listmd1 = hdimpl.getAllHoaDon();
         showData(listmd1);
+        setLocationRelativeTo(null);
+
     }
 
     private void showData(List<HoaDonModel> lists) {
@@ -133,11 +135,12 @@ public class HoaDonView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 153));
+        jPanel1.setBackground(new java.awt.Color(139, 110, 96));
         jPanel1.setForeground(new java.awt.Color(204, 51, 0));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Hóa Đơn");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 13, 100, 37));
