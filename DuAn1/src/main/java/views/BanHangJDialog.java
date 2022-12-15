@@ -4,6 +4,10 @@
  */
 package views;
 
+
+import com.lowagie.text.*;
+import com.lowagie.text.pdf.PdfPTable;
+import com.lowagie.text.pdf.PdfWriter;
 import domainmodel.Ban;
 import domainmodel.DangNhap;
 import domainmodel.HoaDon;
@@ -16,12 +20,17 @@ import java.awt.Dimension;
 import java.awt.PopupMenu;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -92,6 +101,13 @@ public class BanHangJDialog extends javax.swing.JDialog {
         btnThanhToan.setEnabled(false);
         txtsp1.setEnabled(false);
         txtTien.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton9.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton1.setEnabled(false);
+        rdoHDC.setSelected(true);
+        loadTablehoaDon("Chờ TT");
 
     }
 
@@ -178,6 +194,81 @@ public class BanHangJDialog extends javax.swing.JDialog {
         kh.setTrangThai("ON");
         return kh;
     }
+    private void inHoaDon(UUID idHD){
+        if(idHD == null){
+            return;
+        }
+        HoaDonModel hoaDon = new HoaDonModel();
+        if(new HoaDonServiceImpl().getOne(idHD)==null){
+            JOptionPane.showMessageDialog(this, "Lỗi hóa đơn");
+            return;
+        }
+        hoaDon = new HoaDonServiceImpl().getOne(idHD);
+        if(new HoaDonServiceImpl().getOne(idHD)==null){
+            JOptionPane.showMessageDialog(this, "Lỗi hóa đơn");
+            return;
+        }
+        List<QLHDCT> lstQLHDCT = new ArrayList<>();
+        lstQLHDCT = new ManageHDCTService().getListbyHD(_idHD);;
+        String path = "";
+        JFileChooser chooser = new JFileChooser();
+        chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int x = chooser.showSaveDialog(this);
+        if (x == JFileChooser.APPROVE_OPTION) {
+            path = chooser.getSelectedFile().getPath();
+        }
+        Document document = new Document();
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(path + "HoaDon.pdf"));
+            document.open();
+            document.add(new Paragraph("Ngày tao:"+hoaDon.getNgayTao() + "      Ngày Thanh toán:" + hoaDon.getNgayTT()));
+            if(hoaDon.getIDKH()==null){
+                document.add(new Paragraph("nhân viên:"+hoaDon.getIDNV().getMaNhanVien() + "      Ngày Thanh toán: null"));
+            }else{
+                document.add(new Paragraph("nhân viên:"+hoaDon.getIDNV().getMaNhanVien() + "      khách hàng:" + hoaDon.getIDKH().getTen()));
+            }
+            document.add(new Paragraph("                 ------------------hóa đơn chi tiêt-----------------"));
+            PdfPTable  table = new PdfPTable (4);
+            Cell vui = new Cell();
+
+            table.setSpacingBefore(25);
+            table.setSpacingAfter(25);
+            table.addCell("Tên SP");
+            table.addCell("dgiá");
+            table.addCell("sl");
+            table.addCell("Thành tiền");
+//            int i = tblHoaDon.getSelectedRow();
+            for (QLHDCT qlhdct : lstQLHDCT) {
+                String tenSP = qlhdct.getTenSP();
+                String gia = String.valueOf(qlhdct.getGia());
+                String sl = String.valueOf(qlhdct.getSoLuong());
+                String tien = String.valueOf(qlhdct.getTien());
+                table.addCell(tenSP);
+                table.addCell(gia);
+                table.addCell(sl);
+                table.addCell(tien);
+            }
+            table.addCell("tổng tiền");
+            table.addCell("");
+            table.addCell("");
+            table.addCell(String.valueOf(hoaDon.getTongTien()));
+            table.addCell("tiền giảm giá");
+            table.addCell("");
+            table.addCell("");
+            table.addCell(String.valueOf(hoaDon.getTongTien()-hoaDon.getTienTra()));
+            table.addCell("tiền thanh toán");
+            table.addCell("");
+            table.addCell("");
+            table.addCell(String.valueOf(hoaDon.getTienTra()));
+            document.add(table);
+            JOptionPane.showMessageDialog(this, "In thành công");
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(HoaDonView.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(HoaDonView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        document.close();
+    }
 
     private HoaDon getformHoaDon() {
         HoaDon hd = hoaDonRepository.getOne(_idHD);
@@ -221,15 +312,16 @@ public class BanHangJDialog extends javax.swing.JDialog {
             ba.setBorder(BorderFactory.createEtchedBorder());
             ba.addMouseListener(new MouseAdapter() {
                 public void mouseClicked(MouseEvent e) {
-//                    if(ba.getTrangthai()==0){
-//                        JOptionPane.showMessageDialog(new JOptionPane(), "Bàn này đã đầy người");
-//                        return;
-//                    }else{
+                    if(ba.getTrangthai()==0){
+                        JOptionPane.showMessageDialog(new JOptionPane(), "Bàn này đã đầy người");
+                        return;
+                    }else{
                     int value = ba.getBan().getIDB();
                     for (ban ban : banss) {
                         ban.setmau(value, _banBD);
                     }
                     _ban = value;
+                    }
 
 //                    if (ba.getBackground() == Color.PINK) {
 //                        for (int i = 0; i < banss.size(); i++) {
@@ -505,9 +597,14 @@ public class BanHangJDialog extends javax.swing.JDialog {
         jPanel6.add(lblKM, new org.netbeans.lib.awtextra.AbsoluteConstraints(308, 163, 108, 26));
 
         jButton1.setText("In HD");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 110, 30));
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 460, 360));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 440, 360));
 
         jPanel8.setBackground(new java.awt.Color(249, 238, 231));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa đơn chi tiết"));
@@ -675,7 +772,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -686,7 +783,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 40, 440, 170));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 40, 320, 170));
 
         lblanhSP.setBackground(new java.awt.Color(0, 0, 0));
         lblanhSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -809,7 +906,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1278, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1325, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -842,7 +939,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
         }
 
         rdoHDC.setEnabled(true);
-        loadTablehoaDon("Chờ TT");
+        rdoHDC.setSelected(true);
+loadTablehoaDon("Chờ TT");
         loadTableSanPham();
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -863,12 +961,16 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 banv.setTrangThaiBan("Đang Hoạt Động");
                 JOptionPane.showMessageDialog(this, banService.update(banv));
             }
+            if(JOptionPane.showConfirmDialog(this,"Bạn có muốn in hóa đơn ko","in hóa đơn",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE)==JOptionPane.YES_OPTION){
+                    inHoaDon(hd.getIDHD());
+                }
 
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
         }
         txtTienKD.setText("");
-        loadTablehoaDon("Chờ TT");
+        rdoHDC.setSelected(true);
+loadTablehoaDon("Chờ TT");
         loadTableBan();
         ///////////
         khuyenMai = null;
@@ -899,6 +1001,11 @@ public class BanHangJDialog extends javax.swing.JDialog {
         _ban = 0;
         _banBD = 0;
         txttien();
+        jButton5.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton9.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton1.setEnabled(false);
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -918,7 +1025,8 @@ public class BanHangJDialog extends javax.swing.JDialog {
             }
 
             txtTienKD.setText("");
-            loadTablehoaDon("Chờ TT");
+            rdoHDC.setSelected(true);
+loadTablehoaDon("Chờ TT");
             khuyenMai = null;
             txtMaKM.setText("");
             lblKM.setText("");
@@ -947,6 +1055,11 @@ public class BanHangJDialog extends javax.swing.JDialog {
             _ban = 0;
             _banBD = 0;
             txttien();
+            jButton5.setEnabled(false);
+            jButton7.setEnabled(false);
+            jButton9.setEnabled(false);
+            jButton4.setEnabled(false);
+            jButton1.setEnabled(false);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -1202,6 +1315,19 @@ public class BanHangJDialog extends javax.swing.JDialog {
             _banBD = 0;
             _ban = 0;
         }
+        if(hd.getTrangThai().equals("Chờ TT")){
+        jButton5.setEnabled(true);
+        jButton7.setEnabled(true);
+        jButton9.setEnabled(true);
+        jButton1.setEnabled(false);
+        jButton4.setEnabled(true);
+        }else{
+        jButton5.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton9.setEnabled(false);
+        jButton1.setEnabled(true);        
+        jButton4.setEnabled(false);
+        }
         txttien();
         txtTienKD.setText("");
         for (int i = 0; i < banss.size(); i++) {
@@ -1283,6 +1409,10 @@ public class BanHangJDialog extends javax.swing.JDialog {
     private void txtTienKDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienKDActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTienKDActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       inHoaDon(_idHD);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

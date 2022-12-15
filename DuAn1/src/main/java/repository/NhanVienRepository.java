@@ -77,7 +77,10 @@ public class NhanVienRepository {
     }
 
     public static void main(String[] args) {
-        new NhanVienRepository().getNhanVienByMa("NV01").forEach(a -> System.out.print(a.toString()));
+
+        new NhanVienRepository().getAll().forEach(a -> System.out.println(a.getIdNhanVien()));
+
+        //  new NhanVienRepository().getNhanVienByMa("NV01").forEach(a -> System.out.print(a.getIdNhanVien()));
 //        NhanVien Staff = new NhanVien("testUpdate123", "", "", "", "", "1.png");
 //        System.out.println(Staff.toString());
 //        new NhanVienRepository().Update(UUID.fromString("64173bba-efac-1940-a2d8-64109fbc2e5b"), Staff);

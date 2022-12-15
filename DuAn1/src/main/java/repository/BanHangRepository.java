@@ -41,25 +41,22 @@ public class BanHangRepository {
         return false;
     }
 
-  public HDCT getOne(UUID idHD, UUID idSP) {
+    public HDCT getOne(UUID idHD, UUID idSP) {
         String sql = fromTableHDCT + " WHERE h.IDHD = :hd AND h.IDSP = :sp ";
         try {
-           Session session = HibernatUtil.getFACTORY().openSession();
-        Query query = session.createQuery(sql, HDCT.class);
-        query.setParameter("hd", new HoaDonRepository().getOne(idHD));
-        query.setParameter("sp", new SanPhamRepository().getOne(idSP));
-        HDCT hdct = (HDCT) query.getSingleResult();
-        return hdct;
-       } catch (Exception e) {
-           return null;
+            Session session = HibernatUtil.getFACTORY().openSession();
+            Query query = session.createQuery(sql, HDCT.class);
+            query.setParameter("hd", new HoaDonRepository().getOne(idHD));
+            query.setParameter("sp", new SanPhamRepository().getOne(idSP));
+            HDCT hdct = (HDCT) query.getSingleResult();
+            return hdct;
+        } catch (Exception e) {
+            return null;
 
-       }}
+        }
+    }
 
-  
-        
-        
-    
-   public boolean Delete(UUID hdct) {
+    public boolean Delete(UUID hdct) {
 
         try {
             Session session = HibernatUtil.getFACTORY().openSession();
@@ -72,7 +69,8 @@ public class BanHangRepository {
         }
         return false;
     }
-   public KhuyenMai getByMaKM(String MaKM) {
+
+    public KhuyenMai getByMaKM(String MaKM) {
         String sql = fromTableKM + " WHERE MaKM = : id";
         Query query = session.createQuery(sql, KhuyenMai.class);
         query.setParameter("id", MaKM);
@@ -81,7 +79,6 @@ public class BanHangRepository {
     }
 
     public static void main(String[] args) {
-
 
     }
 }

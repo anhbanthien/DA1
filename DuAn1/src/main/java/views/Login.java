@@ -7,6 +7,12 @@ package views;
 import javax.swing.JOptionPane;
 import domainmodel.DangNhap;
 import java.util.Locale;
+import java.util.Properties;
+import org.apache.poi.sl.usermodel.Placeholder;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
+import org.springframework.beans.factory.config.PlaceholderConfigurerSupport;
+import repository.DangNhapRepository;
 import service.impl.QlyDangNhap;
 
 public class Login extends javax.swing.JFrame {
@@ -14,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -45,7 +52,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 318, -1, -1));
 
-        jPanel1.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(0, 204, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -53,7 +60,7 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 241, 225));
 
         txtUser.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 90, 271, 33));
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 85, 209, 33));
 
         jButton1.setBackground(new java.awt.Color(51, 102, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -65,31 +72,31 @@ public class Login extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 180, 271, 35));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 184, 209, 35));
 
         txtPass.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 271, 35));
+        jPanel1.add(txtPass, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 131, 209, 35));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 51, 0));
         jLabel5.setText("Phần mềm quản lý Quán Coffee");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 230, 273, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(283, 13, 367, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 232, 273, -1));
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 51, 0));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/user.png"))); // NOI18N
         jLabel6.setText("Account");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 92, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(102, 51, 0));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pass.png"))); // NOI18N
         jLabel7.setText("Password");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 140, 84, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 138, -1, -1));
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/MerryPng.png"))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 207, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 207, 100));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 360));
 
@@ -97,16 +104,32 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
+ 
         DangNhap l = new QlyDangNhap().checkLogin(txtUser.getText(), txtPass.getText());
 
         if (l != null) {
-            new Main(l).setVisible(true);
 
-            this.dispose();
+            String textResuilt = "";
+
+            try {
+                new DangNhapRepository().checkInfoLogin(txtUser.getText());
+                textResuilt = "KHOA";
+            } catch (Exception e) {
+                textResuilt = "OKE";
+            }
+
+            if (textResuilt == "KHOA") {
+
+                JOptionPane.showMessageDialog(this, "Tài khoản đã bị admin khoá , vui lòng liên hệ admin để "
+                        + "được mở ");
+
+            } else {
+                new Main(l).setVisible(true);
+                this.dispose();
+            }
 
         } else {
-            JOptionPane.showMessageDialog(this, "=)) log ngu r con");
+            JOptionPane.showMessageDialog(this, "Mật khẩu sai !");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -141,6 +164,7 @@ public class Login extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Login().setVisible(true);
+
             }
         });
     }

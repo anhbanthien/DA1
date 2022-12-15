@@ -32,8 +32,8 @@ public class InfoAccount extends javax.swing.JFrame {
 
     public InfoAccount(DangNhap log) {
         initComponents();
-        txtAccount.setEnabled(false);
-        txtTrangThai.setEnabled(false);
+//        txtAccount.setEnabled(false);
+//        txtTrangThai.setEnabled(false);
 
         this.log = log;
         txtAccount.setText(log.getTenTaiKhoan());

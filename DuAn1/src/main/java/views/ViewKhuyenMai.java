@@ -138,9 +138,9 @@ public class ViewKhuyenMai extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 116, 100, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 116, 100, 30));
 
-        jButton2.setText("udapte");
+        jButton2.setText("udate");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 100, 30));
         getContentPane().add(txtMaKM, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 253, 338, -1));
 

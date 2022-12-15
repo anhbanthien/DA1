@@ -26,10 +26,10 @@ public class ban extends javax.swing.JPanel {
     HoaDonService hdSe = new HoaDonServiceImpl();
     BanReponse ban;
 
-    public int getTrangthai() {
-        ;
-        hdSe = new HoaDonServiceImpl();
-        int size = new HoaDonServiceImpl().getHoaDonByCheck(ban.getIDB()).size();
+    public int getTrangthai() {        
+        int size = Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"");
+            System.out.println(size);
+        
         if (size>=5){
             return 0;
         }else{
@@ -47,12 +47,12 @@ public class ban extends javax.swing.JPanel {
     public void setmau(int banmoi,int banbd){
         hdSe = new HoaDonServiceImpl();
         int bani = ban.getIDB();
-        int size = new HoaDonServiceImpl().getHoaDonByCheck(ban.getIDB()).size();
-        System.out.println(banmoi);
-        if (size==0 && bani ==banmoi){
+        int size = Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"");
+        if(size>=5){
+            this.setBackground(Color.RED);
+        }else if (size==0 && bani ==banmoi){
             this.setBackground(Color.PINK);
         }else if (size==0 && bani != banmoi){
-            System.out.println(bani);
             this.setBackground(Color.GREEN);
         }else if (size==0 && bani == banmoi){
             this.setBackground(Color.PINK);
@@ -67,7 +67,9 @@ public class ban extends javax.swing.JPanel {
         }
     }
     public void setmauBD() {
-       if (new HoaDonServiceImpl().getHoaDonByCheck(ban.getIDB()).size()==0) {
+       if(Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")>=5){
+            this.setBackground(Color.RED);
+        }else if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")==0) {
             this.setBackground(Color.GREEN);
         }else{
             this.setBackground(Color.ORANGE);
@@ -108,7 +110,9 @@ public class ban extends javax.swing.JPanel {
 //        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Bàn "+ ban.getIDB());
         this.setBackground(Color.GREEN);
-        if (new HoaDonServiceImpl().getHoaDonByCheck(ban.getIDB()).size()==0) {
+        if(Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")>=5){
+            this.setBackground(Color.RED);
+        }else if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")==0) {
             this.setBackground(Color.GREEN);
         }else{
             this.setBackground(Color.ORANGE);

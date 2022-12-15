@@ -30,7 +30,7 @@ public class Main extends javax.swing.JFrame {
                 String textKM = "";
 
                 for (KhuyenMai o : getAllKm) {
-                    textKM += " Áp dụng với tất cả hoá đơn mã Khuyến mãi " + o.getMaKM() + " , Ưu đãi "
+                    textKM += " Thông báo :  Áp dụng với tất cả hoá đơn mã Khuyến mãi " + o.getMaKM() + " , Ưu đãi "
                             + o.getPhanTramKM() + " % , Từ ngày " + o.getNgayBatDau() + " đến ngày " + o.getNgayKetThuc() + ".                    ";
                 }
                 String txt = textKM;
@@ -52,8 +52,7 @@ public class Main extends javax.swing.JFrame {
 
     public Main() {
         initComponents();
-                setLocationRelativeTo(null);
-
+        setLocationRelativeTo(null);
 
     }
 
@@ -100,14 +99,14 @@ public class Main extends javax.swing.JFrame {
         JbtOut3 = new javax.swing.JButton();
         JbtOut2 = new javax.swing.JButton();
         jSeparator10 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jbtProfile = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         JbtOut4 = new javax.swing.JButton();
         JbtOut5 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(102, 102, 255));
@@ -127,12 +126,12 @@ public class Main extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1154, 141, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(140, 110, 98));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lmain.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 150, 110));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 160, 20));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lastLogoPng.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 110, 120));
+        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 160, 20));
 
         Jbtqlynv.setBackground(new java.awt.Color(105, 82, 73));
         Jbtqlynv.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -147,7 +146,7 @@ public class Main extends javax.swing.JFrame {
                 JbtqlynvActionPerformed(evt);
             }
         });
-        jPanel2.add(Jbtqlynv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 450, 140, 30));
+        jPanel2.add(Jbtqlynv, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 140, 30));
 
         JbtOut.setBackground(new java.awt.Color(105, 82, 73));
         JbtOut.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -163,7 +162,7 @@ public class Main extends javax.swing.JFrame {
                 JbtOutActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 136, 40));
+        jPanel2.add(JbtOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 136, 40));
 
         JbtBan.setBackground(new java.awt.Color(105, 82, 73));
         JbtBan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -178,7 +177,7 @@ public class Main extends javax.swing.JFrame {
                 JbtBanActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtBan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 136, 60));
+        jPanel2.add(JbtBan, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 136, 50));
 
         JbtOut1.setBackground(new java.awt.Color(105, 82, 73));
         JbtOut1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -193,7 +192,7 @@ public class Main extends javax.swing.JFrame {
                 JbtOut1ActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtOut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 136, -1));
+        jPanel2.add(JbtOut1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 490, 136, -1));
 
         Jbtqlynv1.setBackground(new java.awt.Color(105, 82, 73));
         Jbtqlynv1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -208,12 +207,12 @@ public class Main extends javax.swing.JFrame {
                 Jbtqlynv1ActionPerformed(evt);
             }
         });
-        jPanel2.add(Jbtqlynv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 136, -1));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 160, 20));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 310, 160, 20));
-        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 160, 20));
+        jPanel2.add(Jbtqlynv1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 136, -1));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 260, 160, 20));
+        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 320, 160, 20));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 380, 160, 20));
         jPanel2.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 160, 10));
-        jPanel2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 560, 160, 20));
+        jPanel2.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 540, 160, 20));
 
         JbtBan2.setBackground(new java.awt.Color(105, 82, 73));
         JbtBan2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -228,7 +227,7 @@ public class Main extends javax.swing.JFrame {
                 JbtBan2ActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtBan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 150, 56));
+        jPanel2.add(JbtBan2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 150, 50));
 
         JbtOut3.setBackground(new java.awt.Color(105, 82, 73));
         JbtOut3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -243,7 +242,7 @@ public class Main extends javax.swing.JFrame {
                 JbtOut3ActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtOut3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, 136, 50));
+        jPanel2.add(JbtOut3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 136, 40));
 
         JbtOut2.setBackground(new java.awt.Color(105, 82, 73));
         JbtOut2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -258,15 +257,16 @@ public class Main extends javax.swing.JFrame {
                 JbtOut2ActionPerformed(evt);
             }
         });
-        jPanel2.add(JbtOut2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 580, 136, -1));
-        jPanel2.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 160, 20));
+        jPanel2.add(JbtOut2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 560, 136, -1));
+        jPanel2.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 480, 160, 20));
+        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 210, 160, 10));
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 630));
 
-        jPanel3.setBackground(new java.awt.Color(249, 238, 231));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(new java.awt.Color(139, 110, 96));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(139, 110, 96));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -284,9 +284,9 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel4.add(jbtProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 120, 64));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 60));
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 70));
 
         JbtOut4.setBackground(new java.awt.Color(105, 82, 73));
         JbtOut4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -318,12 +318,8 @@ public class Main extends javax.swing.JFrame {
 
         jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1270, 63));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/news.png"))); // NOI18N
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 256, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/denNodelPng.png"))); // NOI18N
-        jLabel5.setText("jLabel5");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 990, 60));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/_0_newsBanner.png"))); // NOI18N
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 66, 1010, 560));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1020, 630));
 
@@ -404,8 +400,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton Jbtqlynv1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -414,6 +409,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
