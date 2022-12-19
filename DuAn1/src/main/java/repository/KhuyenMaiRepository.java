@@ -5,6 +5,7 @@
 package repository;
 
 import config.HibernatUtil;
+import domainmodel.Ban;
 import domainmodel.KhuyenMai;
 import java.util.List;
 import javax.persistence.Query;
@@ -38,19 +39,14 @@ public class KhuyenMaiRepository {
         }
     }
 
-    public boolean update(KhuyenMai khuyenmai, UUID Id) {
-        try {
-            KhuyenMai st = session.get(KhuyenMai.class, Id);
-            st.setNgayBatDau(khuyenmai.getNgayBatDau());
-            st.setNgayKetThuc(khuyenmai.getNgayKetThuc());
-            st.setPhanTramKM(st.getPhanTramKM());
-            st.setTrangThai(st.getTrangThai());
-            st.setMaKM(st.getMaKM());
+    public Boolean update(KhuyenMai km) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
             session.getTransaction().begin();
-            session.save(st);
+            session.saveOrUpdate(km);
             session.getTransaction().commit();
             return true;
         } catch (Exception e) {
+            e.printStackTrace(System.out);
             return false;
         }
     }
@@ -67,11 +63,21 @@ public class KhuyenMaiRepository {
         }
     }
 
-    public static void main(String[] args) {
-        List<KhuyenMai> list = new KhuyenMaiRepository().getAll();
-        for (KhuyenMai km : list) {
-            System.out.println(km.toString());
+    public KhuyenMai getOne(String maKM) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+            String HQL = "FROM KhuyenMai WHERE MaKM = :maKM";
+            Query query = session.createQuery(HQL, Object.class);
+            query.setParameter("maKM", maKM);
+            KhuyenMai km = (KhuyenMai) query.getSingleResult();
+            return km;
+        } catch (Exception e) {
+          
+            return null;
         }
     }
 
+    public static void main(String[] args) {
+        KhuyenMai km = new KhuyenMaiRepository().getOne("KM");
+        System.out.println(km);
+    }
 }

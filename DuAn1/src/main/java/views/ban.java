@@ -26,52 +26,54 @@ public class ban extends javax.swing.JPanel {
     HoaDonService hdSe = new HoaDonServiceImpl();
     BanReponse ban;
 
-    public int getTrangthai() {        
-        int size = Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"");
-            System.out.println(size);
-        
-        if (size>=5){
+    public int getTrangthai() {
+        int size = Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0) + "");
+        System.out.println(size);
+
+        if (size >= 5) {
             return 0;
-        }else{
+        } else {
             return 1;
         }
-        
+
     }
 
-
-    int a ;
+    int a;
 
     public BanReponse getBan() {
         return ban;
     }
-    public void setmau(int banmoi,int banbd){
+
+    public void setmau(int banmoi, int banbd) {
         hdSe = new HoaDonServiceImpl();
         int bani = ban.getIDB();
-        int size = Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"");
-        if(size>=5){
+        int size = Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0) + "");
+        if (size >= 5) {
             this.setBackground(Color.RED);
-        }else if (size==0 && bani ==banmoi){
+            return;
+        } else if (size == 0 && bani == banmoi) {
             this.setBackground(Color.PINK);
-        }else if (size==0 && bani != banmoi){
+        } else if (size == 0 && bani != banmoi) {
             this.setBackground(Color.GREEN);
-        }else if (size==0 && bani == banmoi){
+        } else if (size == 0 && bani == banmoi) {
             this.setBackground(Color.PINK);
-        }else if (size==1 && bani == banmoi && bani == banbd){
+        } else if (size == 1 && bani == banmoi && bani == banbd) {
             this.setBackground(Color.PINK);
-        }else if (size==1 && bani != banmoi && bani == banbd ){
+        } else if (size == 1 && bani != banmoi && bani == banbd) {
             this.setBackground(Color.GREEN);
-        }else if (bani == banmoi){
+        } else if (bani == banmoi) {
             this.setBackground(Color.PINK);
-        }else{
+        } else {
             this.setBackground(Color.ORANGE);
         }
     }
+
     public void setmauBD() {
-       if(Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")>=5){
+        if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0) + "") >= 5) {
             this.setBackground(Color.RED);
-        }else if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")==0) {
+        } else if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0) + "") == 0) {
             this.setBackground(Color.GREEN);
-        }else{
+        } else {
             this.setBackground(Color.ORANGE);
         }
     }
@@ -79,12 +81,13 @@ public class ban extends javax.swing.JPanel {
     public int getA() {
         return a;
     }
-    public ban(BanReponse ban,int a) {
+
+    public ban(BanReponse ban, int a) {
         this.ban = ban;
         this.a = a;
 //        System.out.println(ban.getIDB());
-        initComponents();    
-        
+        initComponents();
+
     }
 //    public static void main(String[] args) {
 //        QuanLyBanService banService = new QuanLyBanServiceImpl();
@@ -108,34 +111,33 @@ public class ban extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 102, 102));
 //        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("Bàn "+ ban.getIDB());
+        jLabel1.setText("Bàn " + ban.getIDB());
         this.setBackground(Color.GREEN);
-        if(Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")>=5){
+        if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0) + "") >= 5) {
             this.setBackground(Color.RED);
-        }else if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0)+"")==0) {
+        } else if (Integer.parseInt(new BanRepository().getTotolCustomer(ban.getIDB()).get(0) + "") == 0) {
             this.setBackground(Color.GREEN);
-        }else{
+        } else {
             this.setBackground(Color.ORANGE);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(34, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

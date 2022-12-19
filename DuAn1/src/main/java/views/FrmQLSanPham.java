@@ -74,7 +74,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
-        btnXoa = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -105,7 +104,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 102, 102));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel3.setBackground(new java.awt.Color(88, 40, 4));
+        jPanel3.setBackground(new java.awt.Color(255, 153, 51));
 
         jPanel2.setBackground(new java.awt.Color(255, 204, 102));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm Kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14), new java.awt.Color(0, 51, 255))); // NOI18N
@@ -157,14 +156,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
             }
         });
 
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/bin.png"))); // NOI18N
-        btnXoa.setText("Xóa");
-        btnXoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnXoaActionPerformed(evt);
-            }
-        });
-
         jLabel2.setText("Tên Sản Phẩm:");
 
         jLabel3.setText("Mô Tả:");
@@ -200,8 +191,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                         .addComponent(btnThem)
                         .addGap(18, 18, 18)
                         .addComponent(btnSua)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnXoa)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -253,8 +242,7 @@ public class FrmQLSanPham extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
-                    .addComponent(btnSua)
-                    .addComponent(btnXoa))
+                    .addComponent(btnSua))
                 .addGap(19, 19, 19))
         );
 
@@ -535,22 +523,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-
-        try {
-            if (new ManageSanPhamService().getAll().size() == 0) {
-                JOptionPane.showMessageDialog(this, "Hết sản phẩm!");
-                return;
-            }
-            if (new ManageSanPhamService().delete(getID())) {
-                JOptionPane.showMessageDialog(this, "Xóa thành công!");
-                loadData(new ManageSanPhamService().getAll());
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Xóa thất bại!");
-        }
-    }//GEN-LAST:event_btnXoaActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         loadData(new ManageSanPhamService().getAll());
     }//GEN-LAST:event_btnBackActionPerformed
@@ -729,7 +701,6 @@ public class FrmQLSanPham extends javax.swing.JFrame {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
-    private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXuatExcel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cboSapXep;

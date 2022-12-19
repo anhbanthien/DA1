@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JPanel;
-import service.impl.KhuyenMaiServiceImp;
+import service.impl.KhuyenMaiServiceImpl;
 
 /**
  *
@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
         Thread one = new Thread() {
             @Override
             public void run() {
-                List<KhuyenMai> getAllKm = new KhuyenMaiServiceImp().getAll();
+                List<KhuyenMai> getAllKm = new KhuyenMaiServiceImpl().getAll();
 
                 String textKM = "";
 
@@ -130,7 +130,7 @@ public class Main extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/lastLogoPng.png"))); // NOI18N
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 110, 120));
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 110, 120));
         jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 160, 20));
 
         Jbtqlynv.setBackground(new java.awt.Color(105, 82, 73));
@@ -285,8 +285,7 @@ public class Main extends javax.swing.JFrame {
         jPanel4.add(jbtProfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 120, 64));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 70));
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 50));
 
         JbtOut4.setBackground(new java.awt.Color(105, 82, 73));
         JbtOut4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -316,10 +315,10 @@ public class Main extends javax.swing.JFrame {
         });
         jPanel4.add(JbtOut5, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, 60, 60));
 
-        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1270, 63));
+        jPanel3.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 0, 1270, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/_0_newsBanner.png"))); // NOI18N
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 66, 1010, 560));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 56, 1020, 570));
 
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 1020, 630));
 

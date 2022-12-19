@@ -93,4 +93,9 @@ public class QuanLyThongKeServiceImpl implements QuanLyThongKeService {
     public List<Object[]> listBieuDo() {
         return repository.listBieuDo();
     }
+
+    @Override
+    public List<Object[]> listBieuDoNgay(Date ngayBD, Date ngayKT) {
+        return repository.listBieuDoNgay(ngayBD, ngayKT);
+    }
 }

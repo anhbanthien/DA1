@@ -6,7 +6,7 @@ package debug;
 
 import domainmodel.KhuyenMai;
 import java.util.List;
-import service.impl.KhuyenMaiServiceImp;
+import service.impl.KhuyenMaiServiceImpl;
 
 /**
  *
@@ -15,7 +15,7 @@ import service.impl.KhuyenMaiServiceImp;
 public class main {
 
     public static void main(String[] args) {
-        List<KhuyenMai> getAllKm = new KhuyenMaiServiceImp().getAll();
+        List<KhuyenMai> getAllKm = new KhuyenMaiServiceImpl().getAll();
 
         String textKM = "";
 

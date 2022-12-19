@@ -6,6 +6,7 @@ package service.impl;
 
 import domainmodel.HoaDon;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -84,6 +85,17 @@ public class HoaDonServiceImpl implements HoaDonService {
             hoadonmodel.add(model);
         }
         return hoadonmodel;
+    }
+
+    @Override
+    public List<Object[]> listHoaDonNgay(Date NgayTao, Date NgayTT) {
+        List<Object[]> list = hoadonrepository.listHoaDonNgay(NgayTao, NgayTT);
+        return list;
+    }
+
+    @Override
+    public List<Object[]> getListBD(Date NgayTao, Date NgayTT) {
+        return hoadonrepository.listHoaDonNgay(NgayTao, NgayTT);
     }
 
 }

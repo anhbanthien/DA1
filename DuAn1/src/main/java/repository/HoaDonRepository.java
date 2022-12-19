@@ -7,6 +7,7 @@ package repository;
 import config.HibernatUtil;
 import domainmodel.HoaDon;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import org.hibernate.Session;
@@ -18,7 +19,7 @@ import org.hibernate.query.Query;
  * @author hungn
  */
 public class HoaDonRepository {
-
+  
     private String fromTable = "From HoaDon";
 
     private Session session = HibernatUtil.getFACTORY().openSession();
@@ -128,5 +129,19 @@ public class HoaDonRepository {
         }
 
     }
-
+public List<Object[]> listHoaDonNgay(Date NgayTao, Date NgayTT) {
+        try ( Session session = HibernatUtil.getFACTORY().openSession();) {
+            String HQL = "Select hd.IDHD, nv.HoTen, hd.NgayTao, hd.TongTien, hd.TrangThai \n"
+                    + "From HoaDon hd join NhanVien nv on hd.IDNV = nv.IdNhanVien\n"
+                    + "where hd.NgayTao between :NgayTao And :NgayTT\n";
+            Query query = session.createQuery(HQL);
+            query.setParameter("NgayTao", NgayTao);
+            query.setParameter("NgayTT", NgayTT);
+            List<Object[]> list = query.getResultList();
+            return list;
+        } catch (Exception e) {
+            e.printStackTrace(System.out);
+            return null;
+        }
+    }
 }

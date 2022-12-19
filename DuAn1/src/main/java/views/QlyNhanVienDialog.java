@@ -29,32 +29,32 @@ import viewmodel.NhanVienModel;
  * @author Admin
  */
 public class QlyNhanVienDialog extends javax.swing.JDialog {
-    
+
     private ArrayList<NhanVienModel> getAll = new QlyNhanVienImpl().getAllStaff();
     private DefaultTableModel tbl = new DefaultTableModel();
     private DefaultComboBoxModel dcbm = new DefaultComboBoxModel();
-    
+
     public void fillCBB(ArrayList<NhanVienModel> getAll) {
-        
+
         cbbMaNV.setModel(dcbm);
-        
+
         for (NhanVienModel o : getAll) {
             cbbMaNV.addItem(o.getMaNhanVien());
         }
-        
+
     }
-    
+
     public void fillToTable(List<NhanVienModel> listsStaff) {
-        
+
         tbl = (DefaultTableModel) tblQlyNhanVien.getModel();
         tbl.setRowCount(0);
-        
+
         for (NhanVienModel o : listsStaff) {
             tbl.addRow(new Object[]{o.getHoTen(), o.getEmail(), o.getSDT(), o.getGioiTinh(), o.getTrangThai(), o.getImage(), o.getMaNhanVien()});
         }
-        
+
     }
-    
+
     public QlyNhanVienDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -62,7 +62,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         fillCBB(new QlyNhanVienImpl().getAllStaff());
         showDetailIndex();
         setLocationRelativeTo(null);
-        
+
     }
 
     /**
@@ -334,13 +334,13 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         List<NhanVienModel> getAllSearch = new ArrayList<>();
-        
+
         for (NhanVienModel o : getAll) {
             if (o.getHoTen().equalsIgnoreCase(txtSearch.getText())) {
                 getAllSearch.add(o);
             }
         }
-        
+
         if (getAllSearch.size() > 0) {
             fillToTable(getAllSearch);
             JOptionPane.showMessageDialog(this, "Đã tìm thấy");
@@ -349,9 +349,9 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_jButton3ActionPerformed
-    
+
     private String strHinhAnh = "";
-    
+
 
     private void lblAnhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAnhMouseClicked
         try {
@@ -376,7 +376,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     private void cbbPositionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbbPositionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbbPositionActionPerformed
-    
+
     public void showDetailIndex() {
         txtName.setText(new QlyNhanVienImpl().getAllStaff().get(1).getHoTen());
         txtEmail.setText(new QlyNhanVienImpl().getAllStaff().get(1).getEmail());
@@ -402,13 +402,13 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             rdoFemale.setSelected(true);
         }
     }
-    
+
 
     private void tblQlyNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblQlyNhanVienMouseClicked
 
         // txtAccount.setText(new DangNhapRepository().getOne("" + new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien()).getTenTaiKhoan());
         System.out.println(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien());
-        
+
         txtName.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getHoTen());
         txtEmail.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getEmail());
         txtNumberPhone.setText(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getSDT());
@@ -423,12 +423,12 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             img.getScaledInstance(lblAnh.getWidth(), lblAnh.getHeight(), 0);
             lblAnh.setIcon(imgIcon);
         }
-        if (new QlyNhanVienImpl().getAllStaff().get(1).getTrangThai().equalsIgnoreCase("ON")) {
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getTrangThai().equalsIgnoreCase("ON")) {
             rdoOn.setSelected(true);
         } else {
             rdoOFF.setSelected(true);
         }
-        if (new QlyNhanVienImpl().getAllStaff().get(1).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
+        if (new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getGioiTinh().trim().equalsIgnoreCase("Nam")) {
             rdoMale.setSelected(true);
         } else {
             rdoFemale.setSelected(true);
@@ -436,6 +436,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_tblQlyNhanVienMouseClicked
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+
         NhanVien staff = new NhanVien();
         staff.setEmail(txtEmail.getText());
         staff.setMaNhanVien(txtMaNV.getText());
@@ -446,7 +447,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
         }
         staff.setHoTen(txtName.getText());
         staff.setSDT(txtNumberPhone.getText());
-        
+
         String hinh;
         if (strHinhAnh == null) {
             hinh = "null";
@@ -454,21 +455,21 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             hinh = strHinhAnh;
             staff.setImage(strHinhAnh);
         }
-        
+
         if (rdoOn.isSelected()) {
             staff.setTrangThai("ON");
         } else {
             staff.setTrangThai("OFF");
         }
-        
+
         if (new QlyNhanVienImpl().Save(staff)) {
-            
+
             JOptionPane.showMessageDialog(this, "Succes");
             getAll.add(new NhanVienModel(staff));
             fillToTable(new QlyNhanVienImpl().getAllStaff());
             cbbMaNV.removeAllItems();
             fillCBB(new QlyNhanVienImpl().getAllStaff());
-            
+
         } else {
             JOptionPane.showMessageDialog(this, "Failed");
         }
@@ -492,13 +493,13 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
             hinh = strHinhAnh;
             staff.setImage(strHinhAnh);
         }
-        
+
         if (rdoOn.isSelected()) {
             staff.setTrangThai("ON");
         } else {
             staff.setTrangThai("OFF");
         }
-        
+
         if (new QlyNhanVienImpl().Update(UUID.fromString(new QlyNhanVienImpl().getAllStaff().get(tblQlyNhanVien.getSelectedRow()).getIdNhanVien() + ""), staff)) {
             JOptionPane.showMessageDialog(this, "Succes");
             fillToTable(new QlyNhanVienImpl().getAllStaff());
@@ -513,7 +514,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        
+
         DangNhap log = new DangNhap();
         log.setTenTaiKhoan(txtAccount.getText());
         log.setMatKhau(txtPass.getText());
@@ -525,7 +526,7 @@ public class QlyNhanVienDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Create account for staff successfully");
             } else {
                 JOptionPane.showMessageDialog(this, "Create account for staff failed");
-                
+
             }
         } catch (Exception e) {
         }

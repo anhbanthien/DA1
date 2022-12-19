@@ -4,7 +4,8 @@
  */
 package domainmodel;
 
-import java.sql.Date;
+
+import java.util.Date;
 import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -35,6 +36,14 @@ public class KhuyenMai {
 
     public KhuyenMai(UUID IDKM, Date NgayBatDau, Date NgayKetThuc, float PhanTramKM, int TrangThai, String MaKM) {
         this.IDKM = IDKM;
+        this.NgayBatDau = NgayBatDau;
+        this.NgayKetThuc = NgayKetThuc;
+        this.PhanTramKM = PhanTramKM;
+        this.TrangThai = TrangThai;
+        this.MaKM = MaKM;
+    }
+
+    public KhuyenMai(Date NgayBatDau, Date NgayKetThuc, float PhanTramKM, int TrangThai, String MaKM) {
         this.NgayBatDau = NgayBatDau;
         this.NgayKetThuc = NgayKetThuc;
         this.PhanTramKM = PhanTramKM;

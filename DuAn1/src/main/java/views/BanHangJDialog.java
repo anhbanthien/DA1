@@ -65,7 +65,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
     List<HoaDonModel> hoaDons = new ArrayList<>();
     KhachHangService khachHangService = new KhachHangServiceImpl();
     KhachHangRepository khachHangRepository = new KhachHangRepository();
-    KhuyenMaiService khuyenMaiService = new KhuyenMaiServiceImp();
+    KhuyenMaiService khuyenMaiService = new KhuyenMaiServiceImpl();
     List<KhachHangModel> khachHangs = new ArrayList<>();
     IManageHDCTService hoaDonCTService = new ManageHDCTService();
     IQlyNhanVien QlyNhanVien = new QlyNhanVienImpl();
@@ -115,6 +115,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         super(parent, modal);
         _dn = dn;
         initComponents();
+        setLocationRelativeTo(null);
         loadTableSanPham();
         loadTableBan();
         txtTienTong.setEnabled(false);
@@ -122,6 +123,15 @@ public class BanHangJDialog extends javax.swing.JDialog {
         txtTienTT.setEnabled(false);
         txtTienTong.setEnabled(false);
         btnThanhToan.setEnabled(false);
+        txtsp1.setEnabled(false);
+        txtTien.setEnabled(false);
+        jButton5.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton9.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton1.setEnabled(false);
+        rdoHDC.setSelected(true);
+        loadTablehoaDon("Chờ TT");
 
     }
 
@@ -460,7 +470,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 204, 102));
 
-        jPanel2.setBackground(new java.awt.Color(139, 110, 96));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel6.setBackground(new java.awt.Color(249, 238, 231));
@@ -604,7 +614,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         });
         jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 310, 110, 30));
 
-        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 440, 360));
+        jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 220, 460, 360));
 
         jPanel8.setBackground(new java.awt.Color(249, 238, 231));
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa đơn chi tiết"));
@@ -650,7 +660,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         txtsp5.setText("Thành tiền");
         jPanel8.add(txtsp5, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 117, -1, 26));
 
-        txtsl.setModel(new javax.swing.SpinnerNumberModel(1, 0, null, 1));
+        txtsl.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
         txtsl.setPreferredSize(new java.awt.Dimension(32, 26));
         txtsl.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -772,7 +782,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -783,11 +793,11 @@ public class BanHangJDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 40, 320, 170));
+        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 40, 370, 170));
 
         lblanhSP.setBackground(new java.awt.Color(0, 0, 0));
         lblanhSP.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel2.add(lblanhSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(1120, 40, 110, 150));
+        jPanel2.add(lblanhSP, new org.netbeans.lib.awtextra.AbsoluteConstraints(1170, 50, 110, 150));
 
         jPanel1.setBackground(new java.awt.Color(249, 238, 231));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Hóa đơn"));
@@ -906,7 +916,7 @@ public class BanHangJDialog extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1325, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -1013,6 +1023,10 @@ loadTablehoaDon("Chờ TT");
 //        System.out.println(khuyenMai.getMaKM());
 //        System.out.println(_ban);
         hd.setIDKM(khuyenMai);
+//        if (_idKH == null) {
+//            JOptionPane.showMessageDialog(this, "Chưa có Khách hàng ko thể lưu hóa đơn được");
+//            return;
+//        }
         if (_ban == 0) {
             JOptionPane.showMessageDialog(this, "Chưa có bàn ko thể lưu hóa đơn được");
             return;
@@ -1096,6 +1110,12 @@ loadTablehoaDon("Chờ TT");
         _banBD = 0;
         txttien();
         khuyenMai = null;
+        jButton5.setEnabled(false);
+        jButton7.setEnabled(false);
+        jButton9.setEnabled(false);
+        jButton4.setEnabled(false);
+        jButton1.setEnabled(false);
+        rdoHDC.setSelected(true);
 
     }//GEN-LAST:event_jButton10ActionPerformed
 

@@ -158,7 +158,7 @@ public class InfoAccount extends javax.swing.JFrame {
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 296, -1, -1));
         getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 480, 10));
 
-        jPanel2.setBackground(new java.awt.Color(139, 110, 96));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setForeground(new java.awt.Color(255, 204, 51));
 
         jLabel3.setFont(new java.awt.Font("Raleway ExtraBold", 1, 24)); // NOI18N

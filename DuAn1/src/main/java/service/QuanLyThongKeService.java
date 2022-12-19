@@ -43,4 +43,6 @@ public interface QuanLyThongKeService {
     List<Object[]> listMouse(UUID id);
     
     List<Object[]> listBieuDo();
+    
+    List<Object[]> listBieuDoNgay(Date ngayBD, Date ngayKT);
 }

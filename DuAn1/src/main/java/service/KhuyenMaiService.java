@@ -15,7 +15,12 @@ import java.util.UUID;
 public interface KhuyenMaiService {
 
     public List<KhuyenMai> getAll();
-    public boolean add(KhuyenMai khuyenmai);
-    public boolean update(KhuyenMai khuyenmai, UUID Id);
+
+    public String add(KhuyenMai khuyenmai);
+
+    public String update(KhuyenMai khuyenmai);
+
     boolean delete(KhuyenMai khuyenmai);
+    
+    KhuyenMai getOne(String maKM);
 }
